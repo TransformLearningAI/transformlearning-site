@@ -57,9 +57,10 @@ export async function POST(request, { params }) {
 
   // Send email
   const resend = new Resend(process.env.RESEND_API_KEY)
-  await resend.emails.send({
-    from: `Transform Learning <noreply@transformlearning.ai>`,
+  const { error: emailError } = await resend.emails.send({
+    from: `Transform Learning <onboarding@resend.dev>`,
     to: [email],
+    reply_to: user.email,
     subject: `You've been invited to ${course.title} on Transform Learning`,
     html: `
       <div style="font-family:sans-serif;max-width:520px;margin:0 auto;padding:32px 16px;">
@@ -70,11 +71,16 @@ export async function POST(request, { params }) {
         <p style="color:#374151;">${faculty?.full_name || 'Your instructor'} has added you to <strong>${course.title}</strong> on Transform Learning.</p>
         <p style="color:#374151;">Transform Learning shows you exactly where you stand on every skill in this course — and helps you close the gaps through personalized coaching and practice.</p>
         <a href="${inviteUrl}" style="display:inline-block;background:#00A8A8;color:white;text-decoration:none;padding:14px 28px;border-radius:10px;font-weight:700;margin:16px 0;">
-          Accept Invite & Get Started →
+          Accept Invite &amp; Get Started →
         </a>
         <p style="color:#9CA3AF;font-size:12px;">This link expires in 7 days. If you didn't expect this email, you can ignore it.</p>
       </div>`,
   })
+
+  if (emailError) {
+    console.error('Resend error:', emailError)
+    return NextResponse.json({ error: 'Failed to send invite email: ' + emailError.message }, { status: 500 })
+  }
 
   return NextResponse.json({ ok: true })
 }
