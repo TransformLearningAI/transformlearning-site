@@ -15,27 +15,30 @@ export default function SignupPage() {
     e.preventDefault()
     setLoading(true)
     setError('')
-    const supabase = createClient()
-    const { data, error } = await supabase.auth.signUp({
-      email: form.email,
-      password: form.password,
-      options: {
-        data: { full_name: form.full_name, institution: form.institution, role: 'faculty' },
-        emailRedirectTo: `${window.location.origin}/api/auth/callback`,
-      },
-    })
-    if (error) { setError(error.message); setLoading(false); return }
 
-    if (data.session) {
-      // Email confirm off — session returned immediately, create profile explicitly
-      await fetch('/api/profile', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ full_name: form.full_name, institution: form.institution, role: 'faculty' }),
+    // Timeout after 15s so it never hangs silently
+    const timeout = setTimeout(() => {
+      setError('Request timed out — please try again.')
+      setLoading(false)
+    }, 15000)
+
+    try {
+      const supabase = createClient()
+      const { data, error } = await supabase.auth.signUp({
+        email: form.email,
+        password: form.password,
+        options: {
+          data: { full_name: form.full_name, institution: form.institution, role: 'faculty' },
+        },
       })
+      clearTimeout(timeout)
+      if (error) { setError(error.message); setLoading(false); return }
+      // Hard navigate — works whether email confirm is on or off
       window.location.href = '/courses'
-    } else {
-      router.push('/login?message=check_email')
+    } catch (err) {
+      clearTimeout(timeout)
+      setError(err.message || 'Something went wrong')
+      setLoading(false)
     }
   }
 
