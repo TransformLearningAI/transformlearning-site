@@ -7,6 +7,7 @@ import Courses    from '@/components/Courses'
 import PilotModel from '@/components/PilotModel'
 import Outcomes   from '@/components/Outcomes'
 import Pricing    from '@/components/Pricing'
+import About      from '@/components/About'
 import PilotForm  from '@/components/PilotForm'
 import Footer     from '@/components/Footer'
 
@@ -22,6 +23,7 @@ export default function Home() {
       <PilotModel />
       <Outcomes />
       <Pricing />
+      <About />
       <PilotForm />
       <Footer />
     </main>

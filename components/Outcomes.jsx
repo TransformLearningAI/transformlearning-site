@@ -1,80 +1,84 @@
+import ScrollReveal from './ScrollReveal'
+
 const OUTCOMES = [
   {
-    audience: 'Academic Outcomes',
-    color: '#2F7DF6',
-    headline: 'Reduction in DFW rates',
-    items: [
-      'Measurable improvement in course pass rates',
-      'Baseline comparisons that document what changed',
-      'Evidence of intervention timing effectiveness',
-    ],
+    audience: 'Academic', color: '#00A8A8',
+    headline: 'Reduction in DFW rates.',
+    items: ['Measurable improvement in course pass rates', 'Baseline comparisons that document what changed', 'Evidence of intervention timing effectiveness'],
   },
   {
-    audience: 'Faculty Outcomes',
-    color: '#003769',
-    headline: 'Clearer decisions, faster action',
-    items: [
-      'Less uncertainty in instructional decision-making',
-      'Faster, better-targeted interventions',
-      'A workflow that takes less time than the guesswork it replaces',
-    ],
+    audience: 'Faculty', color: '#0C1F3F',
+    headline: 'Clarity. Not more data.',
+    items: ['Clearer decisions with less uncertainty', 'Faster, better-targeted interventions', 'A workflow that replaces the guesswork'],
   },
   {
-    audience: 'Institutional Outcomes',
-    color: '#186900',
-    headline: 'Evidence institutions can act on',
-    items: [
-      'Retention indicators connected to student success reporting',
-      'Performance data usable for accreditation narratives',
-      'Department-to-institution expansion pathway',
-    ],
+    audience: 'Institutional', color: '#4F8A5B',
+    headline: 'From hoping to knowing.',
+    items: ['Retention indicators for student success reporting', 'Performance data for accreditation narratives', 'Department-to-institution expansion pathway'],
   },
 ]
 
 export default function Outcomes() {
   return (
-    <section className="bg-brand-mist py-20 lg:py-28">
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="py-24 lg:py-32 relative overflow-hidden" style={{ background: '#0C1F3F' }}>
 
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <p className="eyebrow mb-4">What Changes</p>
-          <h2 className="section-headline">
-            Results faculty can show. Institutions can act on.
-          </h2>
+      {/* Glow */}
+      <div className="absolute inset-0 pointer-events-none"
+           style={{ background: 'radial-gradient(ellipse at 50% 100%, rgba(0,168,168,0.12) 0%, transparent 60%)' }} />
+
+      <div className="absolute left-0 bottom-0 font-serif font-light select-none pointer-events-none"
+           style={{ fontSize: '280px', lineHeight: 1, color: 'rgba(255,255,255,0.025)', letterSpacing: '-0.05em' }}>
+        05
+      </div>
+
+      <div className="relative max-w-6xl mx-auto px-6">
+
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <ScrollReveal>
+            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/40 mb-6">What Changes</p>
+            <h2 className="font-serif font-light text-white mb-4"
+                style={{ fontSize: 'clamp(36px, 5.5vw, 72px)', lineHeight: 1.0, letterSpacing: '-0.03em' }}>
+              Results faculty can show.<br />
+              <em className="italic" style={{ color: '#00A8A8' }}>Institutions can act on.</em>
+            </h2>
+          </ScrollReveal>
         </div>
 
-        {/* Outcome cards */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
-          {OUTCOMES.map(o => (
-            <div key={o.audience} className="bg-white border border-brand-border rounded-2xl p-7">
-              <div className="text-[11px] font-bold uppercase tracking-[0.14em] mb-2"
-                   style={{ color: o.color }}>
-                {o.audience}
+          {OUTCOMES.map((o, i) => (
+            <ScrollReveal key={o.audience} delay={i + 1}>
+              <div className="card-lift rounded-2xl p-8 h-full border border-white/10"
+                   style={{ background: 'rgba(255,255,255,0.06)', backdropFilter: 'blur(12px)' }}>
+                <div className="text-[10px] font-bold uppercase tracking-[0.14em] mb-3" style={{ color: o.color }}>
+                  {o.audience} Outcomes
+                </div>
+                <h3 className="font-serif font-light text-white mb-5"
+                    style={{ fontSize: '28px', lineHeight: 1.15, letterSpacing: '-0.01em' }}>
+                  {o.headline}
+                </h3>
+                <ul className="space-y-3">
+                  {o.items.map(item => (
+                    <li key={item} className="flex items-start gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: o.color }} />
+                      <span className="text-sm leading-relaxed text-white/55">{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <h3 className="text-xl font-bold text-navy mb-4">{o.headline}</h3>
-              <ul className="space-y-3">
-                {o.items.map(item => (
-                  <li key={item} className="flex items-start gap-2.5">
-                    <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0"
-                         style={{ background: o.color }} />
-                    <span className="text-sm leading-relaxed text-brand-gray">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
 
         {/* Pull quote */}
-        <div className="max-w-3xl mx-auto bg-white border-l-4 border-navy rounded-2xl px-8 py-6">
-          <p className="text-xl font-bold text-navy leading-relaxed">
-            "In higher education, proof is not a support element. It is a condition of adoption."
-          </p>
-          <p className="text-sm text-brand-gray mt-2">
-            Every pilot is structured to generate the kind of evidence that moves departments and institutions to act.
-          </p>
-        </div>
+        <ScrollReveal>
+          <div className="max-w-3xl mx-auto text-center">
+            <p className="font-serif font-light text-white/80 leading-snug"
+               style={{ fontSize: 'clamp(22px, 3vw, 36px)', letterSpacing: '-0.02em' }}>
+              "Proof is not a support element.<br />
+              <em className="italic" style={{ color: '#00A8A8' }}>It is a condition of adoption.</em>"
+            </p>
+          </div>
+        </ScrollReveal>
 
       </div>
     </section>

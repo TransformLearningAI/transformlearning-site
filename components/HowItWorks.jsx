@@ -1,63 +1,81 @@
+import ScrollReveal from './ScrollReveal'
+
 const STEPS = [
   {
-    num: '1',
-    phase: 'Architect',
-    title: 'Map your course and connect your LMS',
-    body: 'We start with your course and your students. Transform Learning maps the progression signals that matter for your specific gateway course and connects to your existing LMS — Canvas integration first, minimal setup required.',
-    color: '#003769',
+    num: '1', phase: 'Architect', color: '#0C1F3F',
+    title: 'Faculty submit a syllabus. That\'s it.',
+    body: 'Transform Learning maps any syllabus into a complete skill and knowledge framework. No faculty dashboard to learn, no workflow to change, no ongoing workload. Faculty provide the course — we build the intelligence behind it.',
+    detail: 'Setup in under 30 minutes',
   },
   {
-    num: '2',
-    phase: 'Activate',
-    title: 'See what you couldn\'t see before',
-    body: 'Faculty get immediate access to a dashboard that surfaces real progression signals — not activity metrics — within the first week of use. The critical moment: seeing a pattern that was invisible until now.',
-    color: '#2F7DF6',
+    num: '2', phase: 'Activate', color: '#00A8A8',
+    title: 'Students see their gaps — and close them.',
+    body: 'Each student gets a personalized progress dashboard revealing their true proficiency on every explicit skill and implicit capability in the course. Where a gap exists, the system acts: coaching sessions, adaptive quizzes, study guides, and practice — targeted to that exact skill. Students can upload their own work or take an assessment to establish their real starting point. Faculty require regular check-ins. The engagement loop does the rest.',
+    detail: 'Diagnose → coach → close the gap',
   },
   {
-    num: '3',
-    phase: 'Amplify',
-    title: 'Turn course proof into institutional adoption',
-    body: 'Pilot results become the evidence base that moves adoption from one section to a department. Department results build the case for an institutional partnership. The evidence travels with the platform.',
-    color: '#186900',
+    num: '3', phase: 'Amplify', color: '#4F8A5B',
+    title: 'Better outcomes. Repeatable evidence.',
+    body: 'When students know where they stand, they act differently. DFW rates drop. Pass rates rise. Faculty see the results without doing the work. Pilot proof becomes the evidence base that moves adoption from one course to a department to an institution.',
+    detail: 'Repeatable expansion model',
   },
 ]
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="bg-brand-soft py-20 lg:py-28">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="how-it-works" className="py-24 lg:py-32 relative overflow-hidden"
+             style={{ background: 'linear-gradient(180deg, #F9FBFD 0%, #F4F7FB 100%)' }}>
 
-        {/* Header */}
-        <div className="mb-14">
-          <p className="eyebrow mb-4">The Model</p>
-          <h2 className="section-headline">
-            Architect. Activate. Amplify.
-          </h2>
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 font-serif font-light select-none pointer-events-none"
+           style={{ fontSize: '280px', lineHeight: 1, color: 'rgba(12,31,63,0.03)', letterSpacing: '-0.05em' }}>
+        03
+      </div>
+
+      <div className="max-w-6xl mx-auto px-6 relative">
+
+        <div className="mb-16">
+          <ScrollReveal>
+            <p className="eyebrow mb-5">The Model</p>
+            <h2 className="font-serif font-light text-navy"
+                style={{ fontSize: 'clamp(38px, 5.5vw, 72px)', lineHeight: 1.0, letterSpacing: '-0.03em' }}>
+              Architect.<br />Activate.<br />
+              <em className="italic" style={{ color: '#00A8A8' }}>Amplify.</em>
+            </h2>
+          </ScrollReveal>
         </div>
 
-        {/* Steps */}
-        <div className="grid md:grid-cols-3 gap-8 relative">
-
-          {/* Connecting line (desktop) */}
-          <div className="hidden md:block absolute top-10 left-[calc(33.33%+16px)] right-[calc(33.33%+16px)] h-px bg-brand-border" />
-
+        <div className="space-y-6">
           {STEPS.map((s, i) => (
-            <div key={s.num} className="relative">
-              {/* Step number circle */}
-              <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-black text-lg mb-6 relative z-10"
-                   style={{ background: s.color }}>
-                {s.num}
-              </div>
+            <ScrollReveal key={s.num} delay={i + 1}>
+              <div className="card-lift group grid md:grid-cols-[80px_1fr_1fr] gap-8 items-center bg-white rounded-2xl p-8 border border-brand-border"
+                   style={{ boxShadow: '0 4px 24px rgba(12,31,63,0.05)' }}>
 
-              {/* Phase label */}
-              <div className="text-xs font-bold uppercase tracking-[0.14em] mb-2"
-                   style={{ color: s.color }}>
-                {s.phase}
-              </div>
+                {/* Big number */}
+                <div className="font-serif font-light text-center select-none"
+                     style={{ fontSize: '72px', lineHeight: 1, color: s.color, opacity: 0.25 }}>
+                  {s.num}
+                </div>
 
-              <h3 className="text-xl font-bold text-navy mb-3">{s.title}</h3>
-              <p className="text-sm leading-relaxed text-brand-gray">{s.body}</p>
-            </div>
+                {/* Title */}
+                <div>
+                  <div className="text-[10px] font-bold uppercase tracking-[0.14em] mb-2" style={{ color: s.color }}>{s.phase}</div>
+                  <h3 className="font-serif font-light text-navy"
+                      style={{ fontSize: 'clamp(20px, 2.5vw, 28px)', lineHeight: 1.2, letterSpacing: '-0.01em' }}>
+                    {s.title}
+                  </h3>
+                </div>
+
+                {/* Body + detail */}
+                <div>
+                  <p className="text-sm leading-relaxed text-brand-gray mb-4">{s.body}</p>
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold"
+                       style={{ background: s.color + '12', color: s.color }}>
+                    <span className="w-1.5 h-1.5 rounded-full" style={{ background: s.color }} />
+                    {s.detail}
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
           ))}
         </div>
 

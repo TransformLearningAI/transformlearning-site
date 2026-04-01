@@ -8,23 +8,26 @@ module.exports = {
     extend: {
       colors: {
         navy: {
-          DEFAULT: '#003769',
-          light: '#0f5292',
-          dark: '#002548',
+          DEFAULT: '#0C1F3F',
+          light:   '#1a3560',
+          dark:    '#071429',
         },
         brand: {
-          blue:   '#2F7DF6',
-          green:  '#186900',
-          coral:  '#FF6B4A',
-          mist:   '#EEF3F8',
-          soft:   '#F7FAFD',
-          gray:   '#6F8093',
-          border: '#DCE6F0',
-          text:   '#16324D',
+          teal:    '#00A8A8',
+          green:   '#4F8A5B',
+          purple:  '#5A3E6B',
+          coral:   '#FF6B4A',
+          mist:    '#F4F7FB',
+          soft:    '#F9FBFD',
+          gray:    '#5F7691',
+          border:  '#DDE5EF',
+          text:    '#1A2B3C',
+          ink:     '#1A2B3C',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        sans:  ['"DM Sans"', 'system-ui', 'sans-serif'],
       },
       keyframes: {
         'fade-up': {
