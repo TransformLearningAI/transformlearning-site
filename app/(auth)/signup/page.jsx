@@ -24,9 +24,19 @@ export default function SignupPage() {
         emailRedirectTo: `${window.location.origin}/api/auth/callback`,
       },
     })
-    if (error) { setError(error.message); setLoading(false) }
-    else if (data.session) router.push('/dashboard')  // email confirm off — logged in immediately
-    else router.push('/login?message=check_email')     // email confirm on — needs verification
+    if (error) { setError(error.message); setLoading(false); return }
+
+    if (data.session) {
+      // Email confirm off — session returned immediately, create profile explicitly
+      await fetch('/api/profile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ full_name: form.full_name, institution: form.institution, role: 'faculty' }),
+      })
+      window.location.href = '/courses'
+    } else {
+      router.push('/login?message=check_email')
+    }
   }
 
   return (
