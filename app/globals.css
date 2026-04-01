@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #16324D;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  .eyebrow {
+    @apply text-xs font-bold uppercase tracking-[0.14em] text-brand-gray;
+  }
+
+  .section-headline {
+    @apply text-4xl lg:text-5xl font-bold tracking-tight text-navy leading-[1.05];
+  }
+
+  .body-text {
+    @apply text-base leading-relaxed text-brand-gray;
+  }
+
+  .btn-primary {
+    @apply bg-navy text-white px-7 py-3.5 rounded-lg font-bold text-sm hover:bg-navy-light transition-colors inline-block;
+  }
+
+  .btn-secondary {
+    @apply border border-navy text-navy px-7 py-3.5 rounded-lg font-semibold text-sm hover:bg-brand-mist transition-colors inline-block;
+  }
+
+  .card {
+    @apply bg-brand-soft border border-brand-border rounded-2xl p-6;
+  }
+}
