@@ -32,7 +32,7 @@ function AcceptInviteForm() {
     setLoading(true)
     setError('')
     const supabase = createClient()
-    const { error: signUpError } = await supabase.auth.signUp({
+    const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
       email: invite.email,
       password: form.password,
       options: {
@@ -41,9 +41,15 @@ function AcceptInviteForm() {
       },
     })
     if (signUpError) { setError(signUpError.message); setLoading(false); return }
+
+    // Pass the access token directly — the server cookie may not be set yet
+    const accessToken = signUpData?.session?.access_token
     const res = await fetch('/api/enrollments', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        ...(accessToken ? { 'Authorization': `Bearer ${accessToken}` } : {}),
+      },
       body: JSON.stringify({ token }),
     })
     const data = await res.json()

@@ -3,7 +3,17 @@ import { NextResponse } from 'next/server'
 
 export async function POST(request) {
   const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  let { data: { user } } = await supabase.auth.getUser()
+
+  // Fallback: accept Bearer token (sent immediately after signUp before cookie propagates)
+  if (!user) {
+    const authHeader = request.headers.get('authorization')
+    if (authHeader?.startsWith('Bearer ')) {
+      const { data } = await supabase.auth.getUser(authHeader.slice(7))
+      user = data?.user ?? null
+    }
+  }
+
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { token } = await request.json()
