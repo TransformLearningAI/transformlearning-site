@@ -88,6 +88,8 @@ CREATE TABLE IF NOT EXISTS public.proficiency_history (
   enrollment_id    uuid NOT NULL REFERENCES public.enrollments(id) ON DELETE CASCADE,
   skill_id         uuid NOT NULL REFERENCES public.skills(id) ON DELETE CASCADE,
   score            numeric(4,1) NOT NULL,
+  confidence       numeric(4,3),
+  evidence_summary text,
   source           text NOT NULL,
   scored_at        timestamptz DEFAULT now()
 );
