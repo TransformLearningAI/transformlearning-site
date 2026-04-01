@@ -16,7 +16,7 @@ export default function SignupPage() {
     setLoading(true)
     setError('')
     const supabase = createClient()
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email: form.email,
       password: form.password,
       options: {
@@ -25,7 +25,8 @@ export default function SignupPage() {
       },
     })
     if (error) { setError(error.message); setLoading(false) }
-    else router.push('/login?message=check_email')
+    else if (data.session) router.push('/dashboard')  // email confirm off — logged in immediately
+    else router.push('/login?message=check_email')     // email confirm on — needs verification
   }
 
   return (
