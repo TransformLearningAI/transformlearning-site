@@ -1,8 +1,113 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import { useParams } from 'next/navigation'
-import { proficiencyColor, proficiencyLabel, isAtRisk } from '@/lib/utils/proficiency'
+import { proficiencyColor, proficiencyLabel } from '@/lib/utils/proficiency'
 import Link from 'next/link'
+
+/*
+  THE CONSTELLATION
+
+  Each skill is a star. Mastered stars burn bright. Uncharted stars are dim.
+  The student's course is a night sky they're illuminating.
+
+  This is not a dashboard. It's a living map of knowledge.
+*/
+
+// Deterministic star placement from skill ID
+function starPosition(id, i, total) {
+  let h = 0
+  for (let c = 0; c < id.length; c++) h = ((h << 5) - h + id.charCodeAt(c)) | 0
+  const goldenAngle = 2.39996323
+  const angle = i * goldenAngle + (h % 100) * 0.005
+  const r = 0.15 + Math.sqrt(i / total) * 0.3
+  return { x: 0.5 + Math.cos(angle) * r, y: 0.5 + Math.sin(angle) * r }
+}
+
+// Animated star glow
+function Star({ x, y, score, name, type, isSelected, onClick, delay }) {
+  const size = score >= 80 ? 18 : score >= 40 ? 14 : score > 0 ? 11 : 8
+  const brightness = score >= 80 ? 1 : score >= 40 ? 0.7 : score > 0 ? 0.4 : 0.15
+  const color = score >= 80 ? '#4ADE80' : score >= 40 ? '#00CED1' : score > 0 ? '#A78BFA' : '#334155'
+  const glowColor = score >= 80 ? 'rgba(74,222,128,0.6)' : score >= 40 ? 'rgba(0,206,209,0.4)' : 'rgba(167,139,250,0.2)'
+  const isImplicit = type === 'implicit'
+
+  return (
+    <g onClick={onClick} style={{ cursor: 'pointer' }}>
+      {/* Glow */}
+      {score > 0 && (
+        <circle cx={x} cy={y} r={size + 12} fill={glowColor} opacity={brightness * 0.3}>
+          <animate attributeName="r" values={`${size + 8};${size + 16};${size + 8}`} dur={`${3 + delay * 0.5}s`} repeatCount="indefinite" />
+          <animate attributeName="opacity" values={`${brightness * 0.2};${brightness * 0.4};${brightness * 0.2}`} dur={`${3 + delay * 0.5}s`} repeatCount="indefinite" />
+        </circle>
+      )}
+
+      {/* Star body */}
+      {isImplicit ? (
+        <rect x={x - size / 2} y={y - size / 2} width={size} height={size} rx={3}
+          transform={`rotate(45, ${x}, ${y})`}
+          fill={color} opacity={brightness}
+          stroke={isSelected ? 'white' : 'none'} strokeWidth={isSelected ? 2 : 0} />
+      ) : (
+        <circle cx={x} cy={y} r={size / 2} fill={color} opacity={brightness}
+          stroke={isSelected ? 'white' : 'none'} strokeWidth={isSelected ? 2 : 0} />
+      )}
+
+      {/* Score ring for mastered */}
+      {score >= 80 && (
+        <circle cx={x} cy={y} r={size / 2 + 4} fill="none" stroke={color} strokeWidth={1} opacity={0.5}>
+          <animate attributeName="r" values={`${size / 2 + 3};${size / 2 + 8};${size / 2 + 3}`} dur="4s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.5;0;0.5" dur="4s" repeatCount="indefinite" />
+        </circle>
+      )}
+
+      {/* Label (only on hover/select or if scored) */}
+      <text x={x} y={y + size / 2 + 14} textAnchor="middle" fill="white" fontSize="9"
+        fontWeight={isSelected ? '700' : '400'} opacity={isSelected ? 1 : score > 0 ? 0.6 : 0.25}>
+        {name.length > 16 ? name.substring(0, 14) + '…' : name}
+      </text>
+      {score > 0 && (
+        <text x={x} y={y + size / 2 + 24} textAnchor="middle" fill={color} fontSize="10" fontWeight="800" opacity={0.9}>
+          {score}%
+        </text>
+      )}
+    </g>
+  )
+}
+
+// Constellation lines between related skills
+function Constellation({ nodes, W, H }) {
+  const lines = []
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+      if (nodes[i].type === nodes[j].type) {
+        const dx = nodes[i].x - nodes[j].x
+        const dy = nodes[i].y - nodes[j].y
+        const dist = Math.sqrt(dx * dx + dy * dy)
+        if (dist < 0.28) {
+          const avgScore = ((nodes[i].score || 0) + (nodes[j].score || 0)) / 2
+          lines.push({ x1: nodes[i].x * W, y1: nodes[i].y * H, x2: nodes[j].x * W, y2: nodes[j].y * H, opacity: avgScore > 0 ? 0.15 : 0.04 })
+        }
+      }
+    }
+  }
+  return lines.map((l, i) => (
+    <line key={i} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} stroke="white" strokeWidth="0.5" opacity={l.opacity} />
+  ))
+}
+
+// The orbit ring showing overall progress
+function OrbitRing({ cx, cy, r, progress }) {
+  const circumference = 2 * Math.PI * r
+  const offset = circumference - (progress / 100) * circumference
+  return (
+    <g>
+      <circle cx={cx} cy={cy} r={r} fill="none" stroke="white" strokeWidth="0.5" opacity="0.05" />
+      <circle cx={cx} cy={cy} r={r} fill="none" stroke="url(#progressGrad)" strokeWidth="2"
+        strokeDasharray={circumference} strokeDashoffset={offset}
+        strokeLinecap="round" transform={`rotate(-90, ${cx}, ${cy})`} opacity="0.6" />
+    </g>
+  )
+}
 
 export default function StudentDashboard() {
   const { enrollmentId } = useParams()
@@ -10,6 +115,7 @@ export default function StudentDashboard() {
   const [scores, setScores] = useState([])
   const [history, setHistory] = useState([])
   const [loading, setLoading] = useState(true)
+  const [selectedId, setSelectedId] = useState(null)
 
   useEffect(() => {
     Promise.all([
@@ -23,196 +129,299 @@ export default function StudentDashboard() {
     }).catch(() => setLoading(false))
   }, [enrollmentId])
 
+  const derived = useMemo(() => {
+    if (!enrollment) return null
+    const skills = enrollment?.courses?.skills?.filter(s => s.is_approved) || []
+    const scoreMap = Object.fromEntries(scores.map(s => [s.skill_id, s]))
+
+    const nodes = skills.map((s, i) => {
+      const pos = starPosition(s.id, i, skills.length)
+      const sc = scoreMap[s.id]?.score ?? 0
+      return { ...s, x: pos.x, y: pos.y, score: sc, evidence: scoreMap[s.id]?.evidence_summary, confidence: scoreMap[s.id]?.confidence, type: s.skill_type }
+    })
+
+    const overall = skills.length > 0 ? Math.round(nodes.reduce((a, n) => a + n.score, 0) / skills.length) : 0
+    const illuminated = nodes.filter(n => n.score > 0).length
+    const mastered = nodes.filter(n => n.score >= 80).length
+    const weakest = [...nodes].sort((a, b) => a.score - b.score).slice(0, 3)
+
+    return { nodes, skills, scoreMap, overall, illuminated, mastered, weakest }
+  }, [enrollment, scores])
+
   if (loading) return (
-    <div className="flex items-center justify-center py-32">
-      <div className="w-10 h-10 border-2 border-teal-500 border-t-transparent rounded-full animate-spin" />
+    <div className="flex items-center justify-center py-32" style={{ background: '#0A0E1A' }}>
+      <div className="text-center">
+        <div className="w-10 h-10 border-2 border-cyan-400 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+        <p className="text-sm text-white/30">Mapping your constellation...</p>
+      </div>
     </div>
   )
 
-  const allSkills = enrollment?.courses?.skills?.filter(s => s.is_approved) || []
-  const scoreMap = Object.fromEntries(scores.map(s => [s.skill_id, s]))
-  const practicedCount = scores.filter(s => s.score > 0).length
-  const masteredCount = scores.filter(s => s.score >= 80).length
-  const overall = allSkills.length > 0 ? Math.round(scores.reduce((a, s) => a + (s.score || 0), 0) / allSkills.length) : 0
-  const masteryPct = allSkills.length > 0 ? Math.round(scores.filter(s => s.score > 0).reduce((a, s) => a + (s.score || 0), 0) / Math.max(1, practicedCount)) : 0
+  if (!derived) return null
 
-  // Find weakest skill for next best action
-  const sorted = [...allSkills].sort((a, b) => (scoreMap[a.id]?.score ?? -1) - (scoreMap[b.id]?.score ?? -1))
-  const weakest = sorted[0]
+  const selected = selectedId ? derived.nodes.find(n => n.id === selectedId) : null
+  const W = 800, H = 600
 
   return (
-    <div>
-      {/* Course Header */}
-      <div className="flex items-center gap-3 mb-6">
-        <div className="w-11 h-11 rounded-xl flex items-center justify-center text-xl"
-             style={{ background: '#FDF0E9' }}>
-          🫀
+    <div className="min-h-screen -m-6 lg:-m-8" style={{ background: '#0A0E1A' }}>
+
+      {/* ═══ THE SKY ═══ */}
+      <div className="relative overflow-hidden" style={{ minHeight: '85vh' }}>
+
+        {/* Background nebula effects */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute w-[500px] h-[500px] rounded-full" style={{ top: '10%', left: '20%', background: 'radial-gradient(circle, rgba(0,206,209,0.04) 0%, transparent 70%)' }} />
+          <div className="absolute w-[400px] h-[400px] rounded-full" style={{ top: '40%', right: '10%', background: 'radial-gradient(circle, rgba(167,139,250,0.03) 0%, transparent 70%)' }} />
+          <div className="absolute w-[300px] h-[300px] rounded-full" style={{ bottom: '10%', left: '40%', background: 'radial-gradient(circle, rgba(74,222,128,0.03) 0%, transparent 70%)' }} />
         </div>
-        <div>
-          <h1 className="text-2xl font-bold text-navy">
-            {enrollment?.courses?.course_code} <span className="text-gray-300 font-light">•</span> Dashboard
-          </h1>
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-gray-400">{enrollment?.courses?.title}</span>
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold"
-                  style={{ background: '#E8F8F0', color: '#2D8B6F' }}>
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Synced
+
+        {/* Header */}
+        <div className="relative z-10 px-8 pt-8 pb-4 flex items-start justify-between">
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/20 mb-1">{enrollment?.courses?.term}</p>
+            <h1 className="text-2xl font-bold text-white tracking-tight">{enrollment?.courses?.course_code}</h1>
+            <p className="text-sm text-white/30">{enrollment?.courses?.title}</p>
+          </div>
+          <div className="flex items-center gap-6">
+            <div className="text-right">
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/20">Illuminated</p>
+              <p className="text-lg font-black text-cyan-400">{derived.illuminated}<span className="text-white/20 font-normal">/{derived.nodes.length}</span></p>
+            </div>
+            <div className="text-right">
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/20">Mastered</p>
+              <p className="text-lg font-black text-green-400">{derived.mastered}</p>
+            </div>
+            <div className="text-right">
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/20">Overall</p>
+              <p className="text-lg font-black text-white">{derived.overall}%</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Constellation SVG */}
+        <div className="relative z-10 px-4">
+          <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: '60vh' }}>
+            <defs>
+              <linearGradient id="progressGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#00CED1" />
+                <stop offset="100%" stopColor="#4ADE80" />
+              </linearGradient>
+              <radialGradient id="centerGlow">
+                <stop offset="0%" stopColor="rgba(0,206,209,0.08)" />
+                <stop offset="100%" stopColor="transparent" />
+              </radialGradient>
+            </defs>
+
+            {/* Center glow */}
+            <circle cx={W / 2} cy={H / 2} r="200" fill="url(#centerGlow)" />
+
+            {/* Orbit rings */}
+            <OrbitRing cx={W / 2} cy={H / 2} r={120} progress={derived.overall} />
+            <OrbitRing cx={W / 2} cy={H / 2} r={200} progress={derived.overall * 0.7} />
+
+            {/* Constellation lines */}
+            <Constellation nodes={derived.nodes} W={W} H={H} />
+
+            {/* Stars */}
+            {derived.nodes.map((node, i) => (
+              <Star key={node.id}
+                x={node.x * W} y={node.y * H}
+                score={node.score} name={node.name} type={node.type}
+                isSelected={selectedId === node.id}
+                onClick={() => setSelectedId(selectedId === node.id ? null : node.id)}
+                delay={i} />
+            ))}
+          </svg>
+        </div>
+
+        {/* Legend */}
+        <div className="absolute bottom-4 left-8 z-10 flex items-center gap-5">
+          {[
+            { color: '#4ADE80', label: 'Mastered', shape: 'circle' },
+            { color: '#00CED1', label: 'Developing', shape: 'circle' },
+            { color: '#A78BFA', label: 'Emerging', shape: 'circle' },
+            { color: '#334155', label: 'Uncharted', shape: 'circle' },
+          ].map(l => (
+            <div key={l.label} className="flex items-center gap-1.5">
+              <div className="w-2.5 h-2.5 rounded-full" style={{ background: l.color }} />
+              <span className="text-[10px] text-white/30 font-medium">{l.label}</span>
+            </div>
+          ))}
+          <div className="flex items-center gap-1.5 ml-2">
+            <div className="w-2.5 h-2.5 rounded-full border border-white/20" />
+            <span className="text-[10px] text-white/30 font-medium">Explicit</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <div className="w-2.5 h-2.5 rotate-45 rounded-sm border border-white/20" />
+            <span className="text-[10px] text-white/30 font-medium">Implicit</span>
+          </div>
+        </div>
+
+        {/* Signal — bottom center */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10">
+          <div className="px-5 py-2.5 rounded-full flex items-center gap-3"
+               style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)', backdropFilter: 'blur(20px)' }}>
+            <div className="w-1.5 h-1.5 rounded-full bg-cyan-400" style={{ boxShadow: '0 0 8px rgba(0,206,209,0.6)' }} />
+            <span className="text-xs text-white/50">
+              {derived.weakest[0]?.score === 0
+                ? `${derived.weakest[0]?.name} is uncharted. Click to begin.`
+                : `${derived.overall}% illuminated. ${derived.nodes.length - derived.illuminated} stars remain.`}
             </span>
           </div>
         </div>
       </div>
 
-      {/* Stat Cards */}
-      <div className="grid grid-cols-4 gap-4 mb-8">
-        <div className="bg-white rounded-2xl border border-gray-200 p-5">
-          <p className="text-xs text-gray-400 mb-1">Progression</p>
-          <p className="text-3xl font-black" style={{ color: '#00A8A8' }}>{overall}%</p>
-          <div className="h-1 bg-gray-100 rounded-full mt-2 overflow-hidden">
-            <div className="h-full rounded-full" style={{ width: `${overall}%`, background: '#00A8A8' }} />
+      {/* ═══ BELOW THE SKY ═══ */}
+      <div className="relative z-10 px-8 pb-12">
+
+        {/* Where it hurts */}
+        <div className="max-w-4xl mx-auto mt-8">
+          <div className="flex items-center gap-2 mb-5">
+            <div className="w-2 h-2 rounded-full bg-rose-400" />
+            <h2 className="text-lg font-bold text-white">Where to focus</h2>
+            <span className="text-xs text-white/20 ml-1">Your dimmest stars</span>
           </div>
-          <p className="text-[10px] text-gray-300 mt-1.5">{practicedCount}/{allSkills.length} skills</p>
-        </div>
-        <div className="bg-white rounded-2xl border border-gray-200 p-5">
-          <p className="text-xs text-gray-400 mb-1">Mastery</p>
-          <p className="text-3xl font-black" style={{ color: '#4F8A5B' }}>{masteryPct}%</p>
-          <div className="h-1 bg-gray-100 rounded-full mt-2 overflow-hidden">
-            <div className="h-full rounded-full" style={{ width: `${masteryPct}%`, background: '#4F8A5B' }} />
+
+          <div className="grid md:grid-cols-3 gap-4">
+            {derived.weakest.map(node => (
+              <Link key={node.id} href={`/my-progress/${enrollmentId}/skill/${node.id}`}
+                className="rounded-2xl p-5 block transition-all hover:scale-[1.02]"
+                style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
+                <div className="flex items-center justify-between mb-3">
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider"
+                      style={{ color: node.type === 'implicit' ? '#A78BFA' : '#00CED1' }}>
+                      {node.type}
+                    </span>
+                    <h3 className="font-bold text-white text-sm">{node.name}</h3>
+                  </div>
+                  <div className="text-xl font-black" style={{ color: node.score > 0 ? '#A78BFA' : '#334155' }}>
+                    {node.score}%
+                  </div>
+                </div>
+                <p className="text-xs text-white/20 leading-relaxed mb-3 line-clamp-2">
+                  {node.evidence || 'Unexplored. Take a quiz or upload your work to illuminate this star.'}
+                </p>
+                <span className="text-xs font-bold" style={{ color: '#00CED1' }}>Illuminate →</span>
+              </Link>
+            ))}
           </div>
-          <p className="text-[10px] text-gray-300 mt-1.5">On practiced skills</p>
         </div>
-        <div className="bg-white rounded-2xl border border-gray-200 p-5">
-          <div className="flex items-center gap-1.5 mb-1">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#9CA3AF" strokeWidth="1.2"/><path d="M6 3v3l2 1" stroke="#9CA3AF" strokeWidth="1.2" strokeLinecap="round"/></svg>
-            <p className="text-xs text-gray-400">Time on task</p>
+
+        {/* Quick actions */}
+        <div className="max-w-4xl mx-auto mt-8 grid md:grid-cols-3 gap-4">
+          <Link href={derived.weakest[0] ? `/my-progress/${enrollmentId}/quiz/${derived.weakest[0].id}` : '#'}
+            className="rounded-2xl p-5 flex items-center gap-4 transition-all hover:scale-[1.02]"
+            style={{ background: 'linear-gradient(135deg, rgba(0,206,209,0.1), rgba(0,206,209,0.02))', border: '1px solid rgba(0,206,209,0.15)' }}>
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center text-lg" style={{ background: 'rgba(0,206,209,0.15)' }}>⚡</div>
+            <div>
+              <p className="text-sm font-bold text-white">Practice Quiz</p>
+              <p className="text-[10px] text-white/30">Adaptive questions for your level</p>
+            </div>
+          </Link>
+          <Link href={derived.weakest[0] ? `/my-progress/${enrollmentId}/chat/${derived.weakest[0].id}` : '#'}
+            className="rounded-2xl p-5 flex items-center gap-4 transition-all hover:scale-[1.02]"
+            style={{ background: 'linear-gradient(135deg, rgba(167,139,250,0.1), rgba(167,139,250,0.02))', border: '1px solid rgba(167,139,250,0.15)' }}>
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center text-lg" style={{ background: 'rgba(167,139,250,0.15)' }}>💬</div>
+            <div>
+              <p className="text-sm font-bold text-white">Ask Coach</p>
+              <p className="text-[10px] text-white/30">AI guidance for any skill</p>
+            </div>
+          </Link>
+          <div className="rounded-2xl p-5 flex items-center gap-4 transition-all hover:scale-[1.02] cursor-pointer"
+            style={{ background: 'linear-gradient(135deg, rgba(74,222,128,0.1), rgba(74,222,128,0.02))', border: '1px solid rgba(74,222,128,0.15)' }}>
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center text-lg" style={{ background: 'rgba(74,222,128,0.15)' }}>📄</div>
+            <div>
+              <p className="text-sm font-bold text-white">Upload Work</p>
+              <p className="text-[10px] text-white/30">Prove mastery with your own work</p>
+            </div>
           </div>
-          <p className="text-3xl font-black text-navy">0h</p>
         </div>
-        <div className="bg-white rounded-2xl border border-gray-200 p-5">
-          <p className="text-xs text-gray-400 mb-1">Skills Improved</p>
-          <p className="text-3xl font-black text-navy">{practicedCount} <span className="text-lg font-normal text-gray-300">/ {allSkills.length}</span></p>
+
+        {/* Governance footer */}
+        <div className="max-w-4xl mx-auto mt-8 rounded-2xl px-6 py-4 flex items-center gap-4"
+             style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.04)' }}>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M9 2l6 3v4c0 3.5-2.5 6-6 7-3.5-1-6-3.5-6-7V5l6-3z" stroke="rgba(74,222,128,0.4)" strokeWidth="1.3" fill="none"/>
+            <path d="M7 9l2 2 3-3.5" stroke="rgba(74,222,128,0.4)" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          <p className="text-[11px] text-white/20">
+            Every assessment is governed by fairness, confidence, and privacy constraints. The system cannot act on uncertain predictions.
+          </p>
+          <div className="flex items-center gap-3 ml-auto flex-shrink-0">
+            {['Fairness', 'Confidence', 'Privacy'].map(g => (
+              <div key={g} className="flex items-center gap-1">
+                <div className="w-1.5 h-1.5 rounded-full bg-green-400/40" />
+                <span className="text-[9px] text-white/15 font-medium">{g}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Main content grid */}
-      <div className="grid grid-cols-[1fr_320px] gap-6">
-        {/* Left: Skill Journey */}
-        <div>
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-bold text-navy">Skill Journey</h2>
-            <span className="text-sm text-gray-400">{allSkills.length} skills</span>
-          </div>
-
-          <div className="grid grid-cols-4 gap-3">
-            {allSkills.map(skill => {
-              const ps = scoreMap[skill.id]
-              const score = ps?.score ?? 0
-              const label = score >= 80 ? 'proficient' : score >= 40 ? 'developing' : 'beginning'
-
-              return (
-                <Link key={skill.id}
-                  href={`/my-progress/${enrollmentId}/skill/${skill.id}`}
-                  className="bg-white rounded-xl border border-gray-200 p-4 hover:shadow-md hover:-translate-y-0.5 transition-all block">
-                  <p className="text-sm font-semibold text-navy truncate mb-3">{skill.name}</p>
-                  <div className="h-1 bg-gray-100 rounded-full overflow-hidden mb-2">
-                    <div className="h-full rounded-full transition-all duration-500"
-                      style={{ width: `${score}%`, background: score >= 80 ? '#4F8A5B' : '#00A8A8' }} />
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-black" style={{ color: proficiencyColor(score) }}>{score}%</span>
-                    <span className="text-[10px] text-gray-400">{label}</span>
-                  </div>
-                </Link>
-              )
-            })}
-          </div>
-
-          {/* Course Progress Over Time */}
-          <div className="mt-8">
-            <div className="flex items-center gap-2 mb-4">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#9CA3AF" strokeWidth="1.3"/><path d="M9 5v4l2.5 1.5" stroke="#9CA3AF" strokeWidth="1.3" strokeLinecap="round"/></svg>
-              <h2 className="text-xl font-bold text-navy">Course Progress Over Time</h2>
+      {/* ═══ SKILL DETAIL PANEL ═══ */}
+      {selected && (
+        <>
+          <div className="fixed inset-0 z-40" onClick={() => setSelectedId(null)} />
+          <div className="fixed top-0 right-0 bottom-0 w-full sm:w-[420px] z-50 overflow-y-auto"
+               style={{ background: '#0D1117', borderLeft: '1px solid rgba(255,255,255,0.06)', animation: 'slideInRight 0.3s ease-out' }}>
+            <div className="sticky top-0 z-10 px-6 py-4 flex items-center justify-between"
+                 style={{ background: '#0D1117', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+              <button onClick={() => setSelectedId(null)} className="text-white/30 hover:text-white text-sm">← Close</button>
+              <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full"
+                style={{ background: selected.type === 'implicit' ? 'rgba(167,139,250,0.1)' : 'rgba(0,206,209,0.1)',
+                         color: selected.type === 'implicit' ? '#A78BFA' : '#00CED1' }}>
+                {selected.type}
+              </span>
             </div>
-            <div className="bg-white rounded-2xl border border-gray-200 p-6">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-xs text-gray-400">Progress Over Time</span>
-                <span className="text-xs font-bold" style={{ color: '#2D8B6F' }}>↗ +3%</span>
-              </div>
-              <div className="relative h-36">
-                {/* Y axis labels */}
-                <div className="absolute inset-0 flex flex-col justify-between pr-4">
-                  {[100, 75, 50, 25, 0].map(v => (
-                    <div key={v} className="flex items-center gap-2">
-                      <span className="text-[10px] text-gray-300 w-6 text-right">{v}</span>
-                      <div className="flex-1 border-t border-dashed border-gray-100" />
-                    </div>
-                  ))}
+            <div className="px-6 py-8 space-y-6">
+              <div className="text-center">
+                <div className="text-6xl font-black mb-2" style={{ color: selected.score >= 80 ? '#4ADE80' : selected.score >= 40 ? '#00CED1' : selected.score > 0 ? '#A78BFA' : '#334155' }}>
+                  {selected.score}%
                 </div>
-                {/* Line */}
-                <div className="absolute bottom-0 left-8 right-0 h-full flex items-end">
-                  <svg viewBox="0 0 400 120" className="w-full h-full" preserveAspectRatio="none">
-                    <path d="M0,115 C80,112 160,108 240,105 S360,98 400,95" fill="none" stroke="#2D8B6F" strokeWidth="2.5" strokeLinecap="round" />
-                    <circle cx="0" cy="115" r="4" fill="#2D8B6F" />
-                    <circle cx="400" cy="95" r="4" fill="#2D8B6F" />
-                  </svg>
+                <p className="text-sm font-bold uppercase tracking-wider mb-1" style={{ color: selected.score >= 80 ? '#4ADE80' : '#00CED1' }}>
+                  {proficiencyLabel(selected.score)}
+                </p>
+                <h2 className="font-serif font-light text-white text-2xl mt-3" style={{ letterSpacing: '-0.02em' }}>{selected.name}</h2>
+                {selected.description && <p className="text-sm text-white/25 mt-2">{selected.description}</p>}
+              </div>
+
+              {/* Evidence */}
+              <div>
+                <h3 className="text-[10px] font-bold text-white/20 uppercase tracking-wider mb-2">Evidence</h3>
+                <div className="rounded-xl p-4" style={{ background: 'rgba(255,255,255,0.03)' }}>
+                  <p className="text-sm text-white/40 leading-relaxed">
+                    {selected.evidence || 'No evidence yet. Complete a quiz, coaching session, or upload your work to illuminate this star.'}
+                  </p>
                 </div>
               </div>
-              <div className="flex justify-between mt-2 px-8">
-                <span className="text-[10px] text-gray-300">Jan 16</span>
-                <span className="text-[10px] text-gray-300">Jan 17</span>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        {/* Right sidebar */}
-        <div className="space-y-4">
-          {/* Next best action */}
-          {weakest && (
-            <div className="rounded-2xl border-2 p-5" style={{ borderColor: '#FFE082', background: '#FFFEF5' }}>
-              <div className="flex items-center gap-2 mb-3">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M10 2l2.5 5H17l-4 3.5 1.5 5L10 13l-4.5 2.5 1.5-5L3 7h4.5z" fill="#F59E0B"/>
-                </svg>
-                <h3 className="font-bold text-navy">Next best action</h3>
+              {/* Confidence */}
+              <div>
+                <h3 className="text-[10px] font-bold text-white/20 uppercase tracking-wider mb-2">Confidence</h3>
+                <div className="h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.05)' }}>
+                  <div className="h-full rounded-full" style={{ width: `${(selected.confidence ?? 0) * 100}%`, background: 'linear-gradient(90deg, #00CED1, #4ADE80)' }} />
+                </div>
+                <p className="text-[10px] text-white/15 mt-1">{selected.confidence ? `${Math.round(selected.confidence * 100)}% confident` : 'Awaiting assessment'}</p>
               </div>
-              <p className="text-sm text-gray-600 mb-4">
-                Practice <strong className="text-navy">{weakest.name}</strong> – {scoreMap[weakest.id]?.score ?? 0}% mastery
-              </p>
-              <div className="flex gap-2">
-                <Link href={`/my-progress/${enrollmentId}/quiz/${weakest.id}`}
-                  className="flex-1 px-4 py-2.5 rounded-xl text-white text-sm font-bold text-center"
-                  style={{ background: '#2D8B6F' }}>
-                  Generate Practice
+
+              {/* Actions */}
+              <div className="grid grid-cols-2 gap-3">
+                <Link href={`/my-progress/${enrollmentId}/quiz/${selected.id}`}
+                  className="px-4 py-3.5 rounded-xl text-sm font-bold text-center text-white"
+                  style={{ background: 'linear-gradient(135deg, #00CED1, #0891B2)' }}>
+                  Practice
                 </Link>
-                <Link href={`/my-progress/${enrollmentId}/chat/${weakest.id}`}
-                  className="px-4 py-2.5 rounded-xl text-sm font-bold border border-gray-200 text-gray-600 hover:bg-gray-50 text-center">
+                <Link href={`/my-progress/${enrollmentId}/chat/${selected.id}`}
+                  className="px-4 py-3.5 rounded-xl text-sm font-bold text-center text-white/60 hover:text-white"
+                  style={{ border: '1px solid rgba(255,255,255,0.1)' }}>
                   Ask Coach
                 </Link>
               </div>
             </div>
-          )}
-
-          {/* Sources */}
-          <div className="bg-white rounded-2xl border border-gray-200 p-5">
-            <h3 className="font-bold text-navy mb-3">Sources</h3>
-            <a href="#" className="text-sm font-medium hover:underline block mb-2" style={{ color: '#2D8B6F' }}>
-              {enrollment?.courses?.course_code}-{enrollment?.courses?.term?.replace(/\s/g, '-')}-Syllabus.pdf
-            </a>
-            <button className="text-sm text-gray-400 hover:text-gray-600">+ Add source</button>
           </div>
-
-          {/* Governance */}
-          <div className="bg-white rounded-2xl border border-gray-200 p-5">
-            <div className="flex items-center gap-2 mb-3">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1l6 3v4c0 3.5-2.5 6-6 7-3.5-1-6-3.5-6-7V4l6-3z" stroke="#2D8B6F" strokeWidth="1.3" fill="none"/><path d="M6 8l2 2 3-3.5" stroke="#2D8B6F" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              <h3 className="font-bold text-navy text-sm">Governed</h3>
-            </div>
-            <p className="text-xs text-gray-400 leading-relaxed">
-              Every assessment passes through fairness, confidence, and privacy constraints before reaching you.
-            </p>
-          </div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   )
 }
