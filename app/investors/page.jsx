@@ -13,7 +13,7 @@ const STATS = [
 ]
 
 const PHASES = [
-  { phase: 'T–90', color: '#4F8A5B', title: 'Preparation', body: 'Finalize ICP, shortlist target universities and departments, secure design partner faculty, and confirm LMS integration and compliance readiness.' },
+  { phase: 'T–90', color: '#4F8A5B', title: 'Preparation', body: 'Finalize ICP, shortlist target universities and departments, secure design partner faculty, and confirm compliance readiness. Optional LMS integration as needed.' },
   { phase: 'T–60', color: '#4F8A5B', title: 'Pilot Launch', body: 'Begin pilots in selected gateway courses and capture baseline performance and usage data.' },
   { phase: 'T–30', color: '#4F8A5B', title: 'Signal Review', body: 'Analyze early pilot signals, document usability patterns, and begin case study development.' },
   { phase: 'Launch', color: '#00A8A8', title: 'Market Activation', body: 'Initiate targeted outreach to similar institutions using pilot proof, faculty testimonials, and evidence-backed positioning.' },
@@ -160,7 +160,7 @@ export default function Investors() {
 
         <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-brand-gray mb-3">Selection Criteria</p>
         <div className="grid md:grid-cols-2 gap-3 mb-8">
-          {['High DFW rates and direct retention impact', 'Quantifiable performance metrics and department-level accountability', 'Existing LMS infrastructure and digital readiness', 'Institutional openness to AI-enabled or data-informed instruction'].map(item => (
+          {['High DFW rates and direct retention impact', 'Quantifiable performance metrics and department-level accountability', 'Digital readiness (LMS integration optional, not required)', 'Institutional openness to AI-enabled or data-informed instruction'].map(item => (
             <div key={item} className="flex items-start gap-3 bg-brand-soft border border-brand-border rounded-xl p-4">
               <div className="w-2 h-2 rounded-full mt-1.5 flex-shrink-0" style={{ background: '#00A8A8' }} />
               <span className="text-sm text-brand-gray leading-relaxed">{item}</span>
@@ -176,10 +176,10 @@ export default function Investors() {
       <Section id="s3" num="3" title="Ideal Customer Profile & Stakeholder Model" color="#4F8A5B">
         <div className="grid md:grid-cols-2 gap-4 mb-6">
           <Card title="Ideal Customer Profile">
-            <ul className="space-y-2">{['Institutions under retention or performance pressure', 'Established LMS infrastructure (Canvas or Blackboard)', 'Active exploration of AI-enabled or data-informed instruction', 'Departments responsible for high-enrollment gateway courses'].map(i => <li key={i} className="text-sm text-brand-gray flex items-start gap-2"><span className="w-1.5 h-1.5 rounded-full bg-brand-green mt-1.5 flex-shrink-0" />{i}</li>)}</ul>
+            <ul className="space-y-2">{['Institutions under retention or performance pressure', 'Works standalone or alongside existing LMS (Canvas, Blackboard, etc.)', 'Active exploration of AI-enabled or data-informed instruction', 'Departments responsible for high-enrollment gateway courses'].map(i => <li key={i} className="text-sm text-brand-gray flex items-start gap-2"><span className="w-1.5 h-1.5 rounded-full bg-brand-green mt-1.5 flex-shrink-0" />{i}</li>)}</ul>
           </Card>
           <Card title="Primary Entry Personas">
-            <ul className="space-y-2">{['Faculty in high-enrollment gateway courses', 'Department chairs accountable for course outcomes', 'Institutional Research and academic leadership', 'IT and LMS leaders as operational gatekeepers'].map(i => <li key={i} className="text-sm text-brand-gray flex items-start gap-2"><span className="w-1.5 h-1.5 rounded-full bg-brand-green mt-1.5 flex-shrink-0" />{i}</li>)}</ul>
+            <ul className="space-y-2">{['Faculty in high-enrollment gateway courses', 'Department chairs accountable for course outcomes', 'Institutional Research and academic leadership', 'IT leaders as operational gatekeepers (when LMS integration is desired)'].map(i => <li key={i} className="text-sm text-brand-gray flex items-start gap-2"><span className="w-1.5 h-1.5 rounded-full bg-brand-green mt-1.5 flex-shrink-0" />{i}</li>)}</ul>
           </Card>
         </div>
         <div className="grid md:grid-cols-4 gap-4">
@@ -187,7 +187,7 @@ export default function Investors() {
             { role: 'Faculty', desc: 'Controls instructional adoption and determines whether the platform creates meaningful pedagogical value.' },
             { role: 'Department Chair', desc: 'Links instructional proof to broader departmental priorities and expansion decisions.' },
             { role: 'Academic Leadership', desc: 'Translates course-level impact into retention, performance, and funding logic.' },
-            { role: 'IT / LMS', desc: 'Validates integration, compliance, privacy, security, and implementation feasibility.' },
+            { role: 'IT', desc: 'Validates compliance, privacy, and security. Supports optional LMS integration when desired.' },
           ].map(s => <Card key={s.role} title={s.role}><p className="text-sm text-brand-gray leading-relaxed">{s.desc}</p></Card>)}
         </div>
       </Section>

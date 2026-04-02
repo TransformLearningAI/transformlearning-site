@@ -11,7 +11,7 @@ const PHASES = [
     color: '#003769',
     title: 'Structured Deployment',
     body: 'One course. Three to five sections. 100–300 students. Six to eight weeks. Framed explicitly as a research-informed instructional collaboration, not a software trial.',
-    detail: 'LMS integration → dashboard access → faculty onboarding in under 30 min',
+    detail: 'Dashboard access → faculty onboarding in under 30 min (optional LMS integration available)',
   },
   {
     phase: 'Phase 3',

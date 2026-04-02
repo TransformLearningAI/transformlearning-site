@@ -9,7 +9,7 @@ const TIERS = [
       'Up to 300 students',
       '6–8 week structured engagement',
       'Baseline + outcome documentation',
-      'LMS integration support',
+      'Optional LMS integration available',
     ],
     cta: 'Request a Pilot',
     href: '#pilot',

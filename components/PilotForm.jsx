@@ -7,7 +7,7 @@ const ROLES = [
   'Academic Dean',
   'Provost / Academic VP',
   'Institutional Research',
-  'IT / LMS Administrator',
+  'IT Administrator',
   'Other',
 ]
 
@@ -68,7 +68,7 @@ export default function PilotForm() {
             <div className="space-y-4">
               {[
                 'No lengthy procurement process to start',
-                'LMS integration handled with your IT team',
+                'Optional LMS integration available with your IT team',
                 'Baseline documentation from day one',
                 'Evidence package at pilot completion',
               ].map(item => (
