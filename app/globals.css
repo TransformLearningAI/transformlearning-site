@@ -138,3 +138,15 @@ body {
   background: linear-gradient(135deg, rgba(0,168,168,0.4), rgba(12,31,63,0.2), rgba(79,138,91,0.3));
   z-index: -1;
 }
+
+/* Evidence Wall slide-in */
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* Terrain fog drift */
+@keyframes fogDrift {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.55; }
+}
