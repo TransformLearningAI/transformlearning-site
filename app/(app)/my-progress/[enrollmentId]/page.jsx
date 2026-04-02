@@ -52,10 +52,9 @@ export default function StudentDashboard() {
 
   if (!derived) return null
 
-  const sel = selectedSkill ? derived.nodes.find(n => n.id === selectedSkill) : derived.nodes[0]
-
   // Compute star positions using golden-angle spiral — evenly distributed
   const starPositions = useMemo(() => {
+    if (!derived?.nodes) return []
     const total = derived.nodes.length
     return derived.nodes.map((_, i) => {
       const golden = 2.39996323
@@ -66,7 +65,9 @@ export default function StudentDashboard() {
         left: `${Math.max(4, Math.min(88, 50 + Math.cos(angle) * r * 100))}%`,
       }
     })
-  }, [derived.nodes.length])
+  }, [derived?.nodes?.length])
+
+  const sel = derived ? (selectedSkill ? derived.nodes.find(n => n.id === selectedSkill) : derived.nodes[0]) : null
 
   const gradients = [
     'from-cyan-400 to-blue-500', 'from-violet-400 to-fuchsia-500', 'from-emerald-400 to-teal-500',
