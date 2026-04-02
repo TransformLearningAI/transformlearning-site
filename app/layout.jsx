@@ -2,13 +2,13 @@ import './globals.css'
 import { Analytics } from '@vercel/analytics/react'
 
 export const metadata = {
-  title: 'Transform Learning — Learning Progression Intelligence for Higher Education',
+  title: 'Arrival — Adaptive Learning Operating System for Higher Education',
   description: 'Real-time visibility into student progression in gateway courses. Early risk signals. Targeted interventions. Built for faculty.',
   openGraph: {
-    title: 'Transform Learning',
+    title: 'Arrival',
     description: 'See where every student stands — before the grade does.',
     url: 'https://transformlearning.ai',
-    siteName: 'Transform Learning',
+    siteName: 'Arrival',
     type: 'website',
   },
 }

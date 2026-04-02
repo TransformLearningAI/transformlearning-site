@@ -150,7 +150,7 @@ export default function Hero() {
           <div className={`inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-white/15 bg-white/[0.05] mb-8 transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <span className="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0" style={{ boxShadow: '0 0 6px #00A8A8' }} />
             <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/55">
-              Adaptive Learning Operating System · Higher Education
+              Arrival · Adaptive Learning Operating System
             </span>
           </div>
 
@@ -173,7 +173,7 @@ export default function Hero() {
             Faculty submit a syllabus. Students see their gaps — and close them.
           </p>
           <p className={`text-base text-white/55 leading-relaxed max-w-lg mb-10 transition-all duration-700 delay-300 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            Transform Learning is a wayfinding system for learning. It reads signals, recognizes patterns, and helps each student see a path forward — not by removing challenge, but by introducing the right tension at the right moment. Faculty submit a syllabus. The system maps every skill, surfaces true proficiency, and closes gaps through coaching, quizzes, and targeted practice.
+            Arrival is a wayfinding system for learning. It reads signals, recognizes patterns, and helps each student see a path forward — not by removing challenge, but by introducing the right tension at the right moment. Faculty submit a syllabus. The system maps every skill, surfaces true proficiency, and closes gaps through coaching, quizzes, and targeted practice.
           </p>
 
           <div className={`flex flex-wrap gap-4 transition-all duration-700 delay-[400ms] ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>

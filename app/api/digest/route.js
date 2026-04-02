@@ -95,7 +95,7 @@ export async function GET(request) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Transform Learning — Daily Digest</title>
+  <title>Arrival — Daily Digest</title>
 </head>
 <body style="margin:0;padding:0;background:#F4F7FB;font-family:-apple-system,BlinkMacSystemFont,'DM Sans',sans-serif;">
   <table style="max-width:600px;margin:0 auto;padding:32px 16px;" cellpadding="0" cellspacing="0">
@@ -103,7 +103,7 @@ export async function GET(request) {
     <tr>
       <td style="background:#0C1F3F;border-radius:12px 12px 0 0;padding:28px 32px;">
         <p style="margin:0;color:#00A8A8;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">Daily Digest</p>
-        <h1 style="margin:6px 0 0;color:white;font-size:24px;font-weight:300;letter-spacing:-0.02em;">Transform Learning</h1>
+        <h1 style="margin:6px 0 0;color:white;font-size:24px;font-weight:300;letter-spacing:-0.02em;">Arrival</h1>
         <p style="margin:4px 0 0;color:rgba(255,255,255,0.5);font-size:13px;">${today}</p>
       </td>
     </tr>
@@ -138,7 +138,7 @@ export async function GET(request) {
     <tr>
       <td style="background:#F4F7FB;border-radius:0 0 12px 12px;border:1px solid #e5e7eb;border-top:none;padding:20px 32px;text-align:center;">
         <p style="margin:0;color:#9ca3af;font-size:12px;">
-          Transform Learning · Daily digest sent to ${toEmail}<br>
+          Arrival · Daily digest sent to ${toEmail}<br>
           <a href="https://transformlearning.ai" style="color:#00A8A8;text-decoration:none;">transformlearning.ai</a>
         </p>
       </td>
@@ -160,11 +160,11 @@ export async function GET(request) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: 'Transform Learning <digest@transformlearning.ai>',
+      from: 'Arrival <digest@transformlearning.ai>',
       to: [toEmail],
-      subject: `Transform Learning Digest — ${today}`,
+      subject: `Arrival Digest — ${today}`,
       html,
-      text: `Transform Learning Daily Digest\n${today}\n\n${statsText}\n\nView site: https://transformlearning.ai\nAnalytics: https://vercel.com/transformlearningai/transformlearning-site/analytics`,
+      text: `Arrival Daily Digest\n${today}\n\n${statsText}\n\nView site: https://transformlearning.ai\nAnalytics: https://vercel.com/transformlearningai/transformlearning-site/analytics`,
     }),
   })
 

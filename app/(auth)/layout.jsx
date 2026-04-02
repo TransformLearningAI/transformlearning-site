@@ -10,10 +10,12 @@ export default function AuthLayout({ children }) {
       <div className="relative w-full max-w-md px-6 py-12">
         <a href="/" className="flex items-center gap-2 mb-10 group">
           <div className="w-8 h-8 rounded-lg flex items-center justify-center"
-               style={{ background: '#00A8A8' }}>
-            <span className="text-white font-bold text-sm">TL</span>
+               style={{ background: '#0C1F3F' }}>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M8 2L2 14H6L8 10L10 14H14L8 2Z" fill="white"/>
+            </svg>
           </div>
-          <span className="text-white font-semibold text-sm">Transform Learning</span>
+          <span className="text-white font-bold text-sm">arrival<span style={{ color: '#00A8A8' }}>.ai</span></span>
         </a>
         {children}
       </div>

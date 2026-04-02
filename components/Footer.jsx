@@ -28,12 +28,11 @@ export default function Footer() {
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'rgba(255,255,255,0.07)' }}>
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                <path d="M3 13L8 3L13 13" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M5.5 9.5H10.5" stroke="white" strokeWidth="1.8" strokeLinecap="round"/>
+                <path d="M8 2L2 14H6L8 10L10 14H14L8 2Z" fill="currentColor"/>
               </svg>
             </div>
             <span className="font-bold text-white text-sm">
-              transform learning<span style={{ color: '#00A8A8' }}>.ai</span>
+              arrival<span style={{ color: '#00A8A8' }}>.ai</span>
             </span>
           </div>
 
@@ -47,7 +46,7 @@ export default function Footer() {
             ))}
           </nav>
 
-          <p className="text-xs text-white/20">© {new Date().getFullYear()} Transform Learning</p>
+          <p className="text-xs text-white/20">© {new Date().getFullYear()} Arrival</p>
         </div>
       </div>
     </footer>

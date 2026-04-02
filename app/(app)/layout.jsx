@@ -31,5 +31,15 @@ export default async function AppLayout({ children }) {
 
   if (!profile) redirect('/login')
 
-  return <AppShell profile={profile}>{children}</AppShell>
+  // Fetch enrollments for sidebar (students only)
+  let enrollments = []
+  if (profile.role === 'student') {
+    const { data } = await supabase
+      .from('enrollments')
+      .select('id, course_id, courses(title, course_code, term)')
+      .eq('student_id', user.id)
+    enrollments = data || []
+  }
+
+  return <AppShell profile={profile} enrollments={enrollments}>{children}</AppShell>
 }

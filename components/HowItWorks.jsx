@@ -4,7 +4,7 @@ const STEPS = [
   {
     num: '1', phase: 'Architect', color: '#0C1F3F',
     title: 'Faculty submit a syllabus. That\'s it.',
-    body: 'Transform Learning maps any syllabus into a complete skill and knowledge framework. No faculty dashboard to learn, no workflow to change, no ongoing workload. Faculty provide the course — we build the intelligence behind it.',
+    body: 'Arrival maps any syllabus into a complete skill and knowledge framework. No faculty dashboard to learn, no workflow to change, no ongoing workload. Faculty provide the course — we build the intelligence behind it.',
     detail: 'Setup in under 30 minutes',
   },
   {

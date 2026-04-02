@@ -25,7 +25,7 @@ export default function LoginPage() {
       <h1 className="font-serif font-light text-white mb-2" style={{ fontSize: '36px', letterSpacing: '-0.02em' }}>
         Welcome back.
       </h1>
-      <p className="text-white/50 text-sm mb-8">Sign in to your Transform Learning account.</p>
+      <p className="text-white/50 text-sm mb-8">Sign in to your Arrival account.</p>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>

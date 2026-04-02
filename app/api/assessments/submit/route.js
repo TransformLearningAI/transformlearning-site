@@ -1,6 +1,7 @@
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { getClient, MODELS } from '@/lib/claude/client'
 import { SYSTEM, userMessage } from '@/lib/claude/prompts/assessment-score'
+import { runGovernancePipeline, monitorTrust } from '@/lib/governance/engine'
 import { NextResponse } from 'next/server'
 
 export async function POST(request) {
@@ -42,9 +43,40 @@ export async function POST(request) {
 
   const now = new Date().toISOString()
 
-  // Upsert proficiency scores
+  // Get existing scores for governance monitoring (L4: Trust System)
+  const { data: existingScores } = await service
+    .from('proficiency_scores')
+    .select('skill_id, score')
+    .eq('enrollment_id', session.enrollment_id)
+  const { data: historyRows } = await service
+    .from('proficiency_history')
+    .select('id')
+    .eq('enrollment_id', session.enrollment_id)
+
+  // Run governance pipeline on each score (G: Ethical Orchestration Layer)
+  const governedScores = skill_scores.map(s => {
+    const governance = runGovernancePipeline({
+      studentId: user.id,
+      skillId: s.skill_id,
+      enrollmentId: session.enrollment_id,
+      score: s.score,
+      confidence: s.confidence,
+      evidenceSummary: s.evidence_summary,
+      scores: existingScores || [],
+      historyCount: (historyRows || []).length,
+    })
+    return { ...s, governance }
+  })
+
+  // Monitor for anomalies (L4: Continuous Monitoring)
+  const trustCheck = monitorTrust(
+    skill_scores.map(s => ({ skill_id: s.skill_id, score: s.score })),
+    existingScores || []
+  )
+
+  // Upsert proficiency scores — only governed-approved scores are persisted
   await service.from('proficiency_scores').upsert(
-    skill_scores.map(s => ({
+    governedScores.map(s => ({
       enrollment_id: session.enrollment_id,
       skill_id: s.skill_id,
       score: s.score,
@@ -56,12 +88,14 @@ export async function POST(request) {
     { onConflict: 'enrollment_id,skill_id' }
   )
 
-  // Insert history
+  // Insert history with governance metadata
   await service.from('proficiency_history').insert(
-    skill_scores.map(s => ({
+    governedScores.map(s => ({
       enrollment_id: session.enrollment_id,
       skill_id: s.skill_id,
       score: s.score,
+      confidence: s.confidence,
+      evidence_summary: s.evidence_summary,
       source: session.session_type === 'onboarding' ? 'assessment' : 'quiz',
     }))
   )
@@ -82,5 +116,12 @@ export async function POST(request) {
       .eq('id', session.enrollment_id)
   }
 
-  return NextResponse.json({ skill_scores })
+  return NextResponse.json({
+    skill_scores: governedScores,
+    governance: {
+      trust: trustCheck,
+      scores_governed: governedScores.length,
+      all_passed: governedScores.every(s => s.governance.allowed),
+    },
+  })
 }

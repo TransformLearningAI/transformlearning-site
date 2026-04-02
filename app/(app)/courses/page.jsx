@@ -32,7 +32,7 @@ export default async function CoursesPage() {
         <div className="bg-white rounded-2xl border border-gray-200 p-16 text-center">
           <div className="text-4xl mb-4">◫</div>
           <h3 className="font-semibold text-navy mb-2">No courses yet</h3>
-          <p className="text-gray-500 text-sm mb-6">Upload a syllabus and Transform Learning will map every skill your course develops.</p>
+          <p className="text-gray-500 text-sm mb-6">Upload a syllabus and Arrival will map every skill your course develops.</p>
           <Link href="/courses/new"
             className="inline-block px-6 py-3 rounded-xl font-bold text-sm text-white"
             style={{ background: '#00A8A8' }}>

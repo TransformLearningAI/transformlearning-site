@@ -21,12 +21,11 @@ export default function Nav() {
           <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
                style={{ background: '#0C1F3F' }}>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3 13L8 3L13 13" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M5.5 9.5H10.5" stroke="white" strokeWidth="1.8" strokeLinecap="round"/>
+              <path d="M8 2L2 14H6L8 10L10 14H14L8 2Z" fill="currentColor"/>
             </svg>
           </div>
           <span className="font-bold text-navy text-[15px] leading-tight">
-            transform learning<span style={{ color: '#00A8A8' }}>.ai</span>
+            arrival<span style={{ color: '#00A8A8' }}>.ai</span>
           </span>
         </a>
 

@@ -4,7 +4,7 @@ const PILLARS = [
   {
     num: '01', label: 'Diagnose', color: '#00A8A8',
     title: 'True proficiency.\nExposed with precision.',
-    body: 'Transform Learning uncovers every student\'s actual skill level — both explicit knowledge and implicit skills like problem decomposition and reasoning. Students upload their work or take targeted assessments. The system determines where they truly stand, not just where grades suggest.',
+    body: 'Arrival uncovers every student\'s actual skill level — both explicit knowledge and implicit skills like problem decomposition and reasoning. Students upload their work or take targeted assessments. The system determines where they truly stand, not just where grades suggest.',
   },
   {
     num: '02', label: 'Close the Gap', color: '#0C1F3F',
