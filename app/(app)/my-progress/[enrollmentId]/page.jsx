@@ -41,18 +41,7 @@ export default function StudentDashboard() {
     return { skills, scoreMap, nodes, overall, evidenceCount, mastered, weakest }
   }, [enrollment, scores])
 
-  if (loading) return (
-    <div className="flex items-center justify-center py-32">
-      <div className="text-center">
-        <div className="w-10 h-10 border-2 border-cyan-400 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-        <p className="text-sm text-white/30">Mapping your galaxy...</p>
-      </div>
-    </div>
-  )
-
-  if (!derived) return null
-
-  // Compute star positions using golden-angle spiral — evenly distributed
+  // Compute star positions — must be before any early returns (Rules of Hooks)
   const starPositions = useMemo(() => {
     if (!derived?.nodes) return []
     const total = derived.nodes.length
@@ -68,6 +57,17 @@ export default function StudentDashboard() {
   }, [derived?.nodes?.length])
 
   const sel = derived ? (selectedSkill ? derived.nodes.find(n => n.id === selectedSkill) : derived.nodes[0]) : null
+
+  if (loading) return (
+    <div className="flex items-center justify-center py-32">
+      <div className="text-center">
+        <div className="w-10 h-10 border-2 border-cyan-400 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+        <p className="text-sm text-white/30">Mapping your galaxy...</p>
+      </div>
+    </div>
+  )
+
+  if (!derived) return null
 
   const gradients = [
     'from-cyan-400 to-blue-500', 'from-violet-400 to-fuchsia-500', 'from-emerald-400 to-teal-500',
