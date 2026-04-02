@@ -54,7 +54,7 @@ function AcceptInviteForm() {
     })
     const data = await res.json()
     if (data.error) { setError(data.error); setLoading(false); return }
-    router.push(`/my-progress/${data.enrollmentId}/onboarding`)
+    router.push(`/my-progress/${data.enrollmentId}`)
   }
 
   if (validating) return <p className="text-white/50 text-sm">Validating invite…</p>
