@@ -54,18 +54,17 @@ export default function StudentDashboard() {
 
   const sel = selectedSkill ? derived.nodes.find(n => n.id === selectedSkill) : derived.nodes[0]
 
-  // Compute star positions using golden-angle spiral — evenly distributed for any count
-  const orbits = useMemo(() => {
+  // Compute star positions using golden-angle spiral — evenly distributed
+  const starPositions = useMemo(() => {
     const total = derived.nodes.length
     return derived.nodes.map((_, i) => {
       const golden = 2.39996323
       const angle = i * golden
-      // Spread from 18% to 44% radius so stars fill the box but avoid center hub and edges
-      const r = 0.18 + (Math.sqrt((i + 0.5) / total)) * 0.26
-      // Convert polar to %, offset from center (50%, 50%), clamp to safe bounds
-      const x = Math.max(5, Math.min(85, 50 + Math.cos(angle) * r * 100))
-      const y = Math.max(5, Math.min(88, 50 + Math.sin(angle) * r * 100))
-      return `top-[${Math.round(y)}%] left-[${Math.round(x)}%]`
+      const r = 0.18 + Math.sqrt((i + 0.5) / total) * 0.28
+      return {
+        top: `${Math.max(4, Math.min(86, 50 + Math.sin(angle) * r * 100))}%`,
+        left: `${Math.max(4, Math.min(88, 50 + Math.cos(angle) * r * 100))}%`,
+      }
     })
   }, [derived.nodes.length])
 
@@ -137,7 +136,8 @@ export default function StudentDashboard() {
                       const isImplicit = node.skill_type === 'implicit'
                       return (
                         <button key={node.id} onClick={() => setSelectedSkill(node.id)}
-                          className={`absolute ${orbits[i]} rounded-full border border-white/10 p-[1px] shadow-2xl transition-transform hover:scale-105 ${active ? 'ring-2 ring-cyan-400 scale-110' : ''}`}>
+                          className={`absolute rounded-full border border-white/10 p-[1px] shadow-2xl transition-transform hover:scale-105 ${active ? 'ring-2 ring-cyan-400 scale-110' : ''}`}
+                          style={{ top: starPositions[i]?.top, left: starPositions[i]?.left }}>
                           <div className={`rounded-full bg-gradient-to-r ${grad} px-4 py-3 text-left ${node.score === 0 ? 'opacity-40' : ''}`}>
                             <div className="text-xs font-semibold text-white truncate max-w-[120px]">
                               {isImplicit ? '◇ ' : ''}{node.name}

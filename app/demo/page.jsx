@@ -20,15 +20,16 @@ const SKILLS = [
   { id: '14', name: 'Experimental Design', type: 'implicit', score: 15, evidence: 'Very early. Understands hypothesis formation but not controlled variable design.' },
 ]
 
-// Golden-angle spiral positions — evenly spread for any count
-const orbits = SKILLS.map((_, i) => {
+// Golden-angle spiral positions — evenly spread
+const starPositions = SKILLS.map((_, i) => {
   const total = SKILLS.length
   const golden = 2.39996323
   const angle = i * golden
-  const r = 0.18 + Math.sqrt((i + 0.5) / total) * 0.26
-  const x = Math.max(5, Math.min(85, 50 + Math.cos(angle) * r * 100))
-  const y = Math.max(5, Math.min(88, 50 + Math.sin(angle) * r * 100))
-  return `top-[${Math.round(y)}%] left-[${Math.round(x)}%]`
+  const r = 0.18 + Math.sqrt((i + 0.5) / total) * 0.28
+  return {
+    top: `${Math.max(4, Math.min(86, 50 + Math.sin(angle) * r * 100))}%`,
+    left: `${Math.max(4, Math.min(88, 50 + Math.cos(angle) * r * 100))}%`,
+  }
 })
 
 const gradients = [
@@ -102,7 +103,8 @@ export default function DemoPage() {
                     </div>
                     {SKILLS.map((s, i) => (
                       <button key={s.id} onClick={() => setSel(s.id)}
-                        className={`absolute ${orbits[i]} rounded-full border border-white/10 p-[1px] shadow-2xl transition-transform hover:scale-105 ${sel === s.id ? 'ring-2 ring-cyan-400 scale-110' : ''}`}>
+                        className={`absolute rounded-full border border-white/10 p-[1px] shadow-2xl transition-transform hover:scale-105 ${sel === s.id ? 'ring-2 ring-cyan-400 scale-110' : ''}`}
+                        style={{ top: starPositions[i]?.top, left: starPositions[i]?.left }}>
                         <div className={`rounded-full bg-gradient-to-r ${gradients[i]} px-4 py-3 text-left ${s.score === 0 ? 'opacity-40' : ''}`}>
                           <div className="text-xs font-semibold text-white truncate max-w-[120px]">{s.type === 'implicit' ? '◇ ' : ''}{s.name}</div>
                           <div className="text-[10px] text-white/80">{s.score > 0 ? `${s.score}%` : 'uncharted'}</div>
