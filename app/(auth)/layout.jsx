@@ -16,15 +16,16 @@ export default function AuthLayout({ children }) {
       {/* Left side — brand */}
       <div className="hidden lg:flex flex-col justify-between flex-1 relative px-12 py-10">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-3 group">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
-            <rect width="44" height="44" rx="14" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
-            <path d="M22 10L12 34H18L22 25L26 34H32L22 10Z" fill="#00A8A8"/>
-            <path d="M17 28H27" stroke="white" strokeWidth="1.5" strokeLinecap="round" opacity="0.4"/>
+        <a href="/" className="flex items-center gap-4 group">
+          <svg width="52" height="52" viewBox="0 0 56 56" fill="none">
+            <rect width="56" height="56" rx="16" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
+            <path d="M28 12L16 44H22.5L28 31L33.5 44H40L28 12Z" fill="#00A8A8"/>
+            <path d="M21 37H35" stroke="#4F8A5B" strokeWidth="2" strokeLinecap="round" opacity="0.5"/>
+            <circle cx="28" cy="26" r="9" stroke="white" strokeWidth="0.8" opacity="0.12"/>
           </svg>
           <div>
-            <span className="text-white font-bold text-lg tracking-tight">arrival<span style={{ color: '#00A8A8' }}>.ai</span></span>
-            <p className="text-white/30 text-[10px] uppercase tracking-[0.15em] mt-0.5">Adaptive Learning OS</p>
+            <span className="text-white font-bold text-xl tracking-tight">arrival<span style={{ color: '#00A8A8' }}>.ai</span></span>
+            <p className="text-white/30 text-[10px] uppercase tracking-[0.18em] mt-1">Adaptive Learning OS</p>
           </div>
         </a>
 

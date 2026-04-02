@@ -17,16 +17,23 @@ export default function Nav() {
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
 
         {/* Logo */}
-        <a href="/" className="flex items-center gap-3 group">
-          <svg width="38" height="38" viewBox="0 0 44 44" fill="none" className="flex-shrink-0">
-            <rect width="44" height="44" rx="14" fill="#0C1F3F"/>
-            <path d="M22 10L12 34H18L22 25L26 34H32L22 10Z" fill="#00A8A8"/>
-            <path d="M17 28H27" stroke="white" strokeWidth="1.5" strokeLinecap="round" opacity="0.4"/>
+        <a href="/" className="flex items-center gap-4 group">
+          <svg width="46" height="46" viewBox="0 0 56 56" fill="none" className="flex-shrink-0">
+            <rect width="56" height="56" rx="16" fill="#0C1F3F"/>
+            {/* Teal A mark */}
+            <path d="M28 12L16 44H22.5L28 31L33.5 44H40L28 12Z" fill="#00A8A8"/>
+            {/* Green accent bar */}
+            <path d="M21 37H35" stroke="#4F8A5B" strokeWidth="2" strokeLinecap="round" opacity="0.7"/>
+            {/* Subtle contour ring */}
+            <circle cx="28" cy="26" r="9" stroke="white" strokeWidth="0.8" opacity="0.12"/>
           </svg>
-          <div className="leading-tight">
-            <span className="font-bold text-navy text-lg tracking-tight">
+          <div className="leading-none">
+            <span className="font-bold text-navy text-xl tracking-tight">
               arrival<span style={{ color: '#00A8A8' }}>.ai</span>
             </span>
+            <p className="text-[9px] font-bold uppercase tracking-[0.18em] mt-1" style={{ color: '#5F7691' }}>
+              Adaptive Learning OS
+            </p>
           </div>
         </a>
 
