@@ -1,9 +1,23 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Sidebar from './Sidebar'
+import Tour from './Tour'
 
 export default function AppShell({ profile, enrollments = [], children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [showTour, setShowTour] = useState(false)
+
+  useEffect(() => {
+    // Show tour on first visit
+    if (!localStorage.getItem('arrival_tour_done')) {
+      setShowTour(true)
+    }
+  }, [])
+
+  function completeTour() {
+    setShowTour(false)
+    localStorage.setItem('arrival_tour_done', '1')
+  }
 
   return (
     <div className="min-h-screen flex" style={{ background: '#F4F7FB' }}>
@@ -39,7 +53,8 @@ export default function AppShell({ profile, enrollments = [], children }) {
           {/* Right actions */}
           <div className="flex items-center gap-2">
             {/* Tour button */}
-            <button className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 text-xs font-medium text-gray-500 hover:bg-gray-50 transition-colors">
+            <button onClick={() => setShowTour(true)}
+              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 text-xs font-medium text-gray-500 hover:bg-gray-50 transition-colors">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" strokeWidth="1.3"/><path d="M7 4v3l2 1" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>
               Tour
             </button>
@@ -83,6 +98,9 @@ export default function AppShell({ profile, enrollments = [], children }) {
         <div className="fixed inset-0 bg-black/50 z-20 lg:hidden"
              onClick={() => setSidebarOpen(false)} />
       )}
+
+      {/* Tour */}
+      {showTour && <Tour onComplete={completeTour} />}
     </div>
   )
 }
