@@ -170,7 +170,7 @@ export default function Hero() {
           </div>
 
           <p className={`text-lg font-semibold text-white mb-3 transition-all duration-700 delay-200 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            Faculty submit a syllabus. Students see their gaps — and close them.
+            Know where you are. See where to go. Follow the path forward.
           </p>
           <p className={`text-base text-white/55 leading-relaxed max-w-lg mb-10 transition-all duration-700 delay-300 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             Arrival is a wayfinding system for learning. It reads signals, recognizes patterns, and helps each student see a path forward — not by removing challenge, but by introducing the right tension at the right moment. Faculty submit a syllabus. The system maps every skill, surfaces true proficiency, and closes gaps through coaching, quizzes, and targeted practice.
@@ -191,7 +191,7 @@ export default function Hero() {
           </div>
 
           <div className={`flex flex-wrap gap-6 mt-10 transition-all duration-700 delay-500 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            {['Explicit & implicit skills mapped', 'Coaching + quizzes to close gaps', 'FERPA Compliant'].map(t => (
+            {['Revealed Clarity', 'Trusted Wisdom', 'Governed Intelligence'].map(t => (
               <div key={t} className="flex items-center gap-2">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                   <path d="M2 7L5.5 10.5L12 3.5" stroke="#00A8A8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>

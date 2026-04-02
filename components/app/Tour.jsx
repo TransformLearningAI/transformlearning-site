@@ -5,7 +5,7 @@ const TOUR_STEPS = [
   {
     id: 'welcome',
     title: 'Welcome to Arrival',
-    body: 'Your personal wayfinding system for learning. This quick tour shows you how everything works — takes about 60 seconds.',
+    body: 'Your wayfinding system for learning. Know where you are. See where to go. Follow the path forward. This quick tour shows you how everything works — takes about 60 seconds.',
     emoji: '🧭',
     position: 'center',
   },
@@ -34,7 +34,7 @@ const TOUR_STEPS = [
   {
     id: 'coach',
     title: 'AI Coaching — Your Arrival Coach',
-    body: 'Select any skill and start a conversation. The coach adapts to your level using three teaching styles: Smart (balanced), Questions (Socratic), or Explain (detailed). Every response is governed by fairness and confidence constraints.',
+    body: 'Select any skill and start a conversation. The coach adapts to your level using three teaching styles: Smart (balanced), Questions (Socratic), or Explain (detailed). The coach is grounded, never elevated above you. Certain, without needing to prove it. Every response is governed by fairness and confidence constraints.',
     emoji: '💬',
     position: 'center',
   },
@@ -48,7 +48,7 @@ const TOUR_STEPS = [
   {
     id: 'governance',
     title: 'Governed Intelligence',
-    body: 'Every AI decision passes through Arrival\'s ethical orchestration layer — fairness checks, confidence thresholds, and privacy constraints. The system cannot act on uncertain predictions or produce inequitable outcomes. If any condition fails, it defers to human review.',
+    body: 'Every AI decision passes through Arrival\'s ethical orchestration layer — fairness checks, confidence thresholds, and privacy constraints. Ethics is not something checked after the system acts. It is something the system has to satisfy before it is allowed to act. If any condition fails, it defers to human review.',
     emoji: '🛡️',
     position: 'center',
   },
@@ -76,7 +76,7 @@ const TOUR_STEPS = [
   {
     id: 'done',
     title: 'You\'ve arrived.',
-    body: 'That\'s the tour! Start by exploring your skill map or jump into a coaching session. Arrival reads signals, recognizes patterns, and guides you forward. The path is clear.',
+    body: 'You have arrived. Start by exploring your skill map or jump into a coaching session. The path is clear.',
     emoji: '✨',
     position: 'center',
   },

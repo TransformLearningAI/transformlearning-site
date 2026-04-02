@@ -2,24 +2,24 @@ import ScrollReveal from './ScrollReveal'
 
 const PILLARS = [
   {
-    num: '01', label: 'Diagnose', color: '#00A8A8',
-    title: 'True proficiency.\nExposed with precision.',
-    body: 'Arrival uncovers every student\'s actual skill level — both explicit knowledge and implicit skills like problem decomposition and reasoning. Students upload their work or take targeted assessments. The system determines where they truly stand, not just where grades suggest.',
+    num: '01', label: 'Revealed Clarity', color: '#F4F7FB',
+    title: 'We remove noise to reveal\nwhat matters.',
+    body: 'True proficiency. Exposed with precision. Arrival uncovers every student\'s actual skill level — both explicit knowledge and implicit skills like problem decomposition and reasoning. The system determines where they truly stand, not just where grades suggest.',
   },
   {
-    num: '02', label: 'Close the Gap', color: '#0C1F3F',
+    num: '02', label: 'Trusted Wisdom', color: '#0C1F3F',
     title: 'See the gap.\nAddress it immediately.',
-    body: 'Once deficiencies surface, students don\'t just know — they act. Personalized coaching sessions, adaptive practice quizzes, focused study guides, and review materials are served directly to each student for exactly the skills that need work. Gap-to-action in one step.',
+    body: 'Every decision grounded in context. Once deficiencies surface, students don\'t just know — they act. Personalized coaching sessions, adaptive practice quizzes, focused study guides, and review materials are served directly to each student for exactly the skills that need work.',
   },
   {
-    num: '03', label: 'Build Mastery', color: '#5A3E6B',
-    title: 'Practice builds mastery.\nMastery changes outcomes.',
-    body: 'The system tracks progression as students work through remediation — not just that they tried, but that they\'re actually improving. Each closed gap is recorded. Faculty see the movement. Students feel it. The data becomes the evidence that institutions need to expand.',
+    num: '03', label: 'Quiet Intelligence', color: '#5A3E6B',
+    title: 'The system listens.\nSignals. Patterns. Shifts over time.',
+    body: 'Practice builds mastery. The system connects what matters and speaks to move forward — not just that they tried, but that they\'re actually improving. Each closed gap is recorded. Faculty see the movement. Students feel it.',
   },
   {
-    num: '04', label: 'Prove It', color: '#4F8A5B',
+    num: '04', label: 'Steady Movement', color: '#4F8A5B',
     title: 'Effort becomes traction.\nTraction becomes proof.',
-    body: 'Documented outcome tracking across cohorts creates the evidence base that moves adoption from one course to a department to an institution. DFW rates tracked. Pass rates rising. The improvement is real — and reproducible.',
+    body: 'Consistent forward progress without overwhelm. Documented outcome tracking across cohorts creates the evidence base that moves adoption from one course to a department to an institution. DFW rates tracked. Pass rates rising. The improvement is real — and reproducible.',
   },
 ]
 
