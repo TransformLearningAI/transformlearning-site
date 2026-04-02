@@ -26,12 +26,12 @@ export default function Footer() {
 
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'rgba(255,255,255,0.07)' }}>
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                <path d="M8 2L2 14H6L8 10L10 14H14L8 2Z" fill="currentColor"/>
-              </svg>
-            </div>
-            <span className="font-bold text-white text-sm">
+            <svg width="36" height="36" viewBox="0 0 44 44" fill="none">
+              <rect width="44" height="44" rx="14" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.08)" strokeWidth="1"/>
+              <path d="M22 10L12 34H18L22 25L26 34H32L22 10Z" fill="#00A8A8"/>
+              <path d="M17 28H27" stroke="white" strokeWidth="1.5" strokeLinecap="round" opacity="0.3"/>
+            </svg>
+            <span className="font-bold text-white text-lg tracking-tight">
               arrival<span style={{ color: '#00A8A8' }}>.ai</span>
             </span>
           </div>

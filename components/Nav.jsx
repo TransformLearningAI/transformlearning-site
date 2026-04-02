@@ -17,16 +17,17 @@ export default function Nav() {
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
 
         {/* Logo */}
-        <a href="/" className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-               style={{ background: '#0C1F3F' }}>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M8 2L2 14H6L8 10L10 14H14L8 2Z" fill="currentColor"/>
-            </svg>
+        <a href="/" className="flex items-center gap-3 group">
+          <svg width="38" height="38" viewBox="0 0 44 44" fill="none" className="flex-shrink-0">
+            <rect width="44" height="44" rx="14" fill="#0C1F3F"/>
+            <path d="M22 10L12 34H18L22 25L26 34H32L22 10Z" fill="#00A8A8"/>
+            <path d="M17 28H27" stroke="white" strokeWidth="1.5" strokeLinecap="round" opacity="0.4"/>
+          </svg>
+          <div className="leading-tight">
+            <span className="font-bold text-navy text-lg tracking-tight">
+              arrival<span style={{ color: '#00A8A8' }}>.ai</span>
+            </span>
           </div>
-          <span className="font-bold text-navy text-[15px] leading-tight">
-            arrival<span style={{ color: '#00A8A8' }}>.ai</span>
-          </span>
         </a>
 
         {/* Desktop */}

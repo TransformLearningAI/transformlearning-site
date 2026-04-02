@@ -16,7 +16,6 @@ export default function SignupPage() {
     setLoading(true)
     setError('')
 
-    // Timeout after 15s so it never hangs silently
     const timeout = setTimeout(() => {
       setError('Request timed out — please try again.')
       setLoading(false)
@@ -33,7 +32,6 @@ export default function SignupPage() {
       })
       clearTimeout(timeout)
       if (error) { setError(error.message); setLoading(false); return }
-      // Hard navigate — works whether email confirm is on or off
       window.location.href = '/courses'
     } catch (err) {
       clearTimeout(timeout)
@@ -44,45 +42,61 @@ export default function SignupPage() {
 
   return (
     <div>
-      <h1 className="font-serif font-light text-white mb-2" style={{ fontSize: '36px', letterSpacing: '-0.02em' }}>
-        Get started.
+      <div className="flex items-center gap-2 mb-6">
+        <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: '#5A3E6B' }}>
+          <span className="text-white text-sm">📋</span>
+        </div>
+        <span className="text-[10px] font-bold text-white/40 uppercase tracking-[0.15em]">Faculty Account</span>
+      </div>
+
+      <h1 className="font-serif font-light text-white mb-2" style={{ fontSize: '32px', letterSpacing: '-0.02em' }}>
+        Build the terrain.
       </h1>
-      <p className="text-white/50 text-sm mb-8">Create your faculty account — free during the pilot program.</p>
+      <p className="text-white/40 text-sm mb-8">Create your account — free during the pilot. Upload a syllabus and your students' skill landscape generates automatically.</p>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        {[
-          { label: 'Full Name', field: 'full_name', type: 'text', placeholder: 'Dr. Jane Smith' },
-          { label: 'Institution', field: 'institution', type: 'text', placeholder: 'State University' },
-          { label: 'Email', field: 'email', type: 'email', placeholder: 'you@institution.edu' },
-          { label: 'Password', field: 'password', type: 'password', placeholder: '••••••••' },
-        ].map(({ label, field, type, placeholder }) => (
-          <div key={field}>
-            <label className="block text-xs font-bold text-white/50 uppercase tracking-[0.1em] mb-2">{label}</label>
-            <input
-              type={type} value={form[field]} onChange={set(field)} required
-              className="w-full bg-white/[0.06] border border-white/15 rounded-xl px-4 py-3 text-white placeholder-white/30 text-sm focus:outline-none focus:border-brand-teal transition-colors"
-              placeholder={placeholder}
-            />
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <label className="block text-xs font-bold text-white/40 uppercase tracking-[0.1em] mb-2">Full Name</label>
+            <input type="text" value={form.full_name} onChange={set('full_name')} required
+              className="w-full bg-white/[0.06] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/20 text-sm focus:outline-none focus:border-brand-teal"
+              placeholder="Dr. Jane Smith" />
           </div>
-        ))}
+          <div>
+            <label className="block text-xs font-bold text-white/40 uppercase tracking-[0.1em] mb-2">Institution</label>
+            <input type="text" value={form.institution} onChange={set('institution')} required
+              className="w-full bg-white/[0.06] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/20 text-sm focus:outline-none focus:border-brand-teal"
+              placeholder="State University" />
+          </div>
+        </div>
+        <div>
+          <label className="block text-xs font-bold text-white/40 uppercase tracking-[0.1em] mb-2">Email</label>
+          <input type="email" value={form.email} onChange={set('email')} required
+            className="w-full bg-white/[0.06] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/20 text-sm focus:outline-none focus:border-brand-teal"
+            placeholder="you@institution.edu" />
+        </div>
+        <div>
+          <label className="block text-xs font-bold text-white/40 uppercase tracking-[0.1em] mb-2">Password</label>
+          <input type="password" value={form.password} onChange={set('password')} required
+            className="w-full bg-white/[0.06] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/20 text-sm focus:outline-none focus:border-brand-teal"
+            placeholder="At least 8 characters" />
+        </div>
 
         {error && (
-          <div className="rounded-xl px-4 py-3 text-sm" style={{ background: 'rgba(255,107,74,0.1)', color: '#FF6B4A', border: '1px solid rgba(255,107,74,0.2)' }}>
+          <div className="rounded-xl px-4 py-3 text-sm" style={{ background: 'rgba(255,107,74,0.1)', color: '#FF6B4A', border: '1px solid rgba(255,107,74,0.15)' }}>
             {error}
           </div>
         )}
 
-        <button
-          type="submit" disabled={loading}
-          className="w-full py-3 rounded-xl font-bold text-sm text-white transition-opacity disabled:opacity-60"
-          style={{ background: '#00A8A8' }}>
+        <button type="submit" disabled={loading}
+          className="w-full py-3.5 rounded-xl font-bold text-sm text-white transition-all disabled:opacity-60 hover:opacity-90"
+          style={{ background: '#5A3E6B' }}>
           {loading ? 'Creating account…' : 'Create Faculty Account →'}
         </button>
       </form>
 
-      <p className="text-white/40 text-sm mt-6 text-center">
-        Already have an account?{' '}
-        <a href="/login" className="text-brand-teal hover:underline">Sign in</a>
+      <p className="text-white/30 text-xs mt-6 text-center">
+        Already have an account? <a href="/login" className="text-brand-teal hover:underline font-bold">Sign in</a>
       </p>
     </div>
   )
