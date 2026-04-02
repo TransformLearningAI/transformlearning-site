@@ -41,13 +41,13 @@ export default function Solution() {
             <p className="eyebrow mb-6">The Platform</p>
             <h2 className="font-serif font-light text-navy mb-6"
                 style={{ fontSize: 'clamp(36px, 5.5vw, 72px)', lineHeight: 1.0, letterSpacing: '-0.03em' }}>
-              We build the intelligence that transforms institutions from{' '}
-              <em className="italic" style={{ color: '#00A8A8' }}>hoping&nbsp;to knowing.</em>
+              Not an AI tool. An adaptive,{' '}
+              <em className="italic" style={{ color: '#00A8A8' }}>prescriptive learning operating&nbsp;system.</em>
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={2}>
             <p className="text-lg text-brand-gray leading-relaxed max-w-2xl mx-auto">
-              Not another LMS. Not a grade tracker. A complete mastery loop — diagnose true proficiency, expose every gap (explicit and implicit), then close it through coaching, quizzes, and targeted practice. Students don't just see where they stand. They fix it.
+              The AI isn't the product — it's the underlying intelligence. What we've built is a wayfinding system that reads signals, recognizes patterns, applies judgment, and guides students toward an arrival point. Not by removing challenge, but by introducing the right amount of tension at the right moment. Students don't just see where they stand. They fix it.
             </p>
           </ScrollReveal>
         </div>

@@ -38,7 +38,7 @@ export default function Problem() {
                      style={{ background: 'linear-gradient(180deg, #00A8A8, #4F8A5B)' }} />
                 <blockquote className="font-serif font-light text-navy"
                             style={{ fontSize: 'clamp(20px, 2.5vw, 28px)', lineHeight: 1.3, letterSpacing: '-0.01em' }}>
-                  "We built the intelligence that transforms institutions from hoping to knowing."
+                  "A system that reads signals, recognizes patterns, and helps a student see a path forward — not by removing challenge, but by guiding them toward an arrival point."
                 </blockquote>
               </div>
             </ScrollReveal>

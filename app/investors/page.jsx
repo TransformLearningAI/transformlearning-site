@@ -6,7 +6,7 @@ export const metadata = {
 }
 
 const STATS = [
-  { label: 'Category',        value: 'Learning Progression Intelligence' },
+  { label: 'Category',        value: 'Adaptive Learning Operating System' },
   { label: 'Entry Motion',    value: 'Faculty-first departmental pilots' },
   { label: 'Priority Courses', value: 'Algebra · Statistics · Biology' },
   { label: 'Growth Path',     value: 'Faculty → Department → Institution' },
@@ -144,7 +144,7 @@ export default function Investors() {
       {/* Sections */}
       <Section id="s1" num="1" title="Executive Summary" color="#0C1F3F">
         <p className="body-text mb-4">Transform Learning will enter the Higher Education market through a focused, evidence-driven, faculty-first strategy centered on high-impact gateway courses. The go-to-market approach prioritizes measurable academic outcomes, rapid time-to-insight, and departmental adoption as the foundation for institutional scale.</p>
-        <p className="body-text mb-4">The strategy is designed to establish credibility through controlled pilot programs, demonstrate measurable improvements in student progression and course outcomes, expand from faculty-level adoption to department and institutional licensing, and build a defensible category position as a Learning Progression Intelligence System.</p>
+        <p className="body-text mb-4">The AI is not the product — it's the underlying intelligence. What we are building is a wayfinding system for learning: a system that reads signals, recognizes patterns, applies judgment, and helps a student see a path forward. Not by removing challenge, but by introducing the right amount of tension at the right moment and guiding them toward an arrival point. This positions Transform Learning not as an AI tool, an LMS extension, or a content repository — but as an adaptive, prescriptive learning operating system.</p>
         <p className="body-text font-semibold text-navy">The primary growth mechanism is not broad awareness. It is validated movement within targeted academic environments, supported by proof, usability, and faculty credibility.</p>
       </Section>
 
@@ -195,7 +195,7 @@ export default function Investors() {
       <Section id="s4" num="4" title="Product Positioning & Value Proposition" color="#0C1F3F">
         <blockquote className="font-serif font-light text-navy border-l-4 border-navy pl-6 mb-8"
                     style={{ fontSize: 'clamp(22px, 3vw, 32px)', lineHeight: 1.3, letterSpacing: '-0.01em' }}>
-          Transform Learning is positioned as a Learning Progression Intelligence System.
+          The AI is not the product — it's the underlying intelligence. What we're building is a wayfinding system for learning. An adaptive, prescriptive learning operating system.
         </blockquote>
         <div className="grid md:grid-cols-2 gap-4 mb-6">
           <Card title="Core Problem">
@@ -261,7 +261,28 @@ export default function Investors() {
         </div>
       </Section>
 
-      <Section id="s9" num="9" title="Metrics & Performance Framework" color="#5A3E6B">
+      <Section id="s7" num="7" title="Engagement Unit Model" color="#0C1F3F">
+        <p className="body-text mb-6">An Engagement Unit (EU) is one complete interaction cycle between a student and the system — a prompt and a response. A student asks something, the system responds, and that exchange is one unit. It's a clean, quantifiable measure of both usage and cost without getting lost in technical detail.</p>
+        <div className="grid md:grid-cols-3 gap-4 mb-6">
+          <Card title="Per Student / Week">
+            <div className="text-3xl font-black text-navy mb-1">~75</div>
+            <p className="text-sm text-brand-gray">Engagement Units per week for meaningful engagement in a course like College Algebra</p>
+          </Card>
+          <Card title="Per Student / Semester">
+            <div className="text-3xl font-black text-navy mb-1">~1,125</div>
+            <p className="text-sm text-brand-gray">EUs across a standard 15-week semester — coaching, quizzes, study guides, and work feedback combined</p>
+          </Card>
+          <Card title="Per 1,000 Student Cohort">
+            <div className="text-3xl font-black text-navy mb-1">~1.125M</div>
+            <p className="text-sm text-brand-gray">Engagement Units per semester at scale — the foundation for modeling cost, value, and infrastructure</p>
+          </Card>
+        </div>
+        <Card>
+          <p className="text-sm text-brand-gray leading-relaxed">Once we define engagement this way, we can stop guessing and start modeling. Every coaching session, quiz question, study guide interaction, and work assessment maps to a discrete, measurable unit — giving us precise visibility into cost-per-student, engagement depth, and system capacity as we scale.</p>
+        </Card>
+      </Section>
+
+      <Section id="s9" num="8" title="Metrics & Performance Framework" color="#5A3E6B">
         <div className="grid md:grid-cols-2 gap-4">
           {[
             { label: 'Adoption Metrics', items: ['Faculty activation rate', 'Student engagement levels', 'Weekly active usage', 'Cross-section usage consistency'] },
@@ -276,7 +297,7 @@ export default function Investors() {
         </div>
       </Section>
 
-      <Section id="s10" num="10" title="Launch Timeline" color="#4F8A5B">
+      <Section id="s10" num="9" title="Launch Timeline" color="#4F8A5B">
         <div className="space-y-4">
           {PHASES.map(p => (
             <div key={p.phase} className="flex gap-6 bg-brand-soft border border-brand-border rounded-2xl p-5">
@@ -290,7 +311,7 @@ export default function Investors() {
         </div>
       </Section>
 
-      <Section id="s11" num="11" title="Risk Assessment" color="#FF6B4A">
+      <Section id="s11" num="10" title="Risk Assessment" color="#FF6B4A">
         <div className="grid md:grid-cols-2 gap-4 mb-6">
           {RISKS.map(r => (
             <div key={r.risk} className="bg-brand-soft border border-brand-border rounded-2xl p-5">
@@ -310,12 +331,12 @@ export default function Investors() {
         </Card>
       </Section>
 
-      <Section id="s12" num="12" title="Strategic Conclusion" color="#0C1F3F">
+      <Section id="s12" num="11" title="Strategic Conclusion" color="#0C1F3F">
         <p className="body-text mb-4">Transform Learning's success in Higher Education depends on its ability to deliver immediate, observable instructional clarity, build credibility through evidence and faculty trust, and scale through departmental adoption rather than top-down mandates.</p>
-        <p className="body-text mb-4">The GTM strategy establishes a repeatable pathway from individual faculty validation to institutional standardization, positioning Transform Learning as a critical system for understanding and improving student progression.</p>
+        <p className="body-text mb-4">This is not an AI tool, an LMS extension, or a content repository. It is an adaptive, prescriptive learning operating system — a wayfinding system that reads signals, applies judgment, and guides students toward an arrival point. The GTM strategy establishes a repeatable pathway from individual faculty validation to institutional standardization, positioning Transform Learning as critical infrastructure for academic success.</p>
         <blockquote className="font-serif font-light text-navy border-l-4 border-navy pl-6"
                     style={{ fontSize: 'clamp(20px, 2.5vw, 28px)', lineHeight: 1.3, letterSpacing: '-0.01em' }}>
-          Enter narrowly. Prove value rigorously. Expand deliberately. Build a durable position inside the academic success infrastructure of universities.
+          Enter narrowly. Prove value rigorously. Expand deliberately. Build a durable position as the operating system for learning inside universities.
         </blockquote>
       </Section>
 
