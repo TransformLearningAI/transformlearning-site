@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server'
+import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { NextResponse } from 'next/server'
 
 export async function GET(request, context) {
@@ -7,7 +7,10 @@ export async function GET(request, context) {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const { data: enrollment } = await supabase
+  // Use service client to bypass RLS — verify ownership manually
+  const service = await createServiceClient()
+
+  const { data: enrollment } = await service
     .from('enrollments')
     .select('*, courses(id, title, course_code, term, skills(*))')
     .eq('id', enrollmentId)
