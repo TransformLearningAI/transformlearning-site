@@ -20,13 +20,16 @@ const SKILLS = [
   { id: '14', name: 'Experimental Design', type: 'implicit', score: 15, evidence: 'Very early. Understands hypothesis formation but not controlled variable design.' },
 ]
 
-const orbits = [
-  'top-[8%] left-[6%]', 'top-[18%] right-[8%]', 'top-[38%] left-[16%]',
-  'bottom-[14%] left-[10%]', 'bottom-[8%] right-[12%]', 'top-[50%] right-[3%]',
-  'top-[12%] left-[40%]', 'bottom-[30%] left-[35%]', 'top-[30%] right-[30%]',
-  'bottom-[20%] right-[28%]', 'top-[60%] left-[5%]', 'bottom-[5%] left-[40%]',
-  'top-[5%] right-[35%]', 'top-[45%] left-[30%]',
-]
+// Golden-angle spiral positions — evenly spread for any count
+const orbits = SKILLS.map((_, i) => {
+  const total = SKILLS.length
+  const golden = 2.39996323
+  const angle = i * golden
+  const r = 0.18 + Math.sqrt((i + 0.5) / total) * 0.26
+  const x = Math.max(5, Math.min(85, 50 + Math.cos(angle) * r * 100))
+  const y = Math.max(5, Math.min(88, 50 + Math.sin(angle) * r * 100))
+  return `top-[${Math.round(y)}%] left-[${Math.round(x)}%]`
+})
 
 const gradients = [
   'from-cyan-400 to-blue-500', 'from-violet-400 to-fuchsia-500', 'from-emerald-400 to-teal-500',

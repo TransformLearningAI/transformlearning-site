@@ -54,17 +54,20 @@ export default function StudentDashboard() {
 
   const sel = selectedSkill ? derived.nodes.find(n => n.id === selectedSkill) : derived.nodes[0]
 
-  // Star orbit positions
-  const orbits = [
-    'top-[8%] left-[6%]', 'top-[18%] right-[8%]', 'top-[38%] left-[16%]',
-    'bottom-[14%] left-[10%]', 'bottom-[8%] right-[12%]', 'top-[50%] right-[3%]',
-    'top-[12%] left-[40%]', 'bottom-[30%] left-[35%]', 'top-[30%] right-[30%]',
-    'bottom-[20%] right-[28%]', 'top-[60%] left-[5%]', 'bottom-[5%] left-[40%]',
-    'top-[5%] right-[35%]', 'top-[45%] left-[30%]', 'bottom-[35%] right-[5%]',
-    'top-[70%] right-[20%]', 'bottom-[45%] left-[20%]', 'top-[25%] left-[25%]',
-    'bottom-[25%] right-[35%]', 'top-[55%] left-[45%]', 'top-[15%] left-[55%]',
-    'bottom-[15%] right-[45%]',
-  ]
+  // Compute star positions using golden-angle spiral — evenly distributed for any count
+  const orbits = useMemo(() => {
+    const total = derived.nodes.length
+    return derived.nodes.map((_, i) => {
+      const golden = 2.39996323
+      const angle = i * golden
+      // Spread from 18% to 44% radius so stars fill the box but avoid center hub and edges
+      const r = 0.18 + (Math.sqrt((i + 0.5) / total)) * 0.26
+      // Convert polar to %, offset from center (50%, 50%), clamp to safe bounds
+      const x = Math.max(5, Math.min(85, 50 + Math.cos(angle) * r * 100))
+      const y = Math.max(5, Math.min(88, 50 + Math.sin(angle) * r * 100))
+      return `top-[${Math.round(y)}%] left-[${Math.round(x)}%]`
+    })
+  }, [derived.nodes.length])
 
   const gradients = [
     'from-cyan-400 to-blue-500', 'from-violet-400 to-fuchsia-500', 'from-emerald-400 to-teal-500',
@@ -128,7 +131,7 @@ export default function StudentDashboard() {
                       {derived.mastered} mastered
                     </div>
                     {/* Stars */}
-                    {derived.nodes.slice(0, orbits.length).map((node, i) => {
+                    {derived.nodes.map((node, i) => {
                       const active = selectedSkill === node.id
                       const grad = gradients[i % gradients.length]
                       const isImplicit = node.skill_type === 'implicit'
