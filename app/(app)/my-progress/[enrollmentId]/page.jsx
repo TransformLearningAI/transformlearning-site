@@ -13,6 +13,7 @@ export default function StudentDashboard() {
   const [loading, setLoading] = useState(true)
   const [selectedSkill, setSelectedSkill] = useState(null)
   const [selectedTrack, setSelectedTrack] = useState('course')
+  const [layout, setLayout] = useState('galaxy') // galaxy | list | circle | cards
 
   useEffect(() => {
     Promise.all([
@@ -122,33 +123,129 @@ export default function StudentDashboard() {
                   </div>
                 </div>
 
+                {/* Layout toggle icons */}
+                <div className="flex items-center gap-1 mb-4">
+                  {[
+                    { id: 'galaxy', label: 'Galaxy', icon: <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2" fill="currentColor"/><circle cx="3" cy="5" r="1.5" fill="currentColor" opacity="0.5"/><circle cx="13" cy="4" r="1.5" fill="currentColor" opacity="0.5"/><circle cx="5" cy="12" r="1.5" fill="currentColor" opacity="0.5"/><circle cx="12" cy="11" r="1.5" fill="currentColor" opacity="0.5"/></svg> },
+                    { id: 'list', label: 'List', icon: <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg> },
+                    { id: 'circle', label: 'Circle', icon: <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.5" fill="none"/><circle cx="8" cy="2" r="1.5" fill="currentColor"/><circle cx="14" cy="8" r="1.5" fill="currentColor"/><circle cx="8" cy="14" r="1.5" fill="currentColor"/><circle cx="2" cy="8" r="1.5" fill="currentColor"/></svg> },
+                    { id: 'cards', label: 'Cards', icon: <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="6" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.3"/><rect x="9" y="1" width="6" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.3"/><rect x="1" y="9" width="6" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.3"/><rect x="9" y="9" width="6" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.3"/></svg> },
+                  ].map(l => (
+                    <button key={l.id} onClick={() => setLayout(l.id)} title={l.label}
+                      className={`p-2 rounded-xl transition-all ${layout === l.id ? 'bg-white/10 text-cyan-300' : 'text-white/25 hover:text-white/50'}`}>
+                      {l.icon}
+                    </button>
+                  ))}
+                </div>
+
                 <div className="grid gap-6 xl:grid-cols-[1.35fr_0.9fr]">
-                  {/* Galaxy map */}
-                  <div className="relative h-[28rem] overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/70">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.12),transparent_18%),radial-gradient(circle_at_30%_30%,rgba(168,85,247,0.14),transparent_20%)]" />
-                    {/* Center hub */}
-                    <div className="absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 text-center text-xs font-semibold text-cyan-100">
-                      {derived.mastered} mastered
-                    </div>
-                    {/* Stars */}
-                    {derived.nodes.map((node, i) => {
-                      const active = selectedSkill === node.id
-                      const grad = gradients[i % gradients.length]
-                      const isImplicit = node.skill_type === 'implicit'
-                      return (
-                        <button key={node.id} onClick={() => setSelectedSkill(node.id)}
-                          className={`absolute rounded-full border border-white/10 p-[1px] shadow-2xl transition-transform hover:scale-105 ${active ? 'ring-2 ring-cyan-400 scale-110' : ''}`}
-                          style={{ top: starPositions[i]?.top, left: starPositions[i]?.left }}>
-                          <div className={`rounded-full bg-gradient-to-r ${grad} px-4 py-3 text-left ${node.score === 0 ? 'opacity-40' : ''}`}>
-                            <div className="text-xs font-semibold text-white truncate max-w-[120px]">
-                              {isImplicit ? '◇ ' : ''}{node.name}
+                  {/* ── GALAXY LAYOUT ── */}
+                  {layout === 'galaxy' && (
+                    <div className="relative h-[28rem] overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/70">
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.12),transparent_18%),radial-gradient(circle_at_30%_30%,rgba(168,85,247,0.14),transparent_20%)]" />
+                      <div className="absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 text-center text-xs font-semibold text-cyan-100">
+                        {derived.mastered} mastered
+                      </div>
+                      {derived.nodes.map((node, i) => {
+                        const active = selectedSkill === node.id
+                        const grad = gradients[i % gradients.length]
+                        const isImplicit = node.skill_type === 'implicit'
+                        return (
+                          <button key={node.id} onClick={() => setSelectedSkill(node.id)}
+                            className={`absolute rounded-full border border-white/10 p-[1px] shadow-2xl transition-transform hover:scale-105 ${active ? 'ring-2 ring-cyan-400 scale-110' : ''}`}
+                            style={{ top: starPositions[i]?.top, left: starPositions[i]?.left }}>
+                            <div className={`rounded-full bg-gradient-to-r ${grad} px-4 py-3 text-left ${node.score === 0 ? 'opacity-40' : ''}`}>
+                              <div className="text-xs font-semibold text-white truncate max-w-[120px]">
+                                {isImplicit ? '◇ ' : ''}{node.name}
+                              </div>
+                              <div className="text-[10px] text-white/80">{node.score > 0 ? `${node.score}%` : 'uncharted'}</div>
                             </div>
-                            <div className="text-[10px] text-white/80">{node.score > 0 ? `${node.score}%` : 'uncharted'}</div>
-                          </div>
-                        </button>
-                      )
-                    })}
-                  </div>
+                          </button>
+                        )
+                      })}
+                    </div>
+                  )}
+
+                  {/* ── LIST LAYOUT ── */}
+                  {layout === 'list' && (
+                    <div className="rounded-[2rem] border border-white/10 bg-slate-950/70 p-4 h-[28rem] overflow-y-auto space-y-2">
+                      {[...derived.nodes].sort((a, b) => b.score - a.score).map((node, i) => {
+                        const active = selectedSkill === node.id
+                        const grad = gradients[i % gradients.length]
+                        return (
+                          <button key={node.id} onClick={() => setSelectedSkill(node.id)}
+                            className={`w-full flex items-center gap-3 rounded-2xl p-3 text-left transition-all ${active ? 'ring-1 ring-cyan-400 bg-white/5' : 'hover:bg-white/5'}`}>
+                            <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${grad} flex-shrink-0 ${node.score === 0 ? 'opacity-30' : ''}`} />
+                            <div className="flex-1 min-w-0">
+                              <div className="text-sm font-medium text-white truncate">{node.skill_type === 'implicit' ? '◇ ' : ''}{node.name}</div>
+                              <div className="text-[10px] text-slate-400">{node.skill_type}</div>
+                            </div>
+                            <div className="w-24 h-1.5 rounded-full bg-white/10 overflow-hidden flex-shrink-0">
+                              <div className={`h-full rounded-full bg-gradient-to-r ${grad}`} style={{ width: `${node.score}%` }} />
+                            </div>
+                            <div className="text-sm font-bold text-white w-10 text-right">{node.score}%</div>
+                          </button>
+                        )
+                      })}
+                    </div>
+                  )}
+
+                  {/* ── CIRCLE LAYOUT ── */}
+                  {layout === 'circle' && (
+                    <div className="relative h-[28rem] overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/70">
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.06),transparent_30%)]" />
+                      {/* Orbit ring */}
+                      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400">
+                        <circle cx="200" cy="200" r="140" fill="none" stroke="white" strokeWidth="0.5" opacity="0.08" />
+                        <circle cx="200" cy="200" r="90" fill="none" stroke="white" strokeWidth="0.5" opacity="0.05" />
+                      </svg>
+                      <div className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-cyan-400/20 bg-cyan-400/5 text-center text-[10px] font-semibold text-cyan-200">
+                        {derived.overall}%
+                      </div>
+                      {derived.nodes.map((node, i) => {
+                        const active = selectedSkill === node.id
+                        const grad = gradients[i % gradients.length]
+                        const angle = (i / derived.nodes.length) * Math.PI * 2 - Math.PI / 2
+                        const r = node.skill_type === 'explicit' ? 35 : 28
+                        const x = 50 + Math.cos(angle) * r
+                        const y = 50 + Math.sin(angle) * r
+                        return (
+                          <button key={node.id} onClick={() => setSelectedSkill(node.id)}
+                            className={`absolute rounded-full border border-white/10 p-[1px] shadow-xl transition-transform hover:scale-110 ${active ? 'ring-2 ring-cyan-400 scale-110 z-10' : ''}`}
+                            style={{ top: `${y}%`, left: `${x}%`, transform: 'translate(-50%, -50%)' }}>
+                            <div className={`rounded-full bg-gradient-to-r ${grad} px-3 py-2 text-center ${node.score === 0 ? 'opacity-40' : ''}`}>
+                              <div className="text-[10px] font-bold text-white">{node.score}%</div>
+                            </div>
+                          </button>
+                        )
+                      })}
+                    </div>
+                  )}
+
+                  {/* ── CARDS LAYOUT ── */}
+                  {layout === 'cards' && (
+                    <div className="rounded-[2rem] border border-white/10 bg-slate-950/70 p-4 h-[28rem] overflow-y-auto">
+                      <div className="grid grid-cols-2 gap-3">
+                        {derived.nodes.map((node, i) => {
+                          const active = selectedSkill === node.id
+                          const grad = gradients[i % gradients.length]
+                          return (
+                            <button key={node.id} onClick={() => setSelectedSkill(node.id)}
+                              className={`rounded-2xl border border-white/10 p-4 text-left transition-all hover:bg-white/5 ${active ? 'ring-1 ring-cyan-400 bg-white/5' : ''}`}>
+                              <div className="text-xs font-semibold text-white mb-2 truncate">{node.skill_type === 'implicit' ? '◇ ' : ''}{node.name}</div>
+                              <div className="h-2 rounded-full bg-white/10 overflow-hidden mb-2">
+                                <div className={`h-full rounded-full bg-gradient-to-r ${grad}`} style={{ width: `${node.score}%` }} />
+                              </div>
+                              <div className="flex items-center justify-between">
+                                <span className="text-lg font-black text-white">{node.score}%</span>
+                                <span className="text-[10px] text-slate-400">{node.score >= 80 ? 'mastered' : node.score >= 40 ? 'developing' : node.score > 0 ? 'emerging' : 'uncharted'}</span>
+                              </div>
+                            </button>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )}
 
                   {/* Selected skill detail */}
                   <div className="rounded-[2rem] border border-white/10 bg-slate-900/70 p-5">
