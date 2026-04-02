@@ -1,87 +1,231 @@
 'use client'
-import { useState } from 'react'
-import { proficiencyLabel, proficiencyColor } from '@/lib/utils/proficiency'
+import { useState, useEffect, useRef } from 'react'
+import { proficiencyColor, proficiencyLabel } from '@/lib/utils/proficiency'
 import Link from 'next/link'
 
+// ── DATA ──
 const COURSE = { title: 'Human Physiology', code: 'BSC3096', term: 'Fall 2025' }
 
 const SKILLS = [
-  { id: '1', name: 'Physiology and Technology', type: 'explicit', score: 4 },
-  { id: '2', name: 'Ethical Considerations', type: 'explicit', score: 0 },
-  { id: '3', name: 'Communication Skills', type: 'explicit', score: 0 },
-  { id: '4', name: 'Critical Thinking', type: 'explicit', score: 13 },
-  { id: '5', name: 'Research Application', type: 'explicit', score: 0 },
-  { id: '6', name: 'Pathophysiology Concepts', type: 'explicit', score: 0 },
-  { id: '7', name: 'Laboratory Techniques', type: 'explicit', score: 0 },
-  { id: '8', name: 'Data Interpretation', type: 'explicit', score: 0 },
-  { id: '9', name: 'Homeostasis Mechanisms', type: 'implicit', score: 0 },
-  { id: '10', name: 'Organ System Functions', type: 'implicit', score: 0 },
-  { id: '11', name: 'Physiological Processes', type: 'implicit', score: 9 },
-  { id: '12', name: 'Anatomy Terminology', type: 'implicit', score: 0 },
+  { id: '1', name: 'Physiology & Technology', type: 'explicit', score: 4, evidence: 'Student shows minimal understanding of physiological technology applications. Needs foundational work.' },
+  { id: '2', name: 'Ethical Considerations', type: 'explicit', score: 0, evidence: null },
+  { id: '3', name: 'Communication Skills', type: 'explicit', score: 0, evidence: null },
+  { id: '4', name: 'Critical Thinking', type: 'explicit', score: 13, evidence: 'Shows early signs of analytical reasoning but struggles to connect cause and effect across systems.' },
+  { id: '5', name: 'Research Application', type: 'explicit', score: 0, evidence: null },
+  { id: '6', name: 'Pathophysiology Concepts', type: 'explicit', score: 0, evidence: null },
+  { id: '7', name: 'Laboratory Techniques', type: 'explicit', score: 0, evidence: null },
+  { id: '8', name: 'Data Interpretation', type: 'explicit', score: 0, evidence: null },
+  { id: '9', name: 'Homeostasis Mechanisms', type: 'implicit', score: 0, evidence: null },
+  { id: '10', name: 'Organ System Functions', type: 'implicit', score: 0, evidence: null },
+  { id: '11', name: 'Physiological Processes', type: 'implicit', score: 9, evidence: 'Demonstrates basic awareness of physiological processes but cannot yet articulate mechanisms.' },
+  { id: '12', name: 'Anatomy Terminology', type: 'implicit', score: 0, evidence: null },
 ]
 
-const CHAT_HISTORY = [
-  { role: 'user', content: "I'd like you to assess my understanding of \"Ethical Considerations\". Please ask me a question to test my knowledge." },
-  { role: 'assistant', content: "**Assessment Question**\n\nWhat do you think are some ethical issues that researchers should consider when conducting studies involving human participants in physiology?" },
+const HISTORY = [
+  { type: 'assessment', skillName: 'Critical Thinking', score: 13, timestamp: '2025-09-15T14:30:00Z' },
+  { type: 'assessment', skillName: 'Physiological Processes', score: 9, timestamp: '2025-09-15T14:25:00Z' },
+  { type: 'assessment', skillName: 'Physiology & Technology', score: 4, timestamp: '2025-09-15T14:20:00Z' },
 ]
 
-const QUIZ = [
-  { q: 'Which principle requires researchers to minimize harm to participants in physiological studies?', choices: ['Beneficence', 'Autonomy', 'Justice', 'Fidelity'], correct: 0, explanation: 'Beneficence requires researchers to maximize benefits and minimize harm to study participants.' },
-  { q: 'What is the primary purpose of informed consent in human physiology research?', choices: ['Legal protection for researchers', 'Ensuring participant autonomy and understanding', 'Reducing study costs', 'Increasing sample size'], correct: 1, explanation: 'Informed consent ensures participants understand the study and voluntarily agree to participate.' },
-]
+// ── POSITIONING ──
+function hashPos(id, i, total) {
+  let h = 0
+  for (let c = 0; c < id.length; c++) h = ((h << 5) - h + id.charCodeAt(c)) | 0
+  const angle = (i / total) * Math.PI * 2 + (h % 100) * 0.01
+  const r = 0.28 + (Math.abs(h % 50) / 50) * 0.18
+  return { x: 0.5 + Math.cos(angle) * r, y: 0.5 + Math.sin(angle) * r }
+}
 
-function StatCard({ label, value, sub, color, icon }) {
+const NODES = SKILLS.map((s, i) => ({
+  skill: s,
+  score: s.score,
+  status: s.score >= 80 ? 'explored' : s.score >= 40 ? 'emerging' : 'uncharted',
+  position: hashPos(s.id, i, SKILLS.length),
+  evidence: s.evidence,
+}))
+
+const PAIN = [...NODES].sort((a, b) => a.score - b.score).slice(0, 3)
+
+// ── PULSE ──
+function Pulse() {
+  const ref = useRef(null)
+  const frame = useRef(0)
+  useEffect(() => {
+    const c = ref.current
+    if (!c) return
+    const ctx = c.getContext('2d')
+    c.width = 96; c.height = 40
+    ctx.scale(2, 2)
+    let off = 0
+    function draw() {
+      ctx.clearRect(0, 0, 48, 20)
+      ctx.beginPath()
+      for (let x = 0; x < 48; x++) {
+        const y = 10 + Math.sin(x * 0.18 + off) * 3
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y)
+      }
+      ctx.strokeStyle = '#5F7691'
+      ctx.lineWidth = 1.5
+      ctx.stroke()
+      off += 0.03
+      frame.current = requestAnimationFrame(draw)
+    }
+    draw()
+    return () => cancelAnimationFrame(frame.current)
+  }, [])
   return (
-    <div className="rounded-2xl p-5 text-white" style={{ background: color }}>
-      <div className="flex items-center gap-2 mb-1">
-        {icon}
-        <span className="text-xs font-bold text-white/70 uppercase tracking-wider">{label}</span>
-      </div>
-      <div className="text-3xl font-black">{value}</div>
-      {sub && <p className="text-xs text-white/60 mt-0.5">{sub}</p>}
+    <div className="flex items-center gap-2">
+      <canvas ref={ref} style={{ width: 48, height: 20 }} />
+      <span className="text-[10px] text-gray-400 font-medium hidden sm:block">→ steady</span>
     </div>
   )
 }
 
+// ── TERRAIN NODE ──
+function TerrainNode({ node, cx, cy, isSelected, onSelect }) {
+  const [hovered, setHovered] = useState(false)
+  const active = isSelected || hovered
+  const fills = { explored: '#4F8A5B', emerging: '#00A8A8', uncharted: '#DDE5EF' }
+  const opacities = { explored: 1, emerging: 0.7, uncharted: 0.4 }
+  const fill = fills[node.status]
+  const opacity = opacities[node.status]
+  const isImplicit = node.skill.type === 'implicit'
+  const r = 28
+
+  return (
+    <g onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
+       onClick={() => onSelect(node)} style={{ cursor: 'pointer' }}
+       transform={active ? `translate(${cx},${cy}) scale(1.12) translate(${-cx},${-cy})` : undefined}>
+      {/* Contour rings */}
+      {[1, 2].map(i => (
+        <circle key={i} cx={cx} cy={cy} r={r + i * 10} fill="none" stroke={fill}
+          strokeWidth={node.status === 'uncharted' ? 0.5 : 0.8}
+          strokeDasharray={node.status === 'uncharted' ? '4 4' : 'none'}
+          opacity={opacity * (0.25 - i * 0.08)} />
+      ))}
+      {/* Glow for explored */}
+      {node.status === 'explored' && (
+        <circle cx={cx} cy={cy} r={r + 4} fill="none" stroke={fill} strokeWidth={2} opacity={0.2}>
+          <animate attributeName="r" from={r + 2} to={r + 14} dur="3s" repeatCount="indefinite" />
+          <animate attributeName="opacity" from="0.25" to="0" dur="3s" repeatCount="indefinite" />
+        </circle>
+      )}
+      {/* Fog for uncharted */}
+      {node.status === 'uncharted' && (
+        <circle cx={cx} cy={cy} r={r + 18} fill="url(#fog)" opacity={0.4}>
+          <animate attributeName="opacity" values="0.25;0.5;0.25" dur="6s" repeatCount="indefinite" />
+        </circle>
+      )}
+      {/* Main shape */}
+      {isImplicit ? (
+        <rect x={cx - r * 0.65} y={cy - r * 0.65} width={r * 1.3} height={r * 1.3} rx={4}
+          transform={`rotate(45,${cx},${cy})`} fill={fill} opacity={opacity}
+          stroke={active ? '#0C1F3F' : 'none'} strokeWidth={active ? 2 : 0} />
+      ) : (
+        <circle cx={cx} cy={cy} r={r} fill={fill} opacity={opacity}
+          stroke={active ? '#0C1F3F' : 'none'} strokeWidth={active ? 2 : 0} />
+      )}
+      {/* Score */}
+      <text x={cx} y={cy + 1} textAnchor="middle" dominantBaseline="middle"
+        fill="white" fontSize="13" fontWeight="800" opacity={node.score > 0 ? 1 : 0.5}>
+        {node.score > 0 ? `${node.score}%` : '?'}
+      </text>
+      {/* Label */}
+      <text x={cx} y={cy + r + 16} textAnchor="middle" fill="#1A2B3C" fontSize="10"
+        fontWeight={active ? '700' : '500'} opacity={active ? 1 : 0.55}>
+        {node.skill.name.length > 18 ? node.skill.name.substring(0, 16) + '…' : node.skill.name}
+      </text>
+      {isImplicit && (
+        <text x={cx} y={cy + r + 27} textAnchor="middle" fill="#5A3E6B" fontSize="9" fontWeight="600" opacity={0.5}>
+          implicit
+        </text>
+      )}
+    </g>
+  )
+}
+
+// ── EVIDENCE WALL ──
+function EvidenceWall({ node, onClose }) {
+  if (!node) return null
+  const color = proficiencyColor(node.score)
+  const label = proficiencyLabel(node.score)
+  const isImplicit = node.skill.type === 'implicit'
+  return (
+    <>
+      <div className="fixed inset-0 z-40" onClick={onClose} />
+      <div className="fixed top-0 right-0 bottom-0 w-full sm:w-[400px] z-50 bg-white shadow-2xl overflow-y-auto"
+           style={{ animation: 'slideInRight 0.3s ease-out' }}>
+        <div className="sticky top-0 bg-white border-b border-gray-100 px-6 py-4 flex items-center justify-between z-10">
+          <button onClick={onClose} className="text-gray-400 hover:text-navy text-sm font-medium">← Close</button>
+          <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full"
+            style={{ background: isImplicit ? 'rgba(90,62,107,0.08)' : 'rgba(0,168,168,0.08)', color: isImplicit ? '#5A3E6B' : '#00A8A8' }}>
+            {isImplicit ? 'implicit' : 'explicit'}
+          </span>
+        </div>
+        <div className="px-6 py-6 space-y-6">
+          <div className="text-center py-4">
+            <div className="text-6xl font-black mb-2" style={{ color }}>{node.score}%</div>
+            <div className="text-sm font-bold uppercase tracking-wider" style={{ color }}>{label}</div>
+            <h2 className="font-serif font-light text-navy text-2xl mt-3" style={{ letterSpacing: '-0.02em' }}>{node.skill.name}</h2>
+          </div>
+          <div>
+            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Evidence</h3>
+            <div className="rounded-xl p-4" style={{ background: '#F4F7FB' }}>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                {node.evidence || 'No assessment evidence yet. Complete a quiz or upload your work to generate evidence.'}
+              </p>
+            </div>
+          </div>
+          <div>
+            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Governance</h3>
+            <div className="grid grid-cols-3 gap-2">
+              {['Fairness', 'Confidence', 'Privacy'].map(g => (
+                <div key={g} className="rounded-lg p-3 text-center" style={{ background: '#F0FDF4' }}>
+                  <div className="w-2 h-2 rounded-full mx-auto mb-1.5" style={{ background: '#4F8A5B' }} />
+                  <span className="text-[10px] font-bold" style={{ color: '#4F8A5B' }}>{g}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <a href="/signup" className="flex items-center justify-center px-4 py-3.5 rounded-xl text-white text-sm font-bold" style={{ background: '#00A8A8' }}>Practice Quiz</a>
+            <a href="/signup" className="flex items-center justify-center px-4 py-3.5 rounded-xl text-sm font-bold border border-gray-200 text-navy hover:bg-gray-50">Ask Coach</a>
+          </div>
+          <div className="rounded-xl p-4 text-center" style={{ background: 'rgba(0,168,168,0.04)', border: '1px solid rgba(0,168,168,0.1)' }}>
+            <p className="text-xs text-gray-500 mb-2">Sign up to practice this skill with AI coaching</p>
+            <a href="/signup" className="text-xs font-bold" style={{ color: '#00A8A8' }}>Create Account →</a>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}
+
+// ── MAIN PAGE ──
 export default function DemoPage() {
-  const [view, setView] = useState('dashboard')
-  const [activeSkill, setActiveSkill] = useState(SKILLS[1])
-  const [activeTab, setActiveTab] = useState('review')
-  const [skillFilter, setSkillFilter] = useState('all')
-  const [skillSearch, setSkillSearch] = useState('')
-  const [chatMsg, setChatMsg] = useState('')
-  const [quizIdx, setQuizIdx] = useState(0)
-  const [quizAnswer, setQuizAnswer] = useState(null)
-  const [quizDone, setQuizDone] = useState(false)
+  const [selected, setSelected] = useState(null)
+  const selectedNode = selected ? NODES.find(n => n.skill.id === selected) : null
+  const explored = NODES.filter(n => n.status === 'explored').length
+  const emerging = NODES.filter(n => n.status === 'emerging').length
+  const uncharted = NODES.filter(n => n.status === 'uncharted').length
+  const W = 900, H = 480
 
-  const overall = Math.round(SKILLS.reduce((s, k) => s + k.score, 0) / SKILLS.length)
-  const practicedCount = SKILLS.filter(s => s.score > 0).length
-  const masteredCount = SKILLS.filter(s => s.score >= 80).length
-  const needPractice = SKILLS.filter(s => s.score < 40).length
-  const progressing = SKILLS.filter(s => s.score >= 40 && s.score < 80).length
-  const strong = SKILLS.filter(s => s.score >= 80).length
-  const focusAreas = [...SKILLS].sort((a, b) => a.score - b.score).slice(0, 2)
-
-  const filteredSkills = SKILLS.filter(s => {
-    if (skillSearch && !s.name.toLowerCase().includes(skillSearch.toLowerCase())) return false
-    if (skillFilter === 'need_practice') return s.score < 40
-    if (skillFilter === 'progressing') return s.score >= 40 && s.score < 80
-    if (skillFilter === 'strong') return s.score >= 80
-    return true
-  })
-
-  const tabs = [
-    { id: 'coach', label: 'Coach', icon: '💬' },
-    { id: 'practice', label: 'Practice', icon: '⚡' },
-    { id: 'review', label: 'Review', icon: '📊' },
-    { id: 'history', label: 'History', icon: '📈' },
-  ]
+  // Connections between same-type skills
+  const connections = []
+  for (let i = 0; i < NODES.length; i++) {
+    for (let j = i + 1; j < NODES.length; j++) {
+      if (NODES[i].skill.type === NODES[j].skill.type) {
+        const d = Math.hypot(NODES[i].position.x - NODES[j].position.x, NODES[i].position.y - NODES[j].position.y)
+        if (d < 0.35) connections.push([i, j])
+      }
+    }
+  }
 
   return (
     <div className="min-h-screen" style={{ background: '#F4F7FB' }}>
       {/* Demo banner */}
       <div className="text-center py-2.5 text-xs font-bold text-white" style={{ background: '#5A3E6B' }}>
-        DEMO — Student View &nbsp;·&nbsp;
+        DEMO — Student Wayfinding Experience &nbsp;·&nbsp;
         <Link href="/" className="underline opacity-70 hover:opacity-100">Back to site</Link>
         &nbsp;·&nbsp; <a href="/signup" className="underline opacity-70 hover:opacity-100">Sign up as Faculty →</a>
       </div>
@@ -89,7 +233,6 @@ export default function DemoPage() {
       <div className="flex min-h-[calc(100vh-36px)]">
         {/* Sidebar */}
         <aside className="w-64 flex-col hidden lg:flex" style={{ background: '#1B3A2D' }}>
-          {/* User profile */}
           <div className="px-5 pt-5 pb-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold" style={{ background: '#2D8B6F' }}>J</div>
@@ -105,41 +248,25 @@ export default function DemoPage() {
               </div>
             </div>
             <div className="mt-3 px-3 py-2 rounded-lg text-[11px] text-white/50 italic" style={{ background: 'rgba(255,255,255,0.06)' }}>
-              "Night owl mode: Activated. 🦉"
+              "The path forward is clear."
             </div>
           </div>
-
-          {/* Nav */}
           <div className="px-3 flex-1">
             <p className="px-3 text-[10px] font-bold text-white/30 uppercase tracking-[0.12em] mb-2">Main</p>
             <nav className="space-y-0.5">
-              {[
-                { label: 'Skill Mapping', icon: '◎' },
-                { label: 'Learn', icon: '📖', active: true },
-                { label: 'Study Planner', icon: '📅' },
-                { label: 'Source Library', icon: '📁' },
-              ].map(n => (
-                <button key={n.label} className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium w-full text-left transition-all ${n.active ? 'text-white' : 'text-white/50 hover:text-white hover:bg-white/5'}`}
-                  style={n.active ? { background: 'rgba(45,139,111,0.35)' } : undefined}>
-                  <span className="w-5 text-center">{n.icon}</span> {n.label}
-                </button>
+              {['◎ Skill Mapping', '📖 Learn', '📅 Study Planner', '📁 Source Library'].map((n, i) => (
+                <div key={n} className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium ${i === 0 ? 'text-white' : 'text-white/50'}`}
+                  style={i === 0 ? { background: 'rgba(45,139,111,0.35)' } : undefined}>
+                  {n}
+                </div>
               ))}
             </nav>
-
             <p className="px-3 text-[10px] font-bold text-white/30 uppercase tracking-[0.12em] mb-2 mt-6">My Classes</p>
-            <div className="space-y-0.5">
-              <button className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium w-full text-left text-white" style={{ background: 'rgba(45,139,111,0.35)' }}>
-                <span className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style={{ background: '#D4603A' }}>B</span>
-                BSC3096
-              </button>
-              <button className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium w-full text-left text-white/50 hover:text-white hover:bg-white/5">
-                <span className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style={{ background: '#D4603A' }}>C</span>
-                CMET 3005
-              </button>
+            <div className="px-3 py-2.5 rounded-xl text-sm font-medium text-white flex items-center gap-3" style={{ background: 'rgba(45,139,111,0.35)' }}>
+              <span className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style={{ background: '#D4603A' }}>B</span>
+              BSC3096
             </div>
           </div>
-
-          {/* Bottom */}
           <div className="px-3 pb-4">
             <div className="flex items-center gap-2 px-3 py-2 text-white/20">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3L4 21H9L12 14L15 21H20L12 3Z" fill="currentColor"/></svg>
@@ -148,7 +275,7 @@ export default function DemoPage() {
           </div>
         </aside>
 
-        {/* Main */}
+        {/* Main content */}
         <div className="flex-1 flex flex-col">
           {/* Top bar */}
           <header className="bg-white border-b border-gray-200 px-6 py-3 flex items-center gap-4 sticky top-0 z-10">
@@ -157,320 +284,155 @@ export default function DemoPage() {
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
                   <circle cx="7" cy="7" r="5" stroke="currentColor" strokeWidth="1.5"/><path d="M11 11l3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
-                <input type="text" placeholder="Search courses or actions..." className="w-full pl-9 pr-4 py-2 rounded-xl border border-gray-200 text-sm text-gray-700 placeholder-gray-400 focus:outline-none" style={{ background: '#F9FAFB' }} />
+                <input type="text" placeholder="Search courses or actions..." className="w-full pl-9 pr-4 py-2 rounded-xl border border-gray-200 text-sm placeholder-gray-400 focus:outline-none" style={{ background: '#F9FAFB' }} />
               </div>
             </div>
             <div className="flex items-center gap-2">
               <button className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 text-xs font-medium text-gray-500">Tour</button>
-              <button className="hidden sm:flex items-center gap-1 px-3 py-1.5 rounded-lg border border-gray-200 text-xs font-medium text-gray-500">Classes ›</button>
-              <button className="relative p-2 rounded-lg hover:bg-gray-50">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M13.5 6.75a4.5 4.5 0 10-9 0c0 5.25-2.25 6.75-2.25 6.75h13.5s-2.25-1.5-2.25-6.75z" stroke="#6B7280" strokeWidth="1.5" strokeLinejoin="round"/></svg>
-                <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-red-500" />
-              </button>
               <button className="px-4 py-2 rounded-xl text-white text-xs font-bold" style={{ background: '#2D8B6F' }}>Upload</button>
               <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold" style={{ background: '#2D8B6F' }}>J</div>
             </div>
           </header>
 
-          <main className="flex-1 p-6 lg:p-8 max-w-7xl w-full mx-auto">
-
+          <main className="flex-1 p-6 lg:p-8 max-w-5xl w-full mx-auto">
             {/* Course header */}
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style={{ background: '#FDF0E9' }}>🫀</div>
+            <div className="flex items-center justify-between mb-2">
               <div>
-                <h1 className="text-xl font-bold text-navy">{COURSE.code} <span className="text-gray-400 font-normal">·</span> Dashboard</h1>
-                <p className="text-sm text-gray-400">{COURSE.title}
-                  <span className="ml-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold" style={{ background: '#E8F8F0', color: '#2D8B6F' }}>
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Synced
-                  </span>
-                </p>
+                <h1 className="font-serif font-light text-navy" style={{ fontSize: '28px', letterSpacing: '-0.02em' }}>
+                  {COURSE.code} · {COURSE.title}
+                </h1>
+                <p className="text-xs text-gray-400 mt-0.5">{COURSE.term}</p>
+              </div>
+              <div className="flex items-center gap-4 text-xs text-gray-400">
+                <span><strong className="text-green-600">{explored}</strong> explored</span>
+                <span><strong className="text-teal-600">{emerging}</strong> emerging</span>
+                <span><strong className="text-gray-500">{uncharted}</strong> uncharted</span>
               </div>
             </div>
 
-            {/* Tabs */}
-            <div className="flex gap-1 border-b border-gray-200 mb-6">
-              {tabs.map(t => (
-                <button key={t.id} onClick={() => setActiveTab(t.id)}
-                  className={`flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium border-b-2 -mb-px transition-colors ${activeTab === t.id ? 'border-teal-600 text-navy' : 'border-transparent text-gray-400 hover:text-navy'}`}>
-                  {t.icon} {t.label}
-                </button>
-              ))}
+            {/* Signal */}
+            <div className="flex items-center justify-between px-5 py-3 rounded-2xl mb-6"
+                 style={{ background: 'rgba(12,31,63,0.03)', border: '1px solid rgba(12,31,63,0.06)' }}>
+              <div className="flex items-center gap-3 flex-1 min-w-0">
+                <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: '#00A8A8', boxShadow: '0 0 8px rgba(0,168,168,0.4)' }} />
+                <p className="text-sm text-gray-600">Ethical Considerations is uncharted territory. Start here.</p>
+              </div>
+              <Pulse />
             </div>
 
-            {/* ===== REVIEW TAB ===== */}
-            {activeTab === 'review' && (
-              <div>
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                  <StatCard label="Course Progress" value={`${overall}%`} sub={`Mastery: ${masteredCount > 0 ? Math.round((masteredCount / SKILLS.length) * 100) : 0}%`} color="#2D6A4F" icon={<span className="text-white/70">📊</span>} />
-                  <StatCard label="Skills Practiced" value={`${practicedCount}/${SKILLS.length}`} sub={`Mastery: 9%`} color="#2D8B6F" icon={<span className="text-white/70">◎</span>} />
-                  <StatCard label="Mastered" value={masteredCount} color="#D4603A" icon={<span className="text-white/70">✓</span>} />
-                  <StatCard label="This Week" value="0" color="#C94C3A" icon={<span className="text-white/70">📈</span>} />
-                </div>
-
-                <div className="grid lg:grid-cols-[1fr_1fr] gap-6">
-                  {/* Left */}
-                  <div className="space-y-6">
-                    <div className="bg-white rounded-2xl border border-gray-200 p-6">
-                      <h3 className="font-bold text-navy mb-4">Recent Activity</h3>
-                      <div className="text-center py-6">
-                        <p className="text-sm text-gray-400 mb-1">No activity yet this week</p>
-                        <button onClick={() => setActiveTab('practice')} className="text-sm font-bold" style={{ color: '#2D8B6F' }}>Start practicing →</button>
-                      </div>
-                    </div>
-                    <div className="bg-white rounded-2xl border border-gray-200 p-6">
-                      <h3 className="font-bold text-navy mb-4">Quick Actions</h3>
-                      <div className="space-y-2">
-                        <button onClick={() => setActiveTab('practice')} className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left border border-gray-100" style={{ background: '#F0FDF4' }}>
-                          <span>⚡</span><span className="text-sm font-bold" style={{ color: '#2D8B6F' }}>Practice Weak Skills</span>
-                        </button>
-                        <button onClick={() => setActiveTab('coach')} className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left hover:bg-gray-50 border border-gray-100">
-                          <span>💬</span><span className="text-sm font-medium text-gray-700">Ask Coach for Help</span>
-                        </button>
-                        <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left hover:bg-gray-50 border border-gray-100">
-                          <span>📄</span><span className="text-sm font-medium text-gray-700">Upload Work</span>
-                        </button>
-                      </div>
-                    </div>
-                    {/* Governance */}
-                    <div className="bg-white rounded-2xl border border-gray-200 p-6">
-                      <div className="flex items-center gap-2 mb-3">
-                        <span>🛡️</span><h3 className="font-bold text-navy text-sm">Governed Assessment</h3>
-                      </div>
-                      <p className="text-xs text-gray-400 leading-relaxed mb-3">Every recommendation is bounded by fairness, confidence, and privacy constraints. The system cannot act on uncertain predictions.</p>
-                      <div className="grid grid-cols-3 gap-2">
-                        {['Fairness', 'Confidence', 'Privacy'].map(g => (
-                          <div key={g} className="rounded-lg p-2 text-center" style={{ background: '#F0FDF4' }}>
-                            <div className="w-1.5 h-1.5 rounded-full mx-auto mb-1" style={{ background: '#2D8B6F' }} />
-                            <span className="text-[10px] font-bold text-gray-500">{g}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+            {/* Terrain */}
+            <div className="rounded-3xl overflow-hidden relative" style={{ background: '#FAFCFE', border: '1px solid rgba(12,31,63,0.06)' }}>
+              <div className="absolute top-4 left-5 z-10 flex items-center gap-4">
+                {[
+                  { color: '#4F8A5B', label: 'Explored', shape: 'circle' },
+                  { color: '#00A8A8', label: 'Emerging', shape: 'circle', opacity: 0.7 },
+                  { color: '#DDE5EF', label: 'Uncharted', shape: 'circle' },
+                  { color: '#00A8A8', label: 'Explicit', shape: 'ring' },
+                  { color: '#5A3E6B', label: 'Implicit', shape: 'diamond' },
+                ].map(l => (
+                  <div key={l.label} className="flex items-center gap-1.5">
+                    {l.shape === 'diamond' ? (
+                      <div className="w-3 h-3 rotate-45 rounded-sm" style={{ background: l.color, opacity: 0.6 }} />
+                    ) : l.shape === 'ring' ? (
+                      <div className="w-3 h-3 rounded-full border-2" style={{ borderColor: l.color }} />
+                    ) : (
+                      <div className="w-3 h-3 rounded-full" style={{ background: l.color, opacity: l.opacity || 1 }} />
+                    )}
+                    <span className="text-[10px] text-gray-500 font-medium">{l.label}</span>
                   </div>
-
-                  {/* Right — Skills */}
-                  <div className="bg-white rounded-2xl border border-gray-200 p-6">
-                    <h3 className="font-bold text-navy mb-4">Skills ({filteredSkills.length} of {SKILLS.length})</h3>
-                    <input type="text" placeholder="Search skills..." value={skillSearch} onChange={e => setSkillSearch(e.target.value)}
-                      className="w-full px-3 py-2 rounded-lg border border-gray-200 text-sm mb-3 focus:outline-none focus:border-teal-500" />
-                    <div className="flex flex-wrap gap-1.5 mb-4">
-                      {[
-                        { id: 'all', label: `All (${SKILLS.length})`, color: '#2D8B6F' },
-                        { id: 'need_practice', label: `Need Practice (${needPractice})`, color: '#DC2626' },
-                        { id: 'progressing', label: `Progressing (${progressing})`, color: '#F59E0B' },
-                        { id: 'strong', label: `Strong (${strong})`, color: '#16A34A' },
-                      ].map(f => (
-                        <button key={f.id} onClick={() => setSkillFilter(f.id)}
-                          className={`px-3 py-1 rounded-full text-xs font-bold transition-colors ${skillFilter === f.id ? 'text-white' : 'text-gray-500 bg-gray-100'}`}
-                          style={skillFilter === f.id ? { background: f.color } : undefined}>
-                          {f.label}
-                        </button>
-                      ))}
-                    </div>
-                    {/* Focus areas */}
-                    <div className="rounded-xl px-4 py-3 mb-4" style={{ background: '#FFF8E1', border: '1px solid #FFE082' }}>
-                      <span className="text-xs font-bold" style={{ color: '#F59E0B' }}>
-                        Focus Areas: {focusAreas.map(s => `${s.name} (${s.score}%)`).join(', ')}
-                      </span>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3">
-                      {filteredSkills.map(skill => (
-                        <button key={skill.id} onClick={() => { setActiveSkill(skill); setView('skill') }}
-                          className="bg-white rounded-xl border border-gray-200 p-4 hover:shadow-md hover:-translate-y-0.5 transition-all text-left">
-                          <p className="text-sm font-semibold text-navy truncate mb-2">{skill.name}</p>
-                          <div className="h-1 bg-gray-100 rounded-full overflow-hidden mb-2">
-                            <div className="h-full rounded-full" style={{ width: `${skill.score}%`, background: proficiencyColor(skill.score) }} />
-                          </div>
-                          <div className="flex items-center justify-between">
-                            <span className="text-lg font-black" style={{ color: proficiencyColor(skill.score) }}>{skill.score}%</span>
-                            <span className="text-xs text-gray-400">{skill.score < 40 ? 'beginning' : skill.score < 80 ? 'progressing' : 'strong'}</span>
-                          </div>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Progress chart */}
-                <div className="bg-white rounded-2xl border border-gray-200 p-6 mt-6">
-                  <h3 className="font-bold text-navy mb-4">Course Progress Over Time</h3>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs text-gray-400">Progress Over Time</span>
-                    <span className="text-xs font-bold" style={{ color: '#2D8B6F' }}>↗ +3%</span>
-                  </div>
-                  <div className="relative h-32">
-                    <div className="absolute inset-0 flex flex-col justify-between">
-                      {[100, 75, 50, 25, 0].map(v => (
-                        <div key={v} className="flex items-center gap-2">
-                          <span className="text-[10px] text-gray-300 w-6 text-right">{v}</span>
-                          <div className="flex-1 border-t border-dashed border-gray-100" />
-                        </div>
-                      ))}
-                    </div>
-                    <div className="absolute bottom-0 left-8 right-0 h-full flex items-end">
-                      <svg viewBox="0 0 400 100" className="w-full h-full" preserveAspectRatio="none">
-                        <path d="M0,95 Q100,90 200,85 T400,80" fill="none" stroke="#2D8B6F" strokeWidth="2.5" />
-                        <circle cx="0" cy="95" r="4" fill="#2D8B6F" />
-                        <circle cx="400" cy="80" r="4" fill="#2D8B6F" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="flex justify-between mt-2 px-8">
-                    <span className="text-[10px] text-gray-300">Jan 16</span>
-                    <span className="text-[10px] text-gray-300">Jan 17</span>
-                  </div>
-                </div>
+                ))}
               </div>
-            )}
 
-            {/* ===== COACH TAB ===== */}
-            {activeTab === 'coach' && (
-              <div className="grid lg:grid-cols-[280px_1fr_300px] gap-6">
-                <div className="bg-white rounded-2xl border border-gray-200 p-4">
-                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-3">Skills ({SKILLS.length})</p>
-                  <div className="space-y-1">
-                    {SKILLS.map(s => (
-                      <button key={s.id} onClick={() => setActiveSkill(s)}
-                        className={`flex items-center gap-2 px-3 py-2 rounded-lg w-full text-left transition-colors ${activeSkill?.id === s.id ? 'bg-yellow-50 border border-yellow-200' : 'hover:bg-gray-50'}`}>
-                        <span className="text-xs text-gray-600 flex-1 truncate">{s.name}</span>
-                        <span className="text-xs font-bold" style={{ color: proficiencyColor(s.score) }}>{s.score}%</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
+              <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ minHeight: '400px' }}>
+                <defs>
+                  <radialGradient id="fog"><stop offset="0%" stopColor="#DDE5EF" stopOpacity="0.3" /><stop offset="100%" stopColor="#DDE5EF" stopOpacity="0" /></radialGradient>
+                  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(12,31,63,0.03)" strokeWidth="0.5" />
+                  </pattern>
+                </defs>
+                <rect width={W} height={H} fill="url(#grid)" />
+                {connections.map(([a, b], i) => (
+                  <line key={i} x1={NODES[a].position.x * W} y1={NODES[a].position.y * H}
+                    x2={NODES[b].position.x * W} y2={NODES[b].position.y * H}
+                    stroke="rgba(12,31,63,0.06)" strokeWidth="1" strokeDasharray="6 4" />
+                ))}
+                {NODES.map(node => (
+                  <TerrainNode key={node.skill.id} node={node}
+                    cx={node.position.x * W} cy={node.position.y * H}
+                    isSelected={selected === node.skill.id}
+                    onSelect={n => setSelected(selected === n.skill.id ? null : n.skill.id)} />
+                ))}
+              </svg>
+            </div>
 
-                <div className="bg-white rounded-2xl border border-gray-200 flex flex-col">
-                  <div className="px-5 py-4 border-b border-gray-200">
-                    <div className="flex items-center justify-between">
+            {/* Pain Map */}
+            <div className="mt-8">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-2 h-2 rounded-full" style={{ background: '#FF6B4A' }} />
+                <h2 className="text-lg font-bold text-navy">Where it hurts</h2>
+                <span className="text-xs text-gray-400 ml-1">Your 3 biggest gaps</span>
+              </div>
+              <div className="grid md:grid-cols-3 gap-4">
+                {PAIN.map(({ skill, score, evidence }) => (
+                  <div key={skill.id} className="rounded-2xl p-5 bg-white"
+                    style={{ border: '1px solid rgba(12,31,63,0.08)', borderLeft: `4px solid ${skill.type === 'implicit' ? '#5A3E6B' : '#00A8A8'}` }}>
+                    <div className="flex items-center justify-between mb-3">
                       <div>
-                        <p className="text-[10px] font-bold uppercase tracking-wider" style={{ color: '#2D8B6F' }}>Assessment Mode</p>
-                        <p className="text-xs text-gray-400">Assessing: {activeSkill?.name}</p>
+                        <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: skill.type === 'implicit' ? '#5A3E6B' : '#00A8A8' }}>
+                          {skill.type}
+                        </span>
+                        <h3 className="font-bold text-navy text-sm">{skill.name}</h3>
                       </div>
-                      <button className="text-xs text-gray-400 hover:text-navy border border-gray-200 px-3 py-1 rounded-lg">Exit Assessment</button>
+                      <div className="text-2xl font-black" style={{ color: proficiencyColor(score) }}>{score}%</div>
                     </div>
-                    <div className="mt-2 rounded-lg px-3 py-2 text-xs" style={{ background: 'rgba(45,139,111,0.08)', color: '#2D8B6F' }}>
-                      Assessment mode: Answer questions to demonstrate your understanding. Your score will update your mastery.
-                    </div>
+                    <p className="text-xs text-gray-400 leading-relaxed mb-4 line-clamp-3">
+                      {evidence || 'No assessment data yet. This skill needs your attention.'}
+                    </p>
+                    <a href="/signup" className="text-xs font-bold hover:opacity-80" style={{ color: skill.type === 'implicit' ? '#5A3E6B' : '#00A8A8' }}>
+                      Fix this →
+                    </a>
                   </div>
-                  <div className="flex-1 px-5 py-4 space-y-4 min-h-[300px]">
-                    {CHAT_HISTORY.map((msg, i) => (
-                      <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                        <div className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${msg.role === 'user' ? 'text-white rounded-br-sm' : 'bg-gray-50 border border-gray-200 text-gray-700 rounded-bl-sm'}`}
-                          style={msg.role === 'user' ? { background: '#0C1F3F' } : {}}
-                          dangerouslySetInnerHTML={{ __html: msg.content.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br/>') }} />
-                      </div>
-                    ))}
-                  </div>
-                  <div className="px-4 py-3 border-t border-gray-200">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xs text-gray-400">Teaching Style:</span>
-                      {[{ id: 'smart', label: '● Smart', active: true }, { id: 'questions', label: '? Questions' }, { id: 'explain', label: '✦ Explain' }].map(s => (
-                        <button key={s.id} className={`px-3 py-1 rounded-full text-xs font-bold ${s.active ? 'text-white' : 'text-gray-500 hover:bg-gray-100'}`}
-                          style={s.active ? { background: '#2D8B6F' } : undefined}>{s.label}</button>
-                      ))}
-                    </div>
-                    <div className="flex gap-2">
-                      <input value={chatMsg} onChange={e => setChatMsg(e.target.value)} placeholder="Ask a question... (Shift+Enter for new line)"
-                        className="flex-1 border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none" />
-                      <a href="/signup" className="w-10 h-10 rounded-full flex items-center justify-center text-white flex-shrink-0" style={{ background: '#2D8B6F' }}>→</a>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Right panel */}
-                <div className="space-y-4">
-                  <div className="bg-white rounded-2xl border border-gray-200 p-5">
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Description</p>
-                    <p className="text-sm text-gray-600">Identify ethical issues related to human physiology research and practice.</p>
-                  </div>
-                  <div className="bg-white rounded-2xl border border-gray-200 p-5">
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Progress Over Time</p>
-                    <p className="text-sm text-gray-400 text-center py-4">No progress history yet</p>
-                  </div>
-                  <div className="bg-white rounded-2xl border border-gray-200 p-5">
-                    <div className="text-3xl font-black mb-1" style={{ color: proficiencyColor(activeSkill?.score || 0) }}>{activeSkill?.score || 0}%</div>
-                    <p className="text-xs text-gray-400">Projected Baseline</p>
-                    <a href="/signup" className="text-xs font-bold mt-2 block" style={{ color: '#2D8B6F' }}>Practice to earn mastery</a>
-                  </div>
-                  <div className="flex gap-2">
-                    <button className="flex-1 px-4 py-3 rounded-xl text-sm font-medium border border-gray-200 hover:bg-gray-50">💬 Ask Coach</button>
-                    <a href="/signup" className="flex-1 px-4 py-3 rounded-xl text-sm font-bold text-white text-center" style={{ background: '#2D8B6F' }}>Practice Quiz</a>
-                  </div>
-                </div>
+                ))}
               </div>
-            )}
+            </div>
 
-            {/* ===== PRACTICE TAB ===== */}
-            {activeTab === 'practice' && (
-              <div className="max-w-2xl mx-auto">
-                {!quizDone ? (
-                  <div className="bg-white rounded-2xl border border-gray-200 p-8">
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
-                        <div className="h-full rounded-full" style={{ width: `${(quizIdx / QUIZ.length) * 100}%`, background: '#2D8B6F' }} />
-                      </div>
-                      <span className="text-xs text-gray-400">{quizIdx + 1}/{QUIZ.length}</span>
+            {/* Journey */}
+            <div className="mt-10">
+              <h2 className="text-lg font-bold text-navy mb-6">The Journey</h2>
+              <div className="relative pl-8">
+                <div className="absolute left-3 top-0 bottom-0 w-px" style={{ background: 'rgba(12,31,63,0.08)' }} />
+                {HISTORY.map((e, i) => (
+                  <div key={i} className="flex items-start gap-4 relative mb-4">
+                    <div className="absolute -left-5 mt-1.5 w-2.5 h-2.5 rounded-full ring-2 ring-white" style={{ background: '#00A8A8' }} />
+                    <div className="flex-1 rounded-xl px-4 py-3 bg-white" style={{ border: '1px solid rgba(12,31,63,0.05)' }}>
+                      <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: '#00A8A8' }}>Assessment</span>
+                      <p className="text-sm text-gray-700">Practiced {e.skillName}. Scored {e.score}%.</p>
+                      <p className="text-[10px] text-gray-300 mt-1">{new Date(e.timestamp).toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' })}</p>
                     </div>
-                    <p className="font-semibold text-navy text-lg leading-relaxed mb-6">{QUIZ[quizIdx].q}</p>
-                    <div className="space-y-3 mb-6">
-                      {QUIZ[quizIdx].choices.map((c, i) => (
-                        <button key={i} onClick={() => setQuizAnswer(i)}
-                          className={`w-full text-left px-4 py-3.5 rounded-xl border text-sm transition-all ${quizAnswer === i ? 'font-medium' : 'border-gray-200 text-gray-600 hover:border-gray-300'}`}
-                          style={quizAnswer === i ? { background: 'rgba(45,139,111,0.06)', borderColor: '#2D8B6F', color: '#0C1F3F' } : {}}>
-                          {c}
-                        </button>
-                      ))}
-                    </div>
-                    {quizAnswer !== null && quizIdx < QUIZ.length - 1 && (
-                      <button onClick={() => { setQuizIdx(i => i + 1); setQuizAnswer(null) }}
-                        className="w-full py-3 rounded-xl font-bold text-sm text-white" style={{ background: '#2D8B6F' }}>Next →</button>
-                    )}
-                    {quizAnswer !== null && quizIdx === QUIZ.length - 1 && (
-                      <button onClick={() => setQuizDone(true)}
-                        className="w-full py-3 rounded-xl font-bold text-sm text-white" style={{ background: '#4F8A5B' }}>See Results →</button>
-                    )}
                   </div>
-                ) : (
-                  <div>
-                    <div className="bg-white rounded-2xl border border-gray-200 p-8 text-center mb-4">
-                      <p className="text-xs font-bold text-gray-400 uppercase tracking-[0.1em] mb-3">Quiz Complete</p>
-                      <div className="text-5xl font-black mb-2" style={{ color: '#2D8B6F' }}>+8%</div>
-                      <p className="font-bold text-navy">Ethical Considerations: 0% → 8%</p>
-                      <p className="text-sm text-gray-500 mt-2">You're moving. Keep this direction.</p>
-                    </div>
-                    {QUIZ.map((q, i) => (
-                      <div key={i} className="bg-white rounded-xl border border-gray-200 p-4 flex gap-3 mb-3">
-                        <div className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold text-white mt-0.5 flex-shrink-0 bg-green-500">✓</div>
-                        <p className="text-sm text-gray-600">{q.explanation}</p>
-                      </div>
-                    ))}
-                    <button onClick={() => { setQuizDone(false); setQuizIdx(0); setQuizAnswer(null); setActiveTab('review') }}
-                      className="mt-4 w-full py-3 rounded-xl font-bold text-sm text-navy border border-gray-200">← Back to Review</button>
-                  </div>
-                )}
+                ))}
               </div>
-            )}
-
-            {/* ===== HISTORY TAB ===== */}
-            {activeTab === 'history' && (
-              <div className="bg-white rounded-2xl border border-gray-200 p-6">
-                <h3 className="font-bold text-navy mb-4">My Work History</h3>
-                <p className="text-sm text-gray-400 text-center py-8">No evidence recorded yet. Complete a quiz or coaching session to start building your record.</p>
-              </div>
-            )}
-
+            </div>
           </main>
 
-          {/* Floating ask bar */}
-          <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-full max-w-xl px-4 z-20">
-            <div className="flex items-center gap-2 bg-white rounded-2xl shadow-xl border border-gray-200 px-4 py-3">
-              <span style={{ color: '#2D8B6F' }}>✦</span>
-              <input type="text" placeholder="Ask a quick question..." className="flex-1 text-sm text-gray-700 placeholder-gray-400 focus:outline-none" />
-              <a href="/signup" className="w-8 h-8 rounded-full flex items-center justify-center text-white flex-shrink-0" style={{ background: '#2D8B6F' }}>→</a>
+          {/* Coach */}
+          <div className="fixed bottom-6 right-6 z-30 max-w-[300px]">
+            <div className="rounded-2xl shadow-lg overflow-hidden" style={{ background: 'rgba(255,255,255,0.97)', border: '1px solid rgba(12,31,63,0.08)', backdropFilter: 'blur(12px)' }}>
+              <div className="px-4 py-3">
+                <div className="flex items-start gap-2.5">
+                  <div className="w-2 h-2 rounded-full mt-1.5 flex-shrink-0" style={{ background: '#00A8A8', boxShadow: '0 0 6px rgba(0,168,168,0.4)' }} />
+                  <p className="text-[13px] text-gray-600 leading-relaxed">
+                    {selected ? `${NODES.find(n => n.skill.id === selected)?.skill.name} is unexplored. A single quiz will reveal where you stand.` : 'All territory is uncharted. Start anywhere. Every step reveals the path.'}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Evidence Wall */}
+      {selectedNode && <EvidenceWall node={selectedNode} onClose={() => setSelected(null)} />}
     </div>
   )
 }
