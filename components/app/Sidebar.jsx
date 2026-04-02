@@ -82,13 +82,13 @@ export default function Sidebar({ profile, enrollments = [], open, onClose }) {
 
   return (
     <aside className={`fixed lg:static inset-y-0 left-0 z-30 w-64 flex flex-col transition-transform duration-300 ${open ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}
-           style={{ background: '#1B3A2D' }}>
+           style={{ background: '#0D1117' }}>
 
       {/* User profile */}
       <div className="px-5 pt-5 pb-4">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0"
-               style={{ background: '#2D8B6F' }}>
+               style={{ background: '#0891B2' }}>
             {profile.full_name?.[0]?.toUpperCase() ?? profile.email[0].toUpperCase()}
           </div>
           <div className="flex-1 min-w-0">
@@ -123,7 +123,7 @@ export default function Sidebar({ profile, enrollments = [], open, onClose }) {
                      ? 'text-white'
                      : 'text-white/50 hover:text-white hover:bg-white/5'
                  }`}
-                 style={active ? { background: 'rgba(45,139,111,0.35)' } : undefined}>
+                 style={active ? { background: 'rgba(0,206,209,0.12)' } : undefined}>
                 <span className="w-5 flex items-center justify-center flex-shrink-0">{icon}</span>
                 {label}
               </a>
@@ -143,7 +143,7 @@ export default function Sidebar({ profile, enrollments = [], open, onClose }) {
                      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
                        active ? 'text-white' : 'text-white/50 hover:text-white hover:bg-white/5'
                      }`}
-                     style={active ? { background: 'rgba(45,139,111,0.35)' } : undefined}>
+                     style={active ? { background: 'rgba(0,206,209,0.12)' } : undefined}>
                     <span className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0"
                           style={{ background: '#D4603A' }}>
                       {e.courses?.course_code?.[0] || '?'}
@@ -166,7 +166,7 @@ export default function Sidebar({ profile, enrollments = [], open, onClose }) {
         </button>
         <div className="flex items-center gap-2 px-3 py-2 text-white/20">
           <ArrivalLogo size={16} />
-          <span className="text-[11px] font-bold">arrival<span style={{ color: '#2D8B6F' }}>.ai</span></span>
+          <span className="text-[11px] font-bold">arrival<span style={{ color: '#00CED1' }}>.ai</span></span>
         </div>
       </div>
     </aside>
