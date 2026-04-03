@@ -20,17 +20,37 @@ const SKILLS = [
   { id: '14', name: 'Experimental Design', type: 'implicit', score: 15, evidence: 'Very early. Understands hypothesis formation but not controlled variable design.' },
 ]
 
-// Golden-angle spiral positions — evenly spread
-const starPositions = SKILLS.map((_, i) => {
+// Golden-angle spiral with collision avoidance
+const starPositions = (() => {
   const total = SKILLS.length
-  const golden = 2.39996323
-  const angle = i * golden
-  const r = 0.18 + Math.sqrt((i + 0.5) / total) * 0.28
-  return {
-    top: `${Math.max(4, Math.min(86, 50 + Math.sin(angle) * r * 100))}%`,
-    left: `${Math.max(4, Math.min(88, 50 + Math.cos(angle) * r * 100))}%`,
+  const minDist = 12
+  const positions = []
+  for (let i = 0; i < total; i++) {
+    const golden = 2.39996323
+    const angle = i * golden
+    const r = 0.12 + Math.sqrt((i + 0.5) / total) * 0.32
+    let x = 50 + Math.cos(angle) * r * 100
+    let y = 50 + Math.sin(angle) * r * 100
+    for (let attempt = 0; attempt < 8; attempt++) {
+      let collides = false
+      for (const prev of positions) {
+        const dx = x - prev.xNum, dy = y - prev.yNum
+        const dist = Math.sqrt(dx * dx + dy * dy)
+        if (dist < minDist) {
+          const pa = Math.atan2(dy, dx)
+          x += Math.cos(pa) * (minDist - dist + 1)
+          y += Math.sin(pa) * (minDist - dist + 1)
+          collides = true
+        }
+      }
+      if (!collides) break
+    }
+    x = Math.max(6, Math.min(94, x))
+    y = Math.max(6, Math.min(92, y))
+    positions.push({ top: `${y}%`, left: `${x}%`, xNum: x, yNum: y })
   }
-})
+  return positions
+})()
 
 const gradients = [
   'from-cyan-400 to-blue-500', 'from-violet-400 to-fuchsia-500', 'from-emerald-400 to-teal-500',
@@ -96,7 +116,7 @@ export default function DemoPage() {
                 </div>
 
                 <div className="grid gap-6 xl:grid-cols-[1.35fr_0.9fr]">
-                  <div className="relative h-[28rem] overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/70">
+                  <div className="relative h-[44rem] overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/70">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.12),transparent_18%),radial-gradient(circle_at_30%_30%,rgba(168,85,247,0.14),transparent_20%)]" />
                     <div className="absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 text-center text-xs font-semibold text-cyan-100">
                       {mastered} mastered

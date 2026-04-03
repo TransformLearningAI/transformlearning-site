@@ -44,19 +44,46 @@ export default function StudentDashboard() {
     return { skills, scoreMap, nodes, overall, evidenceCount, mastered, weakest }
   }, [enrollment, scores])
 
-  // Compute star positions — must be before any early returns (Rules of Hooks)
+  // Compute star positions with collision avoidance
   const starPositions = useMemo(() => {
     if (!derived?.nodes) return []
     const total = derived.nodes.length
-    return derived.nodes.map((_, i) => {
+    const positions = []
+    const minDist = total <= 10 ? 14 : total <= 16 ? 12 : 10 // min % distance between stars
+
+    for (let i = 0; i < total; i++) {
       const golden = 2.39996323
       const angle = i * golden
-      const r = 0.18 + Math.sqrt((i + 0.5) / total) * 0.28
-      return {
-        top: `${Math.max(4, Math.min(86, 50 + Math.sin(angle) * r * 100))}%`,
-        left: `${Math.max(4, Math.min(88, 50 + Math.cos(angle) * r * 100))}%`,
+      // Wider spread: 0.12 to 0.42 radius
+      const r = 0.12 + Math.sqrt((i + 0.5) / total) * 0.32
+      let x = 50 + Math.cos(angle) * r * 100
+      let y = 50 + Math.sin(angle) * r * 100
+
+      // Collision avoidance — push apart if too close
+      for (let attempt = 0; attempt < 8; attempt++) {
+        let collides = false
+        for (const prev of positions) {
+          const dx = x - prev.xNum
+          const dy = y - prev.yNum
+          const dist = Math.sqrt(dx * dx + dy * dy)
+          if (dist < minDist) {
+            // Push outward from collision
+            const pushAngle = Math.atan2(dy, dx)
+            x += Math.cos(pushAngle) * (minDist - dist + 1)
+            y += Math.sin(pushAngle) * (minDist - dist + 1)
+            collides = true
+          }
+        }
+        if (!collides) break
       }
-    })
+
+      // Clamp to bounds (wider margins for bigger box)
+      x = Math.max(6, Math.min(94, x))
+      y = Math.max(6, Math.min(92, y))
+
+      positions.push({ top: `${y}%`, left: `${x}%`, xNum: x, yNum: y })
+    }
+    return positions
   }, [derived?.nodes?.length])
 
   const sel = derived ? (selectedSkill ? derived.nodes.find(n => n.id === selectedSkill) : derived.nodes[0]) : null
@@ -143,7 +170,7 @@ export default function StudentDashboard() {
                 <div className="grid gap-6 xl:grid-cols-[1.35fr_0.9fr]">
                   {/* ── GALAXY LAYOUT — bigger stars, draggable ── */}
                   {layout === 'galaxy' && (
-                    <div className="relative h-[32rem] overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/70"
+                    <div className="relative h-[44rem] overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/70"
                       onMouseMove={e => {
                         if (!draggedStar) return
                         const rect = e.currentTarget.getBoundingClientRect()
