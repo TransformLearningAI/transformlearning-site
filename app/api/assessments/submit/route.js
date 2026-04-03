@@ -2,6 +2,7 @@ import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { getClient, MODELS } from '@/lib/claude/client'
 import { SYSTEM, userMessage } from '@/lib/claude/prompts/assessment-score'
 import { runGovernancePipeline, monitorTrust } from '@/lib/governance/engine'
+import { awardXP, XP_REWARDS } from '@/lib/xp'
 import { NextResponse } from 'next/server'
 
 export async function POST(request) {
@@ -116,8 +117,20 @@ export async function POST(request) {
       .eq('id', session.enrollment_id)
   }
 
+  // Award XP for quiz completion
+  let xpEarned = XP_REWARDS.quiz_complete
+  // Bonus XP for any newly mastered skills
+  const newlyMastered = governedScores.filter(s => {
+    const prev = (existingScores || []).find(e => e.skill_id === s.skill_id)
+    return s.score >= 80 && (!prev || prev.score < 80)
+  })
+  xpEarned += newlyMastered.length * XP_REWARDS.skill_mastered
+
+  const newXP = await awardXP(service, user.id, xpEarned, 'quiz_complete')
+
   return NextResponse.json({
     skill_scores: governedScores,
+    xp: { earned: xpEarned, total: newXP, mastery_bonus: newlyMastered.length },
     governance: {
       trust: trustCheck,
       scores_governed: governedScores.length,

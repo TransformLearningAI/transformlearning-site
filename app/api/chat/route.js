@@ -1,6 +1,7 @@
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { buildSystemPrompt } from '@/lib/claude/prompts/coaching-chat'
 import { getClient, MODELS } from '@/lib/claude/client'
+import { awardXP, XP_REWARDS } from '@/lib/xp'
 import { NextResponse } from 'next/server'
 
 export async function POST(request) {
@@ -90,6 +91,8 @@ export async function POST(request) {
       await service.from('chat_messages').insert({
         session_id: sessionId, role: 'assistant', content: fullResponse,
       })
+      // Award XP for coaching session
+      await awardXP(service, user.id, XP_REWARDS.coaching_session, 'coaching_session')
       controller.close()
     },
   })
