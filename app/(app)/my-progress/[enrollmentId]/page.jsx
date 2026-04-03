@@ -14,6 +14,8 @@ export default function StudentDashboard() {
   const [selectedSkill, setSelectedSkill] = useState(null)
   const [selectedTrack, setSelectedTrack] = useState('course')
   const [layout, setLayout] = useState('galaxy') // galaxy | list | circle | cards
+  const [draggedStar, setDraggedStar] = useState(null)
+  const [customPositions, setCustomPositions] = useState({})
 
   useEffect(() => {
     Promise.all([
@@ -139,30 +141,56 @@ export default function StudentDashboard() {
                 </div>
 
                 <div className="grid gap-6 xl:grid-cols-[1.35fr_0.9fr]">
-                  {/* ── GALAXY LAYOUT ── */}
+                  {/* ── GALAXY LAYOUT — bigger stars, draggable ── */}
                   {layout === 'galaxy' && (
-                    <div className="relative h-[28rem] overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/70">
-                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.12),transparent_18%),radial-gradient(circle_at_30%_30%,rgba(168,85,247,0.14),transparent_20%)]" />
-                      <div className="absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 text-center text-xs font-semibold text-cyan-100">
-                        {derived.mastered} mastered
+                    <div className="relative h-[32rem] overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/70"
+                      onMouseMove={e => {
+                        if (!draggedStar) return
+                        const rect = e.currentTarget.getBoundingClientRect()
+                        const x = ((e.clientX - rect.left) / rect.width) * 100
+                        const y = ((e.clientY - rect.top) / rect.height) * 100
+                        setCustomPositions(p => ({ ...p, [draggedStar]: { top: `${Math.max(2, Math.min(92, y))}%`, left: `${Math.max(2, Math.min(92, x))}%` } }))
+                      }}
+                      onMouseUp={() => setDraggedStar(null)}
+                      onMouseLeave={() => setDraggedStar(null)}>
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.15),transparent_22%),radial-gradient(circle_at_30%_30%,rgba(168,85,247,0.18),transparent_24%)]" />
+                      {/* Center hub */}
+                      <div className="absolute left-1/2 top-1/2 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 text-center">
+                        <div>
+                          <div className="text-2xl font-black text-cyan-200">{derived.overall}%</div>
+                          <div className="text-[10px] text-cyan-300/60">{derived.mastered} mastered</div>
+                        </div>
                       </div>
+                      {/* Stars */}
                       {derived.nodes.map((node, i) => {
                         const active = selectedSkill === node.id
                         const grad = gradients[i % gradients.length]
                         const isImplicit = node.skill_type === 'implicit'
+                        const pos = customPositions[node.id] || starPositions[i]
+                        const isDragging = draggedStar === node.id
                         return (
-                          <button key={node.id} onClick={() => setSelectedSkill(node.id)}
-                            className={`absolute rounded-full border border-white/10 p-[1px] shadow-2xl transition-transform hover:scale-105 ${active ? 'ring-2 ring-cyan-400 scale-110' : ''}`}
-                            style={{ top: starPositions[i]?.top, left: starPositions[i]?.left }}>
-                            <div className={`rounded-full bg-gradient-to-r ${grad} px-4 py-3 text-left ${node.score === 0 ? 'opacity-40' : ''}`}>
-                              <div className="text-xs font-semibold text-white truncate max-w-[120px]">
+                          <div key={node.id}
+                            className={`absolute select-none transition-shadow ${isDragging ? 'z-20 cursor-grabbing' : 'cursor-grab z-10'}`}
+                            style={{ top: pos?.top, left: pos?.left, transform: 'translate(-50%, -50%)' }}
+                            onMouseDown={e => { e.preventDefault(); setDraggedStar(node.id) }}
+                            onClick={() => { if (!isDragging) setSelectedSkill(node.id) }}>
+                            {/* Glow ring */}
+                            {node.score > 0 && (
+                              <div className="absolute inset-0 rounded-full animate-pulse"
+                                style={{ boxShadow: `0 0 ${node.score >= 80 ? 20 : 12}px ${node.score >= 80 ? 'rgba(74,222,128,0.4)' : node.score >= 40 ? 'rgba(0,206,209,0.3)' : 'rgba(167,139,250,0.2)'}`, margin: '-8px', borderRadius: '50%' }} />
+                            )}
+                            <div className={`rounded-full bg-gradient-to-r ${grad} shadow-lg border-2 ${active ? 'border-cyan-300 scale-110' : 'border-transparent'} transition-all ${node.score === 0 ? 'opacity-35' : ''}`}
+                              style={{ padding: '12px 18px', minWidth: node.score > 0 ? '110px' : '80px' }}>
+                              <div className="text-sm font-bold text-white truncate max-w-[130px]" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>
                                 {isImplicit ? '◇ ' : ''}{node.name}
                               </div>
-                              <div className="text-[10px] text-white/80">{node.score > 0 ? `${node.score}%` : 'uncharted'}</div>
+                              <div className="text-xs text-white/90 font-semibold mt-0.5">{node.score > 0 ? `${node.score}%` : 'uncharted'}</div>
                             </div>
-                          </button>
+                          </div>
                         )
                       })}
+                      {/* Drag hint */}
+                      <div className="absolute bottom-3 right-4 text-[10px] text-white/15">drag to rearrange</div>
                     </div>
                   )}
 
