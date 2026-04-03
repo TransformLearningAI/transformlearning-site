@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from 'react'
 import Sidebar from './Sidebar'
 import Tour from './Tour'
+import ThemePicker, { ThemeProvider, useTheme } from './ThemePicker'
 
 export default function AppShell({ profile, enrollments = [], children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -33,6 +34,7 @@ export default function AppShell({ profile, enrollments = [], children }) {
   ]
 
   return (
+    <ThemeProvider>
     <div className="min-h-screen flex" style={{ background: '#0A0E1A' }}>
       <Sidebar profile={profile} enrollments={enrollments} open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
@@ -76,6 +78,9 @@ export default function AppShell({ profile, enrollments = [], children }) {
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" strokeWidth="1.3"/><path d="M7 4v3l2 1" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>
               Tour
             </button>
+
+            {/* Theme picker */}
+            <ThemePicker />
 
             {/* Notifications — working dropdown */}
             <div className="relative">
@@ -144,5 +149,6 @@ export default function AppShell({ profile, enrollments = [], children }) {
       {/* Tour */}
       {showTour && <Tour onComplete={completeTour} />}
     </div>
+    </ThemeProvider>
   )
 }
