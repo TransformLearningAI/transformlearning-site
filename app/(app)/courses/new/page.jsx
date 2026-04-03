@@ -66,7 +66,7 @@ export default function NewCoursePage() {
         <p className="text-white/25 text-sm mb-8">
           {step === 1
             ? 'Every course becomes a constellation of skills. Start with the basics.'
-            : 'Paste your syllabus. Arrival\'s AI will map every explicit and implicit skill into stars your students can navigate.'}
+            : 'Paste your syllabus. Arrival\'s AI will map every foundational and transferable skill into stars your students can navigate.'}
         </p>
 
         {step === 1 && (
@@ -119,7 +119,7 @@ export default function NewCoursePage() {
               <div className="text-center">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs text-white/30" style={{ background: 'rgba(167,139,250,0.08)', border: '1px solid rgba(167,139,250,0.15)' }}>
                   <div className="w-3 h-3 border border-purple-400 border-t-transparent rounded-full animate-spin" />
-                  Identifying explicit knowledge and implicit skills…
+                  Identifying foundational knowledge and transferable skills…
                 </div>
               </div>
             )}

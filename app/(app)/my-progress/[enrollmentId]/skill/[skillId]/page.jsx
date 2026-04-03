@@ -54,7 +54,7 @@ export default function SkillDetailPage() {
           <span className={`text-xs font-bold px-2.5 py-1 rounded-full mb-3 inline-block`}
             style={{ background: skill?.skill_type === 'explicit' ? 'rgba(0,168,168,0.1)' : 'rgba(90,62,107,0.1)',
                      color: skill?.skill_type === 'explicit' ? '#00A8A8' : '#5A3E6B' }}>
-            {skill?.skill_type} skill
+            {skill?.skill_type === 'explicit' ? 'foundational' : 'transferable'} skill
           </span>
           <h1 className="font-serif font-light text-navy" style={{ fontSize: '32px', letterSpacing: '-0.02em' }}>{skill?.name}</h1>
           {skill?.description && <p className="text-gray-500 text-sm mt-2">{skill.description}</p>}

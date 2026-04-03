@@ -118,7 +118,7 @@ export default function DemoPage() {
                     <h3 className="mt-2 text-2xl font-semibold">{selected?.name}</h3>
                     <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full mt-1 inline-block"
                       style={{ background: selected?.type === 'implicit' ? 'rgba(167,139,250,0.15)' : 'rgba(34,211,238,0.15)', color: selected?.type === 'implicit' ? '#C4B5FD' : '#67E8F9' }}>
-                      {selected?.type}
+                      {selected?.type === 'implicit' ? 'transferable' : 'foundational'}
                     </span>
                     <div className="mt-4 h-3 overflow-hidden rounded-full bg-white/10">
                       <div className={`h-full rounded-full bg-gradient-to-r ${gradients[SKILLS.indexOf(selected)]} transition-all duration-700`} style={{ width: `${selected?.score || 0}%` }} />
@@ -214,7 +214,7 @@ export default function DemoPage() {
               <div key={s.id} onClick={() => { setSel(s.id); setView('course') }}
                 className="rounded-[2rem] border border-white/10 bg-white/5 p-5 backdrop-blur-xl transition hover:bg-white/10 cursor-pointer">
                 <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full"
-                  style={{ background: s.type === 'implicit' ? 'rgba(167,139,250,0.15)' : 'rgba(34,211,238,0.15)', color: s.type === 'implicit' ? '#C4B5FD' : '#67E8F9' }}>{s.type}</span>
+                  style={{ background: s.type === 'implicit' ? 'rgba(167,139,250,0.15)' : 'rgba(34,211,238,0.15)', color: s.type === 'implicit' ? '#C4B5FD' : '#67E8F9' }}>{s.type === 'implicit' ? 'transferable' : 'foundational'}</span>
                 <h3 className="font-semibold text-white mt-3 mb-3">{s.name}</h3>
                 <div className="h-2 overflow-hidden rounded-full bg-white/10 mb-2">
                   <div className={`h-full rounded-full bg-gradient-to-r ${gradients[i]} transition-all`} style={{ width: `${s.score}%` }} />
@@ -236,7 +236,7 @@ export default function DemoPage() {
                 <div className="flex items-start justify-between">
                   <div>
                     <div className="font-medium">{s.name}</div>
-                    <div className="mt-1 text-sm text-slate-400">{s.type} skill</div>
+                    <div className="mt-1 text-sm text-slate-400">{s.type === 'implicit' ? 'transferable' : 'foundational'} skill</div>
                     <p className="mt-2 text-sm text-slate-300">{s.evidence}</p>
                   </div>
                   <div className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm font-bold">{s.score}%</div>

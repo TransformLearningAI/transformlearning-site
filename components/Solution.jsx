@@ -4,7 +4,7 @@ const PILLARS = [
   {
     num: '01', label: 'Revealed Clarity', color: '#F4F7FB',
     title: 'We remove noise to reveal\nwhat matters.',
-    body: 'True proficiency. Exposed with precision. Arrival uncovers every student\'s actual skill level — both explicit knowledge and implicit skills like problem decomposition and reasoning. The system determines where they truly stand, not just where grades suggest.',
+    body: 'True proficiency. Exposed with precision. Arrival uncovers every student\'s actual skill level — both foundational knowledge and transferable skills like problem decomposition and reasoning. The system determines where they truly stand, not just where grades suggest.',
   },
   {
     num: '02', label: 'Trusted Wisdom', color: '#0C1F3F',

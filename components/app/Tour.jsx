@@ -20,7 +20,7 @@ const TOUR_STEPS = [
   {
     id: 'skill-mapping',
     title: 'Skill Mapping',
-    body: 'Every course syllabus is mapped into explicit skills (subject knowledge) and implicit skills (critical thinking, communication, etc). This is your learning DNA.',
+    body: 'Every course syllabus is mapped into foundational skills (subject knowledge) and transferable skills (critical thinking, communication, etc). This is your learning DNA.',
     emoji: '🧬',
     position: 'center',
   },

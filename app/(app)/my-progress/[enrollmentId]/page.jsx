@@ -117,7 +117,7 @@ export default function StudentDashboard() {
                 <div className="mb-4 flex items-center justify-between">
                   <div>
                     <h2 className="text-2xl font-semibold">Skill Galaxy</h2>
-                    <p className="mt-1 text-sm text-slate-400">Your constellation of explicit and implicit skills. Click any star.</p>
+                    <p className="mt-1 text-sm text-slate-400">Your constellation of foundational and transferable skills. Click any star.</p>
                   </div>
                   <div className="text-right">
                     <div className="text-3xl font-bold text-cyan-300">{derived.overall}%</div>
@@ -206,7 +206,7 @@ export default function StudentDashboard() {
                             <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${grad} flex-shrink-0 ${node.score === 0 ? 'opacity-30' : ''}`} />
                             <div className="flex-1 min-w-0">
                               <div className="text-sm font-medium text-white truncate">{node.skill_type === 'implicit' ? '◇ ' : ''}{node.name}</div>
-                              <div className="text-[10px] text-slate-400">{node.skill_type}</div>
+                              <div className="text-[10px] text-slate-400">{node.skill_type === 'implicit' ? 'transferable' : 'foundational'}</div>
                             </div>
                             <div className="w-24 h-1.5 rounded-full bg-white/10 overflow-hidden flex-shrink-0">
                               <div className={`h-full rounded-full bg-gradient-to-r ${grad}`} style={{ width: `${node.score}%` }} />
@@ -283,7 +283,7 @@ export default function StudentDashboard() {
                       <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full"
                         style={{ background: sel?.skill_type === 'implicit' ? 'rgba(167,139,250,0.15)' : 'rgba(34,211,238,0.15)',
                                  color: sel?.skill_type === 'implicit' ? '#C4B5FD' : '#67E8F9' }}>
-                        {sel?.skill_type}
+                        {sel?.skill_type === 'implicit' ? 'transferable' : 'foundational'}
                       </span>
                     </div>
                     <div className="mt-4 h-3 overflow-hidden rounded-full bg-white/10">
@@ -458,7 +458,7 @@ export default function StudentDashboard() {
                   <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full"
                     style={{ background: node.skill_type === 'implicit' ? 'rgba(167,139,250,0.15)' : 'rgba(34,211,238,0.15)',
                              color: node.skill_type === 'implicit' ? '#C4B5FD' : '#67E8F9' }}>
-                    {node.skill_type}
+                    {node.skill_type === 'implicit' ? 'transferable' : 'foundational'}
                   </span>
                 </div>
                 <h3 className="font-semibold text-white mb-3">{node.name}</h3>

@@ -132,7 +132,7 @@ export default async function CourseDetailPage({ params }) {
                           <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded"
                             style={{ background: skill.skill_type === 'implicit' ? 'rgba(167,139,250,0.12)' : 'rgba(0,206,209,0.12)',
                                      color: skill.skill_type === 'implicit' ? '#C4B5FD' : '#67E8F9' }}>
-                            {skill.skill_type}
+                            {skill.skill_type === 'implicit' ? 'transferable' : 'foundational'}
                           </span>
                         </div>
                         {/* Range bar */}
@@ -233,7 +233,7 @@ export default async function CourseDetailPage({ params }) {
                   <p><span className="text-rose-400 font-bold">{atRiskStudents.length} student{atRiskStudents.length > 1 ? 's' : ''}</span> below 40% average. May need targeted support.</p>
                 )}
                 {implicitSkills.length > 0 && (
-                  <p><span className="text-purple-300 font-bold">{implicitSkills.length} implicit skills</span> mapped from your syllabus — critical thinking, communication, collaboration.</p>
+                  <p><span className="text-purple-300 font-bold">{implicitSkills.length} transferable skills</span> mapped from your syllabus — critical thinking, communication, collaboration.</p>
                 )}
               </div>
             </div>

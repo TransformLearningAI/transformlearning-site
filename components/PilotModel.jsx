@@ -41,7 +41,7 @@ export default function PilotModel() {
             A structured pilot built to prove — not just explore.
           </h2>
           <p className="body-text">
-            Every pilot has explicit baselines, measurable outcome targets, and a clear
+            Every pilot has clear baselines, measurable outcome targets, and a clear
             conversion pathway from day one. This is not an experiment. It's a structured
             collaboration.
           </p>

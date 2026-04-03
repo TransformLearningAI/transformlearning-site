@@ -62,8 +62,8 @@ export default function SkillsReviewPage() {
       </div>
 
       {[
-        { type: 'explicit', label: 'Explicit Skills', desc: 'Subject-matter knowledge and procedures your course directly teaches', items: explicit, color: '#00A8A8' },
-        { type: 'implicit', label: 'Implicit Skills', desc: 'Transferable cognitive and professional capabilities the course develops', items: implicit, color: '#5A3E6B' },
+        { type: 'explicit', label: 'Foundational Skills', desc: 'Subject-matter knowledge and procedures your course directly teaches', items: explicit, color: '#00A8A8' },
+        { type: 'implicit', label: 'Transferable Skills', desc: 'Transferable cognitive and professional capabilities the course develops', items: implicit, color: '#5A3E6B' },
       ].map(group => (
         <div key={group.type} className="mb-8">
           <div className="flex items-center gap-3 mb-4">
