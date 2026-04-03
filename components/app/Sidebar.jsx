@@ -82,7 +82,7 @@ export default function Sidebar({ profile, enrollments = [], open, onClose, them
 
   return (
     <aside className={`fixed lg:static inset-y-0 left-0 z-30 w-64 flex flex-col transition-transform duration-300 ${open ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}
-           style={{ background: theme?.surface || '#0D1117' }}>
+           style={{ background: '#0D1117' }}>
 
       {/* User profile */}
       <div className="px-5 pt-5 pb-4">
