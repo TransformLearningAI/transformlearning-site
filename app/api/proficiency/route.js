@@ -25,21 +25,21 @@ export async function GET(request) {
 
   const { data: history } = await service
     .from('proficiency_history')
-    .select('skill_id, score, confidence, evidence_summary, source, created_at')
+    .select('skill_id, score, confidence, evidence_summary, source, scored_at')
     .eq('enrollment_id', enrollmentId)
-    .order('created_at', { ascending: true })
+    .order('scored_at', { ascending: true })
 
   // Enhance each score with trajectory analysis and confidence intervals
   const enhancedScores = (scores || []).map(s => {
     const skillHistory = (history || []).filter(h => h.skill_id === s.skill_id)
 
     // Multi-source weighted score
-    const observations = skillHistory.map(h => ({ score: h.score, source: h.source || 'quiz', timestamp: h.created_at }))
+    const observations = skillHistory.map(h => ({ score: h.score, source: h.source || 'quiz', timestamp: h.scored_at }))
     const weighted = computeWeightedScore(observations)
 
     // Trajectory
     const trajectory = analyzeTrajectory(
-      skillHistory.map(h => ({ score: h.score, timestamp: h.created_at }))
+      skillHistory.map(h => ({ score: h.score, timestamp: h.scored_at }))
     )
 
     // Confidence interval

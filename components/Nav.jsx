@@ -9,6 +9,7 @@ export default function Nav() {
     { label: 'For Faculty',  href: '#for-faculty' },
     { label: 'Pricing',      href: '#pricing' },
     { label: 'About',        href: '#about' },
+    { label: 'Methodology',  href: '/methodology' },
     { label: 'Investors',    href: '/investors' },
   ]
 

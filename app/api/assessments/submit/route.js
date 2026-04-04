@@ -52,23 +52,26 @@ export async function POST(request) {
     .eq('enrollment_id', session.enrollment_id)
   const { data: fullHistory } = await service
     .from('proficiency_history')
-    .select('skill_id, score, source, confidence, created_at')
+    .select('skill_id, score, source, confidence, scored_at')
     .eq('enrollment_id', session.enrollment_id)
-    .order('created_at', { ascending: true })
+    .order('scored_at', { ascending: true })
 
   // Enhanced scoring: multi-source weighting + trajectory + confidence intervals
   const governedScores = skill_scores.map(s => {
     // Gather all observations for this skill (existing + new)
     const skillHistory = (fullHistory || []).filter(h => h.skill_id === s.skill_id)
     const observations = [
-      ...skillHistory.map(h => ({ score: h.score, source: h.source || 'quiz', timestamp: h.created_at })),
+      ...skillHistory.map(h => ({ score: h.score, source: h.source || 'quiz', timestamp: h.scored_at })),
       { score: s.score, source: session.session_type === 'onboarding' ? 'assessment' : 'quiz', timestamp: now },
     ]
 
-    // Run full proficiency pipeline
+    // Run full proficiency pipeline (include new score in trajectory history)
     const proficiency = computeProficiency({
       observations,
-      history: skillHistory.map(h => ({ score: h.score, timestamp: h.created_at })),
+      history: [
+        ...skillHistory.map(h => ({ score: h.score, timestamp: h.scored_at })),
+        { score: s.score, timestamp: now },
+      ],
     })
 
     // Run governance pipeline

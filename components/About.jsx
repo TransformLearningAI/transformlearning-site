@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import ScrollReveal from './ScrollReveal'
 
 const TEAM = [
@@ -78,6 +79,26 @@ export default function About() {
             </ScrollReveal>
           ))}
         </div>
+
+        {/* Methodology link */}
+        <ScrollReveal delay={4}>
+          <div className="mt-16 text-center">
+            <div className="inline-flex flex-col items-center gap-4 bg-brand-mist border border-brand-border rounded-2xl px-8 py-6">
+              <p className="text-sm text-brand-gray leading-relaxed max-w-md">
+                Want to understand how our AI measures student proficiency? Read our detailed
+                methodology paper on evidence weighting, trajectory analysis, and governance.
+              </p>
+              <Link href="/methodology"
+                    className="inline-flex items-center gap-2 text-white px-6 py-2.5 rounded-lg text-sm font-bold hover:opacity-90 transition-opacity"
+                    style={{ background: '#0C1F3F' }}>
+                Read Our Methodology
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8H13M9 4L13 8L9 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </Link>
+            </div>
+          </div>
+        </ScrollReveal>
 
       </div>
     </section>
