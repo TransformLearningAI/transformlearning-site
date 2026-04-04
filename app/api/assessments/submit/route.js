@@ -2,6 +2,7 @@ import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { getClient, MODELS } from '@/lib/claude/client'
 import { SYSTEM, userMessage } from '@/lib/claude/prompts/assessment-score'
 import { runGovernancePipeline, monitorTrust } from '@/lib/governance/engine'
+import { computeProficiency, analyzeTrajectory, computeConfidenceInterval } from '@/lib/scoring/engine'
 import { awardXP, XP_REWARDS } from '@/lib/xp'
 import { NextResponse } from 'next/server'
 
@@ -44,34 +45,59 @@ export async function POST(request) {
 
   const now = new Date().toISOString()
 
-  // Get existing scores for governance monitoring (L4: Trust System)
+  // Get existing scores and full history for multi-source scoring
   const { data: existingScores } = await service
     .from('proficiency_scores')
-    .select('skill_id, score')
+    .select('skill_id, score, source, scored_at')
     .eq('enrollment_id', session.enrollment_id)
-  const { data: historyRows } = await service
+  const { data: fullHistory } = await service
     .from('proficiency_history')
-    .select('id')
+    .select('skill_id, score, source, confidence, created_at')
     .eq('enrollment_id', session.enrollment_id)
+    .order('created_at', { ascending: true })
 
-  // Run governance pipeline on each score (G: Ethical Orchestration Layer)
+  // Enhanced scoring: multi-source weighting + trajectory + confidence intervals
   const governedScores = skill_scores.map(s => {
+    // Gather all observations for this skill (existing + new)
+    const skillHistory = (fullHistory || []).filter(h => h.skill_id === s.skill_id)
+    const observations = [
+      ...skillHistory.map(h => ({ score: h.score, source: h.source || 'quiz', timestamp: h.created_at })),
+      { score: s.score, source: session.session_type === 'onboarding' ? 'assessment' : 'quiz', timestamp: now },
+    ]
+
+    // Run full proficiency pipeline
+    const proficiency = computeProficiency({
+      observations,
+      history: skillHistory.map(h => ({ score: h.score, timestamp: h.created_at })),
+    })
+
+    // Run governance pipeline
     const governance = runGovernancePipeline({
       studentId: user.id,
       skillId: s.skill_id,
       enrollmentId: session.enrollment_id,
-      score: s.score,
-      confidence: s.confidence,
+      score: proficiency.score,
+      confidence: proficiency.confidence,
       evidenceSummary: s.evidence_summary,
       scores: existingScores || [],
-      historyCount: (historyRows || []).length,
+      historyCount: (fullHistory || []).length,
     })
-    return { ...s, governance }
+
+    return {
+      ...s,
+      score: proficiency.score,           // May be adjusted by trajectory
+      rawAIScore: s.score,                // Original Claude score
+      confidence: proficiency.confidence,
+      interval: proficiency.interval,     // { lower, estimate, upper }
+      trajectory: proficiency.trajectory, // { velocity, trend, isGenuine }
+      sourceBreakdown: proficiency.sourceBreakdown,
+      governance,
+    }
   })
 
   // Monitor for anomalies (L4: Continuous Monitoring)
   const trustCheck = monitorTrust(
-    skill_scores.map(s => ({ skill_id: s.skill_id, score: s.score })),
+    governedScores.map(s => ({ skill_id: s.skill_id, score: s.score })),
     existingScores || []
   )
 

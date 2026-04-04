@@ -1,4 +1,5 @@
 import { createClient, createServiceClient } from '@/lib/supabase/server'
+import { analyzeTrajectory, computeConfidenceInterval, computeWeightedScore } from '@/lib/scoring/engine'
 import { NextResponse } from 'next/server'
 
 export async function GET(request) {
@@ -10,7 +11,6 @@ export async function GET(request) {
   const enrollmentId = searchParams.get('enrollmentId')
   if (!enrollmentId) return NextResponse.json({ error: 'enrollmentId required' }, { status: 400 })
 
-  // Use service client to bypass RLS — we verify ownership manually
   const service = await createServiceClient()
 
   const { data: enrollment } = await service
@@ -27,7 +27,34 @@ export async function GET(request) {
     .from('proficiency_history')
     .select('skill_id, score, confidence, evidence_summary, source, created_at')
     .eq('enrollment_id', enrollmentId)
-    .order('created_at', { ascending: false })
+    .order('created_at', { ascending: true })
 
-  return NextResponse.json({ scores: scores || [], history: history || [] })
+  // Enhance each score with trajectory analysis and confidence intervals
+  const enhancedScores = (scores || []).map(s => {
+    const skillHistory = (history || []).filter(h => h.skill_id === s.skill_id)
+
+    // Multi-source weighted score
+    const observations = skillHistory.map(h => ({ score: h.score, source: h.source || 'quiz', timestamp: h.created_at }))
+    const weighted = computeWeightedScore(observations)
+
+    // Trajectory
+    const trajectory = analyzeTrajectory(
+      skillHistory.map(h => ({ score: h.score, timestamp: h.created_at }))
+    )
+
+    // Confidence interval
+    const interval = computeConfidenceInterval(s.score, s.confidence || weighted.confidence, observations)
+
+    return {
+      ...s,
+      trajectory: { trend: trajectory.trend, velocity: trajectory.velocity, isGenuine: trajectory.isGenuine, description: trajectory.description },
+      interval: { lower: interval.lower, estimate: interval.estimate, upper: interval.upper, reliability: interval.reliability },
+      sourceBreakdown: weighted.sourceBreakdown,
+    }
+  })
+
+  return NextResponse.json({
+    scores: enhancedScores,
+    history: (history || []).reverse(), // Return newest first for display
+  })
 }

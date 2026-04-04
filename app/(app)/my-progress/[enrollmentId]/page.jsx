@@ -324,10 +324,67 @@ export default function StudentDashboard() {
                       <span className="text-slate-400">Confidence</span>
                       <span>{sel?.confidence ? `${Math.round(sel.confidence * 100)}%` : '—'}</span>
                     </div>
+                    {/* Confidence Interval */}
+                    {sel?.interval && (
+                      <div className="mt-4">
+                        <div className="text-[10px] font-bold uppercase tracking-wider text-white/20 mb-2">Confidence Interval</div>
+                        <div className="relative h-3 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.05)' }}>
+                          <div className="absolute h-full rounded-full" style={{ left: `${sel.interval.lower}%`, width: `${sel.interval.upper - sel.interval.lower}%`, background: 'rgba(0,206,209,0.2)' }} />
+                          <div className="absolute h-full w-1 rounded-full" style={{ left: `${sel.score}%`, background: '#00CED1' }} />
+                        </div>
+                        <div className="flex items-center justify-between text-[10px] text-white/20 mt-1">
+                          <span>{sel.interval.lower}%</span>
+                          <span className="font-bold" style={{ color: sel.interval.reliability === 'high' ? '#4ADE80' : sel.interval.reliability === 'moderate' ? '#FBBF24' : '#FB7185' }}>
+                            {sel.interval.reliability} reliability
+                          </span>
+                          <span>{sel.interval.upper}%</span>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Trajectory */}
+                    {sel?.trajectory && sel.trajectory.trend !== 'insufficient_data' && (
+                      <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-4">
+                        <div className="text-[10px] font-bold uppercase tracking-wider text-white/20 mb-2">Trajectory</div>
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-sm" style={{ color: sel.trajectory.trend === 'improving' || sel.trajectory.trend === 'accelerating' ? '#4ADE80' : sel.trajectory.trend === 'stable' ? '#FBBF24' : '#FB7185' }}>
+                            {sel.trajectory.trend === 'accelerating' ? '🚀' : sel.trajectory.trend === 'improving' ? '📈' : sel.trajectory.trend === 'stable' ? '➡️' : '📉'}
+                          </span>
+                          <span className="text-xs text-white/40 capitalize">{sel.trajectory.trend}</span>
+                          {sel.trajectory.velocity !== 0 && (
+                            <span className="text-xs font-bold" style={{ color: sel.trajectory.velocity > 0 ? '#4ADE80' : '#FB7185' }}>
+                              {sel.trajectory.velocity > 0 ? '+' : ''}{sel.trajectory.velocity}/assessment
+                            </span>
+                          )}
+                          {sel.trajectory.isGenuine && (
+                            <span className="text-[9px] px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(74,222,128,0.1)', color: '#4ADE80' }}>genuine</span>
+                          )}
+                        </div>
+                        <p className="text-xs text-white/30 leading-relaxed">{sel.trajectory.description}</p>
+                      </div>
+                    )}
+
+                    {/* AI Insight */}
                     {sel?.evidence && (
                       <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm leading-6 text-slate-300">
                         <div className="text-[10px] font-bold uppercase tracking-wider text-cyan-300 mb-2">AI Insight</div>
                         {sel.evidence}
+                      </div>
+                    )}
+
+                    {/* Source Breakdown */}
+                    {sel?.sourceBreakdown && Object.keys(sel.sourceBreakdown).length > 0 && (
+                      <div className="mt-4">
+                        <div className="text-[10px] font-bold uppercase tracking-wider text-white/20 mb-2">Evidence Sources</div>
+                        <div className="flex gap-2">
+                          {Object.entries(sel.sourceBreakdown).map(([src, data]) => (
+                            <div key={src} className="flex-1 rounded-xl p-2 text-center" style={{ background: 'rgba(255,255,255,0.03)' }}>
+                              <div className="text-xs font-bold text-white/60 capitalize">{src}</div>
+                              <div className="text-sm font-black text-cyan-300">{data.count}</div>
+                              <div className="text-[9px] text-white/15">avg {data.avgScore}%</div>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     )}
                     <div className="mt-4 grid grid-cols-2 gap-2">
