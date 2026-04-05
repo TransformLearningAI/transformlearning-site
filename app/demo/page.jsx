@@ -70,9 +70,16 @@ export default function DemoPage() {
         <div className="mb-4 sm:mb-6 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-xl">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-black" style={{ background: 'linear-gradient(135deg, #00A8A8, #0C1F3F)' }}>JM</div>
+                <div>
+                  <div className="text-base sm:text-lg font-bold tracking-tight">Jordan Mitchell</div>
+                  <div className="text-[10px] text-slate-400">Pre-Med &middot; Sophomore</div>
+                </div>
+              </div>
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border border-cyan-400/30 bg-cyan-400/10 text-cyan-200">BSC3096 &middot; Fall 2025</span>
-                <span className="text-[10px] font-semibold px-2.5 py-1 rounded-full border border-amber-400/30 bg-amber-400/10 text-amber-200">Lv 3 &middot; 1340 XP</span>
+                <span className="text-[10px] font-semibold px-2.5 py-1 rounded-full border border-amber-400/30 bg-amber-400/10 text-amber-200">Lv 3 &middot; Learner &middot; 1340 XP</span>
               </div>
               <h1 className="mt-2 text-xl sm:text-2xl font-bold tracking-tight">Human Physiology</h1>
             </div>
