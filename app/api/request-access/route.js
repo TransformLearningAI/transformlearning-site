@@ -1,0 +1,63 @@
+import { NextResponse } from 'next/server'
+import { Resend } from 'resend'
+
+const resend = new Resend(process.env.RESEND_API_KEY)
+
+export async function POST(request) {
+  try {
+    const body = await request.json()
+    const { name, email, organization, role, interest, context } = body
+
+    if (!name?.trim() || !email?.trim() || !organization?.trim()) {
+      return NextResponse.json({ error: 'Name, email, and organization are required.' }, { status: 400 })
+    }
+
+    // Send notification to Jeff
+    await resend.emails.send({
+      from: 'Arrival <noreply@transformlearning.ai>',
+      to: 'jeff@yourclassroom.ai',
+      replyTo: email,
+      subject: `Access Request: ${name} at ${organization}`,
+      text: [
+        'NEW ACCESS REQUEST — transformlearning.ai',
+        '',
+        `Name: ${name}`,
+        `Email: ${email}`,
+        `Organization: ${organization}`,
+        `Role: ${role || 'Not specified'}`,
+        `Interested in: ${interest || 'Not specified'}`,
+        '',
+        `Context:`,
+        context || 'None provided',
+        '',
+        '---',
+        'Reply directly to this email to respond to the requester.',
+      ].join('\n'),
+    })
+
+    // Send confirmation to requester
+    await resend.emails.send({
+      from: 'Arrival <noreply@transformlearning.ai>',
+      to: email,
+      subject: 'Access request received — Arrival / Transform Learning',
+      text: [
+        `Hi ${name},`,
+        '',
+        'Thank you for your interest in Arrival. We received your access request and will review it shortly.',
+        '',
+        'You requested access to restricted materials on transformlearning.ai. A member of our team will follow up within 1-2 business days with access credentials or next steps.',
+        '',
+        'In the meantime, you can explore the public demo at transformlearning.ai/demo.',
+        '',
+        'Best,',
+        'The Arrival Team',
+        'transformlearning.ai',
+      ].join('\n'),
+    })
+
+    return NextResponse.json({ ok: true })
+  } catch (e) {
+    console.error('Access request error:', e)
+    return NextResponse.json({ error: 'Failed to submit. Please try again.' }, { status: 500 })
+  }
+}
