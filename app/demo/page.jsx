@@ -71,9 +71,9 @@ export default function DemoPage() {
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-black" style={{ background: 'linear-gradient(135deg, #00A8A8, #0C1F3F)' }}>JM</div>
+                <div className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-black" style={{ background: 'linear-gradient(135deg, #00A8A8, #0C1F3F)' }}>WM</div>
                 <div>
-                  <div className="text-base sm:text-lg font-bold tracking-tight">Jordan Mitchell</div>
+                  <div className="text-base sm:text-lg font-bold tracking-tight">William Mazeltov</div>
                   <div className="text-[10px] text-slate-400">Pre-Med &middot; Sophomore</div>
                 </div>
               </div>
