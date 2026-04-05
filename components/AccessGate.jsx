@@ -28,6 +28,27 @@ export default function AccessGate({ children, pageName }) {
 
   const upd = (k, v) => setForm(f => ({ ...f, [k]: v }))
 
+  // Check URL for access key
+  useState(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search)
+      const key = params.get('access')
+      if (key) {
+        try {
+          // Key format: base64(email)
+          const email = atob(key)
+          if (email.includes('@')) {
+            sessionStorage.setItem('arrival_access', key)
+            setGranted(true)
+          }
+        } catch { /* invalid key */ }
+      }
+      // Check session
+      const saved = sessionStorage.getItem('arrival_access')
+      if (saved) setGranted(true)
+    }
+  })
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (!form.name.trim() || !form.email.trim() || !form.organization.trim()) return
@@ -40,7 +61,7 @@ export default function AccessGate({ children, pageName }) {
       })
       if (res.ok) {
         setStatus('sent')
-        setTimeout(() => setGranted(true), 2000)
+        // Do NOT auto-grant — wait for manual approval
       } else setStatus('error')
     } catch { setStatus('error') }
   }
@@ -66,8 +87,8 @@ export default function AccessGate({ children, pageName }) {
                   <path d="M5 13l4 4L19 7" stroke="#00A8A8" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <h2 className="font-serif font-light text-navy text-2xl mb-3">Access granted.</h2>
-              <p className="text-sm text-brand-gray">Loading the page now. A confirmation has been sent to {form.email}.</p>
+              <h2 className="font-serif font-light text-navy text-2xl mb-3">Request submitted.</h2>
+              <p className="text-sm text-brand-gray">We will review your request and send access credentials to <strong className="text-navy">{form.email}</strong> within 1-2 business days. Thank you for your interest.</p>
             </div>
           ) : (
             <>

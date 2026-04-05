@@ -12,7 +12,12 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Name, email, and organization are required.' }, { status: 400 })
     }
 
-    // Send notification to Jeff
+    // Generate access key for this person
+    const accessKey = Buffer.from(email.trim().toLowerCase()).toString('base64')
+    const approveUrl = `https://transformlearning.ai/api/approve-access?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}&action=approve&key=${accessKey}`
+    const denyUrl = `https://transformlearning.ai/api/approve-access?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}&action=deny`
+
+    // Send notification to Jeff with approve/deny links
     await resend.emails.send({
       from: 'Arrival <noreply@transformlearning.ai>',
       to: 'jeff@yourclassroom.ai',
@@ -30,8 +35,17 @@ export async function POST(request) {
         `Context:`,
         context || 'None provided',
         '',
-        '---',
-        'Reply directly to this email to respond to the requester.',
+        '═══════════════════════════════════════',
+        '',
+        'APPROVE — Click this link to send them access:',
+        approveUrl,
+        '',
+        'DENY — Click this link to send a polite decline:',
+        denyUrl,
+        '',
+        '═══════════════════════════════════════',
+        '',
+        'Or reply directly to this email to respond personally.',
       ].join('\n'),
     })
 
@@ -45,7 +59,7 @@ export async function POST(request) {
         '',
         'Thank you for your interest in Arrival. We received your access request and will review it shortly.',
         '',
-        'You requested access to restricted materials on transformlearning.ai. A member of our team will follow up within 1-2 business days with access credentials or next steps.',
+        'You requested access to restricted materials on transformlearning.ai. A member of our team will follow up within 1-2 business days.',
         '',
         'In the meantime, you can explore the public demo at transformlearning.ai/demo.',
         '',
