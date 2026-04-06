@@ -10,6 +10,7 @@ export const POSTS = [
     title: 'The People Who See the Problem Can Build the Solution',
     date: '2026-04-06',
     author: 'Jeff Ritter',
+    image: '/blog-wall-is-down.svg',
     summary: 'I built an AI-powered proficiency platform without writing a single line of code the traditional way. What that means for every educator who has ever thought, "If only someone would build this."',
     body: `I am not a software engineer. I want to be clear about that. I taught at a small college in Pittsburgh for 30 years. I chaired a division. I watched students fall through the cracks of a system that measures attendance and grades but not understanding. And for most of those 30 years, when I saw a problem, my only option was to write a memo, form a committee, or hope that someone with technical skills would eventually care about the same things I cared about.
 

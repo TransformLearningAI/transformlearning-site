@@ -57,6 +57,12 @@ export default function BlogPost({ params }) {
           </p>
         </div>
 
+        {post.image && (
+          <div className="mb-10">
+            <img src={post.image} alt={post.title} className="w-full rounded-2xl border border-brand-border" />
+          </div>
+        )}
+
         <div className="border-t border-brand-border pt-8">
           {post.body.split('\n\n').map((paragraph, i) => (
             <p key={i} className="text-base text-navy/80 leading-relaxed mb-6" style={{ fontFamily: 'Georgia, serif' }}>
