@@ -6,6 +6,68 @@
 
 export const POSTS = [
   {
+    slug: 'the-people-who-see-the-problem-can-build-the-solution',
+    title: 'The People Who See the Problem Can Build the Solution',
+    date: '2026-04-06',
+    author: 'Jeff Ritter',
+    summary: 'I built an AI-powered proficiency platform without writing a single line of code the traditional way. What that means for every educator who has ever thought, "If only someone would build this."',
+    body: `I am not a software engineer. I want to be clear about that. I taught at a small college in Pittsburgh for 30 years. I chaired a division. I watched students fall through the cracks of a system that measures attendance and grades but not understanding. And for most of those 30 years, when I saw a problem, my only option was to write a memo, form a committee, or hope that someone with technical skills would eventually care about the same things I cared about.
+
+They usually did not.
+
+So the problems persisted. The DFW rates stayed high. The early warning systems stayed primitive. The gap between what a grade says and what a student actually knows stayed invisible. Not because nobody saw the problem. Plenty of people saw it. But the people who saw it could not build the solution, and the people who could build solutions were not in the room when the student with the 58 on the midterm came to office hours and said, "I do not even know what I do not know."
+
+That is the sentence that started all of this. A student saying she did not know what she did not know. And me realizing that honestly, neither did I. The gradebook told me she was failing. It told me nothing about why.
+
+I knew what needed to exist. A system that maps every skill in a course, tracks each student's understanding of each skill over time, calculates confidence in its own assessments, detects when understanding is eroding before it shows up in a grade, and gives the teacher a clear picture instead of a number. I could describe it in detail. I could whiteboard it. I could explain it to anyone who would listen.
+
+What I could not do was build it. Because building software required software engineers, and software engineers required money, and money required investors, and investors required a prototype, and a prototype required software engineers. It was a closed loop with no entry point for someone whose credentials were three decades of teaching and a very clear understanding of the problem.
+
+Then Claude Code happened.
+
+I am going to describe what Claude Code is without the marketing language: it is a tool that lets you describe what you want to build, in plain English, and then builds it. Not a mockup. Not a wireframe. Working code. Production code. Code that runs algorithms, connects to databases, deploys to servers, and serves real users.
+
+I described the proficiency scoring engine I wanted. Not in Python or JavaScript. In English. I said: I need a system that weights evidence from multiple sources — quizzes, uploaded work, coaching conversations — with recent evidence weighted more heavily than old evidence. I need it to calculate confidence intervals so the system knows how sure it is. I need it to detect anomalies so a student cannot game the score with one lucky quiz. I need it to track trajectory so a teacher can see whether understanding is growing or decaying.
+
+And then it was built. Not by a team of engineers over six months. In a conversation. In an afternoon.
+
+The governance pipeline — the ethical guardrails that check every AI decision for fairness, confidence, and explainability before it touches a student's record — I described that in English too. I said: the system should never act on a score it is not confident about. It should defer to human judgment when constraints are not met. It should check whether the scoring is equitable across student groups. It should flag anomalies for review instead of silently accepting them.
+
+That became code. Working, deployed code that runs on every assessment submission right now.
+
+I want to be honest about what this felt like. It felt like cheating. It felt like someone removed a wall that I had assumed was permanent. My entire career, the wall between "I know what needs to exist" and "it exists" was made of technical skill I did not have. And suddenly the wall was not there.
+
+This is not just my story. This is the story that is about to happen across education.
+
+Think about the assistant principal in a Title I school who knows exactly which reading intervention her third graders need but cannot get the district to buy the right software because it does not exist yet. She could describe it. She could build it now.
+
+Think about the community college dean who has been asking IT for three years to build a dashboard that shows which students are at risk of dropping out, not based on attendance but based on engagement patterns. He knows what the dashboard should show. He could build it now.
+
+Think about the department chair who watches faculty struggle with the same assessment problems semester after semester and thinks, "There has to be a better way to do this." There is. And she does not need to hire a developer to find it.
+
+The pilot studies we are running this semester are built on this premise. Not that AI replaces educators. That AI removes the barrier between an educator's experience and a working solution. The faculty in our pilots are not learning to code. They are not becoming technical. They are doing what they have always done — seeing the problem, understanding the student, imagining the intervention — and now the technology catches up to their imagination instead of the other way around.
+
+The algorithms inside Arrival are sophisticated. Exponential recency decay. Bayesian confidence intervals. Multi-source evidence weighting with anomaly detection. Equalized odds fairness monitoring. Five-layer governance pipelines. These are not simple systems.
+
+But I did not need to understand the math to build them. I needed to understand the pedagogy. I needed to know that a quiz taken yesterday should count more than a quiz taken six weeks ago. I needed to know that a single perfect score after a string of failures is suspicious, not celebratory. I needed to know that fairness is not optional and confidence is not binary.
+
+Thirty years of teaching gave me that knowledge. Claude Code gave me the ability to turn it into software.
+
+This is the part where I am supposed to say something measured about the future. Something about potential and caution and responsible adoption. But I am not going to do that.
+
+What I am going to say is this: the era when educators had to wait for technologists to solve education problems is over. The people who see the problem most clearly — the people in the classroom, in the advising office, in the principal's office, in the faculty meeting where everyone is frustrated but nobody knows what to do — those people can now build the thing that needs to exist.
+
+Not someday. Not after the grant comes through. Not after IT approves the vendor. Now.
+
+The technology stack that powers Arrival was built by a 60-year-old former professor using a conversational AI tool, a laptop, and 30 years of knowing exactly what was broken. No engineering team. No venture-funded runway. No computer science degree.
+
+If I can build a governed AI proficiency platform with adaptive scoring, trajectory analysis, and ethical guardrails, then the assistant principal can build her reading intervention tracker. The dean can build his early warning dashboard. The department chair can build her assessment tool.
+
+The constraint was never imagination. Educators have always had that. The constraint was never experience. Educators have more of that than anyone. The constraint was the wall between knowing and building.
+
+The wall is down.`
+  },
+  {
     slug: 'energy-karma-and-groups-of-people',
     title: 'Energy, Karma and Groups of People',
     date: '2026-03-30',
