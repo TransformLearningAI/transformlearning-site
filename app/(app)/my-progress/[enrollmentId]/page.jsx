@@ -168,58 +168,98 @@ export default function StudentDashboard() {
                 </div>
 
                 <div className="grid gap-6 xl:grid-cols-[1.35fr_0.9fr]">
-                  {/* ── GALAXY LAYOUT — bigger stars, draggable ── */}
-                  {layout === 'galaxy' && (
-                    <div className="relative h-[44rem] overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/70"
-                      onMouseMove={e => {
-                        if (!draggedStar) return
-                        const rect = e.currentTarget.getBoundingClientRect()
-                        const x = ((e.clientX - rect.left) / rect.width) * 100
-                        const y = ((e.clientY - rect.top) / rect.height) * 100
-                        setCustomPositions(p => ({ ...p, [draggedStar]: { top: `${Math.max(2, Math.min(92, y))}%`, left: `${Math.max(2, Math.min(92, x))}%` } }))
-                      }}
-                      onMouseUp={() => setDraggedStar(null)}
-                      onMouseLeave={() => setDraggedStar(null)}>
-                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.15),transparent_22%),radial-gradient(circle_at_30%_30%,rgba(168,85,247,0.18),transparent_24%)]" />
-                      {/* Center hub */}
-                      <div className="absolute left-1/2 top-1/2 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 text-center">
-                        <div>
-                          <div className="text-2xl font-black text-cyan-200">{derived.overall}%</div>
-                          <div className="text-[10px] text-cyan-300/60">{derived.mastered} mastered</div>
+                  {/* ── GALAXY LAYOUT — grouped skill map with progress rings ── */}
+                  {layout === 'galaxy' && (() => {
+                    const foundational = [...derived.nodes].filter(n => n.skill_type !== 'implicit').sort((a, b) => b.score - a.score)
+                    const transferable = [...derived.nodes].filter(n => n.skill_type === 'implicit').sort((a, b) => b.score - a.score)
+                    const circ = 2 * Math.PI * 15
+                    return (
+                      <div className="relative rounded-[2rem] border border-white/10 bg-slate-950/70 p-5 max-h-[44rem] overflow-y-auto">
+                        <div className="absolute inset-0 rounded-[2rem] bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.08),transparent_40%)] pointer-events-none" />
+
+                        {/* Overall hub */}
+                        <div className="relative flex items-center gap-4 mb-6 p-4 rounded-2xl border border-cyan-400/20 bg-cyan-400/5">
+                          <div className="relative w-14 h-14 flex-shrink-0">
+                            <svg viewBox="0 0 36 36" className="w-14 h-14 -rotate-90">
+                              <circle cx="18" cy="18" r="15" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="3" />
+                              <circle cx="18" cy="18" r="15" fill="none" stroke="url(#hubGrad)" strokeWidth="3" strokeLinecap="round"
+                                strokeDasharray={`${(derived.overall / 100) * circ} ${circ}`} />
+                              <defs><linearGradient id="hubGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#22D3EE" /><stop offset="100%" stopColor="#3B82F6" /></linearGradient></defs>
+                            </svg>
+                            <span className="absolute inset-0 flex items-center justify-center text-sm font-bold text-cyan-200">{derived.overall}%</span>
+                          </div>
+                          <div>
+                            <div className="text-sm font-semibold text-white">{derived.mastered} of {derived.nodes.length} mastered</div>
+                            <div className="text-xs text-slate-400">Overall proficiency</div>
+                          </div>
                         </div>
-                      </div>
-                      {/* Stars */}
-                      {derived.nodes.map((node, i) => {
-                        const active = selectedSkill === node.id
-                        const grad = gradients[i % gradients.length]
-                        const isImplicit = node.skill_type === 'implicit'
-                        const pos = customPositions[node.id] || starPositions[i]
-                        const isDragging = draggedStar === node.id
-                        return (
-                          <div key={node.id}
-                            className={`absolute select-none transition-shadow ${isDragging ? 'z-20 cursor-grabbing' : 'cursor-grab z-10'}`}
-                            style={{ top: pos?.top, left: pos?.left, transform: 'translate(-50%, -50%)' }}
-                            onMouseDown={e => { e.preventDefault(); setDraggedStar(node.id) }}
-                            onClick={() => { if (!isDragging) setSelectedSkill(node.id) }}>
-                            {/* Glow ring */}
-                            {node.score > 0 && (
-                              <div className="absolute inset-0 rounded-full animate-pulse"
-                                style={{ boxShadow: `0 0 ${node.score >= 80 ? 20 : 12}px ${node.score >= 80 ? 'rgba(74,222,128,0.4)' : node.score >= 40 ? 'rgba(0,206,209,0.3)' : 'rgba(167,139,250,0.2)'}`, margin: '-8px', borderRadius: '50%' }} />
-                            )}
-                            <div className={`rounded-full bg-gradient-to-r ${grad} shadow-lg border-2 ${active ? 'border-cyan-300 scale-110' : 'border-transparent'} transition-all ${node.score === 0 ? 'opacity-35' : ''}`}
-                              style={{ padding: '12px 18px', minWidth: node.score > 0 ? '110px' : '80px' }}>
-                              <div className="text-sm font-bold text-white truncate max-w-[130px]" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>
-                                {isImplicit ? '◇ ' : ''}{node.name}
-                              </div>
-                              <div className="text-xs text-white/90 font-semibold mt-0.5">{node.score > 0 ? `${node.score}%` : 'uncharted'}</div>
+
+                        {/* Foundational Skills */}
+                        {foundational.length > 0 && (
+                          <div className="relative mb-5">
+                            <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-cyan-300/50 mb-3">Foundational Skills</div>
+                            <div className="grid grid-cols-2 gap-2">
+                              {foundational.map(node => {
+                                const active = selectedSkill === node.id
+                                const pct = (node.score / 100) * circ
+                                return (
+                                  <button key={node.id} onClick={() => setSelectedSkill(node.id)}
+                                    className={`flex items-center gap-3 rounded-2xl p-3 text-left transition-all ${active ? 'ring-1 ring-cyan-400 bg-white/5' : 'hover:bg-white/5'}`}>
+                                    <div className="relative w-10 h-10 flex-shrink-0">
+                                      <svg viewBox="0 0 36 36" className="w-10 h-10 -rotate-90">
+                                        <circle cx="18" cy="18" r="15" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="2.5" />
+                                        <circle cx="18" cy="18" r="15" fill="none" className="stroke-current"
+                                          style={{ color: node.score >= 80 ? '#4ADE80' : node.score >= 40 ? '#22D3EE' : node.score > 0 ? '#A78BFA' : 'rgba(255,255,255,0.1)' }}
+                                          strokeWidth="2.5" strokeLinecap="round"
+                                          strokeDasharray={`${pct} ${circ}`} />
+                                      </svg>
+                                      <span className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-white/80">{node.score}</span>
+                                    </div>
+                                    <div className="min-w-0 flex-1">
+                                      <div className="text-sm font-medium text-white truncate">{node.name}</div>
+                                      <div className="text-[10px] text-slate-500">{node.score >= 80 ? 'mastered' : node.score >= 40 ? 'developing' : node.score > 0 ? 'emerging' : 'uncharted'}</div>
+                                    </div>
+                                  </button>
+                                )
+                              })}
                             </div>
                           </div>
-                        )
-                      })}
-                      {/* Drag hint */}
-                      <div className="absolute bottom-3 right-4 text-[10px] text-white/15">drag to rearrange</div>
-                    </div>
-                  )}
+                        )}
+
+                        {/* Transferable Skills */}
+                        {transferable.length > 0 && (
+                          <div className="relative">
+                            <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-violet-300/50 mb-3">Transferable Skills</div>
+                            <div className="grid grid-cols-2 gap-2">
+                              {transferable.map(node => {
+                                const active = selectedSkill === node.id
+                                const pct = (node.score / 100) * circ
+                                return (
+                                  <button key={node.id} onClick={() => setSelectedSkill(node.id)}
+                                    className={`flex items-center gap-3 rounded-2xl p-3 text-left transition-all ${active ? 'ring-1 ring-violet-400 bg-white/5' : 'hover:bg-white/5'}`}>
+                                    <div className="relative w-10 h-10 flex-shrink-0">
+                                      <svg viewBox="0 0 36 36" className="w-10 h-10 -rotate-90">
+                                        <circle cx="18" cy="18" r="15" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="2.5" />
+                                        <circle cx="18" cy="18" r="15" fill="none" className="stroke-current"
+                                          style={{ color: node.score >= 80 ? '#4ADE80' : node.score >= 40 ? '#C084FC' : node.score > 0 ? '#A78BFA' : 'rgba(255,255,255,0.1)' }}
+                                          strokeWidth="2.5" strokeLinecap="round"
+                                          strokeDasharray={`${pct} ${circ}`} />
+                                      </svg>
+                                      <span className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-white/80">{node.score}</span>
+                                    </div>
+                                    <div className="min-w-0 flex-1">
+                                      <div className="text-sm font-medium text-white truncate">◇ {node.name}</div>
+                                      <div className="text-[10px] text-slate-500">{node.score >= 80 ? 'mastered' : node.score >= 40 ? 'developing' : node.score > 0 ? 'emerging' : 'uncharted'}</div>
+                                    </div>
+                                  </button>
+                                )
+                              })}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )
+                  })()}
 
                   {/* ── LIST LAYOUT ── */}
                   {layout === 'list' && (
