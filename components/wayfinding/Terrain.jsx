@@ -87,7 +87,7 @@ function TerrainNode({ node, index, isSelected, onSelect, svgWidth, svgHeight })
       {isImplicit && (
         <text x={cx} y={cy + baseRadius + 28} textAnchor="middle"
           fill="#5A3E6B" fontSize="9" fontWeight="600" opacity={0.6}>
-          transferable
+          core
         </text>
       )}
     </g>
@@ -135,7 +135,7 @@ export default function Terrain({ terrainNodes = [], selectedSkillId, onSelectNo
         </div>
         <div className="flex items-center gap-1.5">
           <div className="w-3 h-3 rotate-45 rounded-sm" style={{ background: '#5A3E6B', opacity: 0.6 }} />
-          <span className="text-[10px] text-gray-500 font-medium">Transferable</span>
+          <span className="text-[10px] text-gray-500 font-medium">Core</span>
         </div>
       </div>
 

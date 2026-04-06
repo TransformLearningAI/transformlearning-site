@@ -57,7 +57,7 @@ export default function Journey({ events = [] }) {
                       <div className="flex items-center gap-2 mb-0.5">
                         <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: config.color }}>{config.label}</span>
                         {event.skillType === 'implicit' && (
-                          <span className="text-[9px] px-1.5 py-0.5 rounded" style={{ background: 'rgba(90,62,107,0.08)', color: '#5A3E6B' }}>transferable</span>
+                          <span className="text-[9px] px-1.5 py-0.5 rounded" style={{ background: 'rgba(90,62,107,0.08)', color: '#5A3E6B' }}>core</span>
                         )}
                       </div>
                       <p className="text-sm text-gray-700">

@@ -13,8 +13,8 @@ function StudentDashboard() {
     { name: 'Limits & Continuity',       prog: 82, status: 'Strong',      color: '#4F8A5B', tag: 'Foundational' },
     { name: 'Derivatives',               prog: 58, status: 'Progressing', color: '#00A8A8', tag: 'Foundational' },
     { name: 'Integration Techniques',    prog: 34, status: 'Needs focus', color: '#FF6B4A', tag: 'Foundational' },
-    { name: 'Problem Decomposition',     prog: 47, status: 'Needs focus', color: '#FF6B4A', tag: 'Transferable' },
-    { name: 'Mathematical Reasoning',    prog: 71, status: 'On track',    color: '#4F8A5B', tag: 'Transferable' },
+    { name: 'Problem Decomposition',     prog: 47, status: 'Needs focus', color: '#FF6B4A', tag: 'Core' },
+    { name: 'Mathematical Reasoning',    prog: 71, status: 'On track',    color: '#4F8A5B', tag: 'Core' },
   ]
 
   const weekData = [28, 38, 35, 50, 47, 60, 55, 65, 62, 70, 68, 74]
@@ -61,7 +61,7 @@ function StudentDashboard() {
           <div className="text-[10px] text-white/35 uppercase tracking-[0.1em]">Skill Progression</div>
           <div className="flex gap-2">
             <span className="text-[9px] px-1.5 py-0.5 rounded" style={{ background: 'rgba(0,168,168,0.15)', color: '#00A8A8' }}>Foundational</span>
-            <span className="text-[9px] px-1.5 py-0.5 rounded" style={{ background: 'rgba(79,138,91,0.15)', color: '#4F8A5B' }}>Transferable</span>
+            <span className="text-[9px] px-1.5 py-0.5 rounded" style={{ background: 'rgba(79,138,91,0.15)', color: '#4F8A5B' }}>Core</span>
           </div>
         </div>
         {skills.map((s, i) => (
@@ -122,7 +122,7 @@ function StudentDashboard() {
 
 const STATS = [
   { label: 'Faculty Setup',       value: 'Submit a syllabus' },
-  { label: 'Skills Mapped',       value: 'Foundational + Transferable' },
+  { label: 'Skills Mapped',       value: 'Foundational + Core' },
   { label: 'Gap Remediation',     value: 'Coaching, quizzes & practice' },
   { label: 'Proficiency Check',   value: 'Upload work or take assessment' },
 ]

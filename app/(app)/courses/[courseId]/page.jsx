@@ -194,7 +194,7 @@ export default async function CourseDetailPage({ params }) {
             <h2 className="text-lg font-bold text-white">Skill Proficiency Range</h2>
             <div className="flex items-center gap-4 text-[10px] text-white/20">
               <span>{foundationalSkills.length} foundational</span>
-              <span>{transferableSkills.length} transferable</span>
+              <span>{transferableSkills.length} core</span>
             </div>
           </div>
           <div className="divide-y divide-white/5">
@@ -208,7 +208,7 @@ export default async function CourseDetailPage({ params }) {
                       <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded"
                         style={{ background: skill.skill_type === 'implicit' ? 'rgba(167,139,250,0.12)' : 'rgba(0,206,209,0.12)',
                                  color: skill.skill_type === 'implicit' ? '#C4B5FD' : '#67E8F9' }}>
-                        {skill.skill_type === 'implicit' ? 'transferable' : 'foundational'}
+                        {skill.skill_type === 'implicit' ? 'core' : 'foundational'}
                       </span>
                     </div>
                     <div className="mt-2 relative h-2 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.05)' }}>
@@ -311,7 +311,7 @@ export default async function CourseDetailPage({ params }) {
               )}
               <p>📊 Students average <span className="text-cyan-300 font-bold">{totalStudents > 0 ? Math.round(totalEngagements / totalStudents) : 0} engagement units</span> each ({Math.round(totalQuizzes / Math.max(1, totalStudents))} quizzes, {Math.round(totalAssessments / Math.max(1, totalStudents))} assessments).</p>
               {transferableSkills.length > 0 && (
-                <p>◇ <span className="text-purple-300 font-bold">{transferableSkills.length} transferable skills</span> mapped — critical thinking, communication, and collaboration measured alongside domain knowledge.</p>
+                <p>◇ <span className="text-purple-300 font-bold">{transferableSkills.length} core skills</span> mapped — critical thinking, communication, and collaboration measured alongside domain knowledge.</p>
               )}
               {totalMastered > 0 && (
                 <p>🏆 <span className="text-emerald-400 font-bold">{totalMastered} skill mastery events</span> across the cohort. {topPerformers[0]?.profiles?.full_name} leads with {topPerformers[0]?.mastered} skills mastered.</p>
@@ -341,7 +341,7 @@ export default async function CourseDetailPage({ params }) {
               className="block rounded-2xl p-5 transition hover:bg-white/[0.04]"
               style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
               <h3 className="text-sm font-bold text-white">Edit Skill Framework →</h3>
-              <p className="text-[10px] text-white/20 mt-1">{foundationalSkills.length} foundational + {transferableSkills.length} transferable skills</p>
+              <p className="text-[10px] text-white/20 mt-1">{foundationalSkills.length} foundational + {transferableSkills.length} core skills</p>
             </Link>
 
             <div className="rounded-2xl p-5" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.04)' }}>

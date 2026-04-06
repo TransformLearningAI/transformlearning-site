@@ -24,7 +24,7 @@ export default function EvidenceWall({ node, enrollmentId, onClose }) {
           <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full"
                 style={{ background: isImplicit ? 'rgba(90,62,107,0.08)' : 'rgba(0,168,168,0.08)',
                          color: isImplicit ? '#5A3E6B' : '#00A8A8' }}>
-            {isImplicit ? 'transferable skill' : 'foundational skill'}
+            {isImplicit ? 'core skill' : 'foundational skill'}
           </span>
         </div>
 

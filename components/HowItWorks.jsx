@@ -10,7 +10,7 @@ const STEPS = [
   {
     num: '2', phase: 'Activate', color: '#00A8A8',
     title: 'Students see their gaps — and close them.',
-    body: 'Each student gets a personalized progress dashboard revealing their true proficiency on every foundational skill and transferable capability in the course. Where a gap exists, the system acts: coaching sessions, adaptive quizzes, study guides, and practice — targeted to that exact skill. Students can upload their own work or take an assessment to establish their real starting point. Faculty require regular check-ins. The engagement loop does the rest.',
+    body: 'Each student gets a personalized progress dashboard revealing their true proficiency on every foundational skill and core capability in the course. Where a gap exists, the system acts: coaching sessions, adaptive quizzes, study guides, and practice — targeted to that exact skill. Students can upload their own work or take an assessment to establish their real starting point. Faculty require regular check-ins. The engagement loop does the rest.',
     detail: 'Diagnose → coach → close the gap',
   },
   {

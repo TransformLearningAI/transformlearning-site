@@ -263,7 +263,7 @@ export default function DemoPage() {
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full"
                     style={{ background: s.skill_type === 'implicit' ? 'rgba(167,139,250,0.15)' : 'rgba(34,211,238,0.15)', color: s.skill_type === 'implicit' ? '#C4B5FD' : '#67E8F9' }}>
-                    {s.skill_type === 'implicit' ? 'transferable' : 'foundational'}
+                    {s.skill_type === 'implicit' ? 'core' : 'foundational'}
                   </span>
                   {s.trajectory && <span className="text-xs">{trendEmoji(s.trajectory.trend)}</span>}
                 </div>
@@ -326,7 +326,7 @@ function SkillDetail({ skill }) {
       <h3 className="text-xl font-semibold">{skill.name}</h3>
       <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full mt-1 inline-block"
         style={{ background: skill.skill_type === 'implicit' ? 'rgba(167,139,250,0.15)' : 'rgba(34,211,238,0.15)', color: skill.skill_type === 'implicit' ? '#C4B5FD' : '#67E8F9' }}>
-        {skill.skill_type === 'implicit' ? 'transferable' : 'foundational'}
+        {skill.skill_type === 'implicit' ? 'core' : 'foundational'}
       </span>
 
       <div className="mt-4 h-3 rounded-full bg-white/10 overflow-hidden">

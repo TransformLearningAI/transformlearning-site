@@ -25,7 +25,7 @@ export default function PainMap({ painPoints = [], enrollmentId }) {
               <div className="flex items-center justify-between mb-3">
                 <div>
                   <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: borderColor }}>
-                    {isImplicit ? 'transferable' : 'foundational'}
+                    {isImplicit ? 'core' : 'foundational'}
                   </span>
                   <h3 className="font-bold text-navy text-sm leading-tight">{skill.name}</h3>
                 </div>

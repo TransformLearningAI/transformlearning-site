@@ -66,7 +66,7 @@ export async function POST(request) {
     course_id: courseId,
     name: s.name,
     description: s.description,
-    category: s.category || 'Transferable',
+    category: s.category || 'Core',
     skill_type: 'implicit',
     sort_order: i,
     is_approved: false,
