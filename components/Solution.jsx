@@ -25,7 +25,7 @@ const PILLARS = [
 
 export default function Solution() {
   return (
-    <section className="bg-white py-24 lg:py-32 relative overflow-hidden">
+    <section className="bg-white py-32 lg:py-40 relative overflow-hidden">
 
       {/* Background decorative text */}
       <div className="absolute -left-8 bottom-0 font-serif font-light select-none pointer-events-none"
@@ -52,28 +52,30 @@ export default function Solution() {
           </ScrollReveal>
         </div>
 
-        {/* Pillars */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Pillars — alternating editorial layout */}
+        <div className="space-y-24">
           {PILLARS.map((p, i) => (
-            <ScrollReveal key={p.num} delay={i + 1}>
-              <div className="card-lift gradient-border h-full relative"
-                   style={{ boxShadow: '0 8px 40px rgba(12,31,63,0.07)' }}>
-                <div className="p-8 h-full flex flex-col">
-                  <div className="flex items-start justify-between mb-6">
+            <ScrollReveal key={p.num} delay={1}>
+              <div className={`grid lg:grid-cols-[1fr_1fr] gap-16 items-center ${i % 2 === 1 ? 'lg:direction-rtl' : ''}`}
+                   style={{ direction: i % 2 === 1 ? 'rtl' : 'ltr' }}>
+                <div style={{ direction: 'ltr' }}>
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-10 h-0.5 rounded-full" style={{ background: p.color }} />
                     <div className="text-[10px] font-bold uppercase tracking-[0.14em]" style={{ color: p.color }}>
                       {p.label}
                     </div>
-                    <div className="font-serif font-light text-5xl leading-none select-none"
-                         style={{ color: p.color, opacity: 0.15 }}>
-                      {p.num}
-                    </div>
                   </div>
-                  <h3 className="font-serif font-light text-navy mb-4 flex-1"
-                      style={{ fontSize: '24px', lineHeight: 1.2, letterSpacing: '-0.01em', whiteSpace: 'pre-line' }}>
+                  <h3 className="font-serif font-light text-navy mb-6"
+                      style={{ fontSize: 'clamp(28px, 3.5vw, 42px)', lineHeight: 1.15, letterSpacing: '-0.02em', whiteSpace: 'pre-line' }}>
                     {p.title}
                   </h3>
-                  <p className="text-sm leading-relaxed text-brand-gray mb-6">{p.body}</p>
-                  <div className="h-0.5 rounded-full w-12" style={{ background: `linear-gradient(90deg, ${p.color}, transparent)` }} />
+                  <p className="text-base leading-relaxed text-brand-gray">{p.body}</p>
+                </div>
+                <div className="flex items-center justify-center" style={{ direction: 'ltr' }}>
+                  <div className="font-serif font-light select-none"
+                       style={{ fontSize: 'clamp(120px, 15vw, 200px)', lineHeight: 1, color: p.color, opacity: 0.06, letterSpacing: '-0.04em' }}>
+                    {p.num}
+                  </div>
                 </div>
               </div>
             </ScrollReveal>

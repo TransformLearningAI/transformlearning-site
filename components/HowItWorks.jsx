@@ -23,7 +23,7 @@ const STEPS = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-24 lg:py-32 relative overflow-hidden"
+    <section id="how-it-works" className="py-32 lg:py-40 relative overflow-hidden"
              style={{ background: 'linear-gradient(180deg, #F9FBFD 0%, #F4F7FB 100%)' }}>
 
       <div className="absolute right-0 top-1/2 -translate-y-1/2 font-serif font-light select-none pointer-events-none"

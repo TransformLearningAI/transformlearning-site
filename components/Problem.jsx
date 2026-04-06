@@ -9,7 +9,7 @@ const PROBLEMS = [
 
 export default function Problem() {
   return (
-    <section id="for-faculty" className="py-24 lg:py-32 relative overflow-hidden" style={{ background: '#F4F7FB' }}>
+    <section id="for-faculty" className="py-32 lg:py-40 relative overflow-hidden" style={{ background: '#F4F7FB' }}>
 
       <div className="absolute -right-10 top-1/2 -translate-y-1/2 font-serif font-light select-none pointer-events-none"
            style={{ fontSize: '320px', lineHeight: 1, color: 'rgba(12,31,63,0.04)', letterSpacing: '-0.05em' }}>

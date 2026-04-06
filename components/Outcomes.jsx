@@ -20,7 +20,7 @@ const OUTCOMES = [
 
 export default function Outcomes() {
   return (
-    <section className="py-24 lg:py-32 relative overflow-hidden" style={{ background: '#0C1F3F' }}>
+    <section className="py-32 lg:py-40 relative overflow-hidden" style={{ background: '#0C1F3F' }}>
 
       {/* Glow */}
       <div className="absolute inset-0 pointer-events-none"

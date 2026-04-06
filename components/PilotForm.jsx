@@ -46,7 +46,7 @@ export default function PilotForm() {
 
       {/* Background accent */}
       <div className="absolute inset-0 pointer-events-none"
-           style={{ background: 'radial-gradient(circle at 75% 50%, rgba(47,125,246,0.1) 0%, transparent 55%)' }} />
+           style={{ background: 'radial-gradient(circle at 75% 50%, rgba(0,168,168,0.08) 0%, transparent 55%)' }} />
 
       <div className="relative max-w-6xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-14 items-start">

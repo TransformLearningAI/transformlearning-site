@@ -27,7 +27,7 @@ const TEAM = [
 
 export default function About() {
   return (
-    <section id="about" className="py-24 lg:py-32 bg-white relative overflow-hidden">
+    <section id="about" className="py-32 lg:py-40 bg-white relative overflow-hidden">
 
       <div className="absolute right-0 top-0 font-serif font-light select-none pointer-events-none"
            style={{ fontSize: '280px', lineHeight: 1, color: 'rgba(12,31,63,0.03)', letterSpacing: '-0.05em' }}>

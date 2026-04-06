@@ -1,21 +1,21 @@
 const PHASES = [
   {
     phase: 'Phase 1',
-    color: '#2F7DF6',
+    color: '#0C1F3F',
     title: 'Faculty Engagement',
     body: 'We start with a conversation about your course, not a product demo. Pilots begin with faculty who have a real instructional problem and a course where evidence will be visible.',
     detail: 'Diagnostic conversation → confirm fit → define baseline conditions',
   },
   {
     phase: 'Phase 2',
-    color: '#003769',
+    color: '#00A8A8',
     title: 'Structured Deployment',
     body: 'One course. Three to five sections. 100–300 students. Six to eight weeks. Framed explicitly as a research-informed instructional collaboration, not a software trial.',
     detail: 'Dashboard access → faculty onboarding in under 30 min (optional LMS integration available)',
   },
   {
     phase: 'Phase 3',
-    color: '#186900',
+    color: '#4F8A5B',
     title: 'Evidence Capture',
     body: 'Assignment completion behavior, intervention timing, grade trajectory shifts, and faculty usability — all measured against a documented baseline.',
     detail: 'Baseline comparison → outcome documentation → case study development',

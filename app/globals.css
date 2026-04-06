@@ -20,6 +20,14 @@ body {
   .body-text {
     @apply text-base leading-relaxed text-brand-gray;
   }
+  .section-headline {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    color: #0C1F3F;
+    font-size: clamp(32px, 4.5vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
 }
 
 /* Scroll reveal */
