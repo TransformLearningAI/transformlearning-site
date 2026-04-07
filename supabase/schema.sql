@@ -151,6 +151,23 @@ CREATE TABLE IF NOT EXISTS public.study_guides (
   generated_at     timestamptz DEFAULT now()
 );
 
+-- PAGE VIEWS (geo analytics from Edge middleware)
+CREATE TABLE IF NOT EXISTS public.page_views (
+  id          uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  path        text NOT NULL,
+  country     text,
+  region      text,
+  city        text,
+  latitude    text,
+  longitude   text,
+  user_agent  text,
+  referer     text,
+  created_at  timestamptz DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_page_views_created ON public.page_views (created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_page_views_city ON public.page_views (city, region, country);
+
 -- ─────────────────────────────────────────
 -- TRIGGER: auto-create profile on signup
 -- ─────────────────────────────────────────

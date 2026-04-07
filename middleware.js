@@ -35,6 +35,38 @@ export async function middleware(request) {
     return NextResponse.redirect(url)
   }
 
+  // ── Geo analytics: log page views with city/region/country ──
+  // Skip API routes, static assets, and Next.js internals
+  if (!pathname.startsWith('/api/') && !pathname.startsWith('/_next')) {
+    const geo = request.geo || {}
+    const row = {
+      path: pathname,
+      country: geo.country || null,
+      region: geo.region || null,
+      city: geo.city || null,
+      latitude: geo.latitude || null,
+      longitude: geo.longitude || null,
+      user_agent: request.headers.get('user-agent') || null,
+      referer: request.headers.get('referer') || null,
+    }
+
+    // Fire-and-forget — don't block the response
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+    if (supabaseUrl && serviceKey) {
+      fetch(`${supabaseUrl}/rest/v1/page_views`, {
+        method: 'POST',
+        headers: {
+          'apikey': serviceKey,
+          'Authorization': `Bearer ${serviceKey}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal',
+        },
+        body: JSON.stringify(row),
+      }).catch(() => {})
+    }
+  }
+
   return supabaseResponse
 }
 
