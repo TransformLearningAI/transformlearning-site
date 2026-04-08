@@ -1,9 +1,9 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 
-export default function WhitepaperDownload() {
+function DownloadInner() {
   const searchParams = useSearchParams()
   const token = searchParams.get('token')
   const [status, setStatus] = useState('checking') // checking | approved | invalid
@@ -82,5 +82,17 @@ export default function WhitepaperDownload() {
         )}
       </div>
     </div>
+  )
+}
+
+export default function WhitepaperDownload() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center" style={{ background: '#F4F7FB' }}>
+        <div className="w-8 h-8 border-2 border-[#00A8A8] border-t-transparent rounded-full animate-spin" />
+      </div>
+    }>
+      <DownloadInner />
+    </Suspense>
   )
 }
