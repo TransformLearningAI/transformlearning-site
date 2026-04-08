@@ -2,110 +2,147 @@
 
 import Link from 'next/link';
 
-const roles = [
+const shifts = [
   {
-    title: 'Student',
-    href: '/campus-os/demo/student',
-    description: 'Track your skills, close gaps, see your path forward',
+    title: 'The Signal Hub',
+    href: '/campus-os/demo/signal-hub',
+    description:
+      "See how one student's learning signals radiate to everyone who needs to act — simultaneously, without hierarchy.",
     color: '#00A8A8',
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
-        <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-        <path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5" />
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
+        <circle cx="12" cy="12" r="2" />
+        <circle cx="12" cy="12" r="6" opacity="0.6" />
+        <circle cx="12" cy="12" r="10" opacity="0.3" />
       </svg>
     ),
   },
   {
-    title: 'Professor',
-    href: '/campus-os/demo/professor',
-    description: 'Monitor cohort progress, identify at-risk students, intervene early',
+    title: 'Student Control Panel',
+    href: '/campus-os/demo/student-control',
+    description:
+      'The student as operator. Full visibility. Full agency. Every resource, every peer, every path — at their fingertips.',
     color: '#0C1F3F',
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
-        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-        <path d="M9 7h6M9 11h4" />
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="12" cy="12" r="2" fill="currentColor" />
+        <line x1="12" y1="3" x2="12" y2="5" />
+        <line x1="12" y1="19" x2="12" y2="21" />
+        <line x1="3" y1="12" x2="5" y2="12" />
+        <line x1="19" y1="12" x2="21" y2="12" />
+        <line x1="5.6" y1="5.6" x2="7" y2="7" />
+        <line x1="17" y1="17" x2="18.4" y2="18.4" />
       </svg>
     ),
   },
   {
-    title: 'Department Chair',
-    href: '/campus-os/demo/chair',
-    description: 'Compare sections, track DFW rates, coordinate faculty',
+    title: 'Outcome Networks',
+    href: '/campus-os/demo/outcome-networks',
+    description:
+      'Learning outcomes that cross departmental lines. One network per outcome, not one silo per department.',
     color: '#4F8A5B',
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
-        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
+        <circle cx="5" cy="6" r="2.5" />
+        <circle cx="19" cy="6" r="2.5" />
+        <circle cx="12" cy="18" r="2.5" />
+        <circle cx="19" cy="18" r="2.5" />
+        <line x1="7" y1="7" x2="10" y2="16" />
+        <line x1="17" y1="7" x2="14" y2="16" />
+        <line x1="7.5" y1="6" x2="16.5" y2="6" />
+        <line x1="14.5" y1="18" x2="16.5" y2="18" />
       </svg>
     ),
   },
   {
-    title: 'Dean',
-    href: '/campus-os/demo/dean',
-    description: 'College-wide retention, program health, accreditation readiness',
+    title: 'The Decision Router',
+    href: '/campus-os/demo/decision-router',
+    description:
+      'AI identifies decisions that need human judgment, routes them to the right person with the data to decide in minutes.',
     color: '#5A3E6B',
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
-        <path d="M3 21h18" />
-        <path d="M5 21V7l7-4 7 4v14" />
-        <path d="M9 21v-6h6v6" />
-        <path d="M9 10h1M14 10h1" />
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
+        <circle cx="12" cy="5" r="2" fill="currentColor" opacity="0.3" />
+        <line x1="12" y1="7" x2="12" y2="11" />
+        <path d="M12 11L6 17" />
+        <path d="M12 11L18 17" />
+        <path d="M12 11L12 19" />
+        <circle cx="6" cy="19" r="2" />
+        <circle cx="12" cy="21" r="2" />
+        <circle cx="18" cy="19" r="2" />
       </svg>
     ),
   },
   {
-    title: 'President',
-    href: '/campus-os/demo/president',
-    description: 'Institution KPIs, enrollment health, strategic plan progress',
-    color: '#0C1F3F',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
-        <circle cx="12" cy="12" r="10" />
-        <path d="M12 6v6l4 2" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Academic Affairs',
-    href: '/campus-os/demo/academic-affairs',
-    description: 'Curriculum effectiveness, learning outcomes, program review',
+    title: 'Peer Marketplace',
+    href: '/campus-os/demo/peer-marketplace',
+    description:
+      'AI-matched peer learning. Mastery meets struggle. 72 hours fresher than any lecture.',
     color: '#00A8A8',
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
-        <path d="M9 5H2v7l6.3 6.3a1 1 0 0 0 1.4 0l5.3-5.3a1 1 0 0 0 0-1.4L9 5z" />
-        <circle cx="6" cy="9" r="1" fill="currentColor" />
-        <path d="M14 5l7 7-5.3 5.3" />
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
+        <circle cx="7" cy="8" r="3" />
+        <circle cx="17" cy="8" r="3" />
+        <path d="M7 11c-2.5 0-4 1.5-4 3v1" />
+        <path d="M17 11c2.5 0 4 1.5 4 3v1" />
+        <line x1="10" y1="9" x2="14" y2="9" strokeDasharray="1.5 1.5" />
+        <path d="M9 17l3 3 3-3" />
       </svg>
     ),
   },
   {
-    title: 'Finance',
-    href: '/campus-os/demo/finance',
-    description: 'DFW cost impact, retention revenue, tuition discount analysis',
+    title: 'Continuous Journey',
+    href: '/campus-os/demo/continuous-journey',
+    description:
+      'First inquiry through alumni. One unbroken thread. No handoffs. No gaps.',
+    color: '#0C1F3F',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
+        <path d="M3 12c0-4 3-7 7-7h4c4 0 7 3 7 7s-3 7-7 7h-4c-4 0-7-3-7-7z" />
+        <circle cx="7" cy="12" r="1.5" fill="currentColor" />
+        <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+        <circle cx="17" cy="12" r="1.5" fill="currentColor" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Impact Allocation',
+    href: '/campus-os/demo/impact-allocation',
+    description:
+      'Resources follow impact. Budget flows to where learning gaps are closing, not where politics win.',
     color: '#FF6B4A',
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
-        <line x1="12" y1="1" x2="12" y2="23" />
-        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
+        <path d="M3 8c4-2 6 2 9 0s5-2 9 0" />
+        <path d="M3 13c4-2 6 2 9 0s5-2 9 0" />
+        <path d="M3 18c4-2 6 2 9 0s5-2 9 0" />
       </svg>
     ),
   },
   {
-    title: 'Admissions',
-    href: '/campus-os/demo/admissions',
-    description: 'Application pipeline, yield rates, enrollment funnel',
+    title: 'Live Pulse',
+    href: '/campus-os/demo/live-pulse',
+    description:
+      "Real-time institutional health. Every metric, every signal, right now — not next quarter's report.",
     color: '#4F8A5B',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
-        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-        <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
-        <path d="M9 14l2 2 4-4" />
+        <polyline points="2,12 6,12 9,4 12,20 15,8 18,12 22,12" />
       </svg>
     ),
   },
+];
+
+const legacyRoles = [
+  { title: 'Student', href: '/campus-os/demo/student' },
+  { title: 'Professor', href: '/campus-os/demo/professor' },
+  { title: 'Department Chair', href: '/campus-os/demo/chair' },
+  { title: 'Dean', href: '/campus-os/demo/dean' },
+  { title: 'President', href: '/campus-os/demo/president' },
+  { title: 'Academic Affairs', href: '/campus-os/demo/academic-affairs' },
+  { title: 'Finance', href: '/campus-os/demo/finance' },
+  { title: 'Admissions', href: '/campus-os/demo/admissions' },
 ];
 
 export default function CampusOSDemoHub() {
@@ -128,57 +165,82 @@ export default function CampusOSDemoHub() {
       </nav>
 
       {/* Hero */}
-      <div className="max-w-6xl mx-auto px-6 pt-16 pb-12 text-center">
+      <div className="max-w-4xl mx-auto px-6 pt-20 pb-14 text-center">
         <h1
-          className="text-4xl md:text-5xl font-bold tracking-tight"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight"
           style={{ fontFamily: 'Georgia, serif', color: '#0C1F3F' }}
         >
-          Campus OS Demo
+          Eight shifts. One system.
         </h1>
-        <p className="mt-4 text-lg text-gray-500 max-w-xl mx-auto">
-          Select a role to explore its dashboard.
+        <p className="mt-6 text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
+          Each demo shows a structural change powered by AI intelligence. These
+          aren&apos;t dashboards for roles. They&apos;re views into a fundamentally
+          different operating model.
         </p>
       </div>
 
-      {/* Card Grid */}
-      <div className="max-w-6xl mx-auto px-6 pb-24">
+      {/* Concept Demo Grid */}
+      <div className="max-w-6xl mx-auto px-6 pb-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {roles.map((role) => (
+          {shifts.map((shift) => (
             <Link
-              key={role.title}
-              href={role.href}
-              className="group block rounded-xl border border-gray-200 bg-white p-6 transition-all duration-200 hover:shadow-lg hover:-translate-y-1"
+              key={shift.title}
+              href={shift.href}
+              className="group block rounded-xl border border-gray-200 bg-white p-6 transition-all duration-200 hover:shadow-xl hover:-translate-y-1.5"
+              style={{
+                background: `linear-gradient(to bottom right, white 60%, ${shift.color}06)`,
+              }}
             >
-              {/* Icon badge */}
+              {/* Icon */}
               <div
                 className="w-12 h-12 rounded-lg flex items-center justify-center mb-5"
-                style={{ backgroundColor: role.color + '14', color: role.color }}
+                style={{ backgroundColor: shift.color + '14', color: shift.color }}
               >
-                {role.icon}
+                {shift.icon}
               </div>
 
               {/* Title */}
               <h2 className="text-lg font-semibold" style={{ color: '#0C1F3F' }}>
-                {role.title}
+                {shift.title}
               </h2>
 
               {/* Description */}
               <p className="mt-2 text-sm text-gray-500 leading-relaxed">
-                {role.description}
+                {shift.description}
               </p>
 
               {/* CTA */}
               <span
                 className="inline-block mt-4 text-sm font-medium transition-colors duration-200"
-                style={{ color: role.color }}
+                style={{ color: shift.color }}
               >
-                View Dashboard{' '}
+                Explore{' '}
                 <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">
                   &rarr;
                 </span>
               </span>
             </Link>
           ))}
+        </div>
+      </div>
+
+      {/* Legacy Role-Based Views */}
+      <div className="border-t border-gray-100">
+        <div className="max-w-6xl mx-auto px-6 py-10 text-center">
+          <p className="text-xs font-medium uppercase tracking-widest text-gray-400 mb-4">
+            Role-based views (legacy)
+          </p>
+          <div className="flex flex-wrap justify-center gap-x-5 gap-y-2">
+            {legacyRoles.map((role) => (
+              <Link
+                key={role.title}
+                href={role.href}
+                className="text-sm text-gray-400 hover:text-gray-600 transition-colors duration-150"
+              >
+                {role.title}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </div>
