@@ -168,6 +168,23 @@ CREATE TABLE IF NOT EXISTS public.page_views (
 CREATE INDEX IF NOT EXISTS idx_page_views_created ON public.page_views (created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_page_views_city ON public.page_views (city, region, country);
 
+-- WHITEPAPER REQUESTS (gated download with approval)
+CREATE TABLE IF NOT EXISTS public.whitepaper_requests (
+  id          uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  name        text NOT NULL,
+  email       text NOT NULL,
+  institution text,
+  role        text,
+  message     text,
+  status      text NOT NULL DEFAULT 'pending' CHECK (status IN ('pending','approved','denied')),
+  token       text NOT NULL DEFAULT encode(gen_random_bytes(32), 'hex'),
+  created_at  timestamptz DEFAULT now(),
+  approved_at timestamptz
+);
+
+CREATE INDEX IF NOT EXISTS idx_wp_requests_token ON public.whitepaper_requests (token);
+CREATE INDEX IF NOT EXISTS idx_wp_requests_email ON public.whitepaper_requests (email);
+
 -- ─────────────────────────────────────────
 -- TRIGGER: auto-create profile on signup
 -- ─────────────────────────────────────────
