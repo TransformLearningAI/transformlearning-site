@@ -9,7 +9,7 @@ export async function POST(request) {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const { enrollmentId, skillId, message: userMessage, sessionId: existingSessionId } = await request.json()
+  const { enrollmentId, skillId, message: userMessage, sessionId: existingSessionId, pace } = await request.json()
   const service = await createServiceClient()
 
   // Verify enrollment belongs to student
@@ -59,6 +59,7 @@ export async function POST(request) {
     skillType: skill.skill_type,
     score: proficiency?.score ?? 0,
     evidenceSummary: proficiency?.evidence_summary,
+    pace: pace || 'moderate',
   })
 
   // Call Claude with streaming

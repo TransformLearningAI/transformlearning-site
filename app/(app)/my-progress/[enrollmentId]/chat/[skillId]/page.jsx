@@ -11,6 +11,7 @@ export default function ChatPage() {
   const [sessionId, setSessionId] = useState(null)
   const [skill, setSkill] = useState(null)
   const [proficiency, setProficiency] = useState(null)
+  const [pace, setPace] = useState('moderate')
   const bottomRef = useRef(null)
 
   useEffect(() => {
@@ -47,7 +48,7 @@ export default function ChatPage() {
     const res = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ enrollmentId, skillId, message: userMsg, sessionId }),
+      body: JSON.stringify({ enrollmentId, skillId, message: userMsg, sessionId, pace }),
     })
 
     if (!sessionId) {
@@ -93,8 +94,30 @@ export default function ChatPage() {
             <p className="text-xs text-gray-400">Current proficiency: {proficiency.score}%</p>
           )}
         </div>
-        <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold"
-          style={{ background: '#00A8A8' }}>AI</div>
+        <div className="flex items-center gap-4">
+          {/* Pace control */}
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Pace</span>
+            <div className="flex rounded-lg border border-gray-200 overflow-hidden">
+              {[
+                { id: 'slow', label: 'Gradual', icon: '◇' },
+                { id: 'moderate', label: 'Moderate', icon: '◈' },
+                { id: 'fast', label: 'Fast', icon: '▸▸' },
+              ].map(p => (
+                <button key={p.id} onClick={() => setPace(p.id)}
+                  className={`px-2.5 py-1.5 text-[11px] font-medium transition-all ${
+                    pace === p.id
+                      ? 'bg-navy text-white'
+                      : 'text-gray-400 hover:text-navy hover:bg-gray-50'
+                  }`}>
+                  {p.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold"
+            style={{ background: '#00A8A8' }}>AI</div>
+        </div>
       </div>
 
       {/* Messages */}
