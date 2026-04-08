@@ -92,7 +92,7 @@ export default function StudentDashboard() {
     <div className="flex items-center justify-center py-32">
       <div className="text-center">
         <div className="w-10 h-10 border-2 border-cyan-400 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-        <p className="text-sm text-white/30">Mapping your galaxy...</p>
+        <p className="text-sm text-white/60">Mapping your galaxy...</p>
       </div>
     </div>
   )
@@ -161,7 +161,8 @@ export default function StudentDashboard() {
                     { id: 'cards', label: 'Cards', icon: <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="6" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.3"/><rect x="9" y="1" width="6" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.3"/><rect x="1" y="9" width="6" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.3"/><rect x="9" y="9" width="6" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.3"/></svg> },
                   ].map(l => (
                     <button key={l.id} onClick={() => setLayout(l.id)} title={l.label}
-                      className={`p-2 rounded-xl transition-all ${layout === l.id ? 'bg-white/10 text-cyan-300' : 'text-white/25 hover:text-white/50'}`}>
+                      aria-label={`${l.label} view`}
+                      className={`p-3 rounded-xl transition-all ${layout === l.id ? 'bg-white/10 text-cyan-300' : 'text-white/25 hover:text-white/50'}`}>
                       {l.icon}
                     </button>
                   ))}
@@ -180,7 +181,7 @@ export default function StudentDashboard() {
                         {/* Overall hub */}
                         <div className="relative flex items-center gap-4 mb-6 p-4 rounded-2xl border border-cyan-400/20 bg-cyan-400/5">
                           <div className="relative w-14 h-14 flex-shrink-0">
-                            <svg viewBox="0 0 36 36" className="w-14 h-14 -rotate-90">
+                            <svg viewBox="0 0 36 36" className="w-14 h-14 -rotate-90" aria-hidden="true">
                               <circle cx="18" cy="18" r="15" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="3" />
                               <circle cx="18" cy="18" r="15" fill="none" stroke="url(#hubGrad)" strokeWidth="3" strokeLinecap="round"
                                 strokeDasharray={`${(derived.overall / 100) * circ} ${circ}`} />
@@ -197,7 +198,7 @@ export default function StudentDashboard() {
                         {/* Foundational Skills */}
                         {foundational.length > 0 && (
                           <div className="relative mb-5">
-                            <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-cyan-300/50 mb-3">Foundational Skills</div>
+                            <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-cyan-300/80 mb-3">Foundational Skills</div>
                             <div className="grid grid-cols-2 gap-2">
                               {foundational.map(node => {
                                 const active = selectedSkill === node.id
@@ -206,7 +207,7 @@ export default function StudentDashboard() {
                                   <button key={node.id} onClick={() => setSelectedSkill(node.id)}
                                     className={`flex items-center gap-3 rounded-2xl p-3 text-left transition-all ${active ? 'ring-1 ring-cyan-400 bg-white/5' : 'hover:bg-white/5'}`}>
                                     <div className="relative w-10 h-10 flex-shrink-0">
-                                      <svg viewBox="0 0 36 36" className="w-10 h-10 -rotate-90">
+                                      <svg viewBox="0 0 36 36" className="w-10 h-10 -rotate-90" aria-hidden="true">
                                         <circle cx="18" cy="18" r="15" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="2.5" />
                                         <circle cx="18" cy="18" r="15" fill="none" className="stroke-current"
                                           style={{ color: node.score >= 80 ? '#4ADE80' : node.score >= 40 ? '#22D3EE' : node.score > 0 ? '#A78BFA' : 'rgba(255,255,255,0.1)' }}
@@ -217,7 +218,7 @@ export default function StudentDashboard() {
                                     </div>
                                     <div className="min-w-0 flex-1">
                                       <div className="text-sm font-medium text-white truncate">{node.name}</div>
-                                      <div className="text-[10px] text-slate-500">{node.score >= 80 ? 'mastered' : node.score >= 40 ? 'developing' : node.score > 0 ? 'emerging' : 'uncharted'}</div>
+                                      <div className="text-[10px] text-slate-400">{node.score >= 80 ? 'mastered' : node.score >= 40 ? 'developing' : node.score > 0 ? 'emerging' : 'uncharted'}</div>
                                     </div>
                                   </button>
                                 )
@@ -229,7 +230,7 @@ export default function StudentDashboard() {
                         {/* Core Skills */}
                         {transferable.length > 0 && (
                           <div className="relative">
-                            <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-violet-300/50 mb-3">Core Skills</div>
+                            <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-violet-300/80 mb-3">Core Skills</div>
                             <div className="grid grid-cols-2 gap-2">
                               {transferable.map(node => {
                                 const active = selectedSkill === node.id
@@ -238,7 +239,7 @@ export default function StudentDashboard() {
                                   <button key={node.id} onClick={() => setSelectedSkill(node.id)}
                                     className={`flex items-center gap-3 rounded-2xl p-3 text-left transition-all ${active ? 'ring-1 ring-violet-400 bg-white/5' : 'hover:bg-white/5'}`}>
                                     <div className="relative w-10 h-10 flex-shrink-0">
-                                      <svg viewBox="0 0 36 36" className="w-10 h-10 -rotate-90">
+                                      <svg viewBox="0 0 36 36" className="w-10 h-10 -rotate-90" aria-hidden="true">
                                         <circle cx="18" cy="18" r="15" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="2.5" />
                                         <circle cx="18" cy="18" r="15" fill="none" className="stroke-current"
                                           style={{ color: node.score >= 80 ? '#4ADE80' : node.score >= 40 ? '#C084FC' : node.score > 0 ? '#A78BFA' : 'rgba(255,255,255,0.1)' }}
@@ -249,7 +250,7 @@ export default function StudentDashboard() {
                                     </div>
                                     <div className="min-w-0 flex-1">
                                       <div className="text-sm font-medium text-white truncate">◇ {node.name}</div>
-                                      <div className="text-[10px] text-slate-500">{node.score >= 80 ? 'mastered' : node.score >= 40 ? 'developing' : node.score > 0 ? 'emerging' : 'uncharted'}</div>
+                                      <div className="text-[10px] text-slate-400">{node.score >= 80 ? 'mastered' : node.score >= 40 ? 'developing' : node.score > 0 ? 'emerging' : 'uncharted'}</div>
                                     </div>
                                   </button>
                                 )
@@ -367,12 +368,12 @@ export default function StudentDashboard() {
                     {/* Confidence Interval */}
                     {sel?.interval && (
                       <div className="mt-4">
-                        <div className="text-[10px] font-bold uppercase tracking-wider text-white/20 mb-2">Confidence Interval</div>
+                        <div className="text-[10px] font-bold uppercase tracking-wider text-white/50 mb-2">Confidence Interval</div>
                         <div className="relative h-3 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.05)' }}>
                           <div className="absolute h-full rounded-full" style={{ left: `${sel.interval.lower}%`, width: `${sel.interval.upper - sel.interval.lower}%`, background: 'rgba(0,206,209,0.2)' }} />
                           <div className="absolute h-full w-1 rounded-full" style={{ left: `${sel.score}%`, background: '#00CED1' }} />
                         </div>
-                        <div className="flex items-center justify-between text-[10px] text-white/20 mt-1">
+                        <div className="flex items-center justify-between text-[10px] text-white/50 mt-1">
                           <span>{sel.interval.lower}%</span>
                           <span className="font-bold" style={{ color: sel.interval.reliability === 'high' ? '#4ADE80' : sel.interval.reliability === 'moderate' ? '#FBBF24' : '#FB7185' }}>
                             {sel.interval.reliability} reliability
@@ -385,7 +386,7 @@ export default function StudentDashboard() {
                     {/* Trajectory */}
                     {sel?.trajectory && sel.trajectory.trend !== 'insufficient_data' && (
                       <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-4">
-                        <div className="text-[10px] font-bold uppercase tracking-wider text-white/20 mb-2">Trajectory</div>
+                        <div className="text-[10px] font-bold uppercase tracking-wider text-white/50 mb-2">Trajectory</div>
                         <div className="flex items-center gap-2 mb-2">
                           <span className="text-sm" style={{ color: sel.trajectory.trend === 'improving' || sel.trajectory.trend === 'accelerating' ? '#4ADE80' : sel.trajectory.trend === 'stable' ? '#FBBF24' : '#FB7185' }}>
                             {sel.trajectory.trend === 'accelerating' ? '🚀' : sel.trajectory.trend === 'improving' ? '📈' : sel.trajectory.trend === 'stable' ? '➡️' : '📉'}
@@ -400,7 +401,7 @@ export default function StudentDashboard() {
                             <span className="text-[9px] px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(74,222,128,0.1)', color: '#4ADE80' }}>genuine</span>
                           )}
                         </div>
-                        <p className="text-xs text-white/30 leading-relaxed">{sel.trajectory.description}</p>
+                        <p className="text-xs text-white/60 leading-relaxed">{sel.trajectory.description}</p>
                       </div>
                     )}
 
@@ -415,13 +416,13 @@ export default function StudentDashboard() {
                     {/* Source Breakdown */}
                     {sel?.sourceBreakdown && Object.keys(sel.sourceBreakdown).length > 0 && (
                       <div className="mt-4">
-                        <div className="text-[10px] font-bold uppercase tracking-wider text-white/20 mb-2">Evidence Sources</div>
+                        <div className="text-[10px] font-bold uppercase tracking-wider text-white/50 mb-2">Evidence Sources</div>
                         <div className="flex gap-2">
                           {Object.entries(sel.sourceBreakdown).map(([src, data]) => (
                             <div key={src} className="flex-1 rounded-xl p-2 text-center" style={{ background: 'rgba(255,255,255,0.03)' }}>
                               <div className="text-xs font-bold text-white/60 capitalize">{src}</div>
                               <div className="text-sm font-black text-cyan-300">{data.count}</div>
-                              <div className="text-[9px] text-white/15">avg {data.avgScore}%</div>
+                              <div className="text-[9px] text-white/50">avg {data.avgScore}%</div>
                             </div>
                           ))}
                         </div>
@@ -469,7 +470,7 @@ export default function StudentDashboard() {
                     }) : (
                       <div className="text-center py-8 text-slate-400 text-sm">
                         <p>No evidence yet.</p>
-                        <p className="text-xs text-slate-500 mt-1">Complete a quiz or upload work to start building your evidence.</p>
+                        <p className="text-xs text-slate-400 mt-1">Complete a quiz or upload work to start building your evidence.</p>
                       </div>
                     )}
                   </div>
@@ -624,7 +625,7 @@ export default function StudentDashboard() {
                 <div className="text-center py-12 text-slate-400">
                   <FileUp className="w-12 h-12 mx-auto mb-4 opacity-30" />
                   <p className="font-medium">No evidence yet</p>
-                  <p className="text-sm text-slate-500 mt-1">Upload work, take quizzes, or talk to the coach to start building evidence.</p>
+                  <p className="text-sm text-slate-400 mt-1">Upload work, take quizzes, or talk to the coach to start building evidence.</p>
                 </div>
               )}
             </div>

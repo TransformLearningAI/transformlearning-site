@@ -26,7 +26,7 @@ export default function Footer() {
 
           {/* Logo */}
           <div className="flex items-center gap-4">
-            <svg width="46" height="46" viewBox="0 0 56 56" fill="none">
+            <svg width="46" height="46" viewBox="0 0 56 56" fill="none" aria-hidden="true">
               <rect width="56" height="56" rx="16" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.08)" strokeWidth="1"/>
               <path d="M28 12L16 44H22.5L28 31L33.5 44H40L28 12Z" fill="#00A8A8"/>
               <path d="M21 37H35" stroke="#4F8A5B" strokeWidth="2" strokeLinecap="round" opacity="0.5"/>
@@ -44,13 +44,13 @@ export default function Footer() {
           <nav className="flex flex-wrap justify-center gap-x-8 gap-y-2">
             {nav.map(l => (
               <a key={l.href} href={l.href}
-                 className="text-xs text-white/30 hover:text-white/60 transition-colors font-medium">
+                 className="text-xs text-white/60 hover:text-white/80 transition-colors font-medium">
                 {l.label}
               </a>
             ))}
           </nav>
 
-          <p className="text-xs text-white/20">© {new Date().getFullYear()} Arrival</p>
+          <p className="text-xs text-white/50">© {new Date().getFullYear()} Arrival</p>
         </div>
       </div>
     </footer>

@@ -35,7 +35,7 @@ export default function Outcomes() {
 
         <div className="text-center max-w-3xl mx-auto mb-16">
           <ScrollReveal>
-            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/40 mb-6">What Changes</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/60 mb-6">What Changes</p>
             <h2 className="font-serif font-light text-white mb-4"
                 style={{ fontSize: 'clamp(36px, 5.5vw, 72px)', lineHeight: 1.0, letterSpacing: '-0.03em' }}>
               Results faculty can show.<br />
@@ -60,7 +60,7 @@ export default function Outcomes() {
                   {o.items.map(item => (
                     <li key={item} className="flex items-start gap-3">
                       <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: o.color }} />
-                      <span className="text-sm leading-relaxed text-white/55">{item}</span>
+                      <span className="text-sm leading-relaxed text-white/70">{item}</span>
                     </li>
                   ))}
                 </ul>

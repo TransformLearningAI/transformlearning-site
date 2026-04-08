@@ -16,11 +16,12 @@ export default function Nav() {
 
   return (
     <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-brand-border">
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-navy focus:text-white focus:rounded-lg focus:text-sm focus:font-bold">Skip to main content</a>
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
 
         {/* Logo */}
         <a href="/" className="flex items-center gap-4 group">
-          <svg width="46" height="46" viewBox="0 0 56 56" fill="none" className="flex-shrink-0">
+          <svg width="46" height="46" viewBox="0 0 56 56" fill="none" className="flex-shrink-0" aria-hidden="true">
             <rect width="56" height="56" rx="16" fill="#0C1F3F"/>
             {/* Teal A mark */}
             <path d="M28 12L16 44H22.5L28 31L33.5 44H40L28 12Z" fill="#00A8A8"/>
@@ -56,13 +57,13 @@ export default function Nav() {
 
         {/* Mobile toggle */}
         <button className="md:hidden p-2 rounded-lg hover:bg-brand-mist transition-colors"
-                onClick={() => setOpen(!open)} aria-label="Toggle menu">
+                onClick={() => setOpen(!open)} aria-label="Toggle navigation menu">
           {open ? (
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
               <path d="M4 4L16 16M16 4L4 16" stroke="#0C1F3F" strokeWidth="2" strokeLinecap="round"/>
             </svg>
           ) : (
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
               <path d="M3 5H17M3 10H17M3 15H17" stroke="#0C1F3F" strokeWidth="2" strokeLinecap="round"/>
             </svg>
           )}

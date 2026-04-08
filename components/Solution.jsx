@@ -29,7 +29,8 @@ export default function Solution() {
 
       {/* Background decorative text */}
       <div className="absolute -left-8 bottom-0 font-serif font-light select-none pointer-events-none"
-           style={{ fontSize: '280px', lineHeight: 1, color: 'rgba(12,31,63,0.03)', letterSpacing: '-0.05em' }}>
+           style={{ fontSize: '280px', lineHeight: 1, color: 'rgba(12,31,63,0.03)', letterSpacing: '-0.05em' }}
+           aria-hidden="true">
         02
       </div>
 
@@ -73,7 +74,8 @@ export default function Solution() {
                 </div>
                 <div className="flex items-center justify-center" style={{ direction: 'ltr' }}>
                   <div className="font-serif font-light select-none"
-                       style={{ fontSize: 'clamp(120px, 15vw, 200px)', lineHeight: 1, color: p.color, opacity: 0.06, letterSpacing: '-0.04em' }}>
+                       style={{ fontSize: 'clamp(120px, 15vw, 200px)', lineHeight: 1, color: p.color, opacity: 0.06, letterSpacing: '-0.04em' }}
+                       aria-hidden="true">
                     {p.num}
                   </div>
                 </div>

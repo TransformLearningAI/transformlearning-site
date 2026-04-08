@@ -68,7 +68,7 @@ function StudentDashboard() {
           <div key={s.name} className="flex items-center gap-3"
                style={{ animationDelay: `${i * 0.08}s` }}>
             <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: s.color }} />
-            <span className="text-xs text-white/55 flex-1 truncate">{s.name}</span>
+            <span className="text-xs text-white/70 flex-1 truncate">{s.name}</span>
             <div className="w-20 h-1.5 bg-white/10 rounded-full overflow-hidden flex-shrink-0">
               <div className="h-full rounded-full" style={{ width: `${s.prog}%`, background: s.color }} />
             </div>
@@ -109,10 +109,10 @@ function StudentDashboard() {
         <div className="text-[9px] text-white/35 uppercase tracking-[0.1em] mb-2">Address this gap now</div>
         <div className="flex gap-2 flex-wrap">
           {['Practice Quiz', 'Coaching Session', 'Study Guide', 'Upload My Work'].map((action) => (
-            <span key={action} className="text-[10px] font-bold px-2.5 py-1 rounded-full cursor-pointer"
+            <button key={action} className="text-[10px] font-bold px-2.5 py-1 rounded-full cursor-pointer"
                   style={{ background: 'rgba(0,168,168,0.18)', color: '#00A8A8', border: '1px solid rgba(0,168,168,0.25)' }}>
               {action}
-            </span>
+            </button>
           ))}
         </div>
       </div>
@@ -148,35 +148,29 @@ export default function Hero() {
         {/* Left */}
         <div>
           <div className={`inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-white/15 bg-white/[0.05] mb-8 transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            <svg width="24" height="24" viewBox="0 0 56 56" fill="none">
+            <svg width="24" height="24" viewBox="0 0 56 56" fill="none" aria-hidden="true">
               <rect width="56" height="56" rx="16" fill="rgba(255,255,255,0.1)"/>
               <path d="M28 12L16 44H22.5L28 31L33.5 44H40L28 12Z" fill="#00A8A8"/>
               <path d="M21 37H35" stroke="#4F8A5B" strokeWidth="2" strokeLinecap="round" opacity="0.6"/>
             </svg>
-            <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/55">
+            <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/70">
               Arrival · Adaptive Learning Operating System
             </span>
           </div>
 
           <div className={`transition-all duration-700 delay-100 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-            <h1 className="font-serif font-light text-white leading-[0.95] mb-2"
+            <h1 className="font-serif font-light text-white leading-[0.95] mb-8"
                 style={{ fontSize: 'clamp(52px, 8vw, 96px)', letterSpacing: '-0.03em' }}>
-              The path
-            </h1>
-            <h1 className="font-serif italic text-white leading-[0.95] mb-2"
-                style={{ fontSize: 'clamp(52px, 8vw, 96px)', letterSpacing: '-0.03em', opacity: 0.85 }}>
-              forward.
-            </h1>
-            <h1 className="font-serif font-light leading-[0.95] mb-8"
-                style={{ fontSize: 'clamp(52px, 8vw, 96px)', letterSpacing: '-0.03em' }}>
-              <span className="teal-gradient-text">Revealed.</span>
+              <span className="block">The path</span>
+              <span className="block italic" style={{ opacity: 0.85 }}>forward.</span>
+              <span className="block teal-gradient-text">Revealed.</span>
             </h1>
           </div>
 
           <p className={`text-lg font-semibold text-white mb-3 transition-all duration-700 delay-200 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             Know where you are. See where to go. Follow the path forward.
           </p>
-          <p className={`text-base text-white/55 leading-relaxed max-w-lg mb-10 transition-all duration-700 delay-300 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <p className={`text-base text-white/70 leading-relaxed max-w-lg mb-10 transition-all duration-700 delay-300 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             Arrival is a wayfinding system for learning. It reads signals, recognizes patterns, and helps each student see a path forward — not by removing challenge, but by introducing the right tension at the right moment. Faculty submit a syllabus. The system maps every skill, surfaces true proficiency, and closes gaps through coaching, quizzes, and targeted practice.
           </p>
 
@@ -197,10 +191,10 @@ export default function Hero() {
           <div className={`flex flex-wrap gap-6 mt-10 transition-all duration-700 delay-500 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             {['Revealed Clarity', 'Trusted Wisdom', 'Governed Intelligence'].map(t => (
               <div key={t} className="flex items-center gap-2">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                   <path d="M2 7L5.5 10.5L12 3.5" stroke="#00A8A8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                <span className="text-xs text-white/45 font-medium">{t}</span>
+                <span className="text-xs text-white/65 font-medium">{t}</span>
               </div>
             ))}
           </div>

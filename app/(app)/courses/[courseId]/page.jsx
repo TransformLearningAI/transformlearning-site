@@ -94,11 +94,11 @@ export default async function CourseDetailPage({ params }) {
         {/* Header */}
         <div className="flex items-start justify-between mb-8">
           <div>
-            <Link href="/courses" className="text-xs text-white/20 hover:text-white/40 mb-3 block">← All Courses</Link>
+            <Link href="/courses" className="text-xs text-white/55 hover:text-white/65 mb-3 block">← All Courses</Link>
             <h1 className="text-3xl font-bold text-white tracking-tight">{course.title}</h1>
             <div className="flex items-center gap-3 mt-2">
               {course.course_code && <span className="text-xs font-bold text-white/30 uppercase tracking-wider">{course.course_code}</span>}
-              {course.term && <span className="text-xs text-white/20">{course.term}</span>}
+              {course.term && <span className="text-xs text-white/55">{course.term}</span>}
               <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: 'rgba(74,222,128,0.1)', color: '#4ADE80' }}>
                 {approvedSkills.length} skills
               </span>
@@ -118,9 +118,9 @@ export default async function CourseDetailPage({ params }) {
             { label: 'Avg per Student', value: totalStudents > 0 ? Math.round(totalEngagements / totalStudents) : 0, sub: 'engagement units', color: '#00CED1' },
           ].map(s => (
             <div key={s.label} className="rounded-2xl p-4" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
-              <p className="text-[9px] font-bold uppercase tracking-wider text-white/20 mb-1">{s.label}</p>
+              <p className="text-[9px] font-bold uppercase tracking-wider text-white/55 mb-1">{s.label}</p>
               <p className="text-2xl font-black" style={{ color: s.color }}>{s.value}</p>
-              <p className="text-[10px] text-white/15 mt-0.5">{s.sub}</p>
+              <p className="text-[10px] text-white/50 mt-0.5">{s.sub}</p>
             </div>
           ))}
         </div>
@@ -140,7 +140,7 @@ export default async function CourseDetailPage({ params }) {
                 <div key={b.label} className="flex-1 flex flex-col items-center gap-1">
                   <div className="w-full rounded-t-lg transition-all" style={{ height: `${Math.max(4, b.pct * 100)}%`, background: b.color, minHeight: b.count > 0 ? '8px' : '2px' }} />
                   <span className="text-lg font-black" style={{ color: b.color }}>{b.count}</span>
-                  <span className="text-[9px] text-white/20">{b.label}</span>
+                  <span className="text-[9px] text-white/55">{b.label}</span>
                 </div>
               ))}
             </div>
@@ -160,11 +160,11 @@ export default async function CourseDetailPage({ params }) {
                 {topPerformers.slice(0, 3).map((s, i) => (
                   <div key={s.id} className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs text-white/20 w-4">{i + 1}.</span>
+                      <span className="text-xs text-white/55 w-4">{i + 1}.</span>
                       <span className="text-sm text-white truncate">{s.profiles?.full_name}</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-xs text-white/20">{s.mastered} mastered</span>
+                      <span className="text-xs text-white/55">{s.mastered} mastered</span>
                       <span className="text-sm font-black text-emerald-400">{s.avg}%</span>
                     </div>
                   </div>
@@ -182,7 +182,7 @@ export default async function CourseDetailPage({ params }) {
                     <span className="text-sm font-black text-rose-400">{s.avg}%</span>
                   </div>
                 ))}
-                {needsSupport.length === 0 && <p className="text-xs text-white/20">All students above 40% threshold.</p>}
+                {needsSupport.length === 0 && <p className="text-xs text-white/55">All students above 40% threshold.</p>}
               </div>
             </div>
           </div>
@@ -192,7 +192,7 @@ export default async function CourseDetailPage({ params }) {
         <div className="rounded-2xl overflow-hidden mb-8" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
           <div className="px-6 py-4 border-b border-white/5 flex items-center justify-between">
             <h2 className="text-lg font-bold text-white">Skill Proficiency Range</h2>
-            <div className="flex items-center gap-4 text-[10px] text-white/20">
+            <div className="flex items-center gap-4 text-[10px] text-white/55">
               <span>{foundationalSkills.length} foundational</span>
               <span>{transferableSkills.length} core</span>
             </div>
@@ -220,7 +220,7 @@ export default async function CourseDetailPage({ params }) {
                   </div>
                   <div className="text-right flex-shrink-0 w-16">
                     <span className="text-sm font-black" style={{ color: barColor }}>{skill.avg}%</span>
-                    <span className="text-[10px] text-white/15 block">{skill.min}–{skill.max}</span>
+                    <span className="text-[10px] text-white/50 block">{skill.min}–{skill.max}</span>
                   </div>
                   <div className="flex-shrink-0 w-24 text-right text-[10px]">
                     <span className="text-emerald-400">{skill.mastered}✦</span>
@@ -237,7 +237,7 @@ export default async function CourseDetailPage({ params }) {
         <div className="rounded-2xl overflow-hidden" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
           <div className="px-6 py-4 border-b border-white/5 flex items-center justify-between">
             <h2 className="text-lg font-bold text-white">All Students ({totalStudents})</h2>
-            <div className="flex items-center gap-4 text-[10px] text-white/20">
+            <div className="flex items-center gap-4 text-[10px] text-white/55">
               <span>Sorted by proficiency</span>
             </div>
           </div>
@@ -245,14 +245,14 @@ export default async function CourseDetailPage({ params }) {
             <table className="w-full">
               <thead>
                 <tr className="border-b border-white/5">
-                  <th className="text-left text-[10px] font-bold text-white/20 uppercase tracking-wider px-6 py-3">Student</th>
-                  <th className="text-center text-[10px] font-bold text-white/20 uppercase tracking-wider px-3 py-3">Avg</th>
-                  <th className="text-center text-[10px] font-bold text-white/20 uppercase tracking-wider px-3 py-3">Mastered</th>
-                  <th className="text-center text-[10px] font-bold text-white/20 uppercase tracking-wider px-3 py-3">At Risk</th>
-                  <th className="text-center text-[10px] font-bold text-white/20 uppercase tracking-wider px-3 py-3">Quizzes</th>
-                  <th className="text-center text-[10px] font-bold text-white/20 uppercase tracking-wider px-3 py-3">Assess</th>
-                  <th className="text-center text-[10px] font-bold text-white/20 uppercase tracking-wider px-3 py-3">XP</th>
-                  <th className="text-right text-[10px] font-bold text-white/20 uppercase tracking-wider px-6 py-3">Proficiency</th>
+                  <th className="text-left text-[10px] font-bold text-white/55 uppercase tracking-wider px-6 py-3">Student</th>
+                  <th className="text-center text-[10px] font-bold text-white/55 uppercase tracking-wider px-3 py-3">Avg</th>
+                  <th className="text-center text-[10px] font-bold text-white/55 uppercase tracking-wider px-3 py-3">Mastered</th>
+                  <th className="text-center text-[10px] font-bold text-white/55 uppercase tracking-wider px-3 py-3">At Risk</th>
+                  <th className="text-center text-[10px] font-bold text-white/55 uppercase tracking-wider px-3 py-3">Quizzes</th>
+                  <th className="text-center text-[10px] font-bold text-white/55 uppercase tracking-wider px-3 py-3">Assess</th>
+                  <th className="text-center text-[10px] font-bold text-white/55 uppercase tracking-wider px-3 py-3">XP</th>
+                  <th className="text-right text-[10px] font-bold text-white/55 uppercase tracking-wider px-6 py-3">Proficiency</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5">
@@ -267,7 +267,7 @@ export default async function CourseDetailPage({ params }) {
                           </div>
                           <div>
                             <p className="text-sm font-medium text-white">{s.profiles?.full_name || s.profiles?.email}</p>
-                            <p className="text-[10px] text-white/15">{s.profiles?.email}</p>
+                            <p className="text-[10px] text-white/50">{s.profiles?.email}</p>
                           </div>
                         </div>
                       </td>
@@ -280,8 +280,8 @@ export default async function CourseDetailPage({ params }) {
                       <td className="text-center px-3 py-3">
                         {s.atRisk > 0 ? <span className="text-sm text-rose-400 font-bold">{s.atRisk}</span> : <span className="text-white/10">0</span>}
                       </td>
-                      <td className="text-center px-3 py-3"><span className="text-sm text-white/40">{s.quizzes}</span></td>
-                      <td className="text-center px-3 py-3"><span className="text-sm text-white/40">{s.assessments}</span></td>
+                      <td className="text-center px-3 py-3"><span className="text-sm text-white/65">{s.quizzes}</span></td>
+                      <td className="text-center px-3 py-3"><span className="text-sm text-white/65">{s.assessments}</span></td>
                       <td className="text-center px-3 py-3"><span className="text-sm text-cyan-300/60">{s.profiles?.xp || 0}</span></td>
                       <td className="text-right px-6 py-3">
                         <div className="flex items-center justify-end gap-2">
@@ -331,7 +331,7 @@ export default async function CourseDetailPage({ params }) {
                   <div key={a.label} className="rounded-xl p-3 text-center" style={{ background: 'rgba(255,255,255,0.03)' }}>
                     <div className="text-lg mb-0.5">{a.icon}</div>
                     <div className="text-xl font-black" style={{ color: a.color }}>{a.value}</div>
-                    <div className="text-[9px] text-white/15">{a.label}</div>
+                    <div className="text-[9px] text-white/50">{a.label}</div>
                   </div>
                 ))}
               </div>
@@ -341,7 +341,7 @@ export default async function CourseDetailPage({ params }) {
               className="block rounded-2xl p-5 transition hover:bg-white/[0.04]"
               style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
               <h3 className="text-sm font-bold text-white">Edit Skill Framework →</h3>
-              <p className="text-[10px] text-white/20 mt-1">{foundationalSkills.length} foundational + {transferableSkills.length} core skills</p>
+              <p className="text-[10px] text-white/55 mt-1">{foundationalSkills.length} foundational + {transferableSkills.length} core skills</p>
             </Link>
 
             <div className="rounded-2xl p-5" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.04)' }}>
@@ -349,7 +349,7 @@ export default async function CourseDetailPage({ params }) {
                 <div className="w-2 h-2 rounded-full bg-emerald-400" />
                 <span className="text-[10px] font-bold text-emerald-300 uppercase tracking-wider">Governed</span>
               </div>
-              <p className="text-[10px] text-white/15 leading-5">All assessments governed by fairness, confidence, and privacy constraints. No student data shared between students.</p>
+              <p className="text-[10px] text-white/50 leading-5">All assessments governed by fairness, confidence, and privacy constraints. No student data shared between students.</p>
             </div>
           </div>
         </div>

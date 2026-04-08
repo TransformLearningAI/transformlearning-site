@@ -98,7 +98,7 @@ export default function Pricing() {
               <div className={`text-2xl font-black mb-0.5 ${t.highlight ? 'text-white' : 'text-navy'}`}>
                 {t.price}
               </div>
-              <div className={`text-xs mb-4 ${t.highlight ? 'text-white/50' : 'text-brand-gray'}`}>
+              <div className={`text-xs mb-4 ${t.highlight ? 'text-white/70' : 'text-brand-gray'}`}>
                 {t.priceNote}
               </div>
 
@@ -109,12 +109,12 @@ export default function Pricing() {
               <ul className="space-y-2.5 flex-1 mb-6">
                 {t.features.map(f => (
                   <li key={f} className="flex items-start gap-2">
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="mt-0.5 flex-shrink-0">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="mt-0.5 flex-shrink-0" aria-hidden="true">
                       <path d="M2.5 7L5.5 10L11.5 4"
-                            stroke={t.highlight ? 'rgba(255,255,255,0.6)' : '#00A8A8'}
+                            stroke={t.highlight ? 'rgba(255,255,255,0.8)' : '#00A8A8'}
                             strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
-                    <span className={`text-xs leading-relaxed ${t.highlight ? 'text-white/70' : 'text-brand-gray'}`}>
+                    <span className={`text-xs leading-relaxed ${t.highlight ? 'text-white/80' : 'text-brand-gray'}`}>
                       {f}
                     </span>
                   </li>

@@ -14,7 +14,7 @@ import Waypoint   from '@/components/Waypoint'
 
 export default function Home() {
   return (
-    <main>
+    <main id="main-content">
       <Nav />
       <Hero />
       <Problem />

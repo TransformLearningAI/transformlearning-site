@@ -158,3 +158,14 @@ body {
   0%, 100% { opacity: 0.3; }
   50% { opacity: 0.55; }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transition: none !important; }
+  .reveal.visible { transform: none; }
+  .signal-bar { animation: none !important; }
+  .pulse-ring { animation: none !important; }
+  .marquee-track { animation: none !important; }
+  .card-lift { transition: none !important; }
+  .card-lift:hover { transform: none; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

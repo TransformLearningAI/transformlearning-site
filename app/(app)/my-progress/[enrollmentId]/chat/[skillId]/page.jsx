@@ -76,9 +76,14 @@ export default function ChatPage() {
   }
 
   function renderContent(content) {
-    return content
-      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\n/g, '<br/>')
+    if (!content) return null
+    return content.split('\n\n').map((para, i) => (
+      <p key={i} className={i > 0 ? 'mt-2' : ''}>{
+        para.split(/\*\*(.+?)\*\*/g).map((part, j) =>
+          j % 2 === 1 ? <strong key={j}>{part}</strong> : part
+        )
+      }</p>
+    ))
   }
 
   return (
@@ -129,8 +134,9 @@ export default function ChatPage() {
                 ? 'text-white rounded-br-sm'
                 : 'bg-gray-50 border border-gray-200 text-gray-700 rounded-bl-sm'
             }`}
-            style={msg.role === 'user' ? { background: '#0C1F3F' } : {}}
-            dangerouslySetInnerHTML={{ __html: renderContent(msg.content) || '…' }} />
+            style={msg.role === 'user' ? { background: '#0C1F3F' } : {}}>
+              {renderContent(msg.content) || '…'}
+            </div>
           </div>
         ))}
         <div ref={bottomRef} />
@@ -139,14 +145,17 @@ export default function ChatPage() {
       {/* Input */}
       <form onSubmit={sendMessage}
         className="bg-white rounded-b-2xl border border-gray-200 border-t-0 px-4 py-3 flex gap-3">
+        <label htmlFor="chat-input" className="sr-only">Message</label>
         <input
+          id="chat-input"
           value={input} onChange={e => setInput(e.target.value)}
           placeholder="Ask a question or say where you're stuck…"
           className="flex-1 border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-brand-teal text-navy"
           disabled={sending} />
         <button type="submit" disabled={sending || !input.trim()}
-          className="px-5 py-2.5 rounded-xl font-bold text-sm text-white disabled:opacity-40"
-          style={{ background: '#00A8A8' }}>
+          className="px-5 py-2.5 rounded-xl font-bold text-sm text-white disabled:opacity-40 focus:ring-2 focus:ring-[#00A8A8]"
+          style={{ background: '#00A8A8' }}
+          aria-label="Send message">
           {sending ? '…' : '→'}
         </button>
       </form>

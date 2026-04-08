@@ -74,7 +74,7 @@ export default function PilotForm() {
               ].map(item => (
                 <div key={item} className="flex items-center gap-3">
                   <div className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
-                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
                       <path d="M2 5L4 7L8 3" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
@@ -89,7 +89,7 @@ export default function PilotForm() {
             {status === 'success' ? (
               <div className="text-center py-8">
                 <div className="w-14 h-14 rounded-full bg-brand-green/10 flex items-center justify-center mx-auto mb-4">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M5 12L10 17L19 7" stroke="#186900" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </div>
@@ -104,38 +104,42 @@ export default function PilotForm() {
 
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-brand-text mb-1.5">Your Name *</label>
+                    <label htmlFor="pilot-name" className="block text-xs font-bold text-brand-text mb-1.5">Your Name *</label>
                     <input
+                      id="pilot-name"
                       type="text" required value={form.name} onChange={set('name')}
                       placeholder="Dr. Jane Smith"
-                      className="w-full px-4 py-2.5 rounded-lg border border-brand-border text-sm text-brand-text placeholder:text-brand-gray/50 focus:outline-none focus:border-navy transition-colors"
+                      className="w-full px-4 py-2.5 rounded-lg border border-brand-border text-sm text-brand-text placeholder:text-brand-gray/50 focus:outline-none focus:ring-2 focus:ring-[#00A8A8] focus:border-navy transition-colors"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-brand-text mb-1.5">Institution *</label>
+                    <label htmlFor="pilot-institution" className="block text-xs font-bold text-brand-text mb-1.5">Institution *</label>
                     <input
+                      id="pilot-institution"
                       type="text" required value={form.institution} onChange={set('institution')}
                       placeholder="State University"
-                      className="w-full px-4 py-2.5 rounded-lg border border-brand-border text-sm text-brand-text placeholder:text-brand-gray/50 focus:outline-none focus:border-navy transition-colors"
+                      className="w-full px-4 py-2.5 rounded-lg border border-brand-border text-sm text-brand-text placeholder:text-brand-gray/50 focus:outline-none focus:ring-2 focus:ring-[#00A8A8] focus:border-navy transition-colors"
                     />
                   </div>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-brand-text mb-1.5">Your Role</label>
+                    <label htmlFor="pilot-role" className="block text-xs font-bold text-brand-text mb-1.5">Your Role</label>
                     <select
+                      id="pilot-role"
                       value={form.role} onChange={set('role')}
-                      className="w-full px-4 py-2.5 rounded-lg border border-brand-border text-sm text-brand-text focus:outline-none focus:border-navy transition-colors bg-white">
+                      className="w-full px-4 py-2.5 rounded-lg border border-brand-border text-sm text-brand-text focus:outline-none focus:ring-2 focus:ring-[#00A8A8] focus:border-navy transition-colors bg-white">
                       <option value="">Select a role</option>
                       {ROLES.map(r => <option key={r} value={r}>{r}</option>)}
                     </select>
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-brand-text mb-1.5">Course of Interest</label>
+                    <label htmlFor="pilot-course" className="block text-xs font-bold text-brand-text mb-1.5">Course of Interest</label>
                     <select
+                      id="pilot-course"
                       value={form.course} onChange={set('course')}
-                      className="w-full px-4 py-2.5 rounded-lg border border-brand-border text-sm text-brand-text focus:outline-none focus:border-navy transition-colors bg-white">
+                      className="w-full px-4 py-2.5 rounded-lg border border-brand-border text-sm text-brand-text focus:outline-none focus:ring-2 focus:ring-[#00A8A8] focus:border-navy transition-colors bg-white">
                       <option value="">Select a course</option>
                       {COURSES.map(c => <option key={c} value={c}>{c}</option>)}
                     </select>
@@ -143,22 +147,24 @@ export default function PilotForm() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-brand-text mb-1.5">Email Address *</label>
+                  <label htmlFor="pilot-email" className="block text-xs font-bold text-brand-text mb-1.5">Email Address *</label>
                   <input
+                    id="pilot-email"
                     type="email" required value={form.email} onChange={set('email')}
                     placeholder="you@university.edu"
-                    className="w-full px-4 py-2.5 rounded-lg border border-brand-border text-sm text-brand-text placeholder:text-brand-gray/50 focus:outline-none focus:border-navy transition-colors"
+                    className="w-full px-4 py-2.5 rounded-lg border border-brand-border text-sm text-brand-text placeholder:text-brand-gray/50 focus:outline-none focus:ring-2 focus:ring-[#00A8A8] focus:border-navy transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-brand-text mb-1.5">
+                  <label htmlFor="pilot-message" className="block text-xs font-bold text-brand-text mb-1.5">
                     Tell us about your course or challenge <span className="font-normal text-brand-gray">(optional)</span>
                   </label>
                   <textarea
+                    id="pilot-message"
                     value={form.message} onChange={set('message')} rows={3}
                     placeholder="What's the course, enrollment size, and the outcome problem you're trying to solve?"
-                    className="w-full px-4 py-2.5 rounded-lg border border-brand-border text-sm text-brand-text placeholder:text-brand-gray/50 focus:outline-none focus:border-navy transition-colors resize-none"
+                    className="w-full px-4 py-2.5 rounded-lg border border-brand-border text-sm text-brand-text placeholder:text-brand-gray/50 focus:outline-none focus:ring-2 focus:ring-[#00A8A8] focus:border-navy transition-colors resize-none"
                   />
                 </div>
 

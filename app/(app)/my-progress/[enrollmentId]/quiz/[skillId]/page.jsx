@@ -49,14 +49,14 @@ export default function QuizPage() {
 
   if (step === 'loading') return (
     <div className="flex flex-col items-center justify-center py-24">
-      <div className="w-10 h-10 border-2 border-brand-teal border-t-transparent rounded-full animate-spin mb-4" />
+      <div className="w-10 h-10 border-2 border-brand-teal border-t-transparent rounded-full animate-spin mb-4" role="status" aria-label="Loading" />
       <p className="text-gray-500 text-sm">Generating adaptive questions…</p>
     </div>
   )
 
   if (step === 'submitting') return (
     <div className="flex flex-col items-center justify-center py-24">
-      <div className="w-10 h-10 border-2 border-brand-teal border-t-transparent rounded-full animate-spin mb-4" />
+      <div className="w-10 h-10 border-2 border-brand-teal border-t-transparent rounded-full animate-spin mb-4" role="status" aria-label="Loading" />
       <p className="text-gray-500 text-sm">Analyzing your answers…</p>
     </div>
   )
@@ -126,7 +126,7 @@ export default function QuizPage() {
           <div className="space-y-3">
             {q.choices.map((choice, i) => (
               <button key={i} onClick={() => setAnswers(a => ({ ...a, [q.id]: choice }))}
-                className={`w-full text-left px-4 py-3.5 rounded-xl border text-sm transition-all ${
+                className={`w-full text-left px-4 py-3.5 rounded-xl border text-sm transition-all focus:ring-2 focus:ring-navy ${
                   answers[q.id] === choice ? 'border-brand-teal font-medium' : 'border-gray-200 text-gray-600 hover:border-gray-300'
                 }`}
                 style={answers[q.id] === choice ? { background: 'rgba(0,168,168,0.06)', color: '#0C1F3F' } : {}}>
@@ -135,10 +135,13 @@ export default function QuizPage() {
             ))}
           </div>
         ) : (
-          <textarea rows={4} placeholder="Type your answer here…"
+          <>
+          <label htmlFor={`answer-${q.id}`} className="sr-only">Your answer</label>
+          <textarea id={`answer-${q.id}`} rows={4} placeholder="Type your answer here…"
             className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-teal text-navy resize-none"
             value={answers[q.id] || ''}
             onChange={e => setAnswers(a => ({ ...a, [q.id]: e.target.value }))} />
+          </>
         )}
 
         <div className="flex justify-between mt-6">

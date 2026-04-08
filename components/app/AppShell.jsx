@@ -38,12 +38,12 @@ function AppShellInner({ profile, enrollments, children }) {
 
       <div className="flex-1 flex flex-col min-w-0">
         <header className="px-5 py-3 flex items-center gap-4 sticky top-0 z-10" style={{ background: theme.surface, borderBottom: `1px solid ${theme.border}` }}>
-          <button className="lg:hidden p-2 rounded-lg hover:bg-white/5" onClick={() => setSidebarOpen(true)}>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 6h14M3 10h14M3 14h14" stroke={theme.textMuted} strokeWidth="1.5" strokeLinecap="round"/></svg>
+          <button className="lg:hidden p-3 rounded-lg hover:bg-white/5" onClick={() => setSidebarOpen(true)} aria-label="Open menu">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14" stroke={theme.textMuted} strokeWidth="1.5" strokeLinecap="round"/></svg>
           </button>
 
           <a href="/" className="flex items-center gap-3 mr-4">
-            <svg width="36" height="36" viewBox="0 0 56 56" fill="none" className="flex-shrink-0">
+            <svg width="36" height="36" viewBox="0 0 56 56" fill="none" className="flex-shrink-0" aria-hidden="true">
               <rect width="56" height="56" rx="16" fill={theme.surfaceLight} stroke={theme.border} strokeWidth="1"/>
               <path d="M28 12L16 44H22.5L28 31L33.5 44H40L28 12Z" fill={theme.accent}/>
               <path d="M21 37H35" stroke={theme.success} strokeWidth="2" strokeLinecap="round" opacity="0.5"/>
@@ -55,10 +55,11 @@ function AppShellInner({ profile, enrollments, children }) {
 
           <div className="flex-1 max-w-md">
             <div className="relative">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="absolute left-3 top-1/2 -translate-y-1/2" style={{ color: theme.textDim }}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="absolute left-3 top-1/2 -translate-y-1/2" style={{ color: theme.textDim }} aria-hidden="true">
                 <circle cx="7" cy="7" r="5" stroke="currentColor" strokeWidth="1.5"/><path d="M11 11l3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
               </svg>
-              <input type="text" placeholder="Search courses or actions..."
+              <label htmlFor="app-search" className="sr-only">Search</label>
+              <input id="app-search" type="text" placeholder="Search courses or actions..."
                 className="w-full pl-9 pr-4 py-2 rounded-xl text-sm focus:outline-none"
                 style={{ background: theme.surfaceLight, border: `1px solid ${theme.border}`, color: theme.text, '::placeholder': { color: theme.textDim } }} />
             </div>
@@ -74,8 +75,8 @@ function AppShellInner({ profile, enrollments, children }) {
             <ThemePicker />
 
             <div className="relative">
-              <button onClick={() => setShowNotifs(!showNotifs)} className="relative p-2 rounded-lg hover:opacity-80 transition-opacity">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <button onClick={() => setShowNotifs(!showNotifs)} className="relative p-3 rounded-lg hover:opacity-80 transition-opacity" aria-label="Notifications">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
                   <path d="M13.5 6.75a4.5 4.5 0 10-9 0c0 5.25-2.25 6.75-2.25 6.75h13.5s-2.25-1.5-2.25-6.75z" stroke={theme.textMuted} strokeWidth="1.5" strokeLinejoin="round"/>
                   <path d="M10.3 15.75a1.5 1.5 0 01-2.6 0" stroke={theme.textMuted} strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
@@ -85,7 +86,7 @@ function AppShellInner({ profile, enrollments, children }) {
               </button>
               {showNotifs && (
                 <>
-                  <div className="fixed inset-0 z-30" onClick={() => setShowNotifs(false)} />
+                  <div className="fixed inset-0 z-30" role="button" tabIndex="0" onClick={() => setShowNotifs(false)} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') setShowNotifs(false) }} />
                   <div className="absolute right-0 top-full mt-2 w-80 rounded-2xl z-40 overflow-hidden shadow-2xl"
                        style={{ background: theme.surface, border: `1px solid ${theme.border}` }}>
                     <div className="px-4 py-3" style={{ borderBottom: `1px solid ${theme.border}` }}>

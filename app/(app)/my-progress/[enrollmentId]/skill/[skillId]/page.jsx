@@ -78,7 +78,7 @@ export default function SkillDetailPage() {
           className="bg-navy text-white rounded-2xl p-5 text-center hover:opacity-90 transition-opacity">
           <div className="text-2xl mb-2">💬</div>
           <p className="font-bold text-sm">Coaching Chat</p>
-          <p className="text-xs text-white/50 mt-1">AI tutor focused on this skill</p>
+          <p className="text-xs text-white/75 mt-1">AI tutor focused on this skill</p>
         </Link>
         <Link href={`/my-progress/${enrollmentId}/quiz/${skillId}`}
           className="rounded-2xl p-5 text-center hover:opacity-90 transition-opacity"
@@ -99,22 +99,22 @@ export default function SkillDetailPage() {
       {/* Study guide */}
       {guide && (
         <div className="bg-white rounded-2xl border border-gray-200 p-8">
-          <div className="prose prose-sm max-w-none"
-            dangerouslySetInnerHTML={{ __html: markdownToHtml(guide) }} />
+          <div className="prose prose-sm max-w-none">
+            {renderGuideContent(guide)}
+          </div>
         </div>
       )}
     </div>
   )
 }
 
-function markdownToHtml(md) {
-  return md
-    .replace(/^### (.+)$/gm, '<h3 class="font-bold text-navy text-base mt-6 mb-2">$1</h3>')
-    .replace(/^## (.+)$/gm, '<h2 class="font-bold text-navy text-lg mt-8 mb-3">$1</h2>')
-    .replace(/^# (.+)$/gm, '<h1 class="font-bold text-navy text-xl mt-8 mb-4">$1</h1>')
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/^- (.+)$/gm, '<li class="ml-4 text-gray-600 text-sm mb-1">$1</li>')
-    .replace(/^(\d+)\. (.+)$/gm, '<li class="ml-4 text-gray-600 text-sm mb-1"><span class="font-bold">$1.</span> $2</li>')
-    .replace(/\n\n/g, '</p><p class="text-gray-600 text-sm leading-relaxed mb-3">')
-    .replace(/^(?!<)(.+)$/gm, '<p class="text-gray-600 text-sm leading-relaxed mb-3">$1</p>')
+function renderGuideContent(content) {
+  if (!content) return null
+  return content.split('\n\n').map((para, i) => (
+    <p key={i} className={`text-gray-600 text-sm leading-relaxed ${i > 0 ? 'mt-3' : ''}`}>{
+      para.split(/\*\*(.+?)\*\*/g).map((part, j) =>
+        j % 2 === 1 ? <strong key={j}>{part}</strong> : part
+      )
+    }</p>
+  ))
 }
