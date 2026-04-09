@@ -5,13 +5,12 @@ export default function Nav() {
   const [open, setOpen] = useState(false)
 
   const links = [
+    { label: 'For Students',  href: '/students' },
     { label: 'How It Works', href: '#how-it-works' },
     { label: 'For Faculty',  href: '#for-faculty' },
     { label: 'Pricing',      href: '#pricing' },
-    { label: 'About',        href: '#about' },
     { label: 'Blog',          href: '/blog' },
     { label: 'Methodology',  href: '/methodology' },
-    { label: 'Investors',    href: '/investors' },
   ]
 
   return (
