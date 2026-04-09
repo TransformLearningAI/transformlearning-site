@@ -53,7 +53,7 @@ export default function StudentsPage() {
           </Link>
           <div className="flex items-center gap-4">
             <Link href="/login" className="text-sm font-medium text-gray-500 hover:text-gray-900">Log in</Link>
-            <Link href="/signup" className="text-sm font-bold text-white px-5 py-2.5 rounded-lg" style={{ background: '#00A8A8' }}>
+            <Link href="/signup-student" className="text-sm font-bold text-white px-5 py-2.5 rounded-lg" style={{ background: '#00A8A8' }}>
               Get Started Free →
             </Link>
           </div>
@@ -81,7 +81,7 @@ export default function StudentsPage() {
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 mb-12">
-            <Link href="/signup"
+            <Link href="/signup-student"
               className="text-white px-8 py-4 rounded-xl font-bold text-sm"
               style={{ background: '#00A8A8', boxShadow: '0 0 30px rgba(0,168,168,0.3)' }}>
               Start Free →
@@ -224,7 +224,7 @@ export default function StudentsPage() {
                 </ul>
               </div>
 
-              <Link href="/signup"
+              <Link href="/signup-student"
                 className="block w-full py-3.5 rounded-lg font-bold text-sm text-white"
                 style={{ background: '#0C1F3F' }}>
                 Start Free — Upgrade Later →
@@ -297,7 +297,7 @@ export default function StudentsPage() {
             Upload your syllabus or program guide. In 30 minutes, you'll know exactly where you stand
             on every skill — and what to do about it.
           </p>
-          <Link href="/signup"
+          <Link href="/signup-student"
             className="inline-block text-white px-8 py-4 rounded-xl font-bold text-sm"
             style={{ background: '#00A8A8' }}>
             Get Started Free →
