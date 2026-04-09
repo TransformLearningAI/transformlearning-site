@@ -7,7 +7,7 @@ These schools are facing enrollment decline, accreditation pressure, or closure 
 
 ## LETTER 1: TO A PRESIDENT OR PROVOST
 
-**Subject:** A free pilot that produces retention evidence — for your board, your accreditor, and your students
+**Subject:** I'd like to visit your campus after April 22 — free pilot that produces retention evidence
 
 Dear [President/Provost Last Name],
 
@@ -23,7 +23,7 @@ What you get at the end is not a vendor report. It's an evidence package: baseli
 
 I spent 30 years as a professor and division chair at La Roche College in Pittsburgh. I watched a good institution struggle with the same problems you're facing. I built Arrival because the tools we had — gradebooks, LMS dashboards, midterm grade reports — showed us what happened after it was too late to do anything about it.
 
-I'd welcome 15 minutes to show you what this looks like. I'm in Pittsburgh and happy to come to your campus or do a video call.
+I'm available to come to your campus anytime after April 22 for a hands-on demo and conversation — no slide deck, just the live platform. I'll show you exactly what your faculty and students would see, and we can talk through whether a pilot makes sense for your situation. If a visit doesn't work, a video call is just as easy.
 
 Warmly,
 Jeff Ritter, PhD
@@ -36,7 +36,7 @@ Built in Pittsburgh
 
 ## LETTER 2: TO A DEAN OR ACADEMIC AFFAIRS VP
 
-**Subject:** What if you could see which students were at risk — before the midterm?
+**Subject:** I'd like to visit your campus and show you something — available after April 22
 
 Dear [Dean Last Name],
 
@@ -52,7 +52,7 @@ I'm offering a free structured pilot: one gateway course, one semester, up to 30
 
 I was a division chair for 15 years. I know what your Tuesday afternoon looks like when a faculty member tells you half the class failed the midterm. I built this so that conversation happens in Week 4, not Week 8 — and with something to do about it.
 
-Can I show you a 15-minute walkthrough?
+I'm available to visit your campus anytime after April 22 to walk through the live platform with you and your team. No slide deck — just the real thing. If a visit doesn't work, a video call works just as well.
 
 Warmly,
 Jeff Ritter, PhD
@@ -64,7 +64,7 @@ transformlearning.ai
 
 ## LETTER 3: TO A DEPARTMENT CHAIR
 
-**Subject:** Free pilot for [Department Name] — AI proficiency tracking for your gateway courses
+**Subject:** I'd like to visit [Institution] after April 22 — free AI pilot for your [Department Name] gateway courses
 
 Dear [Chair Last Name],
 
@@ -80,7 +80,7 @@ The pilot is free. One course, one semester, up to 300 students. No cost to your
 
 I taught for 30 years at La Roche College. I chaired a division. I sat in the meetings where we looked at DFW data and said "we need to do something" and then didn't have a tool to do it with. This is that tool.
 
-Would you be open to a 15-minute conversation? I'm in Pittsburgh and happy to come to you.
+I'm available to come to your campus anytime after April 22 and walk through the live platform with you — no slide deck, just the real system running on real data. If an in-person visit doesn't work, a video call is just as easy.
 
 Warmly,
 Jeff Ritter, PhD
@@ -92,7 +92,7 @@ transformlearning.ai
 
 ## LETTER 4: TO AN ADMISSIONS OR ENROLLMENT DIRECTOR
 
-**Subject:** What if your retention data told a different story next year?
+**Subject:** I'd like to visit and show you something that changes retention math — available after April 22
 
 Dear [Director Last Name],
 
@@ -108,10 +108,11 @@ In our pilot data, the system identifies at-risk students an average of 3-4 week
 
 I'm offering a free structured pilot: one gateway course, one semester. At the end, you get retention-relevant evidence — DFW rates, engagement patterns, trajectory data — that your enrollment management team can actually use.
 
-Can I show you what this looks like in 15 minutes?
+I'm available to visit your campus anytime after April 22 to walk through the live platform and show you exactly what the retention-relevant data looks like. No slide deck — just the real system. A video call works too if that's easier.
 
 Warmly,
 Jeff Ritter, PhD
+Professor and Humanities Division Chair (retired), La Roche College
 Founder, Transform Learning
 transformlearning.ai
 
