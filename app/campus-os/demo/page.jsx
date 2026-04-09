@@ -152,7 +152,7 @@ export default function CampusOSDemoHub() {
       <nav className="border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="text-lg font-semibold tracking-tight" style={{ color: '#0C1F3F' }}>
-            arrival.ai
+            transformlearning.ai
           </Link>
           <Link
             href="/campus-os"

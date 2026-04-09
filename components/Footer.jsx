@@ -26,17 +26,17 @@ export default function Footer() {
 
           {/* Logo */}
           <div className="flex items-center gap-4">
-            <svg width="46" height="46" viewBox="0 0 56 56" fill="none" aria-hidden="true">
-              <rect width="56" height="56" rx="16" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.08)" strokeWidth="1"/>
-              <path d="M28 12L16 44H22.5L28 31L33.5 44H40L28 12Z" fill="#00A8A8"/>
-              <path d="M21 37H35" stroke="#4F8A5B" strokeWidth="2" strokeLinecap="round" opacity="0.5"/>
-              <circle cx="28" cy="26" r="9" stroke="white" strokeWidth="0.8" opacity="0.1"/>
+            <svg width="40" height="40" viewBox="0 0 56 56" fill="none" aria-hidden="true">
+              <rect width="56" height="56" rx="14" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.08)" strokeWidth="1"/>
+              <path d="M14 38C18 28 24 20 32 16C38 13 44 14 46 18" stroke="#00A8A8" strokeWidth="3.5" strokeLinecap="round" fill="none"/>
+              <circle cx="46" cy="18" r="3" fill="#4F8A5B"/>
+              <path d="M12 42H44" stroke="white" strokeWidth="1.2" strokeLinecap="round" opacity="0.15"/>
             </svg>
             <div>
               <span className="font-bold text-white text-xl tracking-tight">
-                arrival<span style={{ color: '#00A8A8' }}>.ai</span>
+                transform<span style={{ color: '#00A8A8' }}>learning</span>
               </span>
-              <p className="text-[9px] font-bold uppercase tracking-[0.18em] mt-0.5 text-white/30">Adaptive Learning OS</p>
+              <p className="text-[9px] font-bold uppercase tracking-[0.18em] mt-0.5 text-white/30">Changing how learning works</p>
             </div>
           </div>
 

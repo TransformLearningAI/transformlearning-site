@@ -78,7 +78,7 @@ export default function AccessPage() {
               </svg>
             </div>
             <span className="font-bold text-navy text-sm">
-              arrival<span style={{ color: '#00A8A8' }}>.ai</span>
+              transform<span style={{ color: '#00A8A8' }}>learning</span>
             </span>
           </Link>
           <Link href="/" className="text-xs font-medium text-brand-gray hover:text-navy transition-colors">

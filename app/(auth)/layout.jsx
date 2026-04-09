@@ -22,14 +22,13 @@ export default function AuthLayout({ children }) {
         {/* Logo */}
         <a href="/" className="flex items-center gap-3 mb-12 group">
           <svg width="44" height="44" viewBox="0 0 56 56" fill="none">
-            <rect width="56" height="56" rx="16" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" strokeWidth="1"/>
-            <path d="M28 12L16 44H22.5L28 31L33.5 44H40L28 12Z" fill="#00CED1"/>
-            <path d="M21 37H35" stroke="#4ADE80" strokeWidth="2" strokeLinecap="round" opacity="0.5"/>
-            <circle cx="28" cy="26" r="9" stroke="white" strokeWidth="0.8" opacity="0.1"/>
+            <rect width="56" height="56" rx="14" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" strokeWidth="1"/>
+            <path d="M14 38C18 28 24 20 32 16C38 13 44 14 46 18" stroke="#00CED1" strokeWidth="3.5" strokeLinecap="round" fill="none"/>
+            <circle cx="46" cy="18" r="3" fill="#4ADE80"/>
           </svg>
           <div>
-            <span className="text-white font-bold text-xl tracking-tight">arrival<span style={{ color: '#00CED1' }}>.ai</span></span>
-            <p className="text-white/20 text-[9px] uppercase tracking-[0.18em] mt-0.5">Adaptive Learning OS</p>
+            <span className="text-white font-bold text-xl tracking-tight">transform<span style={{ color: '#00CED1' }}>learning</span></span>
+            <p className="text-white/20 text-[9px] uppercase tracking-[0.18em] mt-0.5">Changing how learning works</p>
           </div>
         </a>
         {children}

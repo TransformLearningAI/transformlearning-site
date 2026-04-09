@@ -160,7 +160,7 @@ export async function GET(request) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: 'Arrival <digest@transformlearning.ai>',
+      from: 'Transform Learning <digest@transformlearning.ai>',
       to: [toEmail],
       subject: `Arrival Digest — ${today}`,
       html,

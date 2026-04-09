@@ -128,7 +128,7 @@ export default function PeerMarketplacePage() {
       <nav className="border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="text-lg font-semibold tracking-tight" style={{ color: NAVY }}>
-            arrival.ai
+            transformlearning.ai
           </Link>
           <Link
             href="/campus-os/demo"
@@ -448,7 +448,7 @@ export default function PeerMarketplacePage() {
       {/* Footer */}
       <footer className="border-t border-gray-200">
         <div className="max-w-5xl mx-auto px-6 py-8 flex items-center justify-between text-xs text-gray-400">
-          <span>&copy; 2026 arrival.ai</span>
+          <span>&copy; 2026 transformlearning.ai</span>
           <span>Mock data &middot; No real students</span>
         </div>
       </footer>

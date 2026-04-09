@@ -43,7 +43,7 @@ export default function WhitepaperRequest() {
       <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
         <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="font-bold text-sm" style={{ color: '#0C1F3F' }}>
-            arrival<span style={{ color: '#00A8A8' }}>.ai</span>
+            transform<span style={{ color: '#00A8A8' }}>learning</span>
           </Link>
           <Link href="/campus-os" className="text-xs text-gray-400 hover:text-gray-600">
             ← Back to Campus OS

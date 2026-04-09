@@ -577,7 +577,7 @@ export default function CampusOSPage() {
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-4">
             <span className="font-sans text-lg font-bold text-white/80">
-              arrival<span style={{ color: '#00A8A8' }}>.ai</span>
+              transform<span style={{ color: '#00A8A8' }}>learning</span>
             </span>
             <span className="text-white/20 text-sm">Campus OS</span>
           </div>

@@ -45,7 +45,7 @@ export async function POST(request) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          from: 'Arrival <noreply@transformlearning.ai>',
+          from: 'Transform Learning <noreply@transformlearning.ai>',
           to: ['jeff@transformlearning.ai'],
           subject: `White Paper Request: ${name} — ${institution || 'No institution'}`,
           html: `

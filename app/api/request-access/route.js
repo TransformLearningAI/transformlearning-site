@@ -19,7 +19,7 @@ export async function POST(request) {
 
     // Send notification to Jeff with approve/deny links
     await resend.emails.send({
-      from: 'Arrival <noreply@transformlearning.ai>',
+      from: 'Transform Learning <noreply@transformlearning.ai>',
       to: 'jeff@yourclassroom.ai',
       replyTo: email,
       subject: `Access Request: ${name} at ${organization}`,
@@ -51,7 +51,7 @@ export async function POST(request) {
 
     // Send confirmation to requester
     await resend.emails.send({
-      from: 'Arrival <noreply@transformlearning.ai>',
+      from: 'Transform Learning <noreply@transformlearning.ai>',
       to: email,
       subject: 'Access request received — Arrival / Transform Learning',
       text: [

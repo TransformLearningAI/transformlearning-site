@@ -72,7 +72,7 @@ export default function Investors() {
               </svg>
             </div>
             <span className="font-bold text-navy text-sm">
-              arrival<span style={{ color: '#00A8A8' }}>.ai</span>
+              transform<span style={{ color: '#00A8A8' }}>learning</span>
             </span>
           </Link>
           <Link href="/" className="text-xs font-medium text-brand-gray hover:text-navy transition-colors">
@@ -345,7 +345,7 @@ export default function Investors() {
       <footer className="border-t border-brand-border py-8" style={{ background: '#071429' }}>
         <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <Link href="/" className="text-sm font-bold text-white hover:text-brand-teal transition-colors">
-            ← Back to arrival.ai
+            ← Back to transformlearning.ai
           </Link>
           <p className="text-xs text-white/30">Arrival · Investor Overview · Confidential</p>
         </div>

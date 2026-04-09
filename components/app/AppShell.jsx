@@ -43,13 +43,13 @@ function AppShellInner({ profile, enrollments, children }) {
           </button>
 
           <a href="/" className="flex items-center gap-3 mr-4">
-            <svg width="36" height="36" viewBox="0 0 56 56" fill="none" className="flex-shrink-0" aria-hidden="true">
-              <rect width="56" height="56" rx="16" fill={theme.surfaceLight} stroke={theme.border} strokeWidth="1"/>
-              <path d="M28 12L16 44H22.5L28 31L33.5 44H40L28 12Z" fill={theme.accent}/>
-              <path d="M21 37H35" stroke={theme.success} strokeWidth="2" strokeLinecap="round" opacity="0.5"/>
+            <svg width="32" height="32" viewBox="0 0 56 56" fill="none" className="flex-shrink-0" aria-hidden="true">
+              <rect width="56" height="56" rx="14" fill={theme.surfaceLight} stroke={theme.border} strokeWidth="1"/>
+              <path d="M14 38C18 28 24 20 32 16C38 13 44 14 46 18" stroke={theme.accent} strokeWidth="3.5" strokeLinecap="round" fill="none"/>
+              <circle cx="46" cy="18" r="3" fill={theme.success}/>
             </svg>
             <span className="font-bold text-base tracking-tight hidden sm:block" style={{ color: theme.text }}>
-              arrival<span style={{ color: theme.accent }}>.ai</span>
+              transform<span style={{ color: theme.accent }}>learning</span>
             </span>
           </a>
 

@@ -149,12 +149,12 @@ export default function Hero() {
         <div>
           <div className={`inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-white/15 bg-white/[0.05] mb-8 transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <svg width="24" height="24" viewBox="0 0 56 56" fill="none" aria-hidden="true">
-              <rect width="56" height="56" rx="16" fill="rgba(255,255,255,0.1)"/>
-              <path d="M28 12L16 44H22.5L28 31L33.5 44H40L28 12Z" fill="#00A8A8"/>
-              <path d="M21 37H35" stroke="#4F8A5B" strokeWidth="2" strokeLinecap="round" opacity="0.6"/>
+              <rect width="56" height="56" rx="14" fill="rgba(255,255,255,0.1)"/>
+              <path d="M14 38C18 28 24 20 32 16C38 13 44 14 46 18" stroke="#00A8A8" strokeWidth="3.5" strokeLinecap="round" fill="none"/>
+              <circle cx="46" cy="18" r="3" fill="#4F8A5B"/>
             </svg>
             <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/70">
-              Arrival · Adaptive Learning Operating System
+              Transform Learning · Changing How Learning Works
             </span>
           </div>
 

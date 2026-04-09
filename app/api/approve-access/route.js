@@ -21,7 +21,7 @@ export async function GET(request) {
       const investorLink = `https://transformlearning.ai/investors?access=${key}`
 
       await resend.emails.send({
-        from: 'Arrival <noreply@transformlearning.ai>',
+        from: 'Transform Learning <noreply@transformlearning.ai>',
         to: email,
         subject: 'Your access has been approved — Arrival / Transform Learning',
         text: [
@@ -62,7 +62,7 @@ export async function GET(request) {
     } else if (action === 'deny') {
       // Send polite decline
       await resend.emails.send({
-        from: 'Arrival <noreply@transformlearning.ai>',
+        from: 'Transform Learning <noreply@transformlearning.ai>',
         to: email,
         subject: 'Regarding your access request — Arrival / Transform Learning',
         text: [

@@ -55,7 +55,7 @@ export async function GET(request) {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            from: 'Arrival <noreply@transformlearning.ai>',
+            from: 'Transform Learning <noreply@transformlearning.ai>',
             to: [req.email],
             subject: 'Your Campus OS White Paper is Ready',
             html: `

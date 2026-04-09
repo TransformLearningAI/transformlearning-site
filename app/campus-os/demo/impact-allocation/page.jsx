@@ -180,8 +180,8 @@ export default function ImpactAllocationPage() {
       {/* ── nav ── */}
       <nav className="flex items-center justify-between px-6 py-4 border-b border-white/10">
         <span className="text-lg font-semibold tracking-tight">
-          <span className="text-brand-teal">arrival</span>
-          <span className="text-white/80">.ai</span>
+          <span className="text-brand-teal">transform</span>
+          <span className="text-white/80">learning</span>
         </span>
         <a href="/campus-os/demo" className="text-sm text-white/60 hover:text-white transition-colors">
           &larr; All Demos

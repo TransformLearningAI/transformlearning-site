@@ -127,7 +127,7 @@ export default function DecisionRouterDemo() {
       <nav className="sticky top-0 z-50 border-b border-brand-border bg-white/90 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
           <Link href="/" className="text-lg font-semibold tracking-tight text-navy">
-            arrival.ai
+            transformlearning.ai
           </Link>
           <Link
             href="/campus-os/demo"
@@ -474,7 +474,7 @@ export default function DecisionRouterDemo() {
         {/* ── Footer ── */}
         <footer className="text-center py-8">
           <p className="text-xs text-brand-gray">
-            arrival.ai Campus OS &nbsp;·&nbsp; Decision Router &nbsp;·&nbsp; Replacing committees with intelligence
+            transformlearning.ai Campus OS &nbsp;·&nbsp; Decision Router &nbsp;·&nbsp; Replacing committees with intelligence
           </p>
         </footer>
       </main>

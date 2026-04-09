@@ -169,7 +169,7 @@ export default function Sidebar({ profile, enrollments = [], open, onClose, them
         </button>
         <div className="flex items-center gap-2 px-3 py-2 text-white/50">
           <ArrivalLogo size={16} />
-          <span className="text-[11px] font-bold">arrival<span style={{ color: theme?.accent || '#00CED1' }}>.ai</span></span>
+          <span className="text-[11px] font-bold">transform<span style={{ color: theme?.accent || '#00CED1' }}>learning</span></span>
         </div>
       </div>
     </aside>

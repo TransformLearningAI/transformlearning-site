@@ -227,7 +227,7 @@ export default function AcademicAffairsDashboard() {
             className="text-lg font-semibold tracking-tight"
             style={{ color: NAVY }}
           >
-            arrival.ai
+            transformlearning.ai
           </Link>
           <div className="flex items-center gap-6">
             <span

@@ -44,11 +44,11 @@ export default function StudentsPage() {
           <Link href="/" className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: '#0C1F3F' }}>
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M8 2L2 14H6L8 10L10 14H14L8 2Z" fill="#00A8A8"/>
+                <path d="M3 12C4.5 8 7 5 10 4C12.5 3 14.5 3.5 15 5" stroke="#00A8A8" strokeWidth="1.5" strokeLinecap="round" fill="none"/><circle cx="15" cy="5" r="1.2" fill="#4F8A5B"/>
               </svg>
             </div>
             <span className="font-bold text-sm" style={{ color: '#0C1F3F' }}>
-              arrival<span style={{ color: '#00A8A8' }}>.ai</span>
+              transform<span style={{ color: '#00A8A8' }}>learning</span>
             </span>
           </Link>
           <div className="flex items-center gap-4">
@@ -308,7 +308,7 @@ export default function StudentsPage() {
       {/* Footer */}
       <footer className="border-t border-gray-200 py-8">
         <div className="max-w-5xl mx-auto px-6 flex flex-wrap items-center justify-between gap-4 text-xs text-gray-400">
-          <span>© {new Date().getFullYear()} Arrival · transformlearning.ai</span>
+          <span>© {new Date().getFullYear()} transformlearning.ai</span>
           <div className="flex gap-6">
             <Link href="/" className="hover:text-gray-600">Home</Link>
             <Link href="/blog" className="hover:text-gray-600">Blog</Link>

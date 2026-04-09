@@ -136,7 +136,7 @@ export default function AdmissionsDashboard() {
       <nav className="sticky top-0 z-50 border-b border-brand-border bg-white/90 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
           <Link href="/" className="text-lg font-semibold tracking-tight text-navy">
-            arrival.ai
+            transformlearning.ai
           </Link>
           <div className="flex items-center gap-6">
             <span className="hidden sm:inline text-sm font-medium text-brand-gray">Admissions</span>
@@ -505,7 +505,7 @@ export default function AdmissionsDashboard() {
         {/* ── Footer ── */}
         <footer className="text-center py-8">
           <p className="text-xs text-brand-gray">
-            arrival.ai Campus OS &nbsp;&middot;&nbsp; Admissions View &nbsp;&middot;&nbsp; Data refreshed Oct 29, 2026
+            transformlearning.ai Campus OS &nbsp;&middot;&nbsp; Admissions View &nbsp;&middot;&nbsp; Data refreshed Oct 29, 2026
           </p>
         </footer>
       </main>

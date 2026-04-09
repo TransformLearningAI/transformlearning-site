@@ -60,7 +60,7 @@ export async function POST(request, context) {
     // Send email
     const resend = new Resend(process.env.RESEND_API_KEY)
     const { error: emailError } = await resend.emails.send({
-      from: `Arrival <noreply@transformlearning.ai>`,
+      from: `Transform Learning <noreply@transformlearning.ai>`,
       to: [email],
       reply_to: user.email,
       subject: `You've been invited to ${course.title} on Arrival`,
