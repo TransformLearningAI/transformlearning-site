@@ -11,11 +11,25 @@ export async function POST(request) {
   const body = await request.json()
   const { title, content, sourceUrl } = body
 
-  const text = content?.trim() || ''
+  let text = content?.trim() || ''
   if (!text && !sourceUrl)
     return NextResponse.json({ error: 'Please provide content or a URL' }, { status: 400 })
 
   const service = await createServiceClient()
+
+  // If content is a PDF base64, extract text
+  if (text.startsWith('__PDF_BASE64__')) {
+    try {
+      const base64 = text.replace('__PDF_BASE64__', '')
+      const buffer = Buffer.from(base64, 'base64')
+      const pdf = await import('pdf-parse')
+      const data = await pdf.default(buffer)
+      text = data.text?.slice(0, 30000) || ''
+      if (!text.trim()) throw new Error('No text extracted from PDF')
+    } catch (err) {
+      return NextResponse.json({ error: 'Could not read PDF: ' + err.message }, { status: 400 })
+    }
+  }
 
   // If a URL was provided, fetch its content
   let syllabusText = text

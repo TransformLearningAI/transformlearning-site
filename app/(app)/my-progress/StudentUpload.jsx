@@ -11,13 +11,37 @@ const EXAMPLES = [
 
 export default function StudentUpload() {
   const router = useRouter()
-  const [mode, setMode] = useState('text') // text | url
+  const [mode, setMode] = useState('text') // text | url | file
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [url, setUrl] = useState('')
+  const [fileName, setFileName] = useState('')
   const [activeExample, setActiveExample] = useState(0)
   const [status, setStatus] = useState('idle') // idle | loading | error
   const [error, setError] = useState('')
+
+  async function handleFileChange(e) {
+    const file = e.target.files?.[0]
+    if (!file) return
+    setFileName(file.name)
+    setError('')
+
+    if (file.type === 'application/pdf') {
+      // Read as base64 and send to server for extraction
+      const reader = new FileReader()
+      reader.onload = () => {
+        const base64 = reader.result.split(',')[1]
+        setContent(`__PDF_BASE64__${base64}`)
+      }
+      reader.readAsDataURL(file)
+    } else {
+      // Plain text, .docx treated as text, etc.
+      const text = await file.text()
+      setContent(text)
+    }
+
+    if (!title) setTitle(file.name.replace(/\.[^.]+$/, ''))
+  }
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -81,6 +105,12 @@ export default function StudentUpload() {
 
         {/* Input mode toggle */}
         <div className="flex gap-2 mb-4">
+          <button type="button" onClick={() => setMode('file')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition ${
+              mode === 'file' ? 'bg-[#00A8A8] text-white' : 'bg-gray-100 text-gray-500'
+            }`}>
+            Upload a file
+          </button>
           <button type="button" onClick={() => setMode('text')}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition ${
               mode === 'text' ? 'bg-[#00A8A8] text-white' : 'bg-gray-100 text-gray-500'
@@ -96,7 +126,27 @@ export default function StudentUpload() {
         </div>
 
         {/* Content input */}
-        {mode === 'text' ? (
+        {mode === 'file' ? (
+          <div className="mb-4">
+            <label className="flex flex-col items-center justify-center w-full h-40 rounded-xl border-2 border-dashed border-gray-200 hover:border-[#00A8A8] transition-colors cursor-pointer bg-gray-50">
+              <input type="file" className="hidden" accept=".pdf,.doc,.docx,.txt,.rtf"
+                onChange={handleFileChange} />
+              {fileName ? (
+                <div className="text-center">
+                  <div className="text-2xl mb-2">📄</div>
+                  <p className="text-sm font-medium text-navy">{fileName}</p>
+                  <p className="text-xs text-gray-400 mt-1">Click to change file</p>
+                </div>
+              ) : (
+                <div className="text-center">
+                  <div className="text-2xl mb-2">📂</div>
+                  <p className="text-sm font-medium text-gray-600">Drop a file here or click to browse</p>
+                  <p className="text-xs text-gray-400 mt-1">PDF, Word, or text files — syllabi, program guides, requirements</p>
+                </div>
+              )}
+            </label>
+          </div>
+        ) : mode === 'text' ? (
           <textarea value={content} onChange={e => setContent(e.target.value)}
             rows={8}
             placeholder={EXAMPLES[activeExample].placeholder}
