@@ -1,9 +1,13 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
+import StudentUpload from './StudentUpload'
 
 export default async function MyProgressPage() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
+
+  const { data: profile } = await supabase
+    .from('profiles').select('role').eq('id', user.id).single()
 
   const { data: enrollments } = await supabase
     .from('enrollments')
@@ -21,14 +25,10 @@ export default async function MyProgressPage() {
   return (
     <div>
       <h1 className="font-serif font-light text-navy mb-6" style={{ fontSize: '36px', letterSpacing: '-0.02em' }}>My Courses</h1>
-      {!enrollments?.length ? (
-        <div className="bg-white rounded-2xl border border-gray-200 p-16 text-center">
-          <div className="text-4xl mb-4">◈</div>
-          <h3 className="font-semibold text-navy mb-2">No courses yet</h3>
-          <p className="text-gray-500 text-sm">Ask your instructor to send you an invite link.</p>
-        </div>
-      ) : (
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+      {/* Existing enrollments */}
+      {enrollments?.length > 0 && (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
           {enrollments.map(e => (
             <Link key={e.id}
               href={`/my-progress/${e.id}`}
@@ -41,6 +41,16 @@ export default async function MyProgressPage() {
             </Link>
           ))}
         </div>
+      )}
+
+      {/* Upload prompt — always visible for students */}
+      {profile?.role === 'student' && <StudentUpload />}
+
+      {/* Invite hint for students with no courses */}
+      {!enrollments?.length && profile?.role === 'student' && (
+        <p className="text-xs text-gray-400 text-center mt-4">
+          Your instructor can also invite you directly with a course link.
+        </p>
       )}
     </div>
   )
