@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Campus OS White Paper — Design & Architecture | Arrival',
+  title: 'Campus OS White Paper — Design & Architecture | Transform Learning',
   description: 'Request the Campus OS white paper. System architecture, AI governance framework, role-based dashboards, pilot deployment methodology, and evidence-based outcome projections.',
 }
 
