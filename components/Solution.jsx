@@ -4,7 +4,7 @@ const PILLARS = [
   {
     num: '01', label: 'Revealed Clarity', color: '#F4F7FB',
     title: 'We remove noise to reveal\nwhat matters.',
-    body: 'True proficiency. Exposed with precision. Arrival uncovers every student\'s actual skill level — both foundational knowledge and core skills like problem decomposition and reasoning. The system determines where they truly stand, not just where grades suggest.',
+    body: 'True proficiency. Exposed with precision. The engine uncovers every student\'s actual skill level — both foundational knowledge and core skills like problem decomposition and reasoning. It determines where they truly stand, not just where grades suggest.',
   },
   {
     num: '02', label: 'Trusted Wisdom', color: '#0C1F3F',
@@ -48,7 +48,7 @@ export default function Solution() {
           </ScrollReveal>
           <ScrollReveal delay={2}>
             <p className="text-lg text-brand-gray leading-relaxed max-w-2xl mx-auto">
-              The AI isn't the product — it's the underlying intelligence. What we've built is a wayfinding system that reads signals, recognizes patterns, applies judgment, and guides students toward an arrival point. Not by removing challenge, but by introducing the right amount of tension at the right moment. Students don't just see where they stand. They fix it.
+              The AI isn't the product — it's the underlying intelligence. What we've built is a proficiency engine that reads signals, recognizes patterns, applies judgment, and shows students exactly where they stand against mastery. Not by removing challenge, but by introducing the right amount of tension at the right moment. Students don't just see where they stand. They fix it.
             </p>
           </ScrollReveal>
         </div>

@@ -66,7 +66,7 @@ export default function NewCoursePage() {
         <p className="text-white/25 text-sm mb-8">
           {step === 1
             ? 'Every course becomes a constellation of skills. Start with the basics.'
-            : 'Paste your syllabus. Arrival\'s AI will map every foundational and core skill into stars your students can navigate.'}
+            : 'Paste your syllabus. The AI will map every foundational and core skill into stars your students can navigate.'}
         </p>
 
         {step === 1 && (

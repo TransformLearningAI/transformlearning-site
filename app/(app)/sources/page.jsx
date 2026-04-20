@@ -127,7 +127,7 @@ export default function SourceLibraryPage() {
         <div>
           <p className="text-sm font-bold text-navy mb-1">Data Integrity</p>
           <p className="text-xs text-gray-500 leading-relaxed">
-            All uploaded sources pass through Arrival's L0 data integrity gate. Content is validated for provenance,
+            All uploaded sources pass through the L0 data integrity gate. Content is validated for provenance,
             processed with feature minimization, and linked to governance metadata for full audit traceability.
           </p>
         </div>

@@ -1,4 +1,4 @@
-# Arrival Pilot Outreach — Western PA Faculty
+# Transform Learning Pilot Outreach — Western PA Faculty
 
 Target: Professors teaching gateway courses (College Algebra, Intro Stats, General Biology) at institutions under enrollment/retention pressure. Free pilot offer.
 
@@ -154,15 +154,15 @@ Dear [First Name],
 
 I am a fellow educator in Pittsburgh reaching out with a free pilot opportunity for your [Course Name] class.
 
-I built Arrival, an adaptive learning platform that gives you real-time visibility into exactly where each student stands on every skill in your course — not just their grade, but their actual proficiency, with confidence intervals, trajectory analysis, and early warning signals for students who are starting to slip.
+I built Transform Learning, an adaptive proficiency platform that gives you real-time visibility into exactly where each student stands on every skill in your course — not just their grade, but their actual proficiency, with confidence intervals, trajectory analysis, and early warning signals for students who are starting to slip.
 
 **How it works in practice:**
 
-You upload your syllabus. Within 30 minutes, Arrival maps it into a skill framework. Your students get a personalized dashboard showing their proficiency on each skill. The AI generates adaptive quizzes, targeted study guides, and coaching conversations focused specifically on each student's weakest areas. You see everything — which students are improving, which are stalling, and which need intervention before it shows up in their grades.
+You upload your syllabus. Within 30 minutes, the platform maps it into a skill framework. Your students get a personalized dashboard showing their proficiency on each skill. The AI generates adaptive quizzes, targeted study guides, and coaching conversations focused specifically on each student's weakest areas. You see everything — which students are improving, which are stalling, and which need intervention before it shows up in their grades.
 
 **What this means for gateway courses:**
 
-Gateway courses like [Course Name] are where students fall through the cracks. The DFW rates are high because by the time a midterm reveals the problem, it is too late to fix it. Arrival catches the signals weeks earlier and gives both you and your students something to act on.
+Gateway courses like [Course Name] are where students fall through the cracks. The DFW rates are high because by the time a midterm reveals the problem, it is too late to fix it. Transform Learning catches the signals weeks earlier and gives both you and your students something to act on.
 
 **The pilot is completely free.** One course, one semester, up to 300 students. No cost to you, your department, or your institution. I am looking for 3-5 faculty partners in western PA who want to test this with real students and help us build the evidence base.
 

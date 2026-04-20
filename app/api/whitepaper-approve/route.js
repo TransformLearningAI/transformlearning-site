@@ -71,7 +71,7 @@ export async function GET(request) {
                   This link is unique to you. If you have questions or want to discuss a pilot,
                   reply to this email or visit <a href="https://transformlearning.ai" style="color:#00A8A8">transformlearning.ai</a>.
                 </p>
-                <p style="font-size:13px;color:#888">— The Arrival Team</p>
+                <p style="font-size:13px;color:#888">— The Transform Learning Team</p>
               </div>
             `,
           }),
@@ -98,7 +98,7 @@ export async function GET(request) {
 function page(title, message, color) {
   return `<!DOCTYPE html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${title} — Arrival</title>
+<title>${title} — Transform Learning</title>
 <style>
   body { font-family: system-ui, sans-serif; margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #F4F7FB; }
   .card { background: white; border-radius: 20px; padding: 48px; max-width: 440px; text-align: center; box-shadow: 0 8px 32px rgba(12,31,63,0.08); }

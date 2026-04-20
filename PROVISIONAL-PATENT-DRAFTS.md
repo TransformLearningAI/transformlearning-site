@@ -353,6 +353,273 @@ Jeff Ritter, PhD
 
 ---
 
+## PROVISIONAL PATENT #4: Multi-Modal Career Assessment Aggregation System
+
+### Title
+System and Method for Aggregating Heterogeneous Career Assessment Modalities into a Unified Post-Secondary Path Recommendation Through Cross-Modal Score Normalization and AI Synthesis
+
+### Field of the Invention
+This invention relates to career guidance technology, specifically to a system that combines scores from multiple independent assessment modalities — each using a fundamentally different measurement approach — into a unified career path recommendation.
+
+### Background of the Invention
+Existing career guidance tools typically use a single assessment modality: either a questionnaire (Holland codes, Myers-Briggs), a skills inventory, or a conversational advisor. Each modality captures different signals. Questionnaires capture stated preferences. Games capture revealed preferences through behavioral choices. Financial simulations capture risk tolerance and practical constraints. AI conversations capture narrative context, fears, and unstated motivations.
+
+No existing system aggregates all of these modality types into a single recommendation while preserving the distinct signal quality of each. Prior art in career guidance (O*NET, Naviance, Roadtrip Nation) uses single-modality assessment. Multi-modal assessment exists in clinical psychology (MMPI combines scales) but has not been applied to career guidance with this combination of interactive games, financial simulations, and conversational AI.
+
+### Summary of the Invention
+The invention implements a multi-modal career assessment system comprising five independent assessment modules, each using a different measurement mechanism, that converge on a unified ranking across a defined set of post-secondary paths:
+
+**Module 1 — Binary Object Choice (Pick Your World):** Presents pairs of career-representative objects. Each choice awards weighted points to multiple path categories. The weighting is non-uniform and context-specific: selecting "toolbox and wrench" scores {trade: 3, work: 1}, while selecting "laptop at a desk" scores {cc: 2, work: 1, entrepreneur: 1}.
+
+**Module 2 — Spectrum Slider Assessment (Your Vibe):** Presents preference dimensions on a 5-point slider. Each slider position maps to a different scoring table for the path categories. Position 1 and position 5 produce completely different path weightings, with intermediate positions producing intermediate weightings. This captures nuance that binary choice cannot.
+
+**Module 3 — Lifestyle Visualization (Picture Your Future):** Presents concrete lifestyle scenarios (living situations, daily routines, social contexts) and maps choices to path categories. This captures aspirational preferences rather than skill-based preferences.
+
+**Module 4 — Financial Realism Simulation (Money Real Talk):** Presents financial trade-offs (immediate income vs. training investment, stability vs. growth potential) and maps choices to path categories. This captures practical constraints and risk tolerance.
+
+**Module 5 — Conversational AI Synthesis (Guide):** An AI-driven 8-exchange structured conversation that extracts narrative details (interests, strengths, fears, values, family constraints, financial situation) and generates a personalized path report with match percentages. The AI can incorporate signals from Modules 1-4 when available, creating a multi-signal triangulation.
+
+**Aggregation Architecture:**
+- Modules 1-4 produce path-keyed scores stored in client-side sessionStorage
+- Each module's scores are normalized to a common scale
+- Module 5 (AI) can access the aggregated scores from Modules 1-4 and incorporate them into its recommendation
+- The final output is a ranked set of 2-3 path recommendations with match percentages, year-one expectations, and honest caveats
+
+**Module 6 — Reaction-Based Alternative Path Discovery:** A supplementary module that presents unconventional career paths (small farming, cooperatives, van life, vibe coding, co-housing) and captures emotional reactions (love, curious, not for me) rather than numeric scores. This inverts the scoring paradigm — instead of computing a match, it detects resonance.
+
+### Claims
+
+1. A computer-implemented system for career path recommendation, comprising:
+   a. two or more independent assessment modules, each using a fundamentally different measurement modality (binary choice, spectrum slider, lifestyle visualization, financial simulation, or conversational AI);
+   b. a common path-keyed scoring format to which all modules contribute, regardless of their measurement mechanism;
+   c. a cross-modal aggregation method that normalizes and combines scores from heterogeneous modules;
+   d. an AI synthesis module that can incorporate scores from non-AI modules to produce a multi-signal recommendation;
+   e. a recommendation output including match percentages, concrete year-one expectations, and honest caveats for each recommended path.
+
+2. The system of claim 1, wherein each assessment module uses non-uniform, context-specific scoring weights such that the same choice in different questions produces different path-category contributions.
+
+3. The system of claim 1, further comprising a reaction-based discovery module that captures qualitative emotional responses (love, curious, not for me) to unconventional career paths, producing a non-numeric resonance signal distinct from the scored modules.
+
+4. The system of claim 1, wherein the aggregation occurs entirely client-side without server-side state, using browser sessionStorage as the cross-module communication channel.
+
+5. The system of claim 1, wherein the conversational AI module uses a structured progressive-disclosure conversation flow (opening → interests → strengths → environment → practical constraints → values → fears → synthesis) that mirrors clinical intake methodology adapted for career guidance.
+
+### Inventor
+Jeff Ritter, PhD
+
+### Priority Date
+[Date of filing]
+
+---
+
+## PROVISIONAL PATENT #5: Scenario-to-Professional-Skill Translation Engine for Reentry Populations
+
+### Title
+Method and System for Translating Informal Life Experiences into Recognized Professional Skills with Career Path Mappings, Specifically Designed for Formerly Incarcerated Individuals
+
+### Field of the Invention
+This invention relates to workforce development technology, specifically to a method for identifying and articulating transferable professional skills from non-traditional life experiences, particularly those acquired during incarceration, and mapping those skills to viable career paths.
+
+### Background of the Invention
+Traditional skills assessment tools (O*NET Skills Search, LinkedIn Skills Assessment, Indeed Assessments) assume the user has formal work experience, educational credentials, or professional certifications to evaluate. These tools systematically exclude populations whose skills were developed through informal, non-credentialed, or non-traditional means — most notably the 600,000+ individuals released from incarceration annually in the United States.
+
+People who have been incarcerated frequently possess demonstrable professional skills acquired through prison work assignments (kitchen management, facility maintenance, library operations), self-directed learning (legal research, tutoring, fitness training), survival skills (conflict de-escalation, resource management under scarcity, crisis decision-making), and informal leadership (mentoring, organizing, advocacy). These skills have direct professional equivalents that are valued by employers, but no existing system translates them into professional language or maps them to career paths.
+
+Prior art in skills assessment does not address this population. Reentry-focused tools (Honest Jobs, 70 Million Jobs) match people to jobs but do not perform skills discovery. General-purpose AI career tools do not have domain knowledge about what skills are actually developed during incarceration.
+
+### Summary of the Invention
+The invention implements a scenario-based skills discovery engine comprising:
+
+**Scenario Library:** A curated set of 12 real-life scenarios drawn from experiences common during and after incarceration. Each scenario is written in plain, non-clinical language:
+- "Have you ever talked someone down when they were about to do something stupid?"
+- "Have you ever run a hustle — managed inventory, tracked what sold, handled money?"
+- "Have you ever written grievances, appeals, or legal documents?"
+- "Have you ever cooked for a large group and made it work with limited ingredients?"
+- "Have you ever helped someone who couldn't read, do math, or understand paperwork?"
+- "Have you ever managed your own money when there was barely enough to go around?"
+
+(And 6 additional scenarios covering mechanical aptitude, crisis management, organization/leadership, construction/building, self-discipline, and training/mentoring.)
+
+**Skill Mapping Matrix:** Each scenario maps to 3 or more recognized professional skills. Each skill includes:
+- Professional skill name (using standard HR/job-posting terminology)
+- Category grouping (e.g., "Leadership," "Technical," "Communication")
+- 2-4 specific career paths that value this skill
+- Typical pay range for those careers
+
+**De-duplication and Grouping Algorithm:** When a user completes all scenarios, the `buildResults()` function:
+1. Collects all skills from affirmed scenarios
+2. Groups skills by category
+3. De-duplicates skills that appear in multiple scenarios while preserving the source scenario(s) that demonstrated each skill
+4. Produces a structured output showing: skill name, which scenario(s) demonstrated it, careers that use it, and pay ranges
+
+**Evidence-Based Skill Resume:** The output constitutes a professional skills inventory derived entirely from lived experience — a document that could support a job application, a conversation with a workforce development counselor, or a self-assessment for career planning.
+
+### Claims
+
+1. A computer-implemented method for identifying professional skills from non-traditional life experiences, comprising:
+   a. presenting a curated library of real-life scenarios, each describing an experience common in non-traditional contexts (including but not limited to incarceration, survival situations, informal economies, or self-directed learning);
+   b. receiving affirmative or negative responses indicating whether the user has experienced each scenario;
+   c. for each affirmed scenario, mapping the experience to one or more recognized professional skills using a pre-defined skill mapping matrix;
+   d. de-duplicating and grouping the identified skills by professional category;
+   e. for each identified skill, presenting associated career paths and compensation data;
+   f. generating a structured professional skills inventory derived entirely from lived experience.
+
+2. The method of claim 1, wherein the scenario library is specifically designed for formerly incarcerated individuals and includes scenarios related to: conflict de-escalation, resource management under scarcity, legal document preparation, group food preparation, peer education, crisis decision-making, mechanical repair, organizational leadership, construction, financial management, self-discipline, and training/mentoring.
+
+3. The method of claim 1, wherein the de-duplication algorithm preserves the source scenario for each skill, creating an evidence-based record that can be used in employment applications or workforce development counseling.
+
+4. The method of claim 1, wherein the career path mappings include background-check-specific information indicating the likelihood of hiring for each career given a criminal record.
+
+5. A system for workforce development incorporating the method of claims 1-4, designed to be used without user accounts, without data persistence, and without requiring disclosure of specific criminal history.
+
+### Inventor
+Jeff Ritter, PhD
+
+### Priority Date
+[Date of filing]
+
+---
+
+## PROVISIONAL PATENT #6: Background-Check-Aware Career Matching Taxonomy
+
+### Title
+System and Data Structure for Career Path Recommendation Incorporating Conviction-Type-Specific Hiring Practice Data and Three-Tier Background Check Friendliness Classification
+
+### Field of the Invention
+This invention relates to career guidance and workforce development technology, specifically to a structured taxonomy that annotates career paths with industry-specific background check practices, conviction-type-specific hiring restrictions, and employer-level Fair Chance hiring data.
+
+### Background of the Invention
+Approximately 70 million Americans have a criminal record. Background check practices vary dramatically by industry, employer, state, and conviction type. A DUI conviction may disqualify someone from CDL trucking for 3-10 years but have no effect on construction employment. A theft conviction may be problematic for warehouse work but irrelevant to landscaping. Peer support specialist roles in behavioral health explicitly require lived experience with the justice system.
+
+No existing career guidance system encodes this level of conviction-type-specific hiring practice data. Job boards for people with records (Honest Jobs, 70 Million Jobs) match to specific open positions but do not provide career-path-level guidance about which industries are structurally accessible. General career guidance tools (O*NET, BLS Occupational Outlook) do not address background checks at all.
+
+### Summary of the Invention
+The invention implements a structured career path taxonomy comprising:
+
+**Three-Tier Background Check Classification:**
+- **Friendly:** Industry norm is minimal or no background checks, or explicit Fair Chance hiring policies are widespread. Examples: landscaping, food service, most construction, entrepreneurship.
+- **Moderate:** Background checks are common but conviction type and recency matter significantly. Many employers in the industry hire with records. Examples: warehouse/logistics, manufacturing, some tech companies, skilled trades unions.
+- **Restrictive:** Industry has structural barriers tied to licensing, regulation, or insurance requirements that limit access based on conviction type. Examples: CDL (DUI restrictions), healthcare (patient contact restrictions), education (proximity to minors).
+
+**Conviction-Type-Specific Annotations:** For each career path, the taxonomy includes specific notes about which conviction categories affect employability:
+- DUI/drug convictions and CDL eligibility (3-10 year disqualification periods)
+- Theft/fraud convictions and financial/warehouse positions
+- Violence-related convictions and healthcare/education positions
+- Sex offense registry and employment restrictions
+- General felony vs. misdemeanor distinction in employer practices
+
+**Fair Chance Employer Database:** Named employers with documented Fair Chance hiring policies, organized by career path:
+- Construction: Turner Construction, Skanska
+- Food service: Dave's Hot Chicken, Greyston Bakery
+- Retail/warehouse: Target, Walmart, Amazon
+- Tech: companies with ban-the-box policies
+- Social enterprise: Homeboy Industries, PUSH Buffalo
+
+**Non-Traditional Path Inclusion:** The taxonomy extends beyond traditional career paths to include:
+- Urban agriculture and small farming (zero background checks in most contexts)
+- Worker cooperatives (collective hiring decisions, many explicitly second-chance)
+- Portfolio/gig careers (platform-specific check policies documented)
+- Co-housing and intentional communities (survival strategy, not career)
+- Seasonal work (historically the least restrictive hiring)
+
+### Claims
+
+1. A computer-implemented career guidance system comprising:
+   a. a structured taxonomy of career paths annotated with background check practice data at the industry level;
+   b. a three-tier classification system (friendly, moderate, restrictive) indicating the structural accessibility of each career path for individuals with criminal records;
+   c. conviction-type-specific annotations indicating which categories of criminal history affect employability in each career path;
+   d. a database of named employers with documented Fair Chance hiring policies, organized by career path;
+   e. a recommendation engine that uses said taxonomy, classification, annotations, and database to generate career recommendations tailored to an individual's situation.
+
+2. The system of claim 1, wherein the conviction-type-specific annotations include temporal qualifiers (e.g., "DUI disqualifying for CDL for 3-10 years depending on state") reflecting the time-sensitive nature of hiring restrictions.
+
+3. The system of claim 1, wherein the taxonomy includes non-traditional career paths (urban agriculture, worker cooperatives, portfolio careers, seasonal work, intentional communities) annotated with the same background check classification and conviction-type data as traditional career paths.
+
+4. The system of claim 1, wherein the taxonomy is integrated with an AI career coaching system that uses the background check data to filter recommendations, provide honest barrier information, and suggest specific Fair Chance employers relevant to the user's indicated career interest.
+
+5. A method for generating background-check-aware career recommendations, comprising:
+   a. receiving an indication of a user's career interests and optionally their general conviction category;
+   b. querying the taxonomy of claim 1 to identify career paths matching those interests;
+   c. filtering or annotating results based on the background check classification and conviction-type-specific data;
+   d. presenting recommended career paths with explicit, honest information about hiring barriers and named Fair Chance employers.
+
+### Inventor
+Jeff Ritter, PhD
+
+### Priority Date
+[Date of filing]
+
+---
+
+## PROVISIONAL PATENT #7: Tiered Situation Assessment and Action Plan Generator for Workforce Reentry
+
+### Title
+Method and System for Generating Multi-Tiered Employment Action Plans Based on Real-Time Situational Assessment of Housing, Transportation, Education, Legal Restrictions, and Income Urgency
+
+### Field of the Invention
+This invention relates to workforce development technology, specifically to a method for assessing an individual's current practical situation across multiple dimensions and generating a tiered employment action plan with recommendations calibrated to different time horizons.
+
+### Background of the Invention
+Individuals reentering the workforce after incarceration face intersecting barriers that existing career guidance tools assess independently or not at all. Housing instability affects which jobs are reachable. Transportation limitations constrain geographic range. Parole restrictions may prohibit certain work hours or locations. Income urgency determines whether a 3-month training program is feasible or whether immediate employment is necessary for survival.
+
+Existing reentry tools (workforce development one-stops, reentry case management software) assess these dimensions through intake interviews conducted by case managers. The assessment is manual, time-consuming, and dependent on case manager availability and expertise. No existing automated system combines multi-dimensional situational assessment with tiered, timeline-specific employment recommendations.
+
+### Summary of the Invention
+The invention implements a six-question situational assessment that produces a three-tiered employment action plan:
+
+**Assessment Dimensions:**
+1. **Housing stability:** Stable / Transitional / Shelter / Uncertain
+2. **Transportation access:** Personal vehicle / Rides available / Public transit / Walking distance only
+3. **Income urgency:** This week / This month / Can wait 1-3 months / Flexible
+4. **Education level:** No GED / GED / High school diploma / Some college / Degree
+5. **Certifications:** Yes (with text input for specifics) / No / Unsure
+6. **Legal restrictions:** Yes, some work restrictions / No restrictions / Unsure
+
+**Tiered Action Plan Generation:**
+The `buildPlan()` function generates three tiers of recommendations based on the intersection of all six assessment dimensions:
+
+**Tier 1 — "Start This Week":** Jobs available with minimal barriers and immediate start dates. Content is conditional:
+- If transportation = personal vehicle or rides: includes delivery, day labor, wide-radius construction
+- If transportation = walking only: limits to local options (nearby restaurants, warehouses within transit range)
+- If urgency = this week: prioritizes daily-pay and same-week-start options
+
+**Tier 2 — "Start This Month":** Jobs requiring a brief application process. Content is conditional:
+- Includes Fair Chance employers (Amazon, Target, FedEx) with specific application links
+- If education >= GED: includes options requiring basic credential verification
+- If certifications present: includes jobs that leverage those certifications
+
+**Tier 3 — "Build Toward (1-3 months)":** Training programs and apprenticeships. Content is conditional:
+- If urgency allows: includes paid apprenticeships, CDL training, coding bootcamps
+- If education < GED: recommends GED + career training combo programs
+- If certifications from incarceration: recommends verification/transfer resources
+- Always includes American Job Centers and Federal Bonding Program information
+
+**Conditional Logic:** The plan is not a static template. Each tier's content changes based on the interaction of multiple assessment variables. A person with stable housing, a car, and a GED who can wait 3 months receives fundamentally different Tier 3 recommendations than a person in a shelter, walking distance only, who needs money this week.
+
+### Claims
+
+1. A computer-implemented method for generating tiered employment action plans, comprising:
+   a. assessing an individual's current situation across multiple dimensions including housing stability, transportation access, income urgency, education level, existing certifications, and legal work restrictions;
+   b. generating a multi-tiered action plan with recommendations at different time horizons (immediate, short-term, medium-term);
+   c. conditionally varying the content of each tier based on the intersection of multiple assessment dimensions, such that the same tier produces different recommendations for different situational profiles;
+   d. including specific, actionable next steps in each tier (named employers, program links, resource contacts) rather than generic category recommendations.
+
+2. The method of claim 1, wherein the assessment is designed specifically for individuals reentering the workforce after incarceration and includes dimensions relevant to that population (parole/probation work restrictions, certifications earned during incarceration, housing instability common during reentry).
+
+3. The method of claim 1, wherein the conditional logic accounts for the interaction between dimensions, such that transportation limitations modify which employment options appear in each tier, and income urgency determines which tiers are emphasized.
+
+4. The method of claim 1, wherein the medium-term tier includes specific guidance on verifying and transferring certifications earned during incarceration to civilian equivalents.
+
+5. A system for workforce reentry planning incorporating the method of claims 1-4, designed to operate without user accounts, without data persistence, and with results generated entirely client-side to protect user privacy.
+
+### Inventor
+Jeff Ritter, PhD
+
+### Priority Date
+[Date of filing]
+
+---
+
 ## RECOMMENDED PATENT ATTORNEYS — PITTSBURGH AREA
 
 ### Software/AI Patent Specialists
@@ -388,15 +655,32 @@ Jeff Ritter, PhD
 
 ### Filing Strategy
 
-1. **File all three provisionals simultaneously** — establishes priority date for all claims. Cost: ~$6,000-$15,000 total.
-2. **Conduct prior art searches** in parallel — helps refine claims before utility filing. Cost: ~$4,500-$9,000 total.
+1. **File all seven provisionals simultaneously** — establishes priority date for all claims. Cost: ~$14,000-$35,000 total.
+2. **Conduct prior art searches** in parallel — helps refine claims before utility filing. Cost: ~$10,500-$21,000 total.
 3. **Within 12 months of provisional filing**, decide which provisionals to convert to full utility patent applications.
 4. **Consider PCT (international) filing** if you plan to operate outside the US.
+5. **Consider an umbrella utility patent** that combines the integrated system (Patents #3, #4, #6, #7) into a single comprehensive filing covering the full platform architecture.
 
-### CRITICAL DEADLINE
+### Patent Portfolio Summary
 
-The methodology white paper was first publicly accessible on approximately **April 4, 2026**. Under US patent law (35 USC §102(b)), you have **one year from public disclosure** to file a patent application.
+| # | Title | Platform | Filed |
+|---|-------|----------|-------|
+| 1 | Learning Genuineness Score | transformlearning.ai | Pending |
+| 2 | Governed AI Proficiency Pipeline | transformlearning.ai | Pending |
+| 3 | Integrated Multi-Source Proficiency Estimation | transformlearning.ai | Pending |
+| 4 | Multi-Modal Career Assessment Aggregation | findmyway.today | Pending |
+| 5 | Scenario-to-Professional-Skill Translation | NewChapter | Pending |
+| 6 | Background-Check-Aware Career Matching Taxonomy | NewChapter | Pending |
+| 7 | Tiered Situation Assessment & Action Plan Generator | NewChapter | Pending |
 
-**File provisionals no later than April 3, 2027.**
+### CRITICAL DEADLINES
 
-Filing sooner is better — it establishes an earlier priority date in case of competing filings.
+| Platform | First Public Disclosure | File By |
+|----------|------------------------|---------|
+| transformlearning.ai | ~April 4, 2026 | April 3, 2027 |
+| findmyway.today | ~March 2026 | March 2027 |
+| NewChapter | April 15, 2026 | April 14, 2027 |
+
+Under US patent law (35 USC §102(b)), you have **one year from public disclosure** to file a patent application.
+
+**Recommended: File all seven provisionals by June 15, 2026** — well within all deadlines and establishes earliest possible priority dates.

@@ -99,11 +99,11 @@ export default function AccessPage() {
           </div>
           <h1 className="font-serif font-light text-navy mb-4"
               style={{ fontSize: 'clamp(28px, 4vw, 42px)', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
-            Request access to Arrival materials.
+            Request access to Transform Learning materials.
           </h1>
           <p className="text-sm text-brand-gray leading-relaxed max-w-lg">
             Our methodology white paper and investor overview contain proprietary information about
-            Arrival's scoring engine, governance architecture, and go-to-market strategy. Access is
+            the scoring engine, governance architecture, and go-to-market strategy. Access is
             granted to qualified educators, institutional leaders, investors, and press.
           </p>
         </div>
@@ -165,7 +165,7 @@ export default function AccessPage() {
                 Tell us a bit about your interest
               </label>
               <textarea value={form.context} onChange={e => upd('context', e.target.value)} rows={4}
-                placeholder="What brings you here? Are you evaluating Arrival for your institution, exploring investment, covering ed-tech, or something else?"
+                placeholder="What brings you here? Are you evaluating Transform Learning for your institution, exploring investment, covering ed-tech, or something else?"
                 className="w-full px-4 py-3 rounded-xl text-sm border border-brand-border bg-brand-soft outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal/20 resize-none" />
             </div>
           </div>

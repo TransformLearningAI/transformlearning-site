@@ -3,24 +3,24 @@ import { useState } from 'react'
 import Link from 'next/link'
 
 function generateCoachMessage(terrainNodes, selectedSkillId) {
-  if (!terrainNodes || terrainNodes.length === 0) return 'Begin your journey. Every skill is a step forward.'
+  if (!terrainNodes || terrainNodes.length === 0) return 'Start here. Pick any skill and see where you stand.'
 
   const selected = selectedSkillId ? terrainNodes.find(n => n.skill.id === selectedSkillId) : null
   if (selected) {
     if (selected.score === 0) return `${selected.skill.name} is unexplored. A single quiz will reveal where you stand.`
     if (selected.score < 40) return `You're close. The gap in ${selected.skill.name} is specific.`
     if (selected.score < 80) return `${selected.skill.name} is within reach. ${80 - selected.score} points to proficiency.`
-    return `${selected.skill.name} is explored territory. Build from this strength.`
+    return `${selected.skill.name} is at proficiency. Build from this strength.`
   }
 
   const uncharted = terrainNodes.filter(n => n.status === 'uncharted')
   const emerging = terrainNodes.filter(n => n.status === 'emerging')
   const explored = terrainNodes.filter(n => n.status === 'explored')
 
-  if (explored.length > 0) return `${explored.length} skill${explored.length > 1 ? 's' : ''} explored. Keep this direction.`
-  if (emerging.length > 0) return `${emerging.length} skill${emerging.length > 1 ? 's are' : ' is'} emerging. Steady movement.`
-  if (uncharted.length === terrainNodes.length) return 'All territory is uncharted. Start anywhere. Every step reveals the path.'
-  return 'Select a skill on the terrain to begin.'
+  if (explored.length > 0) return `${explored.length} skill${explored.length > 1 ? 's' : ''} at proficiency. Keep going.`
+  if (emerging.length > 0) return `${emerging.length} skill${emerging.length > 1 ? 's are' : ' is'} emerging. Steady progress.`
+  if (uncharted.length === terrainNodes.length) return 'Nothing measured yet. Start anywhere — one quiz shows you the picture.'
+  return 'Select a skill to begin.'
 }
 
 export default function Coach({ terrainNodes, selectedSkillId, enrollmentId }) {

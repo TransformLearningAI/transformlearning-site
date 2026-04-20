@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
+import FeedbackWidget from '@/components/FeedbackWidget'
 
 const FREE_FEATURES = [
   {
@@ -112,7 +113,7 @@ export default function StudentsPage() {
               Upload. Map. Track. Improve.
             </h2>
             <p className="text-base text-gray-500 max-w-xl mx-auto">
-              Whether it's one class, an entire major, or a program you're considering — Arrival turns
+              Whether it's one class, an entire major, or a program you're considering — the platform turns
               any document into a skill map you can track and improve against.
             </p>
           </div>
@@ -317,6 +318,7 @@ export default function StudentsPage() {
           </div>
         </div>
       </footer>
+      <FeedbackWidget page="students" />
     </div>
   )
 }

@@ -22,9 +22,9 @@ export default function Journey({ events = [] }) {
   if (events.length === 0) {
     return (
       <div className="mt-10">
-        <h2 className="text-lg font-bold text-navy mb-4">The Journey</h2>
+        <h2 className="text-lg font-bold text-navy mb-4">Your Progress</h2>
         <div className="rounded-2xl p-8 text-center" style={{ background: 'white', border: '1px solid rgba(12,31,63,0.06)' }}>
-          <p className="text-sm text-gray-400">Your story begins with your first assessment.</p>
+          <p className="text-sm text-gray-400">Your first assessment will show up here.</p>
           <p className="text-xs text-gray-300 mt-1">Every quiz, coaching session, and upload will appear here.</p>
         </div>
       </div>
@@ -35,7 +35,7 @@ export default function Journey({ events = [] }) {
 
   return (
     <div className="mt-10">
-      <h2 className="text-lg font-bold text-navy mb-6">The Journey</h2>
+      <h2 className="text-lg font-bold text-navy mb-6">Your Progress</h2>
 
       <div className="relative pl-8">
         {/* Vertical line */}

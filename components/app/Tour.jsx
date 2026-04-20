@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react'
 const TOUR_STEPS = [
   {
     id: 'welcome',
-    title: 'Welcome to Arrival',
-    body: 'Your wayfinding system for learning. Know where you are. See where to go. Follow the path forward. This quick tour shows you how everything works — takes about 60 seconds.',
-    emoji: '🧭',
+    title: 'Welcome to transformlearning',
+    body: 'Your proficiency engine. See where you actually stand — not where grades say you are. This quick tour shows you how everything works — takes about 60 seconds.',
+    emoji: '🔬',
     position: 'center',
   },
   {
@@ -33,7 +33,7 @@ const TOUR_STEPS = [
   },
   {
     id: 'coach',
-    title: 'AI Coaching — Your Arrival Coach',
+    title: 'AI Coaching',
     body: 'Select any skill and start a conversation. The coach adapts to your level using three teaching styles: Smart (balanced), Questions (Socratic), or Explain (detailed). The coach is grounded, never elevated above you. Certain, without needing to prove it. Every response is governed by fairness and confidence constraints.',
     emoji: '💬',
     position: 'center',
@@ -48,7 +48,7 @@ const TOUR_STEPS = [
   {
     id: 'governance',
     title: 'Governed Intelligence',
-    body: 'Every AI decision passes through Arrival\'s ethical orchestration layer — fairness checks, confidence thresholds, and privacy constraints. Ethics is not something checked after the system acts. It is something the system has to satisfy before it is allowed to act. If any condition fails, it defers to human review.',
+    body: 'Every AI decision passes through an ethical orchestration layer — fairness checks, confidence thresholds, and privacy constraints. Ethics is not something checked after the system acts. It is something the system has to satisfy before it is allowed to act. If any condition fails, it defers to human review.',
     emoji: '🛡️',
     position: 'center',
   },
@@ -69,14 +69,14 @@ const TOUR_STEPS = [
   {
     id: 'next-best-action',
     title: 'Next Best Action',
-    body: 'Arrival always shows you the single most impactful thing you can do next. No guessing, no overwhelm — just the right tension at the right moment.',
+    body: 'The system shows you the single most impactful thing you can do next. No guessing, no overwhelm — just the right tension at the right moment.',
     emoji: '🎯',
     position: 'center',
   },
   {
     id: 'done',
-    title: 'You\'ve arrived.',
-    body: 'You have arrived. Start by exploring your skill map or jump into a coaching session. The path is clear.',
+    title: 'You\'re ready.',
+    body: 'Start by exploring your skill map or jump into a coaching session. Now you can see clearly.',
     emoji: '✨',
     position: 'center',
   },

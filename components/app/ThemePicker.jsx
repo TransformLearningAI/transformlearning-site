@@ -115,13 +115,13 @@ export function ThemeProvider({ children }) {
   const [themeId, setThemeId] = useState('cosmos')
 
   useEffect(() => {
-    const saved = localStorage.getItem('arrival_theme')
+    const saved = localStorage.getItem('tl_theme')
     if (saved && THEMES[saved]) setThemeId(saved)
   }, [])
 
   function setTheme(id) {
     setThemeId(id)
-    localStorage.setItem('arrival_theme', id)
+    localStorage.setItem('tl_theme', id)
   }
 
   return (

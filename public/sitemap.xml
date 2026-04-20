@@ -1,50 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Core pages -->
-  <url><loc>https://transformlearning.ai/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://transformlearning.ai/demo</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://transformlearning.ai/methodology</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformlearning.ai/investors</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://transformlearning.ai/access</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://transformlearning.ai/</loc><lastmod>2026-04-16</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://transformlearning.ai/demo</loc><lastmod>2026-04-16</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://transformlearning.ai/methodology</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformlearning.ai/investors</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://transformlearning.ai/access</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
-  <url><loc>https://transformlearning.ai/students</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://transformlearning.ai/students</loc><lastmod>2026-04-16</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://transformlearning.ai/tools</loc><lastmod>2026-04-16</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
 
   <!-- Blog -->
-  <url><loc>https://transformlearning.ai/blog</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://transformlearning.ai/blog/the-people-who-see-the-problem-can-build-the-solution</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformlearning.ai/blog/energy-karma-and-groups-of-people</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://transformlearning.ai/blog/navigating-ai-in-education-balancing-innovation</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformlearning.ai/blog/slip-sliding-with-a-cannonball</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://transformlearning.ai/blog/the-rise-of-adaptive-learning-platforms</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformlearning.ai/blog/life-with-ai-navigating-the-age-of-emergence</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformlearning.ai/blog/how-to-believe-in-ai-and-edu-without-really-trying</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://transformlearning.ai/blog/revolutionizing-education-with-ai-technology</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformlearning.ai/blog/ai-education-nexus-lexus-read-all-about-it</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://transformlearning.ai/blog/the-future-of-small-colleges-navigating-challenges</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformlearning.ai/blog/thank-you-notes-please</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://transformlearning.ai/blog/higher-ed-budget-strains-ai-boon</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformlearning.ai/blog/money-bucket-of-training</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://transformlearning.ai/blog/enhancing-teaching-techniques-with-transform-learning</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://transformlearning.ai/blog/revolutionize-education-with-transform-learning</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://transformlearning.ai/blog</loc><lastmod>2026-04-16</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://transformlearning.ai/blog/the-people-who-see-the-problem-can-build-the-solution</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformlearning.ai/blog/energy-karma-and-groups-of-people</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://transformlearning.ai/blog/navigating-ai-in-education-balancing-innovation</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformlearning.ai/blog/slip-sliding-with-a-cannonball</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://transformlearning.ai/blog/the-rise-of-adaptive-learning-platforms</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformlearning.ai/blog/life-with-ai-navigating-the-age-of-emergence</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformlearning.ai/blog/how-to-believe-in-ai-and-edu-without-really-trying</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://transformlearning.ai/blog/revolutionizing-education-with-ai-technology</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformlearning.ai/blog/ai-education-nexus-lexus-read-all-about-it</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://transformlearning.ai/blog/the-future-of-small-colleges-navigating-challenges</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformlearning.ai/blog/thank-you-notes-please</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://transformlearning.ai/blog/higher-ed-budget-strains-ai-boon</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformlearning.ai/blog/money-bucket-of-training</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://transformlearning.ai/blog/enhancing-teaching-techniques-with-transform-learning</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://transformlearning.ai/blog/revolutionize-education-with-transform-learning</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
   <!-- Campus OS -->
-  <url><loc>https://transformlearning.ai/campus-os</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://transformlearning.ai/campus-os/demo</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformlearning.ai/campus-os/whitepaper</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://transformlearning.ai/campus-os/demo/signal-hub</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://transformlearning.ai/campus-os/demo/student-control</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://transformlearning.ai/campus-os/demo/outcome-networks</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://transformlearning.ai/campus-os/demo/decision-router</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://transformlearning.ai/campus-os/demo/peer-marketplace</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://transformlearning.ai/campus-os/demo/continuous-journey</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://transformlearning.ai/campus-os/demo/impact-allocation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://transformlearning.ai/campus-os/demo/live-pulse</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://transformlearning.ai/campus-os/demo/student</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://transformlearning.ai/campus-os/demo/professor</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://transformlearning.ai/campus-os/demo/chair</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://transformlearning.ai/campus-os/demo/dean</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://transformlearning.ai/campus-os/demo/president</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://transformlearning.ai/campus-os/demo/academic-affairs</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://transformlearning.ai/campus-os/demo/finance</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://transformlearning.ai/campus-os/demo/admissions</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://transformlearning.ai/campus-os</loc><lastmod>2026-04-16</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://transformlearning.ai/campus-os/demo</loc><lastmod>2026-04-16</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformlearning.ai/campus-os/whitepaper</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://transformlearning.ai/campus-os/demo/signal-hub</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://transformlearning.ai/campus-os/demo/student-control</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://transformlearning.ai/campus-os/demo/outcome-networks</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://transformlearning.ai/campus-os/demo/decision-router</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://transformlearning.ai/campus-os/demo/peer-marketplace</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://transformlearning.ai/campus-os/demo/continuous-journey</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://transformlearning.ai/campus-os/demo/impact-allocation</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://transformlearning.ai/campus-os/demo/live-pulse</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://transformlearning.ai/campus-os/demo/student</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://transformlearning.ai/campus-os/demo/professor</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://transformlearning.ai/campus-os/demo/chair</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://transformlearning.ai/campus-os/demo/dean</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://transformlearning.ai/campus-os/demo/president</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://transformlearning.ai/campus-os/demo/academic-affairs</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://transformlearning.ai/campus-os/demo/finance</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://transformlearning.ai/campus-os/demo/admissions</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>

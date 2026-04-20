@@ -12,12 +12,12 @@ function AppShellInner({ profile, enrollments, children }) {
   const fileRef = useRef(null)
 
   useEffect(() => {
-    if (!localStorage.getItem('arrival_tour_done')) setShowTour(true)
+    if (!localStorage.getItem('tl_tour_done')) setShowTour(true)
   }, [])
 
   function completeTour() {
     setShowTour(false)
-    localStorage.setItem('arrival_tour_done', '1')
+    localStorage.setItem('tl_tour_done', '1')
   }
 
   function handleFileUpload(e) {
@@ -27,7 +27,7 @@ function AppShellInner({ profile, enrollments, children }) {
   }
 
   const notifications = [
-    { id: 1, text: 'Welcome to Arrival! Take the tour to learn how the Skill Galaxy works.', time: 'Just now', unread: true },
+    { id: 1, text: 'Welcome! Take the tour to learn how the Skill Galaxy works.', time: 'Just now', unread: true },
     { id: 2, text: 'Your XP system is active. Complete quizzes and coaching to level up.', time: '1h ago', unread: true },
     { id: 3, text: 'New skill framework mapped from your syllabus.', time: '2h ago', unread: false },
   ]

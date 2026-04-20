@@ -7,15 +7,15 @@ import { useState, useEffect } from 'react'
 const QUOTES = [
   '"Night owl mode: Activated."',
   '"Reviewing the wins of the day."',
-  '"Small steps, big arrivals."',
+  '"Small steps, real progress."',
   '"Building momentum."',
   '"Every gap closed is a win."',
   '"Focus mode: engaged."',
-  '"The path forward is clear."',
+  '"The next step is clear."',
   '"Progress over perfection."',
 ]
 
-function ArrivalLogo({ size = 24 }) {
+function BrandLogo({ size = 24 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d="M12 3L4 21H9L12 14L15 21H20L12 3Z" fill="currentColor" />
@@ -171,7 +171,7 @@ export default function Sidebar({ profile, enrollments = [], open, onClose, them
           Sign out
         </button>
         <div className="flex items-center gap-2 px-3 py-2 text-white/50">
-          <ArrivalLogo size={16} />
+          <BrandLogo size={16} />
           <span className="text-[11px] font-bold">transform<span style={{ color: theme?.accent || '#00CED1' }}>learning</span></span>
         </div>
       </div>

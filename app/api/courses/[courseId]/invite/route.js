@@ -63,15 +63,15 @@ export async function POST(request, context) {
       from: `Transform Learning <noreply@transformlearning.ai>`,
       to: [email],
       reply_to: user.email,
-      subject: `You've been invited to ${course.title} on Arrival`,
+      subject: `You've been invited to ${course.title} on Transform Learning`,
       html: `
         <div style="font-family:sans-serif;max-width:520px;margin:0 auto;padding:32px 16px;">
           <div style="background:#0C1F3F;border-radius:12px;padding:28px 32px;margin-bottom:24px;">
-            <p style="margin:0;color:#00A8A8;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">Arrival</p>
+            <p style="margin:0;color:#00A8A8;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">Transform Learning</p>
             <h1 style="margin:8px 0 0;color:white;font-size:22px;font-weight:300;">You've been invited!</h1>
           </div>
-          <p style="color:#374151;">${faculty?.full_name || 'Your instructor'} has added you to <strong>${course.title}</strong> on Arrival.</p>
-          <p style="color:#374151;">Arrival shows you exactly where you stand on every skill in this course — and helps you close the gaps through personalized coaching and practice.</p>
+          <p style="color:#374151;">${faculty?.full_name || 'Your instructor'} has added you to <strong>${course.title}</strong> on Transform Learning.</p>
+          <p style="color:#374151;">Transform Learning shows you exactly where you stand on every skill in this course — and helps you close the gaps through personalized coaching and practice.</p>
           <a href="${inviteUrl}" style="display:inline-block;background:#00A8A8;color:white;text-decoration:none;padding:14px 28px;border-radius:10px;font-weight:700;margin:16px 0;">
             Accept Invite &amp; Get Started →
           </a>

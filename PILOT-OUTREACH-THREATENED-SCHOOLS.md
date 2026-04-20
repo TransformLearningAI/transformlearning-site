@@ -15,13 +15,13 @@ I'll be direct. I know the numbers you're looking at. Enrollment is flat or decl
 
 I built something that produces a different answer to that question.
 
-Arrival is an AI-powered proficiency system that gives every student real-time visibility into exactly where they stand on every skill in a course — not a grade, but a map. When a student starts to slip, the system catches it weeks before the midterm. It generates coaching, adaptive practice, and peer learning matches automatically. Faculty don't change their workflow. They submit a syllabus. The system does the rest.
+Transform Learning is an AI-powered proficiency system that gives every student real-time visibility into exactly where they stand on every skill in a course — not a grade, but a clear measure. When a student starts to slip, the system catches it weeks before the midterm. It generates coaching, adaptive practice, and peer learning matches automatically. Faculty don't change their workflow. They submit a syllabus. The system does the rest.
 
 The pilot is free. One gateway course. One semester. Up to 300 students.
 
 What you get at the end is not a vendor report. It's an evidence package: baseline DFW rates vs. post-intervention DFW rates, retention indicators, student engagement data, and a case study you can put in front of your board, your accreditor, or your state system office.
 
-I spent 30 years as a professor and division chair at La Roche College in Pittsburgh. I watched a good institution struggle with the same problems you're facing. I built Arrival because the tools we had — gradebooks, LMS dashboards, midterm grade reports — showed us what happened after it was too late to do anything about it.
+I spent 30 years as a professor and division chair at La Roche College in Pittsburgh. I watched a good institution struggle with the same problems you're facing. I built Transform Learning because the tools we had — gradebooks, LMS dashboards, midterm grade reports — showed us what happened after it was too late to do anything about it.
 
 I'm available to come to your campus anytime after April 22 for a hands-on demo and conversation — no slide deck, just the live platform. I'll show you exactly what your faculty and students would see, and we can talk through whether a pilot makes sense for your situation. If a visit doesn't work, a video call is just as easy.
 
@@ -42,11 +42,11 @@ Dear [Dean Last Name],
 
 You already know which gateway courses have the highest DFW rates. You probably know which sections are the worst. What you can't see is which students, right now, are on a trajectory toward a D, F, or withdrawal — and what specific skill gap is causing it.
 
-That's what Arrival shows you.
+That's what Transform Learning shows you.
 
 We built an AI proficiency system that maps every skill in a course, tracks each student's understanding continuously, and catches declining trajectories weeks before they show up in a grade. When a gap is detected, the system acts: personalized coaching, adaptive practice, peer learning matches, study guides — all targeted to the exact skill where the student is struggling.
 
-Faculty setup takes 30 minutes. They submit a syllabus. The AI maps it. Students get access. Faculty get a dashboard showing every student's proficiency landscape — not a gradebook with letters, but a map showing exactly where understanding breaks down.
+Faculty setup takes 30 minutes. They submit a syllabus. The AI maps it. Students get access. Faculty get a dashboard showing every student's proficiency landscape — not a gradebook with letters, but a measurement showing exactly where understanding breaks down.
 
 I'm offering a free structured pilot: one gateway course, one semester, up to 300 students. At the end, you get a documented evidence package — baseline vs. outcome, DFW comparison, engagement metrics, and a case study your institution can use.
 
@@ -70,7 +70,7 @@ Dear [Chair Last Name],
 
 I'm reaching out specifically to you because your department runs the courses where students are most likely to struggle — and where the right intervention at the right time can change whether a student stays or leaves.
 
-I built Arrival, an AI platform that does something your gradebook can't: it shows you which students are developing gaps in specific skills, how confident the system is in that assessment, and whether the trajectory is getting better or worse — all before the midterm.
+I built Transform Learning, an AI platform that does something your gradebook can't: it shows you which students are developing gaps in specific skills, how confident the system is in that assessment, and whether the trajectory is getting better or worse — all before the midterm.
 
 Here's what it looks like in practice:
 
@@ -100,9 +100,9 @@ You work hard to get students in the door. The question that haunts enrollment m
 
 Every student you recruit who withdraws before completing their first year represents not just a personal loss but a financial one — the remaining 3+ years of tuition, fees, housing, and lifetime alumni giving that walks out with them. At most institutions, the cost of recruiting a replacement student is 8-12x the cost of retaining the one you already have.
 
-I built Arrival to change the retention side of that equation.
+I built Transform Learning to change the retention side of that equation.
 
-Arrival is an AI proficiency system that catches students who are developing skill gaps in gateway courses — weeks before it shows up in a grade. When a gap is detected, the system generates coaching, practice, and peer learning automatically. The student doesn't just get a warning email from an advisor. They get something to do about it.
+Transform Learning is an AI proficiency system that catches students who are developing skill gaps in gateway courses — weeks before it shows up in a grade. When a gap is detected, the system generates coaching, practice, and peer learning automatically. The student doesn't just get a warning email from an advisor. They get something to do about it.
 
 In our pilot data, the system identifies at-risk students an average of 3-4 weeks earlier than midterm grades. That's 3-4 weeks of intervention time that currently doesn't exist.
 

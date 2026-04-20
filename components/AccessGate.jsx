@@ -28,6 +28,9 @@ export default function AccessGate({ children, pageName }) {
 
   const upd = (k, v) => setForm(f => ({ ...f, [k]: v }))
 
+  // Revoked access — these emails can no longer access restricted content
+  const REVOKED = ['rydstromryan@gmail.com', 'ryanrydstrom@gmail.com', 'orsismt@gmail.com']
+
   // Check URL for access key
   useState(() => {
     if (typeof window !== 'undefined') {
@@ -36,16 +39,21 @@ export default function AccessGate({ children, pageName }) {
       if (key) {
         try {
           // Key format: base64(email)
-          const email = atob(key)
-          if (email.includes('@')) {
-            sessionStorage.setItem('arrival_access', key)
+          const email = atob(key).toLowerCase()
+          if (email.includes('@') && !REVOKED.includes(email)) {
+            sessionStorage.setItem('tl_access', key)
             setGranted(true)
           }
         } catch { /* invalid key */ }
       }
       // Check session
-      const saved = sessionStorage.getItem('arrival_access')
-      if (saved) setGranted(true)
+      const saved = sessionStorage.getItem('tl_access')
+      if (saved) {
+        try {
+          const email = atob(saved).toLowerCase()
+          if (!REVOKED.includes(email)) setGranted(true)
+        } catch { /* invalid key */ }
+      }
     }
   })
 

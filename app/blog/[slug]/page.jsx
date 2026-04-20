@@ -10,8 +10,20 @@ export function generateMetadata({ params }) {
   const post = POSTS.find(p => p.slug === params.slug)
   if (!post) return { title: 'Not Found' }
   return {
-    title: `${post.title} — Arrival Blog`,
+    title: `${post.title} — Transform Learning Blog`,
     description: post.summary,
+    openGraph: {
+      title: `${post.title} — Transform Learning Blog`,
+      description: post.summary,
+      url: `https://transformlearning.ai/blog/${post.slug}`,
+      siteName: 'Transform Learning',
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${post.title} — Transform Learning Blog`,
+      description: post.summary,
+    },
   }
 }
 
@@ -76,7 +88,7 @@ export default function BlogPost({ params }) {
             &larr; All posts
           </Link>
           <Link href="/demo" className="text-sm font-bold text-brand-teal hover:text-navy transition-colors">
-            See Arrival in action &rarr;
+            See it in action &rarr;
           </Link>
         </div>
       </article>

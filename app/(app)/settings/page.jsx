@@ -97,7 +97,7 @@ export default async function SettingsPage() {
             <h3 className="font-bold text-sm" style={{ color: '#1B3A2D' }}>Your Data is Governed</h3>
           </div>
           <p className="text-xs text-gray-600 leading-relaxed">
-            Every AI assessment of your work passes through Arrival's ethical orchestration layer.
+            Every AI assessment of your work passes through the ethical orchestration layer.
             Fairness constraints, confidence thresholds, and privacy gates are enforced at every step.
             The system cannot act on uncertain predictions or produce inequitable outcomes.
             Your data is never shared with other students or used for purposes outside your learning.

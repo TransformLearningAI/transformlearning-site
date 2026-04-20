@@ -53,18 +53,18 @@ export async function POST(request) {
     await resend.emails.send({
       from: 'Transform Learning <noreply@transformlearning.ai>',
       to: email,
-      subject: 'Access request received — Arrival / Transform Learning',
+      subject: 'Access request received — Transform Learning',
       text: [
         `Hi ${name},`,
         '',
-        'Thank you for your interest in Arrival. We received your access request and will review it shortly.',
+        'Thank you for your interest in Transform Learning. We received your access request and will review it shortly.',
         '',
         'You requested access to restricted materials on transformlearning.ai. A member of our team will follow up within 1-2 business days.',
         '',
         'In the meantime, you can explore the public demo at transformlearning.ai/demo.',
         '',
         'Best,',
-        'The Arrival Team',
+        'The Transform Learning Team',
         'transformlearning.ai',
       ].join('\n'),
     })

@@ -2,6 +2,7 @@ import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { buildSystemPrompt } from '@/lib/claude/prompts/coaching-chat'
 import { getClient, MODELS } from '@/lib/claude/client'
 import { awardXP, XP_REWARDS } from '@/lib/xp'
+import { getSubscriptionStatus } from '@/lib/subscription'
 import { NextResponse } from 'next/server'
 
 export async function POST(request) {
@@ -14,9 +15,18 @@ export async function POST(request) {
 
   // Verify enrollment belongs to student
   const { data: enrollment } = await service
-    .from('enrollments').select('student_id, courses(title)').eq('id', enrollmentId).single()
+    .from('enrollments').select('student_id, courses(title, course_code, institution)').eq('id', enrollmentId).single()
   if (!enrollment || enrollment.student_id !== user.id)
     return NextResponse.json({ error: 'Unauthorized' }, { status: 403 })
+
+  // Check subscription status
+  const { subscribed } = await getSubscriptionStatus()
+  if (!subscribed) {
+    return NextResponse.json({
+      error: 'AI coaching requires an active subscription. Upgrade for $10/month to unlock unlimited coaching conversations.',
+      requiresUpgrade: true,
+    }, { status: 403 })
+  }
 
   // Get skill + proficiency
   const { data: skill } = await service
@@ -52,6 +62,7 @@ export async function POST(request) {
   })
 
   // Build system prompt
+  const isSelfStudy = enrollment.courses.course_code === 'SELF'
   const systemPrompt = buildSystemPrompt({
     courseName: enrollment.courses.title,
     skillName: skill.name,
@@ -60,6 +71,7 @@ export async function POST(request) {
     score: proficiency?.score ?? 0,
     evidenceSummary: proficiency?.evidence_summary,
     pace: pace || 'moderate',
+    isSelfStudy,
   })
 
   // Call Claude with streaming

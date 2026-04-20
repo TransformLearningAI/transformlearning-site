@@ -23,7 +23,7 @@ export async function GET(request) {
       await resend.emails.send({
         from: 'Transform Learning <noreply@transformlearning.ai>',
         to: email,
-        subject: 'Your access has been approved — Arrival / Transform Learning',
+        subject: 'Your access has been approved — Transform Learning',
         text: [
           `Hi ${name},`,
           '',
@@ -64,18 +64,18 @@ export async function GET(request) {
       await resend.emails.send({
         from: 'Transform Learning <noreply@transformlearning.ai>',
         to: email,
-        subject: 'Regarding your access request — Arrival / Transform Learning',
+        subject: 'Regarding your access request — Transform Learning',
         text: [
           `Hi ${name},`,
           '',
-          'Thank you for your interest in Arrival. After reviewing your request, we are not able to provide access to our restricted materials at this time.',
+          'Thank you for your interest in Transform Learning. After reviewing your request, we are not able to provide access to our restricted materials at this time.',
           '',
           'You are welcome to explore our public demo at transformlearning.ai/demo and our blog at transformlearning.ai/blog.',
           '',
           'If your circumstances change or you have additional context to share, please feel free to submit a new request at transformlearning.ai/access.',
           '',
           'Best,',
-          'The Arrival Team',
+          'The Transform Learning Team',
           'transformlearning.ai',
         ].join('\n'),
       })

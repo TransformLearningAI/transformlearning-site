@@ -35,7 +35,7 @@ export async function POST(request) {
   let syllabusText = text
   if (sourceUrl && !text) {
     try {
-      const res = await fetch(sourceUrl, { headers: { 'User-Agent': 'Arrival/1.0' } })
+      const res = await fetch(sourceUrl, { headers: { 'User-Agent': 'TransformLearning/1.0' } })
       if (!res.ok) throw new Error(`Failed to fetch URL: ${res.status}`)
       const html = await res.text()
       // Strip HTML tags for plain text

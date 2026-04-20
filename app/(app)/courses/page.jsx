@@ -44,7 +44,7 @@ export default async function CoursesPage() {
             <div className="text-5xl mb-4 opacity-30">✦</div>
             <h3 className="font-bold text-white text-lg mb-2">No courses yet</h3>
             <p className="text-white/25 text-sm mb-8 max-w-sm mx-auto">
-              Upload a syllabus and Arrival will map every skill — explicit and implicit — into a constellation your students can navigate.
+              Upload a syllabus and the AI will map every skill — explicit and implicit — into a constellation your students can navigate.
             </p>
             <Link href="/courses/new"
               className="inline-block px-6 py-3 rounded-xl font-bold text-sm text-white"

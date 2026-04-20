@@ -18,7 +18,7 @@ function computeSignal(skills, scoreMap, history) {
   // Find the most actionable insight
   const sorted = [...skills].sort((a, b) => (scoreMap[a.id]?.score ?? -1) - (scoreMap[b.id]?.score ?? -1))
   const weakest = sorted[0]
-  if (!weakest) return { message: 'Begin your journey. Select a skill to explore.', urgency: 'calm' }
+  if (!weakest) return { message: 'Select a skill to measure. See where you actually stand.', urgency: 'calm' }
 
   const ws = scoreMap[weakest.id]?.score ?? 0
   const daysSince = history.length > 0
@@ -39,7 +39,7 @@ function computeSignal(skills, scoreMap, history) {
     return { message: `${toNext} points to ${label} in ${weakest.name}.`, skillId: weakest.id, urgency: ws < 20 ? 'attentive' : 'calm' }
   }
 
-  return { message: 'All skills on track. Keep this direction.', urgency: 'calm' }
+  return { message: 'All skills on track. Keep going.', urgency: 'calm' }
 }
 
 function computePulse(history) {
@@ -103,8 +103,8 @@ export default function useWayfinding(enrollmentId) {
       .sort((a, b) => a.score - b.score)
       .slice(0, 3)
 
-    // Journey events
-    const journeyEvents = history.map(h => {
+    // Activity events
+    const activityEvents = history.map(h => {
       const skill = skills.find(s => s.id === h.skill_id)
       return {
         type: h.source || 'quiz',
@@ -116,23 +116,23 @@ export default function useWayfinding(enrollmentId) {
       }
     })
 
-    // Arrivals — check localStorage for threshold crossings
-    const arrivals = []
+    // Milestones — check localStorage for mastery threshold crossings
+    const milestones = []
     if (typeof window !== 'undefined') {
-      const prev = JSON.parse(localStorage.getItem('arrival_scores') || '{}')
+      const prev = JSON.parse(localStorage.getItem('mastery_scores') || '{}')
       terrainNodes.forEach(n => {
         if (n.score >= 80 && (prev[n.skill.id] ?? 0) < 80) {
-          arrivals.push({ skill: n.skill, previousScore: prev[n.skill.id] ?? 0, newScore: n.score })
+          milestones.push({ skill: n.skill, previousScore: prev[n.skill.id] ?? 0, newScore: n.score })
         }
       })
       // Save current scores
       const current = {}
       terrainNodes.forEach(n => { current[n.skill.id] = n.score })
-      localStorage.setItem('arrival_scores', JSON.stringify(current))
+      localStorage.setItem('mastery_scores', JSON.stringify(current))
     }
 
     return {
-      skills, scoreMap, terrainNodes, signal, pulse, painPoints, journeyEvents, arrivals,
+      skills, scoreMap, terrainNodes, signal, pulse, painPoints, activityEvents, milestones,
       courseName: enrollment?.courses?.title,
       courseCode: enrollment?.courses?.course_code,
       term: enrollment?.courses?.term,

@@ -1,6 +1,7 @@
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import AppShell from '@/components/app/AppShell'
+import FeedbackWidget from '@/components/FeedbackWidget'
 
 export default async function AppLayout({ children }) {
   const supabase = await createClient()
@@ -41,5 +42,10 @@ export default async function AppLayout({ children }) {
     enrollments = data || []
   }
 
-  return <AppShell profile={profile} enrollments={enrollments}>{children}</AppShell>
+  return (
+    <>
+      <AppShell profile={profile} enrollments={enrollments}>{children}</AppShell>
+      <FeedbackWidget page="app" />
+    </>
+  )
 }

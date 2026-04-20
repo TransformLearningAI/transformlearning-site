@@ -1,10 +1,88 @@
 /**
- * Blog posts — Transform Learning / Arrival
+ * Blog posts — Transform Learning
  * Written in Jeff Ritter's voice: direct, experienced educator,
  * deeply informed about higher ed, skeptical of hype, committed to students.
  */
 
 export const POSTS = [
+  {
+    slug: 'four-tools-one-belief',
+    title: 'Four Tools, One Belief: Everyone Deserves to Know Where They Stand',
+    date: '2026-04-16',
+    author: 'Jeff Ritter',
+    summary: 'We built four AI tools for four very different groups of people. The through-line is embarrassingly simple: everyone deserves honest information about their own potential.',
+    body: `Six months ago I had one tool and a theory. Now I have four tools, a Stripe account, and the same theory — just louder.
+
+The theory is this: most of the systems we have built to help people learn, choose careers, and rebuild their lives share a single design flaw. They tell people what they want to hear, or what the institution needs them to hear, instead of what is actually true. Grades lie. Career quizzes are horoscopes with checkboxes. Reentry programs hand out pamphlets and hope for the best.
+
+So we built tools that do something radical. They tell the truth.
+
+Here is what is live right now at transformlearning.ai/tools. Four applications. Four audiences. One belief.
+
+**study.transformlearning.ai — For students who want to know what they actually know.**
+
+Upload a syllabus. Any syllabus. The AI reads it and maps every skill — the ones your professor listed in the learning objectives and the ones they assumed you would figure out on your own. Then it measures where you actually stand on each one. Not with a letter grade. With a Bayesian competency estimate that includes a credible interval — which is a fancy way of saying the system tells you how sure it is, not just what it thinks.
+
+I built this because I spent 30 years watching students come to office hours with a 62 on the midterm and no idea what they did not understand. The gradebook told them they were failing. It told them nothing about why. This tool tells them why. And then it coaches them on exactly what to work on next.
+
+It is free for individual students. Because of course it is. The student with the 62 does not have $49.99 a month for another ed-tech subscription.
+
+**transformlearning.ai — For faculty and institutions who are tired of measuring attendance and calling it learning.**
+
+This is the institutional version. Faculty submit a syllabus, the AI extracts the skill framework, and students receive continuous competency estimates across every skill in the course. Not at the end of the semester when it is too late. Continuously. With trajectory analysis that shows whether understanding is growing, flat, or decaying.
+
+Every estimate passes through a four-layer integrity framework that checks for fairness, explainability, and uncertainty before it is surfaced to anyone. The system cannot act on a score it is not confident about. When it does not know, it says so. When it is not sure, it defers to the human.
+
+This is what I wish I had when I was teaching. Not more data. Better data. Data that actually tells you what is happening inside a student's understanding instead of what happened on last Tuesday's quiz.
+
+**findmyway.today — For high school students who are tired of being told college is the only option.**
+
+This one makes me a little angry, honestly. We built an entire educational infrastructure around the assumption that every 17-year-old should go to a four-year university. And then we act surprised when half of them drop out, a third of them are underemployed, and the rest are buried in debt for degrees they did not need for the jobs they ended up in.
+
+FindMyWay is an AI career coach that helps high school students figure out what actually fits — without pushing college as the default. It asks real questions about what they enjoy, what they are good at, what scares them, and what matters to them. Then it recommends paths. Not just college. Trades. Military. Gap year. Entrepreneurship. Workforce. Community college. Combinations.
+
+The match percentages are honest. Not everything is a 92%. If the trades are a 78% match and college is a 45% match, that is what you see. The system does not have an agenda. It has data and a conversation.
+
+It is free. No account. No email. No data stored. A high school kid can use it on their phone in study hall and nobody needs to know about it.
+
+**NewChapter — For people rebuilding after incarceration.**
+
+This is the one I am proudest of, and it is the one I almost did not build.
+
+Over 600,000 people come home from prison every year in the United States. Most of them want to work. Most of them want to build something. And the system they walk into is designed to make that as difficult as possible. Background checks. Licensing restrictions. Housing barriers. A Google search for "jobs for felons" that returns a list of articles about why it is hard to get a job as a felon. Thanks, Google. Very helpful.
+
+NewChapter is an AI career coach built specifically for this population. It knows which employers actually hire people with records. It knows which trades unions have second-chance commitments. It knows that a DUI from 2018 affects CDL eligibility differently than a property offense from 2015. It knows that peer support specialist is a real career where lived experience is literally the job qualification.
+
+And it has something most reentry tools do not have: self-discovery exercises that surface the professional skills people built during incarceration that they do not even realize they have. Managed a commissary? That is inventory management and sales. Trained other inmates? That is instruction and mentoring. Wrote grievances and appeals? That is technical writing and legal research.
+
+The tool does not lecture. It does not moralize. It does not say "despite your background." It says: here is what you are good at, here is where it fits, here is how to start. This week if you need money now. This month if you can wait a bit. Three months out if you can invest in training.
+
+It is free. It will always be free. Because the person sitting in a halfway house with a phone and no plan does not need another paywall between them and information that could change their life.
+
+**The through-line.**
+
+I keep getting asked what ties these four tools together. People want a brand strategy. A platform thesis. A synergy narrative.
+
+Here is the synergy narrative: everyone deserves to know where they actually stand.
+
+The college student deserves to know which skills they have mastered and which ones are crumbling, before the final exam reveals it.
+
+The high schooler deserves to know which paths fit who they actually are, not which paths their guidance counselor was trained to recommend in 1997.
+
+The person coming home from prison deserves to know what they are capable of and which doors are actually open, not which doors the system has labeled "closed" without checking.
+
+These are not four products. They are four applications of the same conviction: that honest, specific, actionable information about your own potential should be free, available, and not dependent on whether you were born into a system that bothered to provide it.
+
+We are a small team. The tools are not perfect. The AI coaching is good but not human. The credible intervals on a single quiz are embarrassingly wide (and we tell you that, because that is kind of the whole point).
+
+But they are live. They work. And they are free.
+
+That is the update. Four tools. One belief. A lot of deploys.
+
+If you are a student, go to study.transformlearning.ai and upload your syllabus. If you are faculty, reach out about a pilot. If you are a high school counselor, share findmyway.today with your students. If you know someone coming home, send them to NewChapter.
+
+And if you are an investor who just read all of that and thought "this person is building a platform, not just a product" — yes. That is exactly what is happening. Come talk to us.`
+  },
   {
     slug: 'the-people-who-see-the-problem-can-build-the-solution',
     title: 'The People Who See the Problem Can Build the Solution',
@@ -48,7 +126,7 @@ Think about the department chair who watches faculty struggle with the same asse
 
 The pilot studies we are running this semester are built on this premise. Not that AI replaces educators. That AI removes the barrier between an educator's experience and a working solution. The faculty in our pilots are not learning to code. They are not becoming technical. They are doing what they have always done — seeing the problem, understanding the student, imagining the intervention — and now the technology catches up to their imagination instead of the other way around.
 
-The algorithms inside Arrival are sophisticated. Exponential recency decay. Bayesian confidence intervals. Multi-source evidence weighting with anomaly detection. Equalized odds fairness monitoring. Five-layer governance pipelines. These are not simple systems.
+The algorithms inside Transform Learning are sophisticated. Exponential recency decay. Bayesian confidence intervals. Multi-source evidence weighting with anomaly detection. Equalized odds fairness monitoring. Five-layer governance pipelines. These are not simple systems.
 
 But I did not need to understand the math to build them. I needed to understand the pedagogy. I needed to know that a quiz taken yesterday should count more than a quiz taken six weeks ago. I needed to know that a single perfect score after a string of failures is suspicious, not celebratory. I needed to know that fairness is not optional and confidence is not binary.
 
@@ -60,7 +138,7 @@ What I am going to say is this: the era when educators had to wait for technolog
 
 Not someday. Not after the grant comes through. Not after IT approves the vendor. Now.
 
-The technology stack that powers Arrival was built by a 60-year-old former professor using a conversational AI tool, a laptop, and 30 years of knowing exactly what was broken. No engineering team. No venture-funded runway. No computer science degree.
+The technology stack that powers Transform Learning was built by a 60-year-old former professor using a conversational AI tool, a laptop, and 30 years of knowing exactly what was broken. No engineering team. No venture-funded runway. No computer science degree.
 
 If I can build a governed AI proficiency platform with adaptive scoring, trajectory analysis, and ethical guardrails, then the assistant principal can build her reading intervention tracker. The dean can build his early warning dashboard. The department chair can build her assessment tool.
 
@@ -108,7 +186,7 @@ Here is what actually works: using AI to see things you could not see before.
 
 Not to replace the teacher. Not to automate the assessment. But to reveal the signal inside the noise. Where is this student actually struggling? Not what grade did they get on the test, but what specific concept did they not understand, and how confident are we in that assessment, and is the trend getting better or worse?
 
-That is what we built Arrival to do. It is not an AI teaching tool. It is an AI seeing tool. The teacher still teaches. The student still learns. But now both of them can see where they actually stand, not where the gradebook says they stand.
+That is what we built Transform Learning to do. It is not an AI teaching tool. It is an AI seeing tool. The teacher still teaches. The student still learns. But now both of them can see where they actually stand, not where the gradebook says they stand.
 
 The balance between innovation and what works is not a philosophical question. It is a design question. You build tools that make the invisible visible, and then you let humans do what humans do best: care about each other and act on what they see.`
   },
@@ -150,7 +228,7 @@ The second generation, which is emerging now, is fundamentally different. And th
 
 The new platforms do not just branch. They model. They build a representation of what each student knows and does not know across multiple dimensions simultaneously. They track confidence, not just correctness. They measure trajectory, not just current state. They distinguish between a student who got a question right because they understood the concept and a student who got it right because they guessed well.
 
-This is what we set out to build with Arrival. Not an adaptive quiz engine, but an adaptive proficiency model. The distinction matters enormously.
+This is what we set out to build with Transform Learning. Not an adaptive quiz engine, but an adaptive proficiency model. The distinction matters enormously.
 
 A quiz engine asks: did the student answer correctly? A proficiency model asks: does the student understand this concept, how sure are we about that assessment, is the understanding getting stronger or weaker over time, and what specific intervention would move the needle most efficiently?
 
@@ -178,7 +256,7 @@ So how do we navigate this?
 
 The answer is governance. Not the bureaucratic kind. The principled kind. We build constraints into the system that reflect our values. Fairness thresholds. Confidence requirements. Transparency mandates. We let the AI be capable, but we do not let it act without supervision.
 
-This is the approach we took with Arrival. The AI scores assessments, analyzes trajectories, and generates insights. But every score passes through a governance pipeline that checks for fairness, validates confidence levels, and defers to human judgment when the system is uncertain.
+This is the approach we took with Transform Learning. The AI scores assessments, analyzes trajectories, and generates insights. But every score passes through a governance pipeline that checks for fairness, validates confidence levels, and defers to human judgment when the system is uncertain.
 
 Living with AI is not about trusting it or fearing it. It is about building the guardrails that make trust unnecessary and fear unwarranted. The age of emergence does not require faith. It requires engineering.`
   },
@@ -200,9 +278,9 @@ Here is what I mean by integration failure: the tool works in the demo but does 
 
 Belief is not the hard part. Integration is the hard part.
 
-When we built Arrival, we started with the workflow, not the technology. We asked: what does a faculty member actually do on a Tuesday afternoon when they are worried about a student? They look at grades. They check attendance. They maybe send an email. They wait for the midterm and hope for the best.
+When we built Transform Learning, we started with the workflow, not the technology. We asked: what does a faculty member actually do on a Tuesday afternoon when they are worried about a student? They look at grades. They check attendance. They maybe send an email. They wait for the midterm and hope for the best.
 
-Arrival does not ask them to change that workflow. It gives them better information within it. Instead of looking at a grade that says C-minus, they see a proficiency map that says: this student understands cellular mechanisms well but cannot connect them to tissue-level function, the trajectory has been flat for three weeks, and here are two specific concepts where targeted practice would move the needle.
+Transform Learning does not ask them to change that workflow. It gives them better information within it. Instead of looking at a grade that says C-minus, they see a proficiency map that says: this student understands cellular mechanisms well but cannot connect them to tissue-level function, the trajectory has been flat for three weeks, and here are two specific concepts where targeted practice would move the needle.
 
 That is not a revolution. It is a better Tuesday afternoon. And better Tuesday afternoons, compounded over a semester, are how education actually changes.
 
@@ -371,7 +449,7 @@ AI does not improve teaching by making teachers unnecessary. It improves teachin
     title: 'Revolutionize Education with Transform Learning',
     date: '2025-07-04',
     author: 'Jeff Ritter',
-    summary: 'We did not build Arrival to disrupt education. We built it because the students who need the most help are the ones the current system sees the least.',
+    summary: 'We did not build Transform Learning to disrupt education. We built it because the students who need the most help are the ones the current system sees the least.',
     body: `This is not a manifesto. It is not a pitch deck. It is the reason this company exists.
 
 I spent 30 years as a professor and division chair at La Roche College in Pittsburgh. I taught hundreds of students in gateway courses. Some thrived. Many struggled. And the ones who struggled almost always shared one thing in common: by the time anyone noticed they were in trouble, it was too late to help them in a meaningful way.
@@ -380,11 +458,11 @@ A student gets a 58 on the midterm. The teacher looks at the gradebook and think
 
 The grade is a verdict, not a diagnosis. And verdicts do not help anyone learn.
 
-We built Transform Learning to replace the verdict with a diagnosis. Arrival does not grade students. It maps their understanding across every skill in the course, continuously, with confidence intervals and trajectory analysis. It tells the teacher not just that a student is struggling, but exactly where, exactly how much, and exactly what to do about it.
+We built Transform Learning to replace the verdict with a diagnosis. The platform does not grade students. It maps their understanding across every skill in the course, continuously, with confidence intervals and trajectory analysis. It tells the teacher not just that a student is struggling, but exactly where, exactly how much, and exactly what to do about it.
 
 The students who benefit most from this are not the A students. They were going to be fine regardless. The students who benefit most are the ones in the middle, the ones who are one good intervention away from passing, one targeted conversation away from understanding, one week of focused practice away from moving from a D to a C to a B.
 
-Those students are invisible in the gradebook. They are visible in Arrival.
+Those students are invisible in the gradebook. They are visible in Transform Learning.
 
 That is why this company exists. Not to revolutionize education with technology. To see the students who were always there but never seen.`
   },

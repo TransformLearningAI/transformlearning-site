@@ -21,7 +21,7 @@ export default function Footer() {
           {/* Tagline */}
           <p className="font-serif italic text-white/50"
              style={{ fontSize: 'clamp(28px, 4vw, 48px)', letterSpacing: '-0.02em', lineHeight: 1 }}>
-            You have arrived.
+            Now you can see.
           </p>
 
           {/* Logo */}
@@ -50,7 +50,7 @@ export default function Footer() {
             ))}
           </nav>
 
-          <p className="text-xs text-white/50">© {new Date().getFullYear()} Arrival</p>
+          <p className="text-xs text-white/50">© {new Date().getFullYear()} transformlearning</p>
         </div>
       </div>
     </footer>

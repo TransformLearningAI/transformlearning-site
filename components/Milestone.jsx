@@ -1,4 +1,4 @@
-export default function Waypoint({ label, color = '#00A8A8' }) {
+export default function Milestone({ label, color = '#00A8A8' }) {
   return (
     <div className="flex items-center justify-center py-6" style={{ background: 'transparent' }}>
       <div className="flex items-center gap-4">

@@ -5,23 +5,9 @@ const TEAM = [
   {
     name: 'Jeff Ritter',
     title: 'Founder & Chief Learning Officer',
-    bio: 'Jeff founded Arrival with the conviction that the biggest problem in higher education isn\'t access to data — it\'s access to the right signal at the right moment. As Chief Learning Officer, he ensures every feature, every intervention signal, and every pilot outcome is grounded in how learning actually works.',
+    bio: 'Jeff founded Transform Learning with the conviction that the biggest problem in higher education isn\'t access to data — it\'s access to the right signal at the right moment. As Chief Learning Officer, he ensures every feature, every intervention signal, and every pilot outcome is grounded in how learning actually works.',
     initials: 'JR',
     color: '#0C1F3F',
-  },
-  {
-    name: 'Orsolya Cypert',
-    title: 'Co-Founder, Product & CTO',
-    bio: 'Orsolya leads product at Arrival, bringing rare experience as a CTO across both school systems and major technology companies. She has built and shipped products at the intersection of institutional complexity and technical precision — and understands what it takes to make a platform that works inside real academic environments.',
-    initials: 'OC',
-    color: '#00A8A8',
-  },
-  {
-    name: 'Ryan Rydstrom',
-    title: 'Sales, Marketing & Client Success',
-    bio: 'Ryan leads the relationships that make Arrival\'s pilots work. He manages sales, marketing, and client partnerships — connecting institutions with the right entry point, guiding faculty through the pilot process, and building the research relationships that turn early results into lasting adoption.',
-    initials: 'RR',
-    color: '#4F8A5B',
   },
 ]
 
@@ -46,7 +32,7 @@ export default function About() {
           </ScrollReveal>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-1 gap-6 max-w-lg">
           {TEAM.map((person, i) => (
             <ScrollReveal key={person.name} delay={i + 1}>
               <div className="card-lift group h-full" style={{ boxShadow: '0 4px 24px rgba(12,31,63,0.06)' }}>
@@ -81,7 +67,7 @@ export default function About() {
         </div>
 
         {/* Methodology link */}
-        <ScrollReveal delay={4}>
+        <ScrollReveal delay={2}>
           <div className="mt-16 text-center">
             <div className="inline-flex flex-col items-center gap-4 bg-brand-mist border border-brand-border rounded-2xl px-8 py-6">
               <p className="text-sm text-brand-gray leading-relaxed max-w-md">

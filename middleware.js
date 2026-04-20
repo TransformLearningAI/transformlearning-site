@@ -1,7 +1,36 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse } from 'next/server'
 
+// Paths that vulnerability scanners probe — block immediately
+const SCANNER_PATHS = [
+  '/.env', '/.env.local', '/.env.production', '/.env.backup',
+  '/.git', '/.gitignore', '/.gitconfig',
+  '/.aws', '/.ssh', '/.docker',
+  '/.cursor', '/.vscode',
+  '/.openai', '/.anthropic',
+  '/wp-admin', '/wp-login', '/wp-content', '/wp-includes', '/wordpress',
+  '/phpinfo', '/phpmyadmin', '/adminer', '/server-status', '/server-info',
+  '/laravel', '/artisan', '/composer.json', '/composer.lock',
+  '/config.json', '/config.yml', '/config.yaml', '/config.php',
+  '/credentials', '/secrets',
+  '/debug', '/trace', '/actuator',
+  '/cgi-bin', '/admin.php', '/xmlrpc.php',
+  '/web.config', '/appsettings.json',
+]
+
+function isScannerRequest(pathname) {
+  const lower = pathname.toLowerCase()
+  return SCANNER_PATHS.some(p => lower === p || lower.startsWith(p + '/') || lower.startsWith(p + '.'))
+}
+
 export async function middleware(request) {
+  const { pathname } = request.nextUrl
+
+  // Block vulnerability scanners immediately — no DB call, no logging
+  if (isScannerRequest(pathname)) {
+    return new NextResponse(null, { status: 404 })
+  }
+
   let supabaseResponse = NextResponse.next({ request })
 
   const supabase = createServerClient(
@@ -22,8 +51,6 @@ export async function middleware(request) {
   )
 
   const { data: { user } } = await supabase.auth.getUser()
-
-  const { pathname } = request.nextUrl
 
   // Public paths — no auth needed
   const publicPaths = ['/', '/investors', '/methodology', '/access', '/blog', '/login', '/signup', '/accept-invite', '/demo', '/campus-os', '/students', '/cranberry-demo', '/api/whitepaper-request', '/api/whitepaper-download', '/api/auth', '/api/enrollments', '/api/invites', '/api/request-access', '/api/approve-access']

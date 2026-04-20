@@ -120,17 +120,17 @@ function ccBody(name, dept) {
   const area = dept === "math" ? "mathematics" : dept === "biology" ? "biology" : "science";
   return `Dear ${name},
 
-I am a fellow educator in Pittsburgh writing to offer you a free pilot of Arrival, an adaptive learning platform I built specifically for gateway courses like the ones you teach.
+I am a fellow educator in Pittsburgh writing to offer you a free pilot of Transform Learning, an adaptive proficiency platform I built specifically for gateway courses like the ones you teach.
 
-Here is the problem Arrival solves: by the time a midterm reveals that a student is struggling, it is too late to fix it. Arrival catches the signals weeks earlier.
+Here is the problem the platform solves: by the time a midterm reveals that a student is struggling, it is too late to fix it. Transform Learning catches the signals weeks earlier.
 
 How it works in practice:
 
-You upload your syllabus. Within 30 minutes, Arrival maps it into a skill framework. Your students get a personalized dashboard showing their proficiency on every skill in the course, not just their grade, but where they actually stand. The AI generates adaptive quizzes, targeted study guides, and coaching conversations focused on each student's specific weaknesses. You see everything: who is improving, who is stalling, and who needs help before it shows up in their grades.
+You upload your syllabus. Within 30 minutes, the platform maps it into a skill framework. Your students get a personalized dashboard showing their proficiency on every skill in the course, not just their grade, but where they actually stand. The AI generates adaptive quizzes, targeted study guides, and coaching conversations focused on each student's specific weaknesses. You see everything: who is improving, who is stalling, and who needs help before it shows up in their grades.
 
 Why this matters for community colleges:
 
-Your students are working jobs, raising families, and commuting. They do not have time to fall behind and catch up. DFW rates in gateway ${area} courses are the highest of any courses at most institutions. Arrival gives you early visibility and gives your students targeted support exactly where they need it.
+Your students are working jobs, raising families, and commuting. They do not have time to fall behind and catch up. DFW rates in gateway ${area} courses are the highest of any courses at most institutions. Transform Learning gives you early visibility and gives your students targeted support exactly where they need it.
 
 The pilot is completely free. One course, one semester, up to 300 students. No cost to you, your department, or your institution. No contracts. I am looking for faculty partners who want to test this with real students and help build the evidence base.
 
@@ -151,17 +151,17 @@ function uniBody(name, dept) {
   const area = dept === "math" ? "mathematics" : dept === "biology" ? "biology" : dept === "statistics" ? "statistics" : "science";
   return `Dear ${name},
 
-I spent 30 years teaching at La Roche College in Pittsburgh, and the hardest part was always the same: knowing which students were falling behind before it was too late to help them. I built Arrival to solve that problem.
+I spent 30 years teaching at La Roche College in Pittsburgh, and the hardest part was always the same: knowing which students were falling behind before it was too late to help them. I built Transform Learning to solve that problem.
 
-Arrival is an adaptive learning platform that gives you real-time visibility into where each student stands on every skill in your course. Not just their grade. Their actual proficiency, with confidence intervals and trajectory analysis, updated after every quiz, assignment, and coaching interaction.
+Transform Learning is an adaptive proficiency platform that gives you real-time visibility into where each student stands on every skill in your course. Not just their grade. Their actual proficiency, with confidence intervals and trajectory analysis, updated after every quiz, assignment, and coaching interaction.
 
 What it does for you:
 
-You upload your syllabus. Arrival maps it into a skill framework in 30 minutes. Students get personalized dashboards. The AI generates adaptive quizzes, study guides, and coaching conversations targeted at each student's specific gaps. You see a faculty dashboard showing which students are improving, which are stalling, and which need intervention now, not after the midterm.
+You upload your syllabus. The platform maps it into a skill framework in 30 minutes. Students get personalized dashboards. The AI generates adaptive quizzes, study guides, and coaching conversations targeted at each student's specific gaps. You see a faculty dashboard showing which students are improving, which are stalling, and which need intervention now, not after the midterm.
 
 What it does for your students:
 
-Instead of a grade that tells them they failed, they get a map that shows them exactly what they do not understand yet and a path to fix it. The AI coaching is available 24/7, adapts to their level, and never judges them for asking a question twice.
+Instead of a grade that tells them they failed, they get a clear picture that shows them exactly what they do not understand yet and a path to fix it. The AI coaching is available 24/7, adapts to their level, and never judges them for asking a question twice.
 
 The pilot is completely free. One course, one semester, up to 300 students. No cost to you or your institution. No contracts. I am looking for 3 to 5 faculty partners in the region who want to test this with real students this coming semester.
 

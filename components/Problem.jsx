@@ -3,7 +3,7 @@ import ScrollReveal from './ScrollReveal'
 const PROBLEMS = [
   { title: 'Students don\'t know where they stand', body: 'Without a clear view of their own progression, students can\'t self-correct. By the time a grade signals a problem, the window to act has closed.', color: '#00A8A8', icon: '◈' },
   { title: 'Faculty get signals too late',          body: 'Grade data arrives weeks after the intervention window closes. The signal tells you what happened — not what to do.', color: '#FF6B4A', icon: '⚠' },
-  { title: 'No path forward is visible',            body: 'Students know they\'re struggling but not why, and not what to do next. Confusion without direction leads to withdrawal.', color: '#00A8A8', icon: '⊙' },
+  { title: 'No clear picture exists',                body: 'Students know they\'re struggling but not why, and not what to do next. Confusion without clarity leads to withdrawal.', color: '#00A8A8', icon: '⊙' },
   { title: 'Gateway courses most exposed',          body: 'The courses that drive DFW rates and retention loss carry the highest consequences — and give students the least clarity about where they stand.', color: '#FF6B4A', icon: '▲' },
 ]
 
@@ -39,7 +39,7 @@ export default function Problem() {
                      style={{ background: 'linear-gradient(180deg, #00A8A8, #4F8A5B)' }} />
                 <blockquote className="font-serif font-light text-navy"
                             style={{ fontSize: 'clamp(20px, 2.5vw, 28px)', lineHeight: 1.3, letterSpacing: '-0.01em' }}>
-                  "I do not begin with answers. I begin with clarity. I do not rush the path. I reveal it."
+                  "I do not begin with answers. I begin with clarity. I do not guess. I measure."
                 </blockquote>
               </div>
             </ScrollReveal>

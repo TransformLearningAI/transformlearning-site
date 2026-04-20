@@ -161,17 +161,17 @@ export default function Hero() {
           <div className={`transition-all duration-700 delay-100 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
             <h1 className="font-serif font-light text-white leading-[0.95] mb-8"
                 style={{ fontSize: 'clamp(52px, 8vw, 96px)', letterSpacing: '-0.03em' }}>
-              <span className="block">The path</span>
-              <span className="block italic" style={{ opacity: 0.85 }}>forward.</span>
-              <span className="block teal-gradient-text">Revealed.</span>
+              <span className="block">What grades</span>
+              <span className="block italic" style={{ opacity: 0.85 }}>hide.</span>
+              <span className="block teal-gradient-text">Measured.</span>
             </h1>
           </div>
 
           <p className={`text-lg font-semibold text-white mb-3 transition-all duration-700 delay-200 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            Know where you are. See where to go. Follow the path forward.
+            True proficiency, exposed. Every skill, every gap, every gain — visible.
           </p>
           <p className={`text-base text-white/70 leading-relaxed max-w-lg mb-10 transition-all duration-700 delay-300 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            Arrival is a wayfinding system for learning. It reads signals, recognizes patterns, and helps each student see a path forward — not by removing challenge, but by introducing the right tension at the right moment. Faculty submit a syllabus. The system maps every skill, surfaces true proficiency, and closes gaps through coaching, quizzes, and targeted practice.
+            A proficiency engine that shows what grades can't. It reads signals, recognizes patterns, and surfaces what each student actually knows — not by removing challenge, but by introducing the right tension at the right moment. Faculty submit a syllabus. The system maps every skill, measures true proficiency, and closes gaps through coaching, quizzes, and targeted practice.
           </p>
 
           <div className={`flex flex-wrap gap-4 transition-all duration-700 delay-[400ms] ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>

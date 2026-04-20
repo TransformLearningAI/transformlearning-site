@@ -2,8 +2,8 @@ import Link from 'next/link'
 import AccessGate from '@/components/AccessGate'
 
 export const metadata = {
-  title: 'Investors — Arrival',
-  description: 'Go-to-market strategy, market entry model, and growth path for Arrival in higher education.',
+  title: 'Investors — Transform Learning',
+  description: 'Go-to-market strategy, market entry model, and growth path for Transform Learning in higher education.',
 }
 
 const STATS = [
@@ -97,7 +97,7 @@ export default function Investors() {
             Higher Education<br /><em className="italic opacity-80">Market Entry</em>
           </h1>
           <p className="text-base text-white/60 leading-relaxed max-w-2xl">
-            Executive overview of Arrival's go-to-market model for higher education —
+            Executive overview of Transform Learning's go-to-market model for higher education —
             market definition, stakeholder structure, sales motion, pricing, and growth path.
           </p>
         </div>
@@ -137,15 +137,15 @@ export default function Investors() {
           </div>
           <div className="mt-4 bg-white border border-brand-coral/20 rounded-xl p-4">
             <p className="text-xs font-bold uppercase tracking-[0.1em] text-brand-coral mb-1">Brand Principle</p>
-            <p className="text-sm text-brand-gray">Arrival wins by reducing noise, clarifying what matters now, and creating forward movement through selective clarity.</p>
+            <p className="text-sm text-brand-gray">Transform Learning wins by reducing noise, clarifying what matters now, and creating forward movement through precise measurement.</p>
           </div>
         </div>
       </div>
 
       {/* Sections */}
       <Section id="s1" num="1" title="Executive Summary" color="#0C1F3F">
-        <p className="body-text mb-4">Arrival will enter the Higher Education market through a focused, evidence-driven, faculty-first strategy centered on high-impact gateway courses. The go-to-market approach prioritizes measurable academic outcomes, rapid time-to-insight, and departmental adoption as the foundation for institutional scale.</p>
-        <p className="body-text mb-4">The AI is not the product — it's the underlying intelligence. What we are building is a wayfinding system for learning: a system that reads signals, recognizes patterns, applies judgment, and helps a student see a path forward. Not by removing challenge, but by introducing the right amount of tension at the right moment and guiding them toward an arrival point. This positions Arrival not as an AI tool, an LMS extension, or a content repository — but as an adaptive, prescriptive learning operating system.</p>
+        <p className="body-text mb-4">Transform Learning will enter the Higher Education market through a focused, evidence-driven, faculty-first strategy centered on high-impact gateway courses. The go-to-market approach prioritizes measurable academic outcomes, rapid time-to-insight, and departmental adoption as the foundation for institutional scale.</p>
+        <p className="body-text mb-4">The AI is not the product — it's the underlying intelligence. What we are building is a proficiency engine for learning: a system that reads signals, recognizes patterns, applies judgment, and shows students exactly where they stand. Not by removing challenge, but by introducing the right amount of tension at the right moment and giving them clarity on what to do next. This positions Transform Learning not as an AI tool, an LMS extension, or a content repository — but as an adaptive, prescriptive learning operating system.</p>
         <p className="body-text font-semibold text-navy">The primary growth mechanism is not broad awareness. It is validated movement within targeted academic environments, supported by proof, usability, and faculty credibility.</p>
       </Section>
 
@@ -170,7 +170,7 @@ export default function Investors() {
         </div>
 
         <Card title="Serviceable Obtainable Market">
-          <p className="text-sm text-brand-gray leading-relaxed">Within 12 to 18 months, Arrival should target <strong className="text-navy">10–15 universities</strong>, <strong className="text-navy">20–40 departments</strong>, and <strong className="text-navy">50–100 course implementations</strong> — sufficient to establish category credibility, create a repeatable pilot model, and generate a meaningful evidence base for expansion.</p>
+          <p className="text-sm text-brand-gray leading-relaxed">Within 12 to 18 months, Transform Learning should target <strong className="text-navy">10–15 universities</strong>, <strong className="text-navy">20–40 departments</strong>, and <strong className="text-navy">50–100 course implementations</strong> — sufficient to establish category credibility, create a repeatable pilot model, and generate a meaningful evidence base for expansion.</p>
         </Card>
       </Section>
 
@@ -196,7 +196,7 @@ export default function Investors() {
       <Section id="s4" num="4" title="Product Positioning & Value Proposition" color="#0C1F3F">
         <blockquote className="font-serif font-light text-navy border-l-4 border-navy pl-6 mb-8"
                     style={{ fontSize: 'clamp(22px, 3vw, 32px)', lineHeight: 1.3, letterSpacing: '-0.01em' }}>
-          The AI is not the product — it's the underlying intelligence. What we're building is a wayfinding system for learning. An adaptive, prescriptive learning operating system.
+          The AI is not the product — it's the underlying intelligence. What we're building is a proficiency engine for learning. An adaptive, prescriptive learning operating system.
         </blockquote>
         <div className="grid md:grid-cols-2 gap-4 mb-6">
           <Card title="Core Problem">
@@ -216,7 +216,7 @@ export default function Investors() {
       </Section>
 
       <Section id="s5" num="5" title="Sales & Distribution Strategy" color="#00A8A8">
-        <p className="body-text mb-6">Arrival operates with a hybrid model combining bottom-up faculty adoption with top-down administrative expansion. Entry credibility is earned through faculty value. Scale is unlocked through departmental and institutional funding pathways.</p>
+        <p className="body-text mb-6">Transform Learning operates with a hybrid model combining bottom-up faculty adoption with top-down administrative expansion. Entry credibility is earned through faculty value. Scale is unlocked through departmental and institutional funding pathways.</p>
         <div className="space-y-4 mb-8">
           {[
             { phase: 'Phase 1', title: 'Faculty Engagement', body: 'Identify and recruit design partner faculty through warm introductions, departmental relationships, and mission-aligned outreach. Initial conversations should be diagnostic rather than demonstrative.' },
@@ -333,8 +333,8 @@ export default function Investors() {
       </Section>
 
       <Section id="s12" num="11" title="Strategic Conclusion" color="#0C1F3F">
-        <p className="body-text mb-4">Arrival's success in Higher Education depends on its ability to deliver immediate, observable instructional clarity, build credibility through evidence and faculty trust, and scale through departmental adoption rather than top-down mandates.</p>
-        <p className="body-text mb-4">This is not an AI tool, an LMS extension, or a content repository. It is an adaptive, prescriptive learning operating system — a wayfinding system that reads signals, applies judgment, and guides students toward an arrival point. The GTM strategy establishes a repeatable pathway from individual faculty validation to institutional standardization, positioning Arrival as critical infrastructure for academic success.</p>
+        <p className="body-text mb-4">Transform Learning's success in Higher Education depends on its ability to deliver immediate, observable instructional clarity, build credibility through evidence and faculty trust, and scale through departmental adoption rather than top-down mandates.</p>
+        <p className="body-text mb-4">This is not an AI tool, an LMS extension, or a content repository. It is an adaptive, prescriptive learning operating system — a measurement system that reads signals, applies judgment, and shows students exactly where they stand and what to do next. The GTM strategy establishes a repeatable pathway from individual faculty validation to institutional standardization, positioning Transform Learning as critical infrastructure for academic success.</p>
         <blockquote className="font-serif font-light text-navy border-l-4 border-navy pl-6"
                     style={{ fontSize: 'clamp(20px, 2.5vw, 28px)', lineHeight: 1.3, letterSpacing: '-0.01em' }}>
           Enter narrowly. Prove value rigorously. Expand deliberately. Build a durable position as the operating system for learning inside universities.
@@ -347,7 +347,7 @@ export default function Investors() {
           <Link href="/" className="text-sm font-bold text-white hover:text-brand-teal transition-colors">
             ← Back to transformlearning.ai
           </Link>
-          <p className="text-xs text-white/30">Arrival · Investor Overview · Confidential</p>
+          <p className="text-xs text-white/30">Transform Learning · Investor Overview · Confidential</p>
         </div>
       </footer>
 

@@ -2,8 +2,20 @@ import Link from 'next/link'
 import { POSTS } from './posts'
 
 export const metadata = {
-  title: 'Blog — Arrival / Transform Learning',
-  description: 'Thoughts on AI in education, adaptive learning, higher ed challenges, and building technology that serves students and faculty.',
+  title: 'Blog — Transform Learning | AI in Education',
+  description: 'Thoughts on AI in education, adaptive learning, higher ed challenges, and building technology that serves students and faculty. Bayesian proficiency, skill mapping, and closing learning gaps.',
+  openGraph: {
+    title: 'Blog — Transform Learning | AI in Education',
+    description: 'Thoughts on AI in education, adaptive learning, higher ed challenges, and building technology that serves students and faculty.',
+    url: 'https://transformlearning.ai/blog',
+    siteName: 'Transform Learning',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Blog — Transform Learning | AI in Education',
+    description: 'Thoughts on AI in education, adaptive learning, higher ed challenges, and building technology that serves students and faculty.',
+  },
 }
 
 export default function BlogPage() {

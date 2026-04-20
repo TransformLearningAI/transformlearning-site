@@ -1,16 +1,16 @@
 'use client'
 import { useState, useEffect } from 'react'
 
-export default function ArrivalMoment({ arrivals = [], onDismiss }) {
+export default function ArrivalMoment({ milestones = [], onDismiss }) {
   const [visible, setVisible] = useState(false)
   const [current, setCurrent] = useState(null)
 
   useEffect(() => {
-    if (arrivals.length > 0 && !current) {
-      setCurrent(arrivals[0])
+    if (milestones.length > 0 && !current) {
+      setCurrent(milestones[0])
       setTimeout(() => setVisible(true), 200)
     }
-  }, [arrivals, current])
+  }, [milestones, current])
 
   function dismiss() {
     setVisible(false)
@@ -32,7 +32,7 @@ export default function ArrivalMoment({ arrivals = [], onDismiss }) {
       <div className="relative text-center px-8 max-w-lg">
         <p className="text-[11px] font-bold uppercase tracking-[0.2em] mb-6"
            style={{ color: '#00A8A8', opacity: visible ? 1 : 0, transition: 'opacity 0.6s 0.3s' }}>
-          You have arrived.
+          Proficiency achieved.
         </p>
 
         <h1 className="font-serif font-light text-white mb-4"
