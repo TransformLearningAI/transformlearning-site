@@ -207,6 +207,21 @@ export default function Hero() {
 
       </div>
 
+      {/* Student coaching banner */}
+      <div className="border-t border-white/8 bg-navy">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6">
+          <p className="text-sm text-white/70 text-center">
+            <span className="font-medium text-white/90">Students:</span> Skill tracking is free.
+            AI coaching is <strong style={{ color: '#00A8A8' }}>$10/month</strong> when you need it.
+          </p>
+          <a href="/students"
+             className="text-xs font-bold px-5 py-2 rounded-lg whitespace-nowrap transition-colors"
+             style={{ background: '#00A8A8', color: '#fff' }}>
+            Learn More →
+          </a>
+        </div>
+      </div>
+
       {/* Stats strip */}
       <div className="border-t border-white/8 bg-white mt-auto">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 divide-x divide-brand-border">

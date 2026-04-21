@@ -101,6 +101,30 @@ export default function StudentsPage() {
         </div>
       </section>
 
+      {/* Pricing teaser — above the fold */}
+      <section className="py-0" style={{ background: '#F4F7FB' }}>
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="relative -mt-6 rounded-2xl px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-4"
+               style={{ background: '#0C1F3F', boxShadow: '0 4px 24px rgba(12,31,63,0.25)' }}>
+            <p className="text-sm sm:text-base text-white/90 font-medium text-center sm:text-left">
+              Everything below is <strong className="text-white">free</strong>.
+              AI coaching is <strong style={{ color: '#00A8A8' }}>$10/month</strong> when you need it.
+            </p>
+            <div className="flex items-center gap-3 flex-shrink-0">
+              <Link href="/signup-student"
+                className="text-white text-xs font-bold px-5 py-2.5 rounded-lg whitespace-nowrap"
+                style={{ background: '#00A8A8' }}>
+                Start Free →
+              </Link>
+              <a href="#pricing"
+                className="text-white/70 text-xs font-semibold px-5 py-2.5 rounded-lg border border-white/20 hover:bg-white/10 transition-colors whitespace-nowrap">
+                See Pricing ↓
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* What you can do */}
       <section className="py-20 lg:py-28" style={{ background: '#F4F7FB' }}>
         <div className="max-w-5xl mx-auto px-6">
@@ -163,7 +187,7 @@ export default function StudentsPage() {
       </section>
 
       {/* AI Coach — paid tier */}
-      <section className="py-20 lg:py-28" style={{ background: '#0C1F3F' }}>
+      <section id="pricing" className="py-20 lg:py-28" style={{ background: '#0C1F3F' }}>
         <div className="max-w-5xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-14 items-center">
             <div>
