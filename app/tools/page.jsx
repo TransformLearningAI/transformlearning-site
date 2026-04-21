@@ -96,6 +96,28 @@ const TOOLS = [
     ],
     availability: 'Free forever for anyone who needs it.',
   },
+  {
+    name: 'holdfast.today',
+    tagline: 'You served. Now build what\'s yours.',
+    href: 'https://holdfast.today',
+    color: '#1B2A4A',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <path d="M14 4v20M8 8l6-4 6 4M8 20l6 4 6-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <circle cx="14" cy="14" r="3" fill="#C49A3C"/>
+      </svg>
+    ),
+    audience: 'Veterans & Transitioning Service Members',
+    desc: 'Free AI career coaching built for veterans. Translates military experience into civilian career paths — not just your MOS, but the leadership, problem-solving, and discipline the civilian world doesn\'t know how to read on a DD-214. Hidden skills discovery, career matching, GI Bill and VA resource guidance.',
+    features: [
+      'AI career coach that understands military experience and rank structure',
+      'Hidden Skills Audit — translates service into professional language',
+      '12 career paths with clearance advantage and Veterans\' Preference info',
+      'Reality Check — factors GI Bill, clearance, disability rating, family',
+      'Resource directory: USAJOBS, SkillBridge, VET TEC, Hire Heroes, VA benefits',
+    ],
+    availability: 'Free for all veterans and transitioning service members.',
+  },
 ]
 
 const INTEREST_OPTIONS = [
