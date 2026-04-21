@@ -340,26 +340,36 @@ export default function ToolsPage() {
             <em className="italic" style={{ color: '#00A8A8' }}>where they actually are.</em>
           </h1>
 
-          <p className="text-lg text-white/60 leading-relaxed max-w-2xl mb-8">
-            Transform Learning is building AI-powered tools for anyone trying to learn, grow, or
-            figure out what comes next &mdash; whether you&apos;re a college student tracking your skills,
-            a high schooler choosing a path after graduation, or someone rebuilding a life after
-            incarceration. Our tools meet people where they are, not where the system assumes they should be.
+          <p className="text-xl text-white/70 leading-relaxed max-w-2xl mb-6" style={{ fontFamily: 'Georgia, serif' }}>
+            We believe that honest information about your own potential should be free, specific,
+            and available to everyone &mdash; regardless of where you started, what you&apos;ve been
+            through, or what the system assumes about you.
           </p>
 
-          <div className="grid sm:grid-cols-3 gap-4 mt-10 max-w-2xl">
-            <div className="rounded-xl px-4 py-3" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}>
-              <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: '#00A8A8' }}>For Students</p>
-              <p className="text-sm text-white/50">Skill mapping, proficiency tracking, AI coaching, adaptive study tools</p>
-            </div>
-            <div className="rounded-xl px-4 py-3" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}>
-              <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: '#C4522A' }}>For Young People</p>
-              <p className="text-sm text-white/50">AI career coaching, interactive self-discovery, path reports with honest match data</p>
-            </div>
-            <div className="rounded-xl px-4 py-3" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}>
-              <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: '#A3BE8C' }}>For People Rebuilding</p>
-              <p className="text-sm text-white/50">Career coaching for reentry, skills you didn&apos;t know you had, jobs that actually hire</p>
-            </div>
+          <p className="text-base text-white/50 leading-relaxed max-w-2xl mb-10">
+            Transform Learning builds AI tools for people at turning points. A college student who
+            needs to see what grades hide. A teenager figuring out what comes after high school.
+            Someone coming home after incarceration. A veteran building a civilian life. Each tool
+            is built for a specific moment &mdash; because generic advice helps no one.
+          </p>
+
+          {/* App links */}
+          <div className="grid sm:grid-cols-5 gap-3 max-w-3xl">
+            {[
+              { name: 'study.transformlearning.ai', label: 'Students', color: '#00A8A8', href: 'https://study.transformlearning.ai', desc: 'Know what you actually know' },
+              { name: 'transformlearning.ai', label: 'Faculty', color: '#0C1F3F', href: '/', desc: 'See what grades can\'t show', border: true },
+              { name: 'findmyway.today', label: 'High School', color: '#C4522A', href: 'https://findmyway.today', desc: 'Figure out what comes next' },
+              { name: 'soltas.ai', label: 'Reentry', color: '#2D5016', href: 'https://soltas.ai', desc: 'Rebuild with what you have' },
+              { name: 'holdfast.today', label: 'Veterans', color: '#1B2A4A', href: 'https://holdfast.today', desc: 'You served. Now build yours.' },
+            ].map(app => (
+              <a key={app.name} href={app.href} target={app.href.startsWith('http') ? '_blank' : undefined}
+                 className="rounded-xl px-4 py-3 transition-all hover:scale-[1.02] hover:shadow-lg"
+                 style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}>
+                <p className="text-[10px] font-bold uppercase tracking-wider mb-1" style={{ color: app.color === '#0C1F3F' ? '#00A8A8' : app.color }}>{app.label}</p>
+                <p className="text-xs text-white/70 font-semibold mb-0.5">{app.name}</p>
+                <p className="text-[11px] text-white/40">{app.desc}</p>
+              </a>
+            ))}
           </div>
 
           <div className="flex flex-wrap gap-8 text-sm text-white/40 mt-8">
@@ -372,24 +382,34 @@ export default function ToolsPage() {
         </div>
       </header>
 
-      {/* Mission */}
+      {/* Ethos */}
       <section className="py-16 lg:py-20" style={{ background: '#F4F7FB' }}>
         <div className="max-w-5xl mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-xs font-bold uppercase tracking-[0.14em] mb-4" style={{ color: '#00A8A8' }}>
-              What we believe
+              Our Ethos
             </p>
             <h2 className="font-serif font-light mb-6"
                 style={{ fontSize: 'clamp(24px, 3.5vw, 40px)', lineHeight: 1.15, letterSpacing: '-0.02em', color: '#0C1F3F' }}>
-              Every student deserves to know where they actually stand &mdash; not where a grade
-              says they stand.
+              The systems we built to help people learn, choose careers, and rebuild their lives
+              share a single design flaw: they tell people what the institution needs them to hear
+              instead of what is actually true.
             </h2>
-            <p className="text-base text-gray-500 leading-relaxed">
-              Grades compress months of learning into a single letter. They hide the skills a student
-              has mastered, the gaps they don&apos;t know they have, and the progress they&apos;ve made
-              but can&apos;t see. Our tools replace that compression with clarity &mdash; specific,
-              measurable, actionable clarity that works for a student studying alone at a community
-              college or a faculty member teaching 200 students at a research university.
+            <p className="text-base text-gray-500 leading-relaxed mb-6">
+              Grades compress months of learning into a single letter. Career quizzes reduce a
+              human being to a personality type. Reentry programs hand out pamphlets. Transition
+              offices run you through a PowerPoint. None of it is built for you. All of it is
+              built for the system.
+            </p>
+            <p className="text-base text-gray-500 leading-relaxed mb-6">
+              We build tools that do something different. They ask real questions. They listen to
+              the answers. They surface what you already know but haven&apos;t been shown. And they
+              tell you the truth &mdash; about where you stand, what fits, and what&apos;s actually
+              possible &mdash; without pretending to know more than they do.
+            </p>
+            <p className="text-base font-semibold leading-relaxed" style={{ color: '#0C1F3F' }}>
+              Every tool we build follows three rules: it must be honest about what it knows,
+              transparent about how it knows it, and free for anyone who needs it.
             </p>
           </div>
         </div>
