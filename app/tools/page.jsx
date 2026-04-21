@@ -354,20 +354,21 @@ export default function ToolsPage() {
           </p>
 
           {/* App links */}
-          <div className="grid sm:grid-cols-5 gap-3 max-w-3xl">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 max-w-4xl">
             {[
               { name: 'study.transformlearning.ai', label: 'Students', color: '#00A8A8', href: 'https://study.transformlearning.ai', desc: 'Know what you actually know' },
-              { name: 'transformlearning.ai', label: 'Faculty', color: '#0C1F3F', href: '/', desc: 'See what grades can\'t show', border: true },
+              { name: 'transformlearning.ai', label: 'Faculty', color: '#0C1F3F', href: '/', desc: 'See what grades can\'t show' },
               { name: 'findmyway.today', label: 'High School', color: '#C4522A', href: 'https://findmyway.today', desc: 'Figure out what comes next' },
               { name: 'soltas.ai', label: 'Reentry', color: '#2D5016', href: 'https://soltas.ai', desc: 'Rebuild with what you have' },
               { name: 'holdfast.today', label: 'Veterans', color: '#1B2A4A', href: 'https://holdfast.today', desc: 'You served. Now build yours.' },
             ].map(app => (
               <a key={app.name} href={app.href} target={app.href.startsWith('http') ? '_blank' : undefined}
-                 className="rounded-xl px-4 py-3 transition-all hover:scale-[1.02] hover:shadow-lg"
+                 rel={app.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                 className="rounded-xl px-4 py-4 transition-all hover:scale-[1.02] hover:shadow-lg"
                  style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}>
-                <p className="text-[10px] font-bold uppercase tracking-wider mb-1" style={{ color: app.color === '#0C1F3F' ? '#00A8A8' : app.color }}>{app.label}</p>
-                <p className="text-xs text-white/70 font-semibold mb-0.5">{app.name}</p>
-                <p className="text-[11px] text-white/40">{app.desc}</p>
+                <p className="text-[10px] font-bold uppercase tracking-wider mb-1.5" style={{ color: app.color === '#0C1F3F' ? '#00A8A8' : app.color }}>{app.label}</p>
+                <p className="text-sm text-white/70 font-semibold mb-1 break-all leading-tight">{app.name}</p>
+                <p className="text-xs text-white/40 leading-snug">{app.desc}</p>
               </a>
             ))}
           </div>
