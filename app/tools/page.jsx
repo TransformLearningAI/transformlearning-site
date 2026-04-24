@@ -356,7 +356,7 @@ export default function ToolsPage() {
           {/* App links */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 max-w-4xl">
             {[
-              { name: 'study.transformlearning.ai', label: 'Students', color: '#00A8A8', href: 'https://study-app-jeff-7385s-projects.vercel.app', desc: 'Know what you actually know' },
+              { name: 'study.transformlearning.ai', label: 'Students', color: '#00A8A8', href: 'https://study.transformlearning.ai', desc: 'Know what you actually know' },
               { name: 'transformlearning.ai', label: 'Postsecondary Learning', color: '#0C1F3F', href: '/', desc: 'Skills and knowledge measurement' },
               { name: 'findmyway.today', label: 'High School', color: '#C4522A', href: 'https://findmyway.today', desc: 'Figure out what comes next' },
               { name: 'soltas.ai', label: 'Reentry', color: '#2D5016', href: 'https://soltas.ai', desc: 'Rebuild with what you have' },
