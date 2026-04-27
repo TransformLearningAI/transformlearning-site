@@ -11,6 +11,7 @@ export default function Nav() {
     { label: 'Pricing',      href: '#pricing' },
     { label: 'Blog',          href: '/blog' },
     { label: 'Methodology',  href: '/methodology' },
+    { label: 'Community',    href: '/community' },
   ]
 
   return (
