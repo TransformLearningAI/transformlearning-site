@@ -46,7 +46,7 @@ export default function Outcomes() {
 
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           {OUTCOMES.map((o, i) => (
-            <ScrollReveal key={o.audience} delay={i + 1}>
+            <ScrollReveal key={o.audience} delay={i + 1} type="scale">
               <div className="card-lift rounded-2xl p-8 h-full border border-white/10"
                    style={{ background: 'rgba(255,255,255,0.06)', backdropFilter: 'blur(12px)' }}>
                 <div className="text-[10px] font-bold uppercase tracking-[0.14em] mb-3" style={{ color: o.color }}>
@@ -70,7 +70,7 @@ export default function Outcomes() {
         </div>
 
         {/* Pull quote */}
-        <ScrollReveal>
+        <ScrollReveal type="up">
           <div className="max-w-3xl mx-auto text-center">
             <p className="font-serif font-light text-white/80 leading-snug"
                style={{ fontSize: 'clamp(22px, 3vw, 36px)', letterSpacing: '-0.02em' }}>

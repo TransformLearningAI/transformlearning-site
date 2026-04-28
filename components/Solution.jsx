@@ -46,7 +46,7 @@ export default function Solution() {
               <em className="italic" style={{ color: '#00A8A8' }}>prescriptive learning operating&nbsp;system.</em>
             </h2>
           </ScrollReveal>
-          <ScrollReveal delay={2}>
+          <ScrollReveal delay={2} type="left">
             <p className="text-lg text-brand-gray leading-relaxed max-w-2xl mx-auto">
               The AI isn't the product — it's the underlying intelligence. What we've built is a proficiency engine that reads signals, recognizes patterns, applies judgment, and shows students exactly where they stand against mastery. Not by removing challenge, but by introducing the right amount of tension at the right moment. Students don't just see where they stand. They fix it.
             </p>
@@ -56,7 +56,7 @@ export default function Solution() {
         {/* Pillars — alternating editorial layout */}
         <div className="space-y-24">
           {PILLARS.map((p, i) => (
-            <ScrollReveal key={p.num} delay={1}>
+            <ScrollReveal key={p.num} delay={1} type={i % 2 === 0 ? 'left' : 'right'}>
               <div className={`grid lg:grid-cols-[1fr_1fr] gap-16 items-center ${i % 2 === 1 ? 'lg:direction-rtl' : ''}`}
                    style={{ direction: i % 2 === 1 ? 'rtl' : 'ltr' }}>
                 <div style={{ direction: 'ltr' }}>

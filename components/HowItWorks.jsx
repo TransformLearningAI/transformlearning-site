@@ -46,7 +46,7 @@ export default function HowItWorks() {
 
         <div className="space-y-6">
           {STEPS.map((s, i) => (
-            <ScrollReveal key={s.num} delay={i + 1}>
+            <ScrollReveal key={s.num} delay={i + 1} type={i % 2 === 0 ? 'left' : 'right'}>
               <div className="card-lift group grid md:grid-cols-[80px_1fr_1fr] gap-8 items-center bg-white rounded-2xl p-8 border border-brand-border"
                    style={{ boxShadow: '0 4px 24px rgba(12,31,63,0.05)' }}>
 

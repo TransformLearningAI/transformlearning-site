@@ -6,6 +6,56 @@
 
 export const POSTS = [
   {
+    slug: 'the-apps-are-ready',
+    title: 'The Apps Are Ready — And I\'m Just Getting Started',
+    date: '2026-04-27',
+    author: 'Jeff Ritter',
+    summary: 'TransformLearning.ai and FindMyWay.today are finished and ready. Built by someone who has never written a line of code, powered by Claude Code, and driven by a belief that education should meet people where they are.',
+    body: `It's been a long time coming, but I'm finally able to say it out loud: TransformLearning.ai and FindMyWay.today are finished and ready.
+
+If you'd told me a year ago that I — someone who has never written a line of code in his life — would be shipping not one but two web apps, I would have laughed and asked you to pass whatever you were drinking. And yet, here we are.
+
+**Building Without Being a Coder**
+
+The thing that made this possible is Claude Code. I came to it the way most people come to a new tool — a little skeptical, a little out of my depth, mostly just hoping it wouldn't break in front of me. What I found instead was something closer to a creative partnership. I could describe what I wanted in plain English, work through it piece by piece, and watch ideas I'd been carrying around in my head for years actually take shape on a screen.
+
+It didn't make me a developer. I'm not going to pretend that. But it gave me a way to build — to test, to iterate, to make the thing real instead of just talking about it. And for someone who has spent a long time envisioning websites and services that could genuinely help people, that's no small thing.
+
+**What People Actually Want**
+
+The second big lesson has been less technical and more humbling. I came into this with strong opinions about what users needed. Turns out, what users need and what I think they need aren't always the same thing — and the gap between those two is where most of the real work lives.
+
+Watching real people interact with what I'd built taught me more in a few weeks than months of planning ever did. Some features I was proud of fell flat. Some things I almost cut turned out to be the parts people kept coming back for. There's a kind of ego death involved in that, and I think it's a healthy one. You stop building for the version of the user that lives in your head and start building for the actual person on the other side of the screen.
+
+**Education as a Service, Not a Career**
+
+Something else has shifted for me along the way: how I think about education itself.
+
+For a long time, the dominant framing has been career — learn this so you can get that job, take this course so you can climb that ladder. But the people I most want to serve aren't necessarily climbing a ladder. They're looking for a path. A direction. A way back, or a way forward.
+
+That's why I've been thinking about what I'm building less as "edtech" and more as education as a service — something that meets people where they are. A high school student trying to figure out who they want to be. Someone coming home after time in prison and trying to rebuild a life. A veteran transitioning out of the military and asking, what now? Someone in the middle of a divorce, a layoff, a loss, an awakening — any of the moments where the old map stops working and a new one has to be drawn.
+
+If I can help even a few of those people find their inspiration and their path, this whole thing will have been worth it.
+
+**The Marketing Mountain**
+
+Now comes the part I genuinely did not see coming: PR, marketing, social media, finding the people who need this.
+
+Building was hard. Getting people to find what I built? That's a whole different sport, and I'm a rookie at it. I'm currently bringing on a small social media team to help, and I'm learning as fast as I can — but I'll be honest, I'll probably need to bring in a real pro to do it the way it deserves to be done. I love learning new things. I just also know the difference between learning something and being good at it.
+
+If you've been through this, I'm all ears.
+
+**Grateful, Humbled, Having Fun**
+
+Mostly though, what I keep coming back to is gratitude.
+
+Grateful that the tools exist now to let someone like me actually build the things I've been imagining for years. Grateful for the people who've tested early versions and told me what worked and what didn't. Grateful for the chance — and I really do mean this — to be of service to people who are looking for a way forward.
+
+I'm humbled by how much I still don't know. I'm having more fun than I've had in a long time. And we're just getting started.
+
+If any of this resonates — if you're in a transition, if you know someone who is, if you want to help spread the word — come find me at TransformLearning.ai and FindMyWay.today. The doors are open.`
+  },
+  {
     slug: 'four-tools-one-belief',
     title: 'Four Tools, One Belief: Everyone Deserves to Know Where They Stand',
     date: '2026-04-16',

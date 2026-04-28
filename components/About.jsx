@@ -34,7 +34,7 @@ export default function About() {
 
         <div className="grid md:grid-cols-1 gap-6 max-w-lg">
           {TEAM.map((person, i) => (
-            <ScrollReveal key={person.name} delay={i + 1}>
+            <ScrollReveal key={person.name} delay={i + 1} type="scale">
               <div className="card-lift group h-full" style={{ boxShadow: '0 4px 24px rgba(12,31,63,0.06)' }}>
                 <div className="gradient-border h-full">
                   <div className="p-8 flex flex-col h-full">
@@ -67,7 +67,7 @@ export default function About() {
         </div>
 
         {/* Methodology link */}
-        <ScrollReveal delay={2}>
+        <ScrollReveal delay={2} type="up">
           <div className="mt-16 text-center">
             <div className="inline-flex flex-col items-center gap-4 bg-brand-mist border border-brand-border rounded-2xl px-8 py-6">
               <p className="text-sm text-brand-gray leading-relaxed max-w-md">

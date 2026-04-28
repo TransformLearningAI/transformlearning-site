@@ -28,12 +28,12 @@ export default function Problem() {
                 Students can't fix what they can't see.
               </h2>
             </ScrollReveal>
-            <ScrollReveal delay={2}>
+            <ScrollReveal delay={2} type="right">
               <p className="text-lg text-brand-gray leading-relaxed mb-6">
                 Students don't know where they stand until grades arrive — and by then it's too late to change course. Faculty can't see what's happening beneath the surface until the semester is already over.
               </p>
             </ScrollReveal>
-            <ScrollReveal delay={3}>
+            <ScrollReveal delay={3} type="left">
               <div className="relative pl-6 mt-10">
                 <div className="absolute left-0 top-0 bottom-0 w-1 rounded-full"
                      style={{ background: 'linear-gradient(180deg, #00A8A8, #4F8A5B)' }} />
@@ -47,7 +47,7 @@ export default function Problem() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {PROBLEMS.map((p, i) => (
-              <ScrollReveal key={p.title} delay={i + 1}>
+              <ScrollReveal key={p.title} delay={i + 1} type="scale">
                 <div className="card-lift bg-white rounded-2xl p-6 border border-brand-border h-full"
                      style={{ boxShadow: '0 4px 24px rgba(12,31,63,0.06)' }}>
                   <div className="text-2xl mb-3 font-light" style={{ color: p.color }}>{p.icon}</div>
