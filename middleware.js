@@ -20,7 +20,24 @@ const SCANNER_PATHS = [
 
 function isScannerRequest(pathname) {
   const lower = pathname.toLowerCase()
+  // Block any path containing .env anywhere (scanners try /admin/.env, /backend/.env, etc.)
+  if (lower.includes('.env')) return true
   return SCANNER_PATHS.some(p => lower === p || lower.startsWith(p + '/') || lower.startsWith(p + '.'))
+}
+
+// Known bots/crawlers — don't log these as page views
+const BOT_PATTERNS = [
+  'bot', 'crawler', 'spider', 'slurp', 'mediapartners', 'facebookexternalhit',
+  'linkedinbot', 'twitterbot', 'whatsapp', 'telegrambot', 'discordbot',
+  'bingpreview', 'yandex', 'baidu', 'duckduckbot', 'semrush', 'ahrefs',
+  'mj12bot', 'dotbot', 'petalbot', 'bytespider', 'gptbot', 'claudebot',
+  'awariobot', 'screaming frog', 'rogerbot', 'archive.org', 'ia_archiver',
+]
+
+function isBot(ua) {
+  if (!ua) return false
+  const lower = ua.toLowerCase()
+  return BOT_PATTERNS.some(p => lower.includes(p))
 }
 
 export async function middleware(request) {
@@ -63,10 +80,12 @@ export async function middleware(request) {
   }
 
   // ── Geo analytics: log page views with city/region/country ──
-  // Skip API routes, static assets, and Next.js internals
-  if (!pathname.startsWith('/api/') && !pathname.startsWith('/_next')) {
+  // Skip API routes, static assets, Next.js internals, and bots
+  const ua = request.headers.get('user-agent') || ''
+  if (!pathname.startsWith('/api/') && !pathname.startsWith('/_next') && !isBot(ua)) {
     const geo = request.geo || {}
     const row = {
+      site: 'transformlearning.ai',
       path: pathname,
       country: geo.country || null,
       region: geo.region || null,

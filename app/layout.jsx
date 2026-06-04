@@ -1,5 +1,6 @@
 import './globals.css'
 import { Analytics } from '@vercel/analytics/react'
+import SurveyPopup from '@/components/SurveyPopup'
 
 export const metadata = {
   metadataBase: new URL('https://transformlearning.ai'),
@@ -58,6 +59,11 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {children}
+        <SurveyPopup
+          site="transformlearning.ai"
+          audienceOptions={['College Student', 'Professor / Faculty', 'Dean / Administrator', 'Investor', 'EdTech Professional', 'Parent', 'Other']}
+          featureOptions={['More AI tools', 'Mobile app', 'Course integrations', 'Study guides', 'Faculty dashboards', 'Career coaching', 'Better pricing']}
+        />
         <Analytics />
       </body>
     </html>

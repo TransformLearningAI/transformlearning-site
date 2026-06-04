@@ -11,6 +11,7 @@ import About      from '@/components/About'
 import PilotForm  from '@/components/PilotForm'
 import Footer     from '@/components/Footer'
 import Milestone   from '@/components/Milestone'
+import CampusTransformCTA from '@/components/CampusTransformCTA'
 
 export default function Home() {
   return (
@@ -29,6 +30,7 @@ export default function Home() {
       <Milestone label="get started" color="#00A8A8" />
       <Pricing />
       <About />
+      <CampusTransformCTA />
       <PilotForm />
       <Footer />
     </main>

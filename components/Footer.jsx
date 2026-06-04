@@ -50,7 +50,10 @@ export default function Footer() {
             ))}
           </nav>
 
-          <p className="text-xs text-white/50">© {new Date().getFullYear()} transformlearning</p>
+          <div className="flex items-center gap-4">
+            <p className="text-xs text-white/50">© {new Date().getFullYear()} transformlearning</p>
+            <a href="/privacy" className="text-xs text-white/40 hover:text-white/60 transition-colors">Privacy Policy</a>
+          </div>
         </div>
       </div>
     </footer>
