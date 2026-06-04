@@ -1,12 +1,56 @@
 import { NextResponse } from 'next/server'
+import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
 
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY
+)
+
+// GET — fetch all responses, optionally filtered by question_id
+export async function GET(request) {
+  const { searchParams } = new URL(request.url)
+  const questionId = searchParams.get('questionId')
+
+  let query = supabase
+    .from('simulation_responses')
+    .select('*')
+    .order('created_at', { ascending: true })
+
+  if (questionId) query = query.eq('question_id', questionId)
+
+  const { data, error } = await query
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+  return NextResponse.json({ responses: data || [] })
+}
+
+// POST — save a response and email Jeff
 export async function POST(request) {
   const { name, email, questionId, questionText, response, section } = await request.json()
   if (!name || !response || !questionId) {
     return NextResponse.json({ error: 'Name, question, and response required' }, { status: 400 })
   }
 
+  // Save to Supabase
+  const { data, error } = await supabase
+    .from('simulation_responses')
+    .insert({
+      question_id: questionId,
+      section,
+      question_text: questionText,
+      name,
+      email: email || null,
+      response,
+    })
+    .select()
+    .single()
+
+  if (error) {
+    console.error('Supabase insert error:', error)
+    return NextResponse.json({ error: error.message }, { status: 500 })
+  }
+
+  // Email Jeff
   try {
     const resend = new Resend(process.env.RESEND_API_KEY)
     await resend.emails.send({
@@ -28,13 +72,12 @@ export async function POST(request) {
           <div style="padding:20px 24px;border:1px solid #DDE5EF;border-top:none;border-radius:0 0 12px 12px;background:white">
             <p style="color:#0C1F3F;font-size:14px;line-height:1.7;white-space:pre-wrap">${response}</p>
           </div>
-          <p style="color:#94A3B8;font-size:11px;margin-top:12px">Also posted to the <a href="https://docs.google.com/document/d/1akdzkGLS9FNzjYJqSpb0JFxu-4CykS1tLWsASlDjdtY/edit" style="color:#00A8A8">collaborative Google Doc</a></p>
         </div>
       `,
     })
   } catch (err) {
-    console.error('Simulation response email error:', err)
+    console.error('Email error:', err)
   }
 
-  return NextResponse.json({ ok: true })
+  return NextResponse.json({ ok: true, response: data })
 }

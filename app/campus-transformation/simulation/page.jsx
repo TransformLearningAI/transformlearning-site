@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import ScrollReveal from '@/components/ScrollReveal'
 
 /* ═══════════════════════════════════════════════════════════════
@@ -130,8 +130,105 @@ const SECTIONS = [
   },
 ]
 
-// ── RESPONSE FORM COMPONENT ────────────────────────────────────
-function ResponseForm({ questionId, questionText, section }) {
+// ── EXISTING RESPONSE DISPLAY ──────────────────────────────────
+function ExistingResponses({ questionId }) {
+  const [responses, setResponses] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  const load = useCallback(async () => {
+    try {
+      const res = await fetch(`/api/simulation-response?questionId=${questionId}`)
+      const data = await res.json()
+      setResponses(data.responses || [])
+    } catch { /* ignore */ }
+    setLoading(false)
+  }, [questionId])
+
+  useEffect(() => { load() }, [load])
+
+  if (loading) return <p style={{ fontSize: 12, color: '#94A3B8', margin: '8px 0' }}>Loading responses...</p>
+  if (responses.length === 0) return <p style={{ fontSize: 12, color: '#94A3B8', margin: '8px 0', fontStyle: 'italic' }}>No responses yet. Be the first!</p>
+
+  return (
+    <div style={{ margin: '12px 0' }}>
+      <p style={{ fontSize: 10, fontWeight: 700, color: '#00A8A8', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 8 }}>
+        {responses.length} Response{responses.length !== 1 ? 's' : ''}
+      </p>
+      {responses.map((r) => (
+        <div key={r.id} style={{ background: '#F8FAFC', border: '1px solid #E2E8F0', borderRadius: 8, padding: '12px 14px', marginBottom: 8 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
+            <p style={{ fontWeight: 700, fontSize: 13, color: '#0C1F3F', margin: 0 }}>{r.name}</p>
+            <p style={{ fontSize: 10, color: '#94A3B8', margin: 0 }}>
+              {new Date(r.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}
+            </p>
+          </div>
+          <p style={{ fontSize: 13, color: '#475569', margin: 0, lineHeight: 1.65, whiteSpace: 'pre-wrap' }}>{r.response}</p>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// ── AI ANALYSIS COMPONENT ──────────────────────────────────────
+function AIAnalysis({ questionId, questionText, section }) {
+  const [analysis, setAnalysis] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+
+  async function runAnalysis() {
+    setLoading(true)
+    setError(null)
+    try {
+      const res = await fetch('/api/simulation-analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ questionId, questionText, section }),
+      })
+      const data = await res.json()
+      if (data.analysis) setAnalysis(data.analysis)
+      else setError('No analysis returned.')
+    } catch {
+      setError('Failed to generate analysis.')
+    }
+    setLoading(false)
+  }
+
+  return (
+    <div style={{ marginTop: 12 }}>
+      {!analysis && !loading && (
+        <button onClick={runAnalysis}
+                style={{ background: '#0C1F3F', color: 'white', border: 'none', padding: '8px 16px', borderRadius: 8, fontSize: 12, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+          <span style={{ fontSize: 14 }}>&#9733;</span> AI Analysis of Responses
+        </button>
+      )}
+      {loading && (
+        <div style={{ background: '#F0F9FF', border: '1px solid #BAE6FD', borderRadius: 8, padding: '14px 16px' }}>
+          <p style={{ fontSize: 12, color: '#0369A1', margin: 0, fontWeight: 600 }}>Analyzing responses...</p>
+        </div>
+      )}
+      {error && <p style={{ fontSize: 12, color: '#DC2626', margin: '4px 0' }}>{error}</p>}
+      {analysis && (
+        <div style={{ background: 'linear-gradient(135deg, #F0F9FF, #F5F3FF)', border: '1px solid #C7D2FE', borderRadius: 10, padding: '16px 18px', marginTop: 8 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+            <p style={{ fontSize: 10, fontWeight: 700, color: '#4338CA', letterSpacing: '0.1em', textTransform: 'uppercase', margin: 0 }}>
+              &#9733; AI Analysis
+            </p>
+            <button onClick={runAnalysis}
+                    style={{ background: 'none', border: 'none', color: '#6366F1', fontSize: 11, cursor: 'pointer', fontWeight: 600 }}>
+              Refresh
+            </button>
+          </div>
+          <div style={{ fontSize: 13, color: '#334155', lineHeight: 1.7, whiteSpace: 'pre-wrap' }}>
+            {analysis}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+// ── RESPONSE FORM ──────────────────────────────────────────────
+function ResponseForm({ questionId, questionText, section, onSubmitted }) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [response, setResponse] = useState('')
@@ -150,6 +247,7 @@ function ResponseForm({ questionId, questionText, section }) {
       })
       setStatus('sent')
       setResponse('')
+      if (onSubmitted) onSubmitted()
     } catch {
       setStatus('error')
     }
@@ -159,7 +257,7 @@ function ResponseForm({ questionId, questionText, section }) {
   if (status === 'sent') {
     return (
       <div style={{ background: '#F0FDF4', border: '1px solid #86EFAC', borderRadius: 10, padding: '14px 18px', marginTop: 12 }}>
-        <p style={{ color: '#166534', fontSize: 13, fontWeight: 600, margin: 0 }}>Response submitted! Your answer has been sent to the team.</p>
+        <p style={{ color: '#166534', fontSize: 13, fontWeight: 600, margin: 0 }}>Response submitted! It will appear above shortly.</p>
         <button onClick={() => setStatus(null)}
                 style={{ marginTop: 8, background: 'none', border: 'none', color: '#00A8A8', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>
           + Add another response
@@ -169,7 +267,8 @@ function ResponseForm({ questionId, questionText, section }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginTop: 12 }}>
+    <form onSubmit={handleSubmit} style={{ marginTop: 12, borderTop: '1px solid #F1F5F9', paddingTop: 12 }}>
+      <p style={{ fontSize: 10, fontWeight: 700, color: '#94A3B8', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 8 }}>Add Your Response</p>
       <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
         <input type="text" placeholder="Your name *" required value={name}
                onChange={e => setName(e.target.value)}
@@ -178,28 +277,23 @@ function ResponseForm({ questionId, questionText, section }) {
                onChange={e => setEmail(e.target.value)}
                style={{ flex: 1, padding: '10px 14px', borderRadius: 8, border: '1px solid #DDE5EF', fontSize: 13, outline: 'none' }} />
       </div>
-      <textarea placeholder="Type your response here... Be specific. Reference the Edgewater data. Speak directly to the person asking."
+      <textarea placeholder="Type your response... Be specific. Reference Edgewater's data. Speak directly to the person asking."
                 required value={response} onChange={e => setResponse(e.target.value)} rows={5}
                 style={{ width: '100%', padding: '12px 14px', borderRadius: 8, border: '1px solid #DDE5EF', fontSize: 13, lineHeight: 1.6, resize: 'vertical', outline: 'none', fontFamily: 'inherit' }} />
       {status === 'error' && <p style={{ color: '#DC2626', fontSize: 12, margin: '4px 0' }}>Something went wrong. Try again.</p>}
-      <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
-        <button type="submit" disabled={sending}
-                style={{ background: '#00A8A8', color: 'white', border: 'none', padding: '10px 20px', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', opacity: sending ? 0.5 : 1 }}>
-          {sending ? 'Sending...' : 'Submit Response'}
-        </button>
-        <a href="https://docs.google.com/document/d/1akdzkGLS9FNzjYJqSpb0JFxu-4CykS1tLWsASlDjdtY/edit"
-           target="_blank" rel="noopener noreferrer"
-           style={{ display: 'flex', alignItems: 'center', gap: 4, padding: '10px 16px', borderRadius: 8, border: '1px solid #DDE5EF', fontSize: 12, color: '#64748B', textDecoration: 'none', fontWeight: 500 }}>
-          Or respond in Google Doc →
-        </a>
-      </div>
+      <button type="submit" disabled={sending}
+              style={{ background: '#00A8A8', color: 'white', border: 'none', padding: '10px 20px', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', opacity: sending ? 0.5 : 1, marginTop: 4 }}>
+        {sending ? 'Sending...' : 'Submit Response'}
+      </button>
     </form>
   )
 }
 
-// ── QUESTION CARD COMPONENT ────────────────────────────────────
+// ── QUESTION CARD ──────────────────────────────────────────────
 function QuestionCard({ q, section, sectionColor }) {
   const [open, setOpen] = useState(false)
+  const [refreshKey, setRefreshKey] = useState(0)
+
   return (
     <div style={{ background: 'white', borderRadius: 12, border: '1px solid #DDE5EF', marginBottom: 12, overflow: 'hidden' }}>
       <button onClick={() => setOpen(!open)}
@@ -211,7 +305,7 @@ function QuestionCard({ q, section, sectionColor }) {
           <p style={{ color: '#0C1F3F', fontSize: 14, fontWeight: 600, margin: '0 0 4px', lineHeight: 1.4 }}>
             {q.speaker} <span style={{ color: '#94A3B8', fontWeight: 400, fontSize: 12 }}>({q.speakerRole})</span>
           </p>
-          <p style={{ color: '#475569', fontSize: 13, margin: 0, lineHeight: 1.5 }}>"{q.q}"</p>
+          <p style={{ color: '#475569', fontSize: 13, margin: 0, lineHeight: 1.5 }}>&ldquo;{q.q}&rdquo;</p>
         </div>
         <span style={{ color: '#94A3B8', fontSize: 18, flexShrink: 0, transform: open ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s' }}>
           &#9662;
@@ -219,7 +313,14 @@ function QuestionCard({ q, section, sectionColor }) {
       </button>
       {open && (
         <div style={{ padding: '0 20px 20px', borderTop: '1px solid #F1F5F9' }}>
-          <ResponseForm questionId={q.id} questionText={q.q} section={section} />
+          <ExistingResponses key={refreshKey} questionId={q.id} />
+          <AIAnalysis questionId={q.id} questionText={q.q} section={section} />
+          <ResponseForm
+            questionId={q.id}
+            questionText={q.q}
+            section={section}
+            onSubmitted={() => setRefreshKey(k => k + 1)}
+          />
         </div>
       )}
     </div>
@@ -246,15 +347,15 @@ export default function SimulationPage() {
             </h1>
             <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 16, maxWidth: 520, lineHeight: 1.6, marginBottom: 24 }}>
               A fictional campus. Real numbers. Real questions from a scared board and a hopeful president.
-              Your job: answer them like it's your first client.
+              Your job: answer them like it&rsquo;s your first client.
             </p>
-            <div style={{ display: 'flex', gap: 10 }}>
+            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
               <button onClick={() => questionsRef.current?.scrollIntoView({ behavior: 'smooth' })}
                       style={{ background: '#00A8A8', color: 'white', border: 'none', padding: '12px 24px', borderRadius: 10, fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>
                 Jump to Questions
               </button>
               <a href="#narrative" style={{ display: 'flex', alignItems: 'center', color: 'rgba(255,255,255,0.4)', fontSize: 13, textDecoration: 'none', padding: '12px 16px' }}>
-                Read the full story first ↓
+                Read the full story first &darr;
               </a>
             </div>
           </ScrollReveal>
@@ -264,7 +365,7 @@ export default function SimulationPage() {
       {/* CRISIS STATS */}
       <section style={{ background: '#0C1F3F', padding: '40px 0' }}>
         <div style={{ maxWidth: 800, margin: '0 auto', padding: '0 24px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 12 }}>
             {[
               { num: '580', label: 'Students remaining', sub: 'down from 1,420' },
               { num: '$5.3M', label: 'Annual deficit', sub: 'and growing' },
@@ -297,7 +398,7 @@ export default function SimulationPage() {
                 Dr. Linda Vasquez is sitting in her office on the second floor of Founders Hall, looking out at a quad that used to be full of students. Today, there are maybe a dozen people crossing it. Two of them are maintenance workers.
               </p>
               <p style={{ marginBottom: 16 }}>
-                Linda has been president of <strong style={{ color: '#0C1F3F' }}>Edgewater College</strong> for four years. She took the job because she believed she could turn things around. She was wrong — not because she lacked ability, but because the math was unbeatable.
+                Linda has been president of <strong style={{ color: '#0C1F3F' }}>Edgewater College</strong> for four years. She took the job because she believed she could turn things around. She was wrong &mdash; not because she lacked ability, but because the math was unbeatable.
               </p>
             </ScrollReveal>
 
@@ -305,12 +406,11 @@ export default function SimulationPage() {
               <div style={{ background: '#F4F7FB', borderRadius: 12, padding: 20, margin: '24px 0', border: '1px solid #DDE5EF' }}>
                 <p style={{ color: '#0C1F3F', fontWeight: 700, fontSize: 13, marginBottom: 4 }}>Edgewater College</p>
                 <p style={{ color: '#64748B', fontSize: 13, lineHeight: 1.6, margin: 0 }}>
-                  Private, nonprofit liberal arts institution. Founded 1921. <strong>Millbrook, Pennsylvania</strong> — a small city of 18,000 people, 90 minutes northeast of Pittsburgh, in a county where the population has declined 11% since 2010. Sits on <strong>87 acres</strong> with <strong>14 buildings</strong> totaling ~185,000 sq ft. Nearest community college: 35 miles. Nearest hospital: 8 miles.
+                  Private, nonprofit liberal arts institution. Founded 1921. <strong>Millbrook, Pennsylvania</strong> &mdash; a small city of 18,000 people, 90 minutes northeast of Pittsburgh, in a county where the population has declined 11% since 2010. Sits on <strong>87 acres</strong> with <strong>14 buildings</strong> totaling ~185,000 sq ft. Nearest community college: 35 miles. Nearest hospital: 8 miles.
                 </p>
               </div>
             </ScrollReveal>
 
-            {/* CAMPUS BUILDINGS */}
             <ScrollReveal>
               <p style={{ color: '#00A8A8', fontSize: 10, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 10, marginTop: 24 }}>The Campus</p>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
@@ -327,7 +427,6 @@ export default function SimulationPage() {
               </div>
             </ScrollReveal>
 
-            {/* FINANCIALS TABLE */}
             <ScrollReveal>
               <p style={{ color: '#00A8A8', fontSize: 10, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 10, marginTop: 32 }}>The Numbers</p>
               <div style={{ borderRadius: 10, overflow: 'hidden', border: '1px solid #DDE5EF', marginBottom: 24 }}>
@@ -338,7 +437,7 @@ export default function SimulationPage() {
                       <th style={{ padding: '10px 12px', textAlign: 'right', color: 'white', fontSize: 10 }}>2016</th>
                       <th style={{ padding: '10px 12px', textAlign: 'right', color: 'white', fontSize: 10 }}>2020</th>
                       <th style={{ padding: '10px 12px', textAlign: 'right', color: 'white', fontSize: 10 }}>2024</th>
-                      <th style={{ padding: '10px 12px', textAlign: 'right', color: 'white', fontSize: 10 }}>2026 (est.)</th>
+                      <th style={{ padding: '10px 12px', textAlign: 'right', color: 'white', fontSize: 10 }}>2026</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -348,7 +447,7 @@ export default function SimulationPage() {
                         <td style={{ padding: '8px 12px', textAlign: 'right', color: '#64748B' }}>{r.y2016}</td>
                         <td style={{ padding: '8px 12px', textAlign: 'right', color: '#64748B' }}>{r.y2020}</td>
                         <td style={{ padding: '8px 12px', textAlign: 'right', color: '#64748B' }}>{r.y2024}</td>
-                        <td style={{ padding: '8px 12px', textAlign: 'right', fontWeight: 700, color: r.trend === 'down' ? '#DC2626' : r.trend === 'up' ? '#DC2626' : '#64748B' }}>{r.y2026}</td>
+                        <td style={{ padding: '8px 12px', textAlign: 'right', fontWeight: 700, color: r.trend === 'flat' ? '#64748B' : '#DC2626' }}>{r.y2026}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -356,7 +455,6 @@ export default function SimulationPage() {
               </div>
             </ScrollReveal>
 
-            {/* KEY PEOPLE */}
             <ScrollReveal>
               <p style={{ color: '#00A8A8', fontSize: 10, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 10, marginTop: 24 }}>The People</p>
               <div style={{ display: 'grid', gap: 8 }}>
@@ -366,7 +464,7 @@ export default function SimulationPage() {
                       {p.name.split(' ').map(w => w[0]).slice(0, 2).join('')}
                     </div>
                     <div>
-                      <p style={{ fontWeight: 700, fontSize: 13, color: '#0C1F3F', margin: 0 }}>{p.name} <span style={{ fontWeight: 400, color: '#00A8A8', fontSize: 12 }}>— {p.role}</span></p>
+                      <p style={{ fontWeight: 700, fontSize: 13, color: '#0C1F3F', margin: 0 }}>{p.name} <span style={{ fontWeight: 400, color: '#00A8A8', fontSize: 12 }}>&mdash; {p.role}</span></p>
                       <p style={{ fontSize: 12, color: '#64748B', margin: 0, lineHeight: 1.4 }}>{p.detail}</p>
                     </div>
                   </div>
@@ -374,7 +472,6 @@ export default function SimulationPage() {
               </div>
             </ScrollReveal>
 
-            {/* BOARD MEETING */}
             <ScrollReveal>
               <p style={{ color: '#00A8A8', fontSize: 10, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 10, marginTop: 32 }}>The Board Meeting</p>
               <div style={{ background: '#0C1F3F', borderRadius: 12, padding: 24, margin: '12px 0' }}>
@@ -382,28 +479,28 @@ export default function SimulationPage() {
                   On a Thursday evening in October, the Board of Trustees meets in the Morrison Library conference room. Thomas Whitfield opens:
                 </p>
                 <blockquote style={{ borderLeft: '3px solid #00A8A8', paddingLeft: 16, margin: '0 0 16px', color: 'rgba(255,255,255,0.8)', fontSize: 14, lineHeight: 1.7, fontStyle: 'italic' }}>
-                  "I'll be direct. Peggy's projections show us running out of operating reserves by May 2028. The endowment is being drawn down at 8%. Our accreditor has questions we may not be able to answer in the spring. Enrollment is not going to recover. One real estate firm offered $6–8 million for the full property. That wouldn't cover our bond debt."
+                  &ldquo;I&rsquo;ll be direct. Peggy&rsquo;s projections show us running out of operating reserves by May 2028. The endowment is being drawn down at 8%. Our accreditor has questions we may not be able to answer in the spring. Enrollment is not going to recover. One real estate firm offered $6&ndash;8 million for the full property. That wouldn&rsquo;t cover our bond debt.&rdquo;
                 </blockquote>
                 <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 13, marginBottom: 12 }}>Linda speaks:</p>
                 <blockquote style={{ borderLeft: '3px solid #7C3AED', paddingLeft: 16, margin: '0 0 16px', color: 'rgba(255,255,255,0.8)', fontSize: 14, lineHeight: 1.7, fontStyle: 'italic' }}>
-                  "Before we go down the sale path, I want us to consider an alternative. I've been in contact with a company called Transform Learning. They help campuses like ours transition into community learning and workforce centers. Not a college anymore, but not a demolition site either."
+                  &ldquo;Before we go down the sale path, I want us to consider an alternative. I&rsquo;ve been in contact with a company called Transform Learning. They help campuses like ours transition into community learning and workforce centers. Not a college anymore, but not a demolition site either.&rdquo;
                 </blockquote>
                 <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 13, marginBottom: 12 }}>Sandra Chen asks:</p>
                 <blockquote style={{ borderLeft: '3px solid #059669', paddingLeft: 16, margin: 0, color: 'rgba(255,255,255,0.8)', fontSize: 14, lineHeight: 1.7, fontStyle: 'italic' }}>
-                  "What happens to accreditation? What happens to the students? What happens to the faculty? I have a lot of questions."
+                  &ldquo;What happens to accreditation? What happens to the students? What happens to the faculty? I have a lot of questions.&rdquo;
                 </blockquote>
               </div>
             </ScrollReveal>
 
             <ScrollReveal>
               <p style={{ color: '#0C1F3F', fontSize: 15, fontWeight: 600, marginTop: 24, marginBottom: 8 }}>
-                Thomas nods. "We all do. Let's hear them out."
+                Thomas nods. &ldquo;We all do. Let&rsquo;s hear them out.&rdquo;
               </p>
               <p style={{ marginBottom: 0 }}>
-                Over the next three weeks, the Transform Learning team conducts remote discovery — video calls with campus leadership, a walking video tour from Dave Kowalski, financial document review, census and employer research, outreach to the workforce board, school district, and local employers. At the end of Week 3, the team presents findings via video call.
+                Over the next three weeks, the Transform Learning team conducts remote discovery &mdash; video calls with campus leadership, a walking video tour from Dave Kowalski, financial document review, census and employer research, outreach to the workforce board, school district, and local employers.
               </p>
               <p style={{ fontWeight: 600, color: '#0C1F3F', marginTop: 16 }}>
-                Thomas asks: "Alright. You've seen our numbers. You've talked to people in the community. Give us your honest assessment."
+                Thomas asks: &ldquo;Give us your honest assessment.&rdquo;
               </p>
             </ScrollReveal>
           </div>
@@ -416,13 +513,10 @@ export default function SimulationPage() {
           <ScrollReveal>
             <p style={{ color: '#00A8A8', fontSize: 10, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 8 }}>Your Turn</p>
             <h2 style={{ fontFamily: 'var(--font-serif, Georgia)', fontSize: 28, color: '#0C1F3F', marginBottom: 6, lineHeight: 1.2 }}>
-              Answer the board's questions.
+              Answer the board&rsquo;s questions.
             </h2>
-            <p style={{ color: '#64748B', fontSize: 14, marginBottom: 8, maxWidth: 520, lineHeight: 1.6 }}>
-              Click any question to expand it and submit your response. Anyone can answer any question — build on each other's ideas, challenge them, add details.
-            </p>
-            <p style={{ color: '#94A3B8', fontSize: 12, marginBottom: 32 }}>
-              Responses are emailed to the team. You can also respond in the <a href="https://docs.google.com/document/d/1akdzkGLS9FNzjYJqSpb0JFxu-4CykS1tLWsASlDjdtY/edit" target="_blank" rel="noopener noreferrer" style={{ color: '#00A8A8' }}>collaborative Google Doc</a>.
+            <p style={{ color: '#64748B', fontSize: 14, marginBottom: 8, maxWidth: 560, lineHeight: 1.6 }}>
+              Click any question to see existing responses, submit your own, and run an AI analysis. Anyone can answer anything &mdash; build on each other, challenge ideas, add detail.
             </p>
           </ScrollReveal>
 
@@ -442,9 +536,7 @@ export default function SimulationPage() {
               </ScrollReveal>
 
               {section.questions.map(q => (
-                <ScrollReveal key={q.id}>
-                  <QuestionCard q={q} section={`Section ${section.id}: ${section.title}`} sectionColor={section.color} />
-                </ScrollReveal>
+                <QuestionCard key={q.id} q={q} section={`Section ${section.id}: ${section.title}`} sectionColor={section.color} />
               ))}
             </div>
           ))}
@@ -455,14 +547,14 @@ export default function SimulationPage() {
       <section style={{ background: '#0C1F3F', padding: '48px 0' }}>
         <div style={{ maxWidth: 700, margin: '0 auto', padding: '0 24px' }}>
           <ScrollReveal>
-            <p style={{ color: '#00A8A8', fontSize: 10, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 8 }}>How You'll Be Scored</p>
-            <h2 style={{ fontFamily: 'var(--font-serif, Georgia)', fontSize: 24, color: 'white', marginBottom: 20 }}>Four dimensions. 1–5 scale.</h2>
+            <p style={{ color: '#00A8A8', fontSize: 10, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 8 }}>How You&rsquo;ll Be Scored</p>
+            <h2 style={{ fontFamily: 'var(--font-serif, Georgia)', fontSize: 24, color: 'white', marginBottom: 20 }}>Four dimensions. 1&ndash;5 scale.</h2>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
               {[
-                { name: 'Specificity', desc: 'Does your answer reference Edgewater\'s buildings, people, and numbers — or could it apply to any campus?' },
+                { name: 'Specificity', desc: 'Does your answer reference Edgewater\'s buildings, people, and numbers \u2014 or could it apply to any campus?' },
                 { name: 'Honesty', desc: 'Do you lead with candor? Do you hedge appropriately? Or do you oversell?' },
                 { name: 'Feasibility', desc: 'Is what you\'re proposing actually doable? With realistic timelines and costs?' },
-                { name: 'Empathy', desc: 'Do you speak to the humans — Dave\'s 22 years, Thomas\'s father, the 580 students?' },
+                { name: 'Empathy', desc: 'Do you speak to the humans \u2014 Dave\'s 22 years, Thomas\'s father, the 580 students?' },
               ].map(d => (
                 <div key={d.name} style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 10, padding: 16 }}>
                   <p style={{ color: '#00A8A8', fontWeight: 700, fontSize: 14, margin: '0 0 4px' }}>{d.name}</p>
@@ -470,9 +562,6 @@ export default function SimulationPage() {
                 </div>
               ))}
             </div>
-            <p style={{ color: 'rgba(255,255,255,0.3)', fontSize: 12, marginTop: 16, textAlign: 'center' }}>
-              Minimum passing score: 3.0 average. Bonus for surprising insights, cross-referencing teammates, and identifying risks the client didn't ask about.
-            </p>
           </ScrollReveal>
         </div>
       </section>
@@ -484,7 +573,7 @@ export default function SimulationPage() {
             Edgewater College is fictional. All data is illustrative, based on composite patterns from real closures.
           </p>
           <p style={{ color: '#94A3B8', fontSize: 11, marginTop: 8 }}>
-            Campus Transformation — Transform Learning — Confidential Training Material
+            Campus Transformation &mdash; Transform Learning &mdash; Confidential Training Material
           </p>
         </div>
       </section>
