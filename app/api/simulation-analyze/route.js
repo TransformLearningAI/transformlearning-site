@@ -36,6 +36,19 @@ export async function POST(request) {
         role: 'user',
         content: `You are evaluating team responses to a campus transformation simulation exercise. The scenario involves "Edgewater College" — a fictional private liberal arts college in rural Pennsylvania facing closure (580 students, $5.3M deficit, $11M bond debt, reserves running out May 2028).
 
+IMPORTANT CONTEXT ABOUT OUR MODEL — you must understand this to evaluate correctly:
+
+Campus Transformation is NOT about integrating AI into traditional teaching or replacing faculty with AI. The transformed campus has NO traditional faculty. It is no longer a college. It becomes a Community Benefit Corporation — a multi-use community campus offering workforce training (CDL, welding, CNA, IT certs), community education, events and rentals, housing, health and wellness, K-12 programs, and small business support. Industry certifications replace degrees. Workforce trainers replace professors.
+
+The role of AI in the new model is LIMITED and specific:
+- Helping the organization manage operations more efficiently
+- As a TOPIC for local workforce training (teaching community members about AI)
+- For the organization's own planning, forecasting, and data analysis
+- AI does NOT replace instructors, teachers, or workforce trainers
+- There is no "AI-powered classroom" or "AI tutoring" as a central feature
+
+Do NOT suggest or praise AI integration into teaching, AI-powered learning, or AI replacing human instruction. That is not our model. If team responses suggest heavy AI integration in instruction, flag that as a misunderstanding of the model.
+
 The question is from ${section}:
 "${questionText}"
 
