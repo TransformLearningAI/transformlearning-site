@@ -7,10 +7,10 @@
 export const CT_POSTS = [
   {
     slug: 'when-colleges-close-communities-dont-have-to',
-    title: 'America\'s Education Infrastructure Is Disappearing. Here\'s How to Save It.',
+    title: 'A Historic Part of America\'s Education Infrastructure Is Disappearing',
     date: '2026-06-15',
     author: 'Jeff Ritter',
-    summary: '442 colleges are at risk of closing. Two shut down every week. We treat bridges as infrastructure but let campuses be demolished. A national education policy framework for transforming closing colleges into community assets.',
+    summary: 'Colleges that were once places of innovation and tradition are closing at a rate of two per week. We treat bridges as infrastructure but let campuses be demolished. A national education policy framework for what comes next.',
     body: `Two colleges closed this week. Two more will close next week. And the week after that.
 
 By the time you finish reading this, another American college will be closer to shutting its doors than it was this morning. The buildings will be sold. The faculty will scatter. The community will lose its anchor. A developer will turn the campus into condos, a warehouse, or a parking lot. And everyone will move on — except the town that lost its center.
