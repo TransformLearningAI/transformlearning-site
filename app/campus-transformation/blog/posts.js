@@ -21,7 +21,7 @@ And yet, the national conversation about post-secondary education is still stuck
 
 There is a third option. And it could reshape American education policy for a generation.
 
-THE ASSET NO ONE IS TALKING ABOUT
+**The Asset No One Is Talking About**
 
 When a college closes, we talk about the students who need to transfer, the faculty who lose their jobs, and the accreditation that disappears. What we don't talk about is what's left behind.
 
@@ -31,7 +31,7 @@ These assets don't disappear when the accreditation does. They just sit there �
 
 What if we stopped treating closing campuses as failures and started treating them as infrastructure?
 
-CAMPUSES ARE INFRASTRUCTURE
+**Campuses Are Infrastructure**
 
 When a bridge collapses, we rebuild it. When a rural hospital closes, we call it a healthcare desert and mobilize federal resources. When a military base shuts down, BRAC provides transition funding and community planning support.
 
@@ -41,7 +41,7 @@ This is a policy failure, not a market correction. And it's a failure that dispr
 
 A national education policy that treats campuses as community infrastructure — as essential as roads, bridges, and hospitals — would change everything about how we respond to closures.
 
-WHAT A TRANSFORMED CAMPUS LOOKS LIKE
+**What a Transformed Campus Looks Like**
 
 Imagine a closing college in rural Pennsylvania. Enrollment has dropped by a third. The endowment is gone. The board votes to close.
 
@@ -67,7 +67,7 @@ None of this requires traditional accreditation. All of it generates revenue. Mu
 
 Transformation preserves jobs. Closure eliminates them.
 
-A NOTE ON COMMUNITY COLLEGES
+**A Note on Community Colleges**
 
 This is not a competing model. It's important to be clear about that, because the question will come up.
 
@@ -89,7 +89,7 @@ The two models strengthen each other. Community colleges keep doing what they do
 
 They don't compete. They complete each other.
 
-THE POLICY GAP
+**The Policy Gap**
 
 Here's what's missing from the national conversation:
 
@@ -101,7 +101,7 @@ Communities need time to organize, assess their options, and build a transformat
 
 Right now, none of that exists at the federal level.
 
-WHAT A NATIONAL CAMPUS TRANSFORMATION POLICY COULD LOOK LIKE
+**What a National Campus Transformation Policy Could Look Like**
 
 A Rapid Response Campus Fund. When a college announces closure, the federal government provides 12 months of bridge capital — enough to keep the campus maintained, prevent asset dispersal, and give the community time to develop a transformation plan. Think of it as BRAC for colleges.
 
@@ -113,7 +113,7 @@ Community Campus Tax Credits. Tax incentives for employers who partner with tran
 
 A National Learning Network. A federally supported network that connects transformed campuses with each other, shares best practices, develops replicable toolkits, and documents outcomes. Every transformation doesn't start from scratch.
 
-THE NUMBERS
+**The Numbers**
 
 This isn't wishful thinking. The money is already there — it's just not being directed at this problem.
 
@@ -121,7 +121,7 @@ $81 million in DOL RESTART grants for workforce development. Billions in WIOA fu
 
 A transformed campus checks every box these programs are designed to fund. What's missing isn't money — it's a policy framework that connects closing campuses to existing funding streams.
 
-WHY THIS MATTERS BEYOND EDUCATION
+**Why This Matters Beyond Education**
 
 This isn't just education policy. It's economic development policy. It's workforce policy. It's housing policy. It's rural revitalization policy. It's climate policy when campuses become conservation and clean energy training centers. It's healthcare policy when campuses become community wellness hubs.
 
@@ -129,7 +129,7 @@ The reason this could be transformative as a national platform is that it integr
 
 That's not a program. That's infrastructure.
 
-THE MOMENT
+**The Moment**
 
 442 colleges are at risk. Two are closing every week. Communities across the country are watching their anchor institutions disappear.
 
