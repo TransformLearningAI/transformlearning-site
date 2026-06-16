@@ -129,7 +129,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal { transition: none !important; }
+  .reveal, .reveal-scale, .reveal-left, .reveal-right { transition: none !important; opacity: 1 !important; transform: none !important; }
   .signal-bar { animation: none !important; }
   .card-lift { transition: none !important; }
   * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
