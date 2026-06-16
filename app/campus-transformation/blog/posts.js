@@ -6,6 +6,140 @@
 
 export const CT_POSTS = [
   {
+    slug: 'when-colleges-close-communities-dont-have-to',
+    title: 'When Colleges Close, Communities Don\'t Have To',
+    date: '2026-06-15',
+    author: 'Jeff Ritter',
+    summary: 'Two colleges closed this week. Two more will close next week. The default outcome is demolition. But what if we treated closing campuses as infrastructure instead of failure? A case for national education policy that turns crisis into community renewal.',
+    body: `Two colleges closed this week. Two more will close next week. And the week after that.
+
+By the time you finish reading this, another American college will be closer to shutting its doors than it was this morning. The buildings will be sold. The faculty will scatter. The community will lose its anchor. A developer will turn the campus into condos, a warehouse, or a parking lot. And everyone will move on — except the town that lost its center.
+
+This is happening at a rate of more than 100 institutions per year. 442 private colleges are projected to close or merge in the next decade. Penn State is closing 7 campuses. Hampshire College is gone. Oakland City University can't make payroll. Albright College cut 53 positions to survive another semester. The list gets longer every week.
+
+And yet, the national conversation about post-secondary education is still stuck on two options: save the college or close it.
+
+There is a third option. And it could reshape American education policy for a generation.
+
+THE ASSET NO ONE IS TALKING ABOUT
+
+When a college closes, we talk about the students who need to transfer, the faculty who lose their jobs, and the accreditation that disappears. What we don't talk about is what's left behind.
+
+A closing college leaves behind classrooms, laboratories, libraries, dormitories, dining halls, athletic facilities, performance spaces, farmland, workshops, and parking. It leaves behind a physical plant that was purpose-built for learning, gathering, and community life. It leaves behind relationships with local employers, civic organizations, school districts, and municipal governments. It leaves behind alumni who still care.
+
+These assets don't disappear when the accreditation does. They just sit there — waiting for a developer to buy them at a distressed price, or for the buildings to deteriorate until demolition is the only option.
+
+What if we stopped treating closing campuses as failures and started treating them as infrastructure?
+
+CAMPUSES ARE INFRASTRUCTURE
+
+When a bridge collapses, we rebuild it. When a rural hospital closes, we call it a healthcare desert and mobilize federal resources. When a military base shuts down, BRAC provides transition funding and community planning support.
+
+But when a college closes — an institution that may have served its community for 100 years — we treat it as a market outcome. Supply and demand. Enrollment declined. The model didn't work. Move on.
+
+This is a policy failure, not a market correction. And it's a failure that disproportionately hits the communities that can least afford it: rural towns, post-industrial regions, and historically underserved populations that depend on their local campus as an employer, a gathering place, and a source of civic identity.
+
+A national education policy that treats campuses as community infrastructure — as essential as roads, bridges, and hospitals — would change everything about how we respond to closures.
+
+WHAT A TRANSFORMED CAMPUS LOOKS LIKE
+
+Imagine a closing college in rural Pennsylvania. Enrollment has dropped by a third. The endowment is gone. The board votes to close.
+
+Under current policy, the campus is sold. A developer buys it. The buildings come down. The town loses its largest employer and its cultural center in the same week.
+
+Now imagine a different outcome.
+
+The campus is transformed — not into a traditional college, but into a regional hub that serves the community's actual needs:
+
+Workforce training center. CDL, welding, healthcare certifications, IT, skilled trades. Employers in the region are desperate for trained workers. The campus has the classrooms and workshops to train them.
+
+Community learning hub. ESL, GED, adult education, after-school programs for K-12 students, senior programming. The campus has always been a place of learning. It still can be — just for a broader population.
+
+Business incubator. Co-working space, maker labs, startup support for local entrepreneurs. The campus has the rooms. The community has the ideas.
+
+Health and wellness campus. Community health clinic, fitness center, counseling services. The campus has the buildings. The community has the need.
+
+Event and conference center. Corporate retreats, community gatherings, weddings, civic events. The campus has the auditorium, the dining hall, and the dormitories.
+
+Workforce housing. The dormitories that once housed students can house workers, especially in regions where housing is scarce.
+
+None of this requires traditional accreditation. All of it generates revenue. Much of it is eligible for federal workforce development funding that already exists. And critically — many of the faculty and staff who would have lost their jobs can transition into new roles: workforce trainers, program coordinators, community health workers, facility managers.
+
+Transformation preserves jobs. Closure eliminates them.
+
+A NOTE ON COMMUNITY COLLEGES
+
+This is not a competing model. It's important to be clear about that, because the question will come up.
+
+Community colleges are essential institutions that serve millions of Americans. They are the front door to higher education for first-generation students, working adults, and career changers. They provide the first two years of a four-year degree at an affordable price. They build deep industry partnerships with local and regional employers to design certificate and degree programs around real labor market needs. And they serve specific neighborhoods and constituencies — often urban and suburban populations with direct transit access — that depend on them as the most accessible pathway to economic mobility.
+
+Nothing about campus transformation replaces or undermines any of that.
+
+Transformed campuses serve a different purpose in a different context. Many of the colleges that are closing are in rural and small-town communities that are 30, 50, or 80 miles from the nearest community college. When that campus closes, the community doesn't have another educational institution to fall back on. The nearest community college may be an hour away, inaccessible to people without reliable transportation, childcare, or the ability to commute.
+
+A transformed campus in that community isn't trying to be a community college. It's trying to be the community anchor that fills gaps no single institution can fill alone — workforce training, yes, but also community health services, business incubation, housing, youth programming, elder care, arts, and civic gathering space.
+
+Where the two models overlap on workforce training, they should be partners, not competitors. A transformed campus in a rural county could serve as a satellite site for the nearest community college — hosting programs that community colleges design and credential but don't have the physical reach to deliver in remote areas. It could provide dormitory housing for students who travel to attend intensive community college programs in welding, healthcare, or IT that require hands-on workshop space. It could refer participants to community college degree pathways when they're ready for that next step.
+
+Community colleges are accredited educational institutions with a clear mission: accessible, affordable post-secondary education and industry-aligned workforce training for the communities they serve.
+
+Transformed campuses are community infrastructure platforms. They host workforce training, but they also host things community colleges were never designed to do — conservation crews, food production, business incubators, health clinics, arts residencies, housing, and civic programming. The programming is shaped by what the specific community needs, not by an accreditation framework.
+
+The two models strengthen each other. Community colleges keep doing what they do best — industry partnerships, transfer pathways, and accessible education for their neighborhoods. Transformed campuses fill the gaps in communities that are losing their only institutional anchor.
+
+They don't compete. They complete each other.
+
+THE POLICY GAP
+
+Here's what's missing from the national conversation:
+
+There is no federal mechanism to help communities transform a closing campus before it's too late.
+
+When a college announces closure, the clock starts. Creditors want their money. Developers start calling. The board, exhausted and demoralized, takes the first offer. Within months, the campus is gone.
+
+Communities need time to organize, assess their options, and build a transformation plan. They need bridge capital to keep the lights on while they figure it out. They need technical assistance to navigate the legal, financial, and governance challenges of converting a college into a community hub. And they need a policy framework that recognizes campus transformation as a legitimate — and fundable — outcome.
+
+Right now, none of that exists at the federal level.
+
+WHAT A NATIONAL CAMPUS TRANSFORMATION POLICY COULD LOOK LIKE
+
+A Rapid Response Campus Fund. When a college announces closure, the federal government provides 12 months of bridge capital — enough to keep the campus maintained, prevent asset dispersal, and give the community time to develop a transformation plan. Think of it as BRAC for colleges.
+
+Campus Transformation Grants. Federal matching grants for communities that choose to transform a closing campus rather than sell it to a developer. Funds can be used for facility renovation, program development, workforce training equipment, community needs assessments, and governance transition.
+
+Earn-Learn Pathways. Federal stipends for participants in campus-based workforce and service programs. Participants earn while they learn through paid apprenticeships, conservation crews, healthcare training, and community service. No debt. No tuition. Skills and credentials that lead to employment.
+
+Community Campus Tax Credits. Tax incentives for employers who partner with transformed campuses for workforce training, apprenticeships, and community investment. The employer gets trained workers. The campus gets a revenue-generating partnership. The community gets jobs.
+
+A National Learning Network. A federally supported network that connects transformed campuses with each other, shares best practices, develops replicable toolkits, and documents outcomes. Every transformation doesn't start from scratch.
+
+THE NUMBERS
+
+This isn't wishful thinking. The money is already there — it's just not being directed at this problem.
+
+$81 million in DOL RESTART grants for workforce development. Billions in WIOA funding. EDA grants explicitly prioritizing workforce development and community resilience. USDA Rural Development funding for rural community infrastructure. Opportunity Zone incentives in many of the communities where campuses are closing.
+
+A transformed campus checks every box these programs are designed to fund. What's missing isn't money — it's a policy framework that connects closing campuses to existing funding streams.
+
+WHY THIS MATTERS BEYOND EDUCATION
+
+This isn't just education policy. It's economic development policy. It's workforce policy. It's housing policy. It's rural revitalization policy. It's climate policy when campuses become conservation and clean energy training centers. It's healthcare policy when campuses become community wellness hubs.
+
+The reason this could be transformative as a national platform is that it integrates priorities that are usually siloed into separate departments, separate budgets, and separate political conversations. One transformed campus can address workforce shortages, housing scarcity, healthcare access, youth retention, elder care, and civic engagement — all from the same buildings, with the same staff, serving the same community.
+
+That's not a program. That's infrastructure.
+
+THE MOMENT
+
+442 colleges are at risk. Two are closing every week. Communities across the country are watching their anchor institutions disappear.
+
+We can keep treating this as an inevitable decline — a market correction that we observe from a distance. Or we can recognize it for what it is: the largest inventory of community infrastructure in a generation, available for transformation if we act before it's gone.
+
+The campuses are there. The communities need them. The funding exists. The workforce gaps are real. The only thing missing is a national policy that says: don't close. Transform.
+
+jeff@transformlearning.ai`
+  },
+  {
     slug: 'the-math-nobody-talks-about',
     title: 'The Math Nobody Talks About',
     date: '2026-05-26',
