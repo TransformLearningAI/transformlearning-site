@@ -2,12 +2,13 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import ScrollReveal from '@/components/ScrollReveal'
 import { CT_POSTS } from '../posts'
-import { BeyondTheCollegeIllustration, BoardNotHearingIllustration, BuildingsTellingUsIllustration } from '@/components/BlogIllustration'
+import { BeyondTheCollegeIllustration, BoardNotHearingIllustration, BuildingsTellingUsIllustration, WhenCollegesCloseIllustration } from '@/components/BlogIllustration'
 
 const ILLUSTRATIONS = {
   'the-buildings-are-trying-to-tell-us-something': BuildingsTellingUsIllustration,
   'beyond-the-college': BeyondTheCollegeIllustration,
   'what-your-board-isnt-hearing': BoardNotHearingIllustration,
+  'when-colleges-close-communities-dont-have-to': WhenCollegesCloseIllustration,
 }
 
 export function generateStaticParams() {

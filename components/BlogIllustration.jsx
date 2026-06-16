@@ -1,6 +1,250 @@
 'use client'
 import { useEffect, useRef } from 'react'
 
+// Blog: When Colleges Close — campus landscape transforming, policy dome in background
+export function WhenCollegesCloseIllustration() {
+  const canvasRef = useRef(null)
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    canvas.width = canvas.offsetWidth * 2
+    canvas.height = canvas.offsetHeight * 2
+    ctx.scale(2, 2)
+    const w = canvas.offsetWidth
+    const h = canvas.offsetHeight
+
+    // Sky gradient — dawn breaking from right
+    const sky = ctx.createLinearGradient(0, 0, w, h * 0.4)
+    sky.addColorStop(0, '#0a0a18')
+    sky.addColorStop(0.4, '#121832')
+    sky.addColorStop(0.7, '#1a2a4a')
+    sky.addColorStop(1, '#2a4a60')
+    ctx.fillStyle = sky
+    ctx.fillRect(0, 0, w, h)
+
+    // Horizon glow — warm light from right side
+    const dawn = ctx.createRadialGradient(w * 0.85, h * 0.55, 10, w * 0.85, h * 0.55, w * 0.5)
+    dawn.addColorStop(0, 'rgba(245,158,11,0.2)')
+    dawn.addColorStop(0.4, 'rgba(245,158,11,0.08)')
+    dawn.addColorStop(1, 'transparent')
+    ctx.fillStyle = dawn
+    ctx.fillRect(0, 0, w, h)
+
+    // Stars (fading left to right as dawn arrives)
+    for (let i = 0; i < 50; i++) {
+      const sx = Math.random() * w
+      const fade = Math.max(0, 1 - sx / w)
+      ctx.fillStyle = `rgba(255,255,255,${fade * (0.2 + Math.random() * 0.4)})`
+      ctx.beginPath()
+      ctx.arc(sx, Math.random() * h * 0.45, 0.4 + Math.random() * 0.8, 0, Math.PI * 2)
+      ctx.fill()
+    }
+
+    // Capitol dome silhouette — subtle, center-right background
+    ctx.fillStyle = 'rgba(12,31,63,0.4)'
+    // Dome
+    ctx.beginPath()
+    ctx.ellipse(w * 0.72, h * 0.42, w * 0.06, h * 0.08, 0, Math.PI, 0)
+    ctx.fill()
+    // Dome top spire
+    ctx.fillRect(w * 0.718, h * 0.32, w * 0.004, h * 0.1)
+    // Base columns
+    ctx.fillRect(w * 0.66, h * 0.42, w * 0.12, h * 0.06)
+    // Steps
+    ctx.fillRect(w * 0.64, h * 0.48, w * 0.16, h * 0.02)
+
+    // Ground — rolling hills
+    ctx.fillStyle = '#0f2818'
+    ctx.beginPath()
+    ctx.moveTo(0, h * 0.72)
+    ctx.quadraticCurveTo(w * 0.15, h * 0.67, w * 0.3, h * 0.7)
+    ctx.quadraticCurveTo(w * 0.5, h * 0.74, w * 0.7, h * 0.68)
+    ctx.quadraticCurveTo(w * 0.85, h * 0.65, w, h * 0.67)
+    ctx.lineTo(w, h)
+    ctx.lineTo(0, h)
+    ctx.fill()
+
+    // Lighter grass layer
+    ctx.fillStyle = '#163a22'
+    ctx.beginPath()
+    ctx.moveTo(0, h * 0.75)
+    ctx.quadraticCurveTo(w * 0.2, h * 0.72, w * 0.4, h * 0.74)
+    ctx.quadraticCurveTo(w * 0.6, h * 0.76, w * 0.8, h * 0.72)
+    ctx.quadraticCurveTo(w * 0.9, h * 0.7, w, h * 0.71)
+    ctx.lineTo(w, h)
+    ctx.lineTo(0, h)
+    ctx.fill()
+
+    // LEFT SIDE: Dark/closed campus
+    // Main building — dark, no lights
+    ctx.fillStyle = '#1a1a24'
+    ctx.fillRect(w * 0.04, h * 0.4, w * 0.16, h * 0.32)
+    // Roof peak
+    ctx.beginPath()
+    ctx.moveTo(w * 0.04, h * 0.4)
+    ctx.lineTo(w * 0.12, h * 0.32)
+    ctx.lineTo(w * 0.2, h * 0.4)
+    ctx.fill()
+    // Dark windows
+    ctx.fillStyle = '#0a0a12'
+    for (let r = 0; r < 3; r++) {
+      for (let c = 0; c < 3; c++) {
+        ctx.fillRect(w * (0.06 + c * 0.045), h * (0.44 + r * 0.08), w * 0.025, h * 0.045)
+      }
+    }
+    // Second dark building
+    ctx.fillStyle = '#1a1a24'
+    ctx.fillRect(w * 0.22, h * 0.46, w * 0.1, h * 0.26)
+    ctx.fillStyle = '#0a0a12'
+    for (let r = 0; r < 2; r++) {
+      for (let c = 0; c < 2; c++) {
+        ctx.fillRect(w * (0.235 + c * 0.04), h * (0.5 + r * 0.08), w * 0.02, h * 0.04)
+      }
+    }
+    // "CLOSED" sign
+    ctx.fillStyle = '#8B0000'
+    ctx.fillRect(w * 0.08, h * 0.62, w * 0.08, h * 0.025)
+    ctx.fillStyle = 'rgba(255,255,255,0.8)'
+    ctx.font = 'bold 5px sans-serif'
+    ctx.textAlign = 'center'
+    ctx.fillText('CLOSED', w * 0.12, h * 0.638)
+
+    // Cracks / weeds (small lines)
+    ctx.strokeStyle = 'rgba(100,100,80,0.3)'
+    ctx.lineWidth = 0.5
+    ctx.beginPath()
+    ctx.moveTo(w * 0.1, h * 0.72); ctx.lineTo(w * 0.11, h * 0.68)
+    ctx.moveTo(w * 0.15, h * 0.73); ctx.lineTo(w * 0.155, h * 0.7)
+    ctx.moveTo(w * 0.25, h * 0.72); ctx.lineTo(w * 0.255, h * 0.69)
+    ctx.stroke()
+
+    // CENTER: Transition arrow / light beam
+    const beam = ctx.createLinearGradient(w * 0.35, 0, w * 0.55, 0)
+    beam.addColorStop(0, 'transparent')
+    beam.addColorStop(0.3, 'rgba(0,168,168,0.08)')
+    beam.addColorStop(0.7, 'rgba(0,168,168,0.08)')
+    beam.addColorStop(1, 'transparent')
+    ctx.fillStyle = beam
+    ctx.fillRect(w * 0.35, h * 0.3, w * 0.2, h * 0.5)
+
+    // Arrow
+    ctx.fillStyle = '#00A8A8'
+    ctx.beginPath()
+    ctx.moveTo(w * 0.42, h * 0.56)
+    ctx.lineTo(w * 0.48, h * 0.53)
+    ctx.lineTo(w * 0.48, h * 0.545)
+    ctx.lineTo(w * 0.52, h * 0.545)
+    ctx.lineTo(w * 0.52, h * 0.575)
+    ctx.lineTo(w * 0.48, h * 0.575)
+    ctx.lineTo(w * 0.48, h * 0.59)
+    ctx.fill()
+    // "TRANSFORM" label
+    ctx.fillStyle = 'rgba(0,168,168,0.7)'
+    ctx.font = 'bold 5px sans-serif'
+    ctx.textAlign = 'center'
+    ctx.fillText('TRANSFORM', w * 0.47, h * 0.52)
+
+    // RIGHT SIDE: Alive transformed campus
+    // Main building — warm lights
+    ctx.fillStyle = '#1e3a4a'
+    ctx.fillRect(w * 0.58, h * 0.38, w * 0.18, h * 0.34)
+    // Roof peak
+    ctx.beginPath()
+    ctx.moveTo(w * 0.58, h * 0.38)
+    ctx.lineTo(w * 0.67, h * 0.3)
+    ctx.lineTo(w * 0.76, h * 0.38)
+    ctx.fillStyle = '#1e3a4a'
+    ctx.fill()
+    // Warm windows
+    for (let r = 0; r < 3; r++) {
+      for (let c = 0; c < 3; c++) {
+        ctx.fillStyle = `rgba(245,158,11,${0.5 + Math.random() * 0.5})`
+        ctx.fillRect(w * (0.6 + c * 0.05), h * (0.42 + r * 0.08), w * 0.028, h * 0.045)
+      }
+    }
+    // Second building
+    ctx.fillStyle = '#1e3a4a'
+    ctx.fillRect(w * 0.78, h * 0.44, w * 0.12, h * 0.28)
+    for (let r = 0; r < 2; r++) {
+      for (let c = 0; c < 2; c++) {
+        ctx.fillStyle = `rgba(245,158,11,${0.4 + Math.random() * 0.5})`
+        ctx.fillRect(w * (0.8 + c * 0.045), h * (0.48 + r * 0.08), w * 0.025, h * 0.04)
+      }
+    }
+
+    // Banner on right building
+    ctx.fillStyle = '#00A8A8'
+    ctx.fillRect(w * 0.6, h * 0.33, w * 0.14, h * 0.03)
+    ctx.fillStyle = 'white'
+    ctx.font = 'bold 4.5px sans-serif'
+    ctx.fillText('COMMUNITY CAMPUS', w * 0.67, h * 0.352)
+
+    // Trees on right side
+    const drawTree = (x, y, size) => {
+      ctx.fillStyle = '#166534'
+      ctx.beginPath()
+      ctx.arc(w * x, h * y, size, 0, Math.PI * 2)
+      ctx.fill()
+      ctx.fillStyle = '#1a7a3a'
+      ctx.beginPath()
+      ctx.arc(w * x - size * 0.3, h * y - size * 0.3, size * 0.7, 0, Math.PI * 2)
+      ctx.fill()
+    }
+    drawTree(0.55, 0.64, 6)
+    drawTree(0.92, 0.6, 8)
+    drawTree(0.96, 0.63, 5)
+
+    // People on right — community gathering
+    ctx.fillStyle = '#00A8A8'
+    const people = [
+      [0.6, 0.7], [0.635, 0.69], [0.67, 0.71], [0.7, 0.695],
+      [0.735, 0.71], [0.77, 0.69], [0.8, 0.705], [0.835, 0.7],
+      [0.87, 0.71], [0.57, 0.705],
+    ]
+    people.forEach(([x, y]) => {
+      ctx.beginPath()
+      ctx.arc(w * x, h * y - 4, 2.2, 0, Math.PI * 2)
+      ctx.fill()
+      ctx.fillRect(w * x - 1.2, h * y - 1.5, 2.4, 5.5)
+    })
+
+    // Solar panel on right building roof
+    ctx.fillStyle = '#1a4a6a'
+    ctx.fillRect(w * 0.8, h * 0.42, w * 0.06, h * 0.015)
+    ctx.strokeStyle = 'rgba(0,168,168,0.4)'
+    ctx.lineWidth = 0.3
+    ctx.strokeRect(w * 0.8, h * 0.42, w * 0.06, h * 0.015)
+
+    // Smoke/steam from right building (activity)
+    ctx.fillStyle = 'rgba(200,200,200,0.08)'
+    ctx.beginPath()
+    ctx.arc(w * 0.84, h * 0.38, 4, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.beginPath()
+    ctx.arc(w * 0.845, h * 0.34, 5, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.beginPath()
+    ctx.arc(w * 0.85, h * 0.3, 6, 0, Math.PI * 2)
+    ctx.fill()
+
+    // Path/road connecting
+    ctx.strokeStyle = 'rgba(200,200,200,0.15)'
+    ctx.lineWidth = 2
+    ctx.beginPath()
+    ctx.moveTo(w * 0.12, h * 0.75)
+    ctx.quadraticCurveTo(w * 0.35, h * 0.78, w * 0.5, h * 0.76)
+    ctx.quadraticCurveTo(w * 0.65, h * 0.74, w * 0.85, h * 0.73)
+    ctx.stroke()
+
+  }, [])
+
+  return (
+    <canvas ref={canvasRef} className="w-full rounded-xl" style={{ height: '240px' }} />
+  )
+}
+
 // Blog 1: Campus transforming — buildings with roots growing, community gathering
 export function BeyondTheCollegeIllustration() {
   const canvasRef = useRef(null)
