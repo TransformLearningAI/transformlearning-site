@@ -642,7 +642,7 @@ export default function CampusTransformationPage() {
               ['Is this just a theory?', 'No — campus transformation is already happening. The Marygrove Conservancy in Detroit, backed by the Kresge Foundation and the University of Michigan, turned a closed college into a cradle-to-career education campus. Goddard College\'s Vermont campus is being reimagined as housing and arts space. The College of Saint Rose campus in Albany is being managed by the county for community reuse. Each model is different. We study what works, then build site-specific plans with realistic financial projections for your campus.'],
               ['How long does the whole process take?', 'Assessment and planning: 3-4 months. First programs active: 4-6 months. Break-even: 14-18 months. Self-sustaining: 2-3 years. We stay until you don\'t need us anymore.'],
               ['What if our board can\'t agree?', 'We work with boards at every stage of readiness. Sometimes a confidential assessment is enough to shift the conversation from "should we close?" to "what could we become?" That shift changes everything.'],
-              ['What about students currently enrolled?', 'This is a critical question and we take it seriously. Any transformation plan includes a teach-out strategy that meets state and accreditor requirements. Options include completing current students\' degrees before transition, arranging transfer agreements with nearby institutions, or running a parallel wind-down of degree programs while standing up new workforce programs. No student gets left behind.'],
+              ['What about students currently enrolled?', 'This is the question that matters most, and it\'s the one we start with — not finish with. Every transformation plan begins with a teach-out strategy that protects current students. We identify partner institutions, negotiate transfer agreements that preserve credits and financial aid, and work individually with students and families to find the right landing place. We help navigate the accreditor requirements, the state notifications, and the emotional reality of telling students their college is changing. The goal is simple: every student finishes what they started, somewhere that fits. No one gets stranded. No one loses credits. We stay in the process until the last student has a path.'],
               ['What about legal and governance issues?', 'Campus transformation involves real legal complexity — 501(c)(3) restructuring, bond covenant renegotiation, state attorney general notifications, employment transitions, and zoning changes. We work with your legal counsel and bring in specialized higher-ed attorneys when needed. Our role is strategy and planning; your attorneys handle the filings.'],
               ['What\'s the first step?', 'A free, confidential conversation. No pitch, no obligation. Just two people who care about education talking about what\'s possible.'],
             ].map(([q, a], i) => (
@@ -654,6 +654,63 @@ export default function CampusTransformationPage() {
               </ScrollReveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Teach-Out */}
+      <section className="py-20" style={{ background: '#F9FBFD' }}>
+        <div className="max-w-4xl mx-auto px-6">
+          <ScrollReveal>
+            <p className="eyebrow mb-4">Students First</p>
+            <h2 className="section-headline mb-4">Before we transform anything, we take care of your students.</h2>
+            <p className="text-brand-gray max-w-2xl mb-10 leading-relaxed">
+              The hardest part of any transition is the human part. Students chose your institution because they believed in it.
+              They deserve honesty, a plan, and a place to land. That&rsquo;s where we start.
+            </p>
+          </ScrollReveal>
+
+          <div className="grid md:grid-cols-2 gap-6 mb-10">
+            {[
+              {
+                icon: '🎯',
+                title: 'Finding the Right Fit',
+                desc: 'We don\'t just find transfer seats — we find the right institution for each student. Academic programs that match, financial aid that transfers, campuses where they\'ll succeed. We work with families individually because every student\'s situation is different.',
+              },
+              {
+                icon: '🤝',
+                title: 'Partner Institutions',
+                desc: 'We build transfer agreements with nearby colleges and universities before the transition is announced — so when students hear the news, the next step is already in place. Credits preserved. Financial aid bridged. No gaps.',
+              },
+              {
+                icon: '📋',
+                title: 'Navigating the Process',
+                desc: 'Teach-outs involve accreditor requirements, state education department notifications, Title IV compliance, transcript preservation, and federal reporting. It\'s complex territory. We\'ve studied how it works and how it fails. We help you get it right.',
+              },
+              {
+                icon: '💛',
+                title: 'The Conversation Nobody Wants to Have',
+                desc: 'Telling students, parents, and alumni that the institution is changing is one of the hardest things a president will ever do. We help you plan that communication — the timing, the tone, the follow-up — so that honesty builds trust instead of panic.',
+              },
+            ].map((item, i) => (
+              <ScrollReveal key={item.title} delay={Math.min(i, 2)}>
+                <div className="bg-white rounded-xl p-6" style={{ border: '1px solid #DDE5EF' }}>
+                  <span className="text-2xl block mb-3">{item.icon}</span>
+                  <h3 className="font-bold text-sm mb-2" style={{ color: '#0C1F3F' }}>{item.title}</h3>
+                  <p className="text-sm text-brand-gray leading-relaxed">{item.desc}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          <ScrollReveal delay={2}>
+            <div className="border-l-4 pl-6 max-w-2xl" style={{ borderColor: '#00A8A8' }}>
+              <p className="text-sm text-brand-gray leading-relaxed italic">
+                &ldquo;A campus transformation that leaves students stranded isn&rsquo;t a transformation &mdash; it&rsquo;s an abandonment.
+                We won&rsquo;t let that happen. The teach-out plan comes first. Everything else follows.&rdquo;
+              </p>
+              <p className="text-xs mt-2" style={{ color: '#00A8A8' }}>— Jeff Ritter, Founder</p>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
