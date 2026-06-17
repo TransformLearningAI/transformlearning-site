@@ -1,7 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { createBrowserClient } from '@supabase/ssr'
+
+const supabase = createBrowserClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+)
 
 /* ═══════════════════════════════════════════════════════════════
    DON'T CLOSE. TRANSFORM. — The College Survival Game
@@ -462,11 +468,30 @@ export default function CollegeGame() {
     )
   }
 
+  // Track game completion
+  const tracked = useRef(false)
+
   // Check ending
   const totalSemesters = role === 'faculty' ? FACULTY_SEMESTERS.length : SEMESTERS.length
   if (state.semester >= totalSemesters && !showReaction) {
     const endingKey = getEnding(state)
     const ending = ENDINGS[endingKey]
+
+    // Save play data once
+    if (!tracked.current) {
+      tracked.current = true
+      supabase.from('game_plays').insert({
+        role,
+        ending: endingKey,
+        enrollment: state.enrollment,
+        morale: state.morale,
+        community_trust: state.communityTrust,
+        donor_confidence: state.donorConfidence,
+        board_unity: state.boardUnity,
+        discount_rate: state.discountRate,
+        choices: state.events || [],
+      }).then(() => {}).catch(() => {})
+    }
     return (
       <section className="min-h-screen" style={{ background: '#0A0A0A' }}>
         <div className="max-w-2xl mx-auto px-6 py-16">
@@ -503,7 +528,7 @@ export default function CollegeGame() {
           </div>
 
           <div className="text-center space-y-4">
-            <button onClick={() => { setRole(null); setState(INITIAL); setChosenIdx(null); setShowReaction(false) }}
+            <button onClick={() => { setRole(null); setState(INITIAL); setChosenIdx(null); setShowReaction(false); tracked.current = false }}
                     className="px-6 py-3 rounded-xl text-white font-bold text-sm" style={{ background: '#00A8A8' }}>
               Play Again as a Different Role
             </button>
@@ -555,6 +580,7 @@ export default function CollegeGame() {
     setState(prev => {
       const next = { ...prev }
       next.semester = prev.semester + 1
+      next.events = [...(prev.events || []), { semester: semester.label, choice: chosenIdx, text: choice.text.substring(0, 80) }]
       if (choice.effects.enrollment) next.enrollment = Math.max(0, prev.enrollment + choice.effects.enrollment)
       if (choice.effects.faculty) next.faculty = Math.max(0, prev.faculty + choice.effects.faculty)
       if (choice.effects.deficit) next.deficit = prev.deficit + choice.effects.deficit
@@ -586,7 +612,7 @@ export default function CollegeGame() {
             <p className="text-xs font-bold uppercase tracking-wider" style={{ color: '#00A8A8' }}>
               {semester.label}
             </p>
-            <p className="text-[10px] text-gray-600">Playing as: {role === 'president' ? 'President' : 'Board Chair'}</p>
+            <p className="text-[10px] text-gray-600">Playing as: {ROLES.find(r => r.id === role)?.title}</p>
           </div>
           <div className="text-right">
             <p className="text-[10px] text-gray-600">Enrollment</p>
