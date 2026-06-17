@@ -293,9 +293,17 @@ function ResponseForm({ questionId, questionText, section, onSubmitted }) {
 function QuestionCard({ q, section, sectionColor }) {
   const [open, setOpen] = useState(false)
   const [refreshKey, setRefreshKey] = useState(0)
+  const [count, setCount] = useState(null)
+
+  useEffect(() => {
+    fetch(`/api/simulation-response?questionId=${q.id}`)
+      .then(r => r.json())
+      .then(d => setCount((d.responses || []).length))
+      .catch(() => setCount(0))
+  }, [q.id, refreshKey])
 
   return (
-    <div style={{ background: 'white', borderRadius: 12, border: '1px solid #DDE5EF', marginBottom: 12, overflow: 'hidden' }}>
+    <div style={{ background: 'white', borderRadius: 12, border: count === 0 ? '1px solid #FECACA' : '1px solid #DDE5EF', marginBottom: 12, overflow: 'hidden' }}>
       <button onClick={() => setOpen(!open)}
               style={{ width: '100%', textAlign: 'left', padding: '16px 20px', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', gap: 14, alignItems: 'flex-start' }}>
         <span style={{ background: sectionColor, color: 'white', fontSize: 11, fontWeight: 800, padding: '3px 8px', borderRadius: 5, flexShrink: 0, marginTop: 2 }}>
@@ -307,9 +315,21 @@ function QuestionCard({ q, section, sectionColor }) {
           </p>
           <p style={{ color: '#475569', fontSize: 13, margin: 0, lineHeight: 1.5 }}>&ldquo;{q.q}&rdquo;</p>
         </div>
-        <span style={{ color: '#94A3B8', fontSize: 18, flexShrink: 0, transform: open ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s' }}>
-          &#9662;
-        </span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+          {count !== null && count > 0 && (
+            <span style={{ background: '#00A8A8', color: 'white', fontSize: 10, fontWeight: 800, padding: '2px 7px', borderRadius: 10, whiteSpace: 'nowrap' }}>
+              {count} {count === 1 ? 'response' : 'responses'}
+            </span>
+          )}
+          {count === 0 && (
+            <span style={{ background: '#FEF2F2', color: '#DC2626', fontSize: 10, fontWeight: 700, padding: '2px 7px', borderRadius: 10, whiteSpace: 'nowrap', border: '1px solid #FECACA' }}>
+              needs response
+            </span>
+          )}
+          <span style={{ color: '#94A3B8', fontSize: 18, transform: open ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s' }}>
+            &#9662;
+          </span>
+        </div>
       </button>
       {open && (
         <div style={{ padding: '0 20px 20px', borderTop: '1px solid #F1F5F9' }}>
