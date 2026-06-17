@@ -444,10 +444,18 @@ export default function CollegeGame() {
             ))}
           </div>
 
-          <div className="mt-12 border-t border-gray-800 pt-6">
+          <div className="mt-12 border-t border-gray-800 pt-6 space-y-3">
             <p className="text-[10px] text-gray-700 leading-relaxed max-w-sm">
               Based on real financial data, real board dynamics, and real human consequences from colleges across America. No names are real. Everything else is.
             </p>
+            <div className="flex gap-3">
+              <a href="/campus-transformation" className="text-[10px] font-bold hover:underline" style={{ color: '#00A8A8' }}>
+                Learn about Campus Transformation &rarr;
+              </a>
+              <a href="mailto:jeff@transformlearning.ai?subject=Feedback on the College Survival Game" className="text-[10px] font-bold text-gray-600 hover:underline">
+                Send feedback
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -494,13 +502,37 @@ export default function CollegeGame() {
             </div>
           </div>
 
-          <div className="text-center space-y-3">
+          <div className="text-center space-y-4">
             <button onClick={() => { setRole(null); setState(INITIAL); setChosenIdx(null); setShowReaction(false) }}
                     className="px-6 py-3 rounded-xl text-white font-bold text-sm" style={{ background: '#00A8A8' }}>
-              Play Again
+              Play Again as a Different Role
             </button>
-            <p className="text-[10px] text-gray-700">
-              This is what campus transformation work feels like. If you want to learn more: <a href="/campus-transformation" className="underline" style={{ color: '#00A8A8' }}>transformlearning.ai/campus-transformation</a>
+
+            <div className="bg-gray-900 rounded-xl p-5 text-left max-w-md mx-auto border border-gray-800">
+              <p className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: '#00A8A8' }}>This isn't just a game.</p>
+              <p className="text-sm text-gray-400 leading-relaxed mb-4">
+                Real colleges are facing these decisions right now. Two close every week. If you're a president, board member, faculty member, or community leader — or if you just want to learn more — we'd love to hear from you.
+              </p>
+              <div className="space-y-2">
+                <a href="/campus-transformation"
+                   className="block w-full text-center py-2.5 rounded-lg text-white text-sm font-bold"
+                   style={{ background: '#00A8A8' }}>
+                  Learn About Campus Transformation
+                </a>
+                <a href="/campus-transformation/inquiry"
+                   className="block w-full text-center py-2.5 rounded-lg text-sm font-bold border"
+                   style={{ color: '#00A8A8', borderColor: '#00A8A8' }}>
+                  Start a Confidential Conversation
+                </a>
+                <a href="mailto:jeff@transformlearning.ai?subject=Feedback on the College Survival Game"
+                   className="block w-full text-center py-2.5 rounded-lg text-sm font-bold text-gray-500 border border-gray-700 hover:border-gray-500">
+                  Send Us Feedback on the Game
+                </a>
+              </div>
+            </div>
+
+            <p className="text-[10px] text-gray-700 max-w-sm mx-auto">
+              Built by <a href="/campus-transformation" className="underline" style={{ color: '#00A8A8' }}>Campus Transformation</a> — a Pittsburgh-based consultancy helping communities transform at-risk colleges into workforce and community hubs.
             </p>
           </div>
         </div>
