@@ -422,6 +422,7 @@ export default function CollegeGame() {
   const [state, setState] = useState(INITIAL)
   const [chosenIdx, setChosenIdx] = useState(null)
   const [showReaction, setShowReaction] = useState(false)
+  const tracked = useRef(false)
 
   // Role selection
   if (!role) {
@@ -467,9 +468,6 @@ export default function CollegeGame() {
       </section>
     )
   }
-
-  // Track game completion
-  const tracked = useRef(false)
 
   // Check ending
   const totalSemesters = role === 'faculty' ? FACULTY_SEMESTERS.length : SEMESTERS.length
