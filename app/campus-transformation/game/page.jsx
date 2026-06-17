@@ -43,6 +43,147 @@ const INITIAL = {
   }
 }
 
+const FACULTY_SEMESTERS = [
+  {
+    label: 'Fall — Year 1',
+    narration: 'You\'ve been teaching biology here for 18 years. You run the greenhouse. You know every student by name. This semester, something feels different.',
+    event: 'Enrollment is down again — your Intro Bio class has 22 students instead of the usual 40. Two sections were merged. The adjunct who taught the other section wasn\'t renewed. She cried in the hallway. Nobody from administration said a word about it.\n\nThe new president held an all-faculty meeting. She talked about "strategic priorities" and "right-sizing." You\'ve heard this language before. Your colleague in the history department got an offer from a state school and is thinking about taking it. Your partner asks you at dinner: "Should you be looking too?"\n\nMeanwhile: you notice the greenhouse is empty most afternoons. A community garden group asked the college last year about using it — nobody responded. A student in your class mentions her mother is a CNA and the hospital can\'t hire enough of them. And you see a LinkedIn post from a professor at a college in Vermont who\'s redesigning her courses around community-based learning instead of traditional lectures.',
+    choices: [
+      {
+        text: 'Update your CV and start quietly applying to other schools. You have a family to think about.',
+        effects: { morale: -5, faculty: 0 },
+        reaction: 'You send out six applications over the weekend. It feels disloyal and necessary at the same time. You get a phone interview at a community college three hours away. The salary is lower. The commute would mean selling the house. Your daughter is a junior in high school. At night you stare at the ceiling and wonder how it came to this — you gave 18 years to this place. In the morning you go back to class and teach Intro Bio like nothing is wrong. The students don\'t know. They just see Professor Sharma, same as always.',
+        peopleChanges: {}
+      },
+      {
+        text: 'Keep your head down. Teach your classes. Don\'t get involved in the politics. Wait and see what happens.',
+        effects: { morale: -10 },
+        reaction: 'You teach. You grade. You hold office hours that fewer and fewer students attend. The faculty lounge conversations grow darker — who\'s leaving, who got an offer, who heard a rumor about program cuts. You don\'t join in, but you listen. At the end of the semester, you realize you haven\'t proposed a single new idea in two years. You used to be the person who started things. Now you\'re the person who\'s waiting for someone else to.',
+        peopleChanges: {}
+      },
+      {
+        text: 'Go to the president. Tell her what you see from the faculty perspective — the fear, the silence, the talent that\'s about to walk out the door. Offer to help.',
+        effects: { morale: 10, boardUnity: 5, donorConfidence: 5 },
+        reaction: 'Dr. Osei looks at you for a long moment. "You\'re the first faculty member who\'s come to me with something other than a complaint or a demand," she says. She tells you more than she probably should — the deficit, the bond situation, the board division. She asks if you\'d be willing to join a small working group to explore "alternative revenue models." You don\'t know what that means yet. But you said yes. When you tell your partner that night, they say: "You sound like yourself again."',
+        peopleChanges: { facultyLeader: { mood: 'engaged' } }
+      },
+      {
+        text: 'Call back the community garden group. Let them use the greenhouse on weekends. Start a conversation with the hospital about whether your bio labs could support CNA training. Do it without asking permission.',
+        effects: { morale: 15, communityTrust: 10, donorConfidence: 5 },
+        reaction: 'The community garden group shows up Saturday morning — eight people, mostly retirees. They\'re thrilled. They bring coffee cake. They tell their friends. Within a month, 20 people are using the greenhouse on weekends. You call the hospital\'s HR director and explain what your lab can do. She visits. She walks through the space and says: "This could work. Let me talk to my director of nursing education." You haven\'t asked the administration. You probably should. But you did something nobody else was doing — you opened a door. When Dr. Okonkwo hears about it, she doesn\'t report you. She says: "Can I bring my environmental science students into this?" Ray stops by the greenhouse that weekend, sees the community garden group, and says: "Finally. Somebody\'s using this place."',
+        peopleChanges: { facultyLeader: { mood: 'leading' }, facilities: { mood: 'hopeful' } }
+      },
+    ]
+  },
+  {
+    label: 'Spring — Year 1',
+    narration: 'Winter was long. Three more faculty left over break. The ones who stayed are either loyal, stuck, or hoping.',
+    event: 'Your history colleague took the state school job. She texted you from her new office: "I feel guilty but I couldn\'t stay." The English department is down to two people. A student asks you in office hours: "Is the school closing?" You say no. You\'re not sure you\'re telling the truth.\n\nThe president announces a "campus conversation" about the future. Faculty are skeptical — they\'ve seen these before. Nothing changes. But you hear a rumor that the board is actually considering something different this time. Dr. Washington, the provost, asks you to lunch. He looks tired.\n\nMeanwhile: the state announces $4M in training grants for healthcare and skilled trades. Your CNA contact at the hospital calls — she got approval from her director. They want to start a training cohort this fall if you can provide the space and the academic framework. A local nonprofit that works with veterans asks if the college offers anything for adults who want to finish a degree. And you read an article about a national movement to transform closing colleges into community hubs.',
+    choices: [
+      {
+        text: 'Accept the community college interview. Go see what else is out there. You owe it to your family.',
+        effects: { morale: -10, faculty: -1 },
+        reaction: 'You drive three hours for the interview. The campus is bigger. The salary is $8K less. The department chair is friendly but distracted. You sit in a faculty lounge that smells like your faculty lounge. On the drive home, you pass a sign for your town and feel something tighten in your chest. You built 18 years here. Your students are here. The greenhouse is here. You don\'t take the job. But you keep the offer in your back pocket, just in case.',
+        peopleChanges: {}
+      },
+      {
+        text: 'Go to the campus conversation. Stand up and say what nobody else will say: the old model is dying, and the faculty need to be part of building what comes next — not spectators waiting for a memo.',
+        effects: { morale: 20, boardUnity: 10, communityTrust: 5, donorConfidence: 10 },
+        reaction: 'The room goes quiet when you stand up. You talk for three minutes. You talk about the students who ask if the school is closing. The colleagues who left. The greenhouse sitting empty. The hospital that wants to partner. The grants nobody applied for. You say: "We keep waiting for someone to save us. We are the someone." Two faculty members approach you afterward. One is crying. The provost shakes your hand and says: "I needed to hear that." The president sends you an email that night: "Can we talk tomorrow?" Arthur Hartwell, who was sitting in the back of the room as a board observer, calls the president and says: "Who was that biology professor?"',
+        peopleChanges: { facultyLeader: { mood: 'leading' }, topDonor: { mood: 'engaged' }, provost: { mood: 'hopeful' } }
+      },
+      {
+        text: 'Quietly build the CNA partnership yourself. Write the proposal. Get the hospital to sign a letter of intent. Then bring it to the provost as a done deal.',
+        effects: { morale: 10, communityTrust: 15, donorConfidence: 5, deficit: 200000 },
+        reaction: 'You spend three weeks writing the proposal. The hospital signs the letter of intent — they\'ll send 20 trainees per cohort, two cohorts per year, and pay $5,000 per trainee. That\'s $200K in new revenue from a program you built at your kitchen table. When you bring it to Dr. Washington, he reads it twice and says: "How did you do this?" You say: "I picked up the phone." He takes it to the president. She takes it to the board. Arthur Hartwell reads it and writes a check for $50K to equip the lab. You didn\'t ask for permission. You asked for forgiveness. And you got funded instead.',
+        peopleChanges: { provost: { mood: 'impressed' }, topDonor: { mood: 'engaged' }, cfo: { mood: 'cautiously hopeful' } }
+      },
+      {
+        text: 'Organize a faculty innovation group — five colleagues who want to design new programs that serve the community, not just traditional students. Meet weekly. Build a portfolio of ideas. Present to the administration together.',
+        effects: { morale: 15, communityTrust: 10, boardUnity: 10, donorConfidence: 10, faculty: 0 },
+        reaction: 'Five faculty say yes. You meet in the greenhouse on Tuesday afternoons — it feels subversive and hopeful at the same time. The group designs four pilot ideas: weekend community workshops (the English faculty leads creative writing for adults), a veterans degree-completion program (the criminal justice professor has military connections), a youth STEM camp in the science building (your idea), and a partnership with the food co-op for a nutrition and culinary basics course. You present all four to the provost and the president together. Dr. Washington says: "This is the first new idea I\'ve heard in this building in two years." The president asks: "How fast can you launch?" The answer is fall. The faculty innovation group becomes the Faculty Transformation Council. You\'re the chair. Nobody appointed you. You just started.',
+        peopleChanges: { facultyLeader: { mood: 'leading' }, provost: { mood: 'energized' }, cfo: { mood: 'interested' } }
+      },
+    ]
+  },
+  {
+    label: 'Fall — Year 2',
+    narration: 'A year in. The decisions you made — or didn\'t — are visible now. The campus feels different. The question is whether it feels different enough.',
+    event: (state) => {
+      const engaged = state.morale > 60
+      const leaving = state.morale < 40
+      let text = ''
+      if (leaving) text = 'Three more faculty left over the summer. Your department is down to you and one adjunct. The students feel the emptiness. The hallways are quieter. A junior tells you she\'s transferring because "there\'s nobody left to take classes from." You think about the community college offer again.'
+      else if (engaged) text = 'Something is happening. The campus feels busier than it has in years — not with 18-year-olds, but with adults, community members, hospital trainees, kids in the after-school program. Your greenhouse is full on Saturdays. Two of your faculty colleagues have designed programs that are actually generating revenue. The provost smiles sometimes now.'
+      else text = 'The campus is stable but tense. People are doing their jobs. Nobody is excited. Nobody is leaving, but nobody is building anything new either. You teach your classes, run the greenhouse, and wonder if this is what the rest of your career looks like.'
+      text += '\n\nThe contractors\' association wants to run apprenticeships on campus. A board member forwarded an article about Meta\'s $115M trades academy. A former student — now a successful nurse practitioner — emails and asks: "Is there anything I can do to help? I heard things are tough." And the accreditor\'s annual report is due. What you write in it will shape how they see the institution.'
+      return text
+    },
+    choices: [
+      {
+        text: 'Write an honest accreditor report. Include the new community programs and partnerships. Frame the transformation as institutional innovation, not desperation.',
+        effects: { morale: 10, boardUnity: 10, donorConfidence: 15 },
+        reaction: 'You work with Dr. Washington on the report for two weeks. Instead of hiding the enrollment decline, you contextualize it: "Traditional enrollment has declined, but total community served has increased by 340% through workforce partnerships, community programming, and non-credit offerings." The accreditor calls it "one of the most honest and forward-thinking reports we\'ve received." They don\'t put you on warning. They ask to visit.',
+        peopleChanges: { provost: { mood: 'proud' } }
+      },
+      {
+        text: 'Call the former student back. Start building an alumni network of people who want to help — not with checks, but with time, expertise, and connections.',
+        effects: { morale: 10, communityTrust: 10, donorConfidence: 15 },
+        reaction: 'Sarah, the nurse practitioner, brings four other alumni to a Saturday breakfast on campus. One runs a construction company. One is a social worker. One teaches at a high school. One manages a restaurant. They walk the campus and see the greenhouse, the community programs, the CNA trainees. The construction company owner says: "I\'ll teach a weekend carpentry class if you give me the space." The social worker says: "I\'ll run a support group for first-generation students — free." These aren\'t donors. They\'re something more valuable — people who want to show up.',
+        peopleChanges: { topDonor: { mood: 'committed' }, communityTrust: 15 }
+      },
+      {
+        text: 'Take the community college job. You\'ve given 18 years. You\'ve done more than anyone asked. It\'s time to protect yourself.',
+        effects: { morale: -20, faculty: -1, communityTrust: -5 },
+        reaction: 'You write a resignation letter that takes you three hours. You keep deleting the part about why. You tell your students on the last day of class. Two of them cry. Ray finds you in the parking lot and says: "You were the only one who used the greenhouse." You drive away and look in the rearview mirror at the campus getting smaller. Your partner says: "You did the right thing." You\'re not sure. You\'ll never be sure.',
+        peopleChanges: { facultyLeader: { status: 'left', mood: 'gone' } }
+      },
+      {
+        text: 'Propose to the president that you become the Director of Community Partnerships — a new role, half teaching, half building the transformation. Put your career on the line for this.',
+        effects: { morale: 25, communityTrust: 20, donorConfidence: 20, boardUnity: 15, deficit: 400000 },
+        reaction: 'The president looks at you for a long time. "You\'re asking me to create a position we\'ve never had, in the middle of a deficit, for a program that doesn\'t exist yet." You say: "I\'m asking you to let me build the thing that saves this place." She says yes. Your salary stays the same. Your title changes. Your office moves from the science building to the welcome center — right at the front door. The first person you call is Janet Novak. The second is the hospital. The third is the contractors\' association. By December, you\'ve signed three partnership agreements worth $380K in annual revenue. Dr. Okonkwo tells you at the holiday party: "You\'re the reason I stayed." Arthur Hartwell asks the president: "Why didn\'t we do this five years ago?"',
+        peopleChanges: { topDonor: { mood: 'all in' }, facultyLeader: { mood: 'transformed' }, cfo: { mood: 'believes' }, townMayor: { status: 'ally', mood: 'champion' } }
+      },
+    ]
+  },
+  {
+    label: 'Spring — Year 2',
+    narration: 'The final semester. What you\'ve built — or what you\'ve lost — is about to become permanent.',
+    event: (state) => {
+      if (state.people.facultyLeader.status === 'left') return 'You\'re gone. The greenhouse is locked. The CNA program stalled without you. The community garden group was asked to leave. Your replacement is an adjunct who teaches four classes and doesn\'t know anyone\'s name. The college announces it will "explore strategic alternatives." Everyone knows what that means.'
+      if (state.morale > 65) return 'The campus is unrecognizable from two years ago — in the best way. CNA graduates are working at the hospital. The contractors\' apprenticeship has a waiting list. The community garden fills the greenhouse every weekend. You teach three classes instead of five — the rest of your time is partnerships, community work, and designing new programs. A delegation from a struggling college in Indiana visited last week. A reporter from Pittsburgh is writing a story. The accreditor asked to send a study team. And Arthur Hartwell just told the president he\'s doubling his annual gift because "this is the only college in America that\'s actually doing something different."'
+      if (state.morale > 45) return 'You\'re still here. The college is still open. Some things have changed — there are a few community programs, some new faces on campus. But the transformation is incomplete. You started something. Whether anyone finishes it depends on what happens next.'
+      return 'The campus is quiet. Too quiet. Spring enrollment is down again. The dining hall closes at 6pm because there aren\'t enough students to justify the evening shift. You teach your classes, run the greenhouse, and go home. At night you read about other colleges closing and wonder how much time is left.'
+    },
+    choices: [
+      {
+        text: 'Write a letter to every alumnus you can find. Tell them the truth about where the college is and what it could become. Ask them not for money — for ideas, time, and connections.',
+        effects: { morale: 15, communityTrust: 15, donorConfidence: 20, boardUnity: 10 },
+        reaction: 'You send 200 letters. You get 47 responses. Some are angry. Some are grateful. Twelve people offer to help. One of them runs a foundation. One manages a workforce development nonprofit. One is a retired contractor who wants to teach. The letter goes viral in the alumni Facebook group. For the first time, the conversation isn\'t "remember the old days." It\'s "what can we build next?"',
+        peopleChanges: { topDonor: { mood: 'all in' } }
+      },
+      {
+        text: 'Launch a public campaign: "Millbrook is Open." Invite the town, the county, the employers, the school district. Make the campus the community\'s campus. Commit fully and publicly.',
+        effects: { enrollment: 20, morale: 25, communityTrust: 30, donorConfidence: 25, boardUnity: 15, deficit: 1200000 },
+        reaction: 'The launch event fills the gymnasium. 400 people. The mayor speaks. The hospital director speaks. A CNA graduate speaks — she tears up and says: "Six months ago I was stocking shelves. Now I\'m saving lives. This campus did that." The contractors bring a welding demo. Kids watch sparks fly and their eyes go wide. The food co-op caters it. You stand in the back of the gym watching the community fill a space that used to be empty at 6pm and you think: this is what a campus is for. The reporter\'s article runs the next day. The headline: "This College Refused to Die. Here\'s What It Built Instead." Your phone doesn\'t stop ringing for a week.',
+        peopleChanges: { topDonor: { mood: 'all in' }, facultyLeader: { mood: 'transformed' }, cfo: { mood: 'believes' }, facilities: { mood: 'proud' }, townMayor: { status: 'ally', mood: 'champion' } }
+      },
+      {
+        text: 'Accept that you\'ve done what you can. Keep teaching. Let the institution figure itself out. Some things are bigger than one professor.',
+        effects: { morale: -5, communityTrust: -5 },
+        reaction: 'You teach. You grade. You go home. It\'s not bad. It\'s not good. It\'s the quiet hum of an institution that hasn\'t decided if it\'s living or dying. You water the greenhouse plants on Saturday morning and a retiree from the community garden group waves through the glass. "See you next week, Professor?" You nod. At least the greenhouse is alive.',
+        peopleChanges: {}
+      },
+      {
+        text: 'Go to the board meeting yourself. You\'re not on the agenda. You weren\'t invited. But you know more about what this campus can become than anyone in that room. Ask for five minutes.',
+        effects: { morale: 20, communityTrust: 20, donorConfidence: 25, boardUnity: 15 },
+        reaction: 'You walk into the boardroom. The chair looks surprised. The president looks nervous. You say: "I wasn\'t invited. I\'m asking for five minutes." The chair nods. You talk about the CNA graduates, the greenhouse, the apprenticeships, the community garden, the faculty who left and the ones who stayed and why. You talk about the students who ask if the school is closing and the ones who post on Instagram that they\'re proud to be here. You talk for seven minutes, not five. Nobody stops you. When you finish, Arthur Hartwell stands up — an 80-year-old man in a boardroom — and starts clapping. One person joins. Then another. The chair says: "I think we\'ve heard our strategic plan."',
+        peopleChanges: { topDonor: { mood: 'all in' }, facultyLeader: { mood: 'transformed' }, cfo: { mood: 'believes' }, facilities: { mood: 'proud' } }
+      },
+    ]
+  },
+]
+
 const SEMESTERS = [
   {
     label: 'Fall — Year 1',
@@ -314,7 +455,8 @@ export default function CollegeGame() {
   }
 
   // Check ending
-  if (state.semester >= SEMESTERS.length && !showReaction) {
+  const totalSemesters = role === 'faculty' ? FACULTY_SEMESTERS.length : SEMESTERS.length
+  if (state.semester >= totalSemesters && !showReaction) {
     const endingKey = getEnding(state)
     const ending = ENDINGS[endingKey]
     return (
@@ -366,7 +508,8 @@ export default function CollegeGame() {
     )
   }
 
-  const semester = SEMESTERS[state.semester]
+  const semesterList = role === 'faculty' ? FACULTY_SEMESTERS : SEMESTERS
+  const semester = semesterList[state.semester]
   const eventText = typeof semester.event === 'function' ? semester.event(state) : semester.event
 
   function choose(idx) {
@@ -467,7 +610,7 @@ export default function CollegeGame() {
             <button onClick={advance}
                     className="w-full py-3 rounded-xl text-white font-bold text-sm"
                     style={{ background: '#0C1F3F' }}>
-              {state.semester + 1 >= SEMESTERS.length ? 'See How It Ends' : 'Next Semester →'}
+              {state.semester + 1 >= totalSemesters ? 'See How It Ends' : 'Next Semester →'}
             </button>
           </div>
         )}
