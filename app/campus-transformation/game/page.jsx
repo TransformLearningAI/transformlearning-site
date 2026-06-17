@@ -10,6 +10,8 @@ import Link from 'next/link'
 const ROLES = [
   { id: 'president', title: 'President', desc: 'You answer to the board. You manage the faculty. You own the vision — and the blame.', icon: '🎓' },
   { id: 'chair', title: 'Board Chair', desc: 'You answer to the donors, the accreditor, and 94 years of history. The president reports to you.', icon: '🪑' },
+  { id: 'dean', title: 'Academic Dean', desc: 'You manage the faculty, the curriculum, and the quality of what students actually learn. You see what the president doesn\'t.', icon: '📋' },
+  { id: 'faculty', title: 'Faculty Member', desc: 'You\'ve been here 18 years. You teach, you advise, you coach. You know the students by name. You have no power — and you see everything.', icon: '👩‍🏫' },
 ]
 
 const INITIAL = {
@@ -45,18 +47,18 @@ const SEMESTERS = [
   {
     label: 'Fall — Year 1',
     narration: 'You\'ve been in the job for three months. The honeymoon is over. Fall enrollment just came in.',
-    event: 'First-year deposits are down 14% from last year. The discount rate crept up to 55% because Diana had to offer more aid to fill seats. Patricia is projecting a $2.4M deficit for the year. Dr. Washington wants to hire two new faculty for a data science program. Ray says the science building roof will cost $380K to fix and it can\'t wait another winter. Arthur Hartwell\'s assistant called to schedule a lunch — he wants to "understand the direction."',
+    event: 'First-year deposits are down 14% from last year. The discount rate crept up to 55% because Diana had to offer more aid to fill seats. Patricia is projecting a $2.4M deficit for the year. Dr. Washington wants to hire two new faculty for a data science program. Ray says the science building roof will cost $380K to fix and it can\'t wait another winter. Arthur Hartwell\'s assistant called to schedule a lunch — he wants to "understand the direction."\n\nMeanwhile, you notice a few things: a food cooperative in town just lost its lease and is looking for kitchen space. A LinkedIn post from a regional foundation announces $2M in grants for "innovative workforce-education partnerships." And Ray mentions that a woman who runs a co-working space in the next town over asked if the college ever rents out classroom space on weekends.',
     choices: [
       {
         text: 'Cut three underperforming academic programs and redirect the savings to scholarships and the roof repair.',
         effects: { enrollment: -25, faculty: -4, deficit: 800000, deferred: -380000, morale: -15, communityTrust: -5, donorConfidence: 5, discountRate: -2 },
-        reaction: 'Dr. Okonkwo calls an emergency faculty senate meeting. Three professors in the cut programs start applying elsewhere. The local paper runs a story: "College Eliminates Programs Amid Financial Strain." But the roof gets fixed. And the scholarship money stops two transfer-outs.',
+        reaction: 'Dr. Okonkwo calls an emergency faculty senate meeting. Three professors in the cut programs start applying elsewhere. The local paper runs a story: "College Eliminates Programs Amid Financial Strain." But the roof gets fixed. And the scholarship money stops two transfer-outs. The food co-op finds space elsewhere. The co-working inquiry goes unanswered.',
         peopleChanges: { facultyLeader: { mood: 'furious' } }
       },
       {
         text: 'Approve the data science program, defer the roof, and launch an aggressive enrollment marketing campaign.',
         effects: { enrollment: 10, deficit: -400000, deferred: 200000, morale: 5, donorConfidence: -5, discountRate: 2 },
-        reaction: 'The data science program won\'t generate revenue for 18 months. The roof leaks into the chemistry lab during a November storm. Marketing brings in 15 extra applications but the discount rate climbs to cover them. Patricia sends you a memo at 11pm: "We are spending money we don\'t have on things that won\'t pay off in time."',
+        reaction: 'The data science program won\'t generate revenue for 18 months. The roof leaks into the chemistry lab during a November storm. Marketing brings in 15 extra applications but the discount rate climbs to cover them. Patricia sends you a memo at 11pm: "We are spending money we don\'t have on things that won\'t pay off in time." You forgot about the foundation grant deadline. It passes.',
         peopleChanges: { cfo: { mood: 'alarmed' } }
       },
       {
@@ -65,12 +67,18 @@ const SEMESTERS = [
         reaction: 'Arthur listens for 40 minutes without interrupting. Then he says: "Thank you. No one has been this honest with me in ten years." He doesn\'t write a check today. But he asks for the full audit. He wants to see the real numbers. He says he\'ll bring two other donors to a private dinner next month. This is the first seed.',
         peopleChanges: { topDonor: { mood: 'engaged' } }
       },
+      {
+        text: 'Follow up on the co-working inquiry, call the food co-op about the dining hall kitchen, and apply for the workforce-education foundation grant. Fix the roof with the grant if you get it.',
+        effects: { enrollment: 0, deficit: 200000, deferred: -100000, morale: 10, communityTrust: 15, donorConfidence: 5 },
+        reaction: 'The co-working operator, Melissa Torres, tours three classrooms on a Saturday. She\'s interested — $800/month for weekend and evening access. Small money, but it\'s the first time someone from outside the college has paid to use your space. The food co-op moves their operation into the dining hall kitchen on off-hours — $500/month plus they cater a campus event for free. The foundation grant application takes two weeks of work. You won\'t hear back until spring. But Dr. Okonkwo notices what you\'re doing and says quietly after a meeting: "That\'s different. That\'s actually interesting." Ray is excited — someone is finally asking what the buildings can do instead of what they cost.',
+        peopleChanges: { facultyLeader: { mood: 'curious' }, facilities: { mood: 'energized' } }
+      },
     ]
   },
   {
     label: 'Spring — Year 1',
     narration: 'Winter was hard. Spring semester started with 12 fewer students than expected — they didn\'t come back from winter break.',
-    event: 'The spring retention number is troubling — you lost students over the holiday. Parents are asking questions. The bond trustee sent a letter requesting a meeting about covenant compliance. Diana says fall deposits for next year are "soft." Dr. Washington tells you privately that the provost at a state university just offered him a position. Janet Novak, the town mayor, read the newspaper story about the program cuts and left you a voicemail: "We need to talk about what this means for the town."',
+    event: 'The spring retention number is troubling — you lost students over the holiday. Parents are asking questions. The bond trustee sent a letter requesting a meeting about covenant compliance. Diana says fall deposits for next year are "soft." Dr. Washington tells you privately that the provost at a state university just offered him a position. Janet Novak, the town mayor, read the newspaper story about the program cuts and left you a voicemail: "We need to talk about what this means for the town."\n\nYou also notice: a state article about $4M in training grants for carpentry and skilled trades in your region. The hospital 8 miles away just posted 15 open CNA positions on Indeed — they can\'t fill them. A retired faculty member emails you an article about a college in Vermont that\'s transforming into a community-centered learning hub instead of closing. And Dr. Okonkwo forwards you a proposal from three of her faculty colleagues — they want to pilot a weekend "community college within a college" offering non-credit workshops to adults.',
     choices: [
       {
         text: 'Meet with the bond trustee immediately. Bring Patricia. Be transparent about the numbers and propose a forbearance if needed.',
@@ -87,8 +95,14 @@ const SEMESTERS = [
       {
         text: 'Convince Dr. Washington to stay by offering him a raise and the title of Executive Vice President.',
         effects: { deficit: -95000, morale: 5, faculty: 0, donorConfidence: -5 },
-        reaction: 'James stays, but the faculty notice the raise. In a university running a deficit, giving the provost a title bump and more money lands badly. Dr. Okonkwo says publicly: "I guess we know what leadership values." Two adjuncts who were told there\'s no money for course releases read about it in an email chain. The resentment is quiet but real.',
+        reaction: 'James stays, but the faculty notice the raise. In a university running a deficit, giving the provost a title bump and more money lands badly. Dr. Okonkwo says publicly: "I guess we know what leadership values." Two adjuncts who were told there\'s no money for course releases read about it in an email chain. The resentment is quiet but real. The carpentry grants and the faculty workshop proposal both go unaddressed.',
         peopleChanges: { provost: { mood: 'conflicted' }, facultyLeader: { mood: 'bitter' } }
+      },
+      {
+        text: 'Green-light the faculty workshop proposal, apply for the carpentry training grant, and contact the hospital about a CNA training partnership on campus.',
+        effects: { enrollment: 5, deficit: 300000, morale: 15, communityTrust: 15, donorConfidence: 10, boardUnity: 5 },
+        reaction: 'Three things happen at once. The faculty weekend workshops launch with 28 adults — mostly nurses wanting continuing ed and parents wanting computer skills. Revenue is small but the energy on campus shifts. Dr. Okonkwo becomes the program\'s champion. The carpentry grant application goes in — $180K if you get it, with a requirement to partner with local contractors. And the hospital HR director visits campus, walks through the science building, and says: "We could train 30 CNAs a year here. We\'d pay for it." Patricia runs the numbers that night. She calls you at 7am: "If the hospital partnership works, that\'s $400K in annual revenue we\'ve never had. From one phone call." James Washington reads the Vermont article you forwarded and says: "Maybe I should stay."',
+        peopleChanges: { facultyLeader: { mood: 'energized' }, cfo: { mood: 'hopeful' }, provost: { mood: 'interested' } }
       },
     ]
   },
@@ -103,8 +117,9 @@ const SEMESTERS = [
       if (enrollDown) text += 'The downward trend is accelerating. '
       if (moraleIssue) text += 'Faculty morale is low — two more just resigned. '
       if (mayorAlly) text += 'Mayor Novak has been talking to the county economic development office about workforce training partnerships. '
-      text += 'Arthur Hartwell had that donor dinner. Three people came. They want to see a plan — a real one, not a brochure. The accreditor sent a letter requesting a supplemental financial report. '
-      text += 'You\'re at a fork in the road. What you decide this semester defines everything that follows.'
+      text += 'Arthur Hartwell had that donor dinner. Three people came. They want to see a plan — a real one, not a brochure. The accreditor sent a letter requesting a supplemental financial report.\n\n'
+      text += 'Other signals are arriving: a local contractors\' association reached out about apprenticeship space — they\'ll pay rent and provide instructors if you provide classrooms and workshop space. Melissa Torres, the co-working operator, tells you she has a waiting list and wants to expand into two more rooms. The county announces a new registered apprenticeship initiative with federal matching funds. And a board member forwards you an article about Meta\'s $115M skilled trades academy — with the note: "Why can\'t we do something like this here?"'
+      text += '\n\nYou\'re at a fork in the road. What you decide this semester defines everything that follows.'
       return text
     },
     choices: [
@@ -117,7 +132,7 @@ const SEMESTERS = [
       {
         text: 'Double down on the traditional model: launch an emergency enrollment campaign, increase the discount rate to 65%, and cut institutional support costs by 20%.',
         effects: { enrollment: 25, deficit: 200000, morale: -20, communityTrust: -10, donorConfidence: -10, discountRate: 13 },
-        reaction: 'The enrollment bump is real — but at 65% discount rate, each new student generates almost nothing in net revenue. You\'re filling seats with money you don\'t have. The institutional support cuts mean fewer advisors, slower IT response, and a registrar\'s office that can\'t keep up. Students notice. Arthur Hartwell goes quiet. Patricia says: "We just bought one more year. At the cost of two."',
+        reaction: 'The enrollment bump is real — but at 65% discount rate, each new student generates almost nothing in net revenue. You\'re filling seats with money you don\'t have. The institutional support cuts mean fewer advisors, slower IT response, and a registrar\'s office that can\'t keep up. Students notice. Arthur Hartwell goes quiet. Patricia says: "We just bought one more year. At the cost of two." The contractors\' association takes their apprenticeship to the community college instead.',
         peopleChanges: { cfo: { mood: 'defeated' }, topDonor: { mood: 'disengaged' } }
       },
       {
@@ -125,6 +140,12 @@ const SEMESTERS = [
         effects: { enrollment: 0, morale: -10, communityTrust: -15, boardUnity: -15, donorConfidence: -5 },
         reaction: 'The conversations are "confidential" for about 72 hours. A board member tells a friend. The friend tells the newspaper. "COLLEGE IN MERGER TALKS" runs above the fold. Parents panic. Three deposits for fall are withdrawn. Faculty start applying everywhere. Dr. Washington takes the state university job. The merger might be the right move — but the way it leaked poisoned everything.',
         peopleChanges: { provost: { status: 'left', mood: 'gone' }, facultyLeader: { mood: 'panicked' } }
+      },
+      {
+        text: 'Say yes to everything that\'s knocking on your door: contractors\' apprenticeship, co-working expansion, county apprenticeship funding, hospital CNA pipeline. Build the transformation from the ground up — with paying partners first, plan second.',
+        effects: { enrollment: 10, deficit: 900000, morale: 20, communityTrust: 25, donorConfidence: 15, boardUnity: 10, discountRate: -2 },
+        reaction: 'It\'s messy. There\'s no grand plan yet — just a campus that\'s suddenly busy in ways it hasn\'t been in years. Contractors in the workshop Monday through Thursday. Melissa\'s co-working crowd on weekends. CNA trainees in the science building. The dining hall hosts a community dinner that 140 people attend. Arthur Hartwell visits campus unannounced, sees the activity, and calls you that evening: "This is alive. This is what I wanted to fund." The board member who sent the Meta article says at the next meeting: "I think it\'s already happening." Dr. Okonkwo assigns two faculty to develop a for-credit pathway that connects to the apprenticeship. Ray installs a new sign by the entrance: "Millbrook College — Open to the Community." He paid for it himself.',
+        peopleChanges: { topDonor: { mood: 'committed' }, facultyLeader: { mood: 'leading' }, facilities: { mood: 'proud' }, townMayor: { status: 'ally', mood: 'champion' } }
       },
     ]
   },
@@ -136,9 +157,9 @@ const SEMESTERS = [
       const declining = state.morale < 40 || state.enrollment < 730
       const merged = state.boardUnity < 35
       if (merged) return 'The merger talks have consumed everything. The partner university is offering terms — but they want to eliminate 60% of your programs and absorb the rest under their brand. The name disappears. Half the staff is redundant. It\'s not a merger. It\'s an acquisition with polite language.'
-      if (transforming) return 'The transformation pilot is underway. A workforce training program launched in January with 22 participants — adults, not traditional students. The county is paying. The first community health screening happened in the gym. 180 people came. The nursing faculty ran it. Arthur Hartwell brought a foundation program officer to campus. She wants to see the data in June. The accreditor is watching closely — but they\'re interested, not hostile.'
-      if (declining) return 'Spring enrollment dropped again. Two more faculty left. The registrar retired and hasn\'t been replaced. Students are complaining about response times, broken equipment, and courses being cancelled. The local paper ran an editorial: "Is This the End for Our College?" Parents are calling the admissions office asking if their kids should transfer. The bond trustee wants another meeting.'
-      return 'The institution is stable but stagnant. You haven\'t gotten worse, but you haven\'t changed anything fundamental. The same pressures are building. The same questions are unanswered. Time is passing and the window is narrowing.'
+      if (transforming) return 'The transformation pilot is underway. A workforce training program launched in January with 22 participants — adults, not traditional students. The county is paying. The first community health screening happened in the gym. 180 people came. The nursing faculty ran it. Arthur Hartwell brought a foundation program officer to campus. She wants to see the data in June. The accreditor is watching closely — but they\'re interested, not hostile. A reporter from the Pittsburgh paper called — she\'s writing about "colleges that refused to die." The contractors\' apprenticeship program graduated its first cohort: 14 people, 12 placed in jobs within a month. Melissa Torres hired a part-time employee to manage the co-working space. And a delegation from a struggling college in Indiana called — they want to visit and see what you\'re doing.'
+      if (declining) return 'Spring enrollment dropped again. Two more faculty left. The registrar retired and hasn\'t been replaced. Students are complaining about response times, broken equipment, and courses being cancelled. The local paper ran an editorial: "Is This the End for Our College?" Parents are calling the admissions office asking if their kids should transfer. The bond trustee wants another meeting. Meanwhile, the opportunities you didn\'t pursue found other homes — the contractors went to the community college, the co-working operator leased space downtown, and the hospital started its own CNA training in-house.'
+      return 'The institution is stable but stagnant. You haven\'t gotten worse, but you haven\'t changed anything fundamental. The same pressures are building. The same questions are unanswered. Time is passing and the window is narrowing. An email from the state workforce board sits unopened in your inbox. A voicemail from a local manufacturer about training partnerships went unreturned. The world is moving. You\'re standing still.'
     },
     choices: [
       {
@@ -158,6 +179,12 @@ const SEMESTERS = [
         effects: { enrollment: 0, morale: -25, communityTrust: -20, boardUnity: -10 },
         reaction: 'The partner university takes over operations by fall. The name changes. 60% of programs are eliminated. 28 staff positions are cut. The campus stays open — as a satellite location with limited offerings. Ray keeps his job maintaining the buildings. Most faculty don\'t. The town feels betrayed. It\'s not the worst outcome. But standing in the empty student center on the last day of the semester, watching Diana carry a box to her car, it doesn\'t feel like a victory.',
         peopleChanges: { enrollmentVP: { status: 'left', mood: 'gone' }, facultyLeader: { status: 'left', mood: 'gone' } }
+      },
+      {
+        text: 'Invite the visiting Indiana delegation, the Pittsburgh reporter, and the foundation program officer to campus on the same week. Let them see it. Let the community see them seeing it. Make the transformation visible and public.',
+        effects: { enrollment: 25, deficit: 1500000, morale: 25, communityTrust: 30, donorConfidence: 30, boardUnity: 20 },
+        reaction: 'The week changes everything. The Indiana delegation walks the campus and takes notes for three hours. The reporter interviews Ray, Dr. Okonkwo, Melissa Torres, two CNA trainees, and a 58-year-old woman taking her first computer class. The article runs with the headline: "This College Refused to Die. Here\'s What It Built Instead." The foundation officer tells Arthur Hartwell she\'s recommending a $750K grant. The town council passes a resolution of support. Students — the traditional ones still enrolled — read the article and something shifts. One of them posts on Instagram: "My school is doing something no one else is doing. I\'m proud to be here." It gets 2,000 likes. Diana Santos, for the first time in four years, smiles in a staff meeting.\n\nThe accreditor calls. They don\'t call to threaten. They call to ask if they can send a team to study what you\'re doing. They\'re seeing the same crisis everywhere. They want to know if this works.\n\nRay puts a second sign up, on the other side of campus. This one says: "Welcome to Millbrook. A campus for the whole community."',
+        peopleChanges: { topDonor: { mood: 'all in' }, facultyLeader: { mood: 'leading' }, cfo: { mood: 'believes' }, facilities: { mood: 'proud' }, enrollmentVP: { mood: 'hopeful' }, townMayor: { status: 'ally', mood: 'champion' } }
       },
     ]
   },
