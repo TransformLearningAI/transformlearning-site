@@ -38,6 +38,7 @@ export default function sitemap() {
     { url: `${base}/campus-transformation/simulation`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/campus-transformation/game`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/campus-transformation/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/campus-transformation/blog/your-first-client-will-almost-kill-you`, lastModified: '2026-06-22', changeFrequency: 'monthly', priority: 0.9 },
     { url: `${base}/campus-transformation/blog/when-colleges-close-communities-dont-have-to`, lastModified: '2026-06-15', changeFrequency: 'monthly', priority: 0.9 },
     { url: `${base}/campus-transformation/blog/the-math-nobody-talks-about`, lastModified: '2026-05-26', changeFrequency: 'monthly', priority: 0.8 },
     { url: `${base}/campus-transformation/blog/oakland-city-doesnt-have-to-die`, lastModified: '2026-05-21', changeFrequency: 'monthly', priority: 0.8 },
