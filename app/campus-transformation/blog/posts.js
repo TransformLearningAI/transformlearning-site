@@ -10,18 +10,18 @@ export const CT_POSTS = [
     title: 'Your First Client Will Almost Kill You',
     date: '2026-06-22',
     author: 'Jeff Ritter',
-    summary: 'We built Campus Transformation to save struggling colleges. Our first real prospect is Oakland City University — a school that can\'t make payroll. Here\'s the honest truth about what happens when your first client is also your most dangerous one.',
+    summary: 'We built Campus Transformation to save struggling colleges. Our first real prospect is a school that can\'t make payroll. Here\'s the honest truth about what happens when your first client is also your most dangerous one.',
     body: `We built Campus Transformation to help struggling colleges avoid closure. We spent months building the financial models, the employer demand scans, the campus reimagining frameworks, the interactive tools. We recruited a team of smart people who are volunteering their time because they believe in this. We wrote the blog posts. We built the website. We did everything you're supposed to do before you have a client.
 
 And then our first real prospect showed up. And it is, by almost every measure, the worst possible first client for a startup that doesn't exist yet.
 
 **The Situation**
 
-Oakland City University is a 141-year-old General Baptist institution in rural Indiana, population 2,259. It filed a WARN notice in May. Staff haven't been paid since May 8. 170 employees face layoff. All undergraduate programs have been suspended. The board is trying to sell a carbon capture patent to stay alive. Off-campus buildings are listed for sale.
+I won't name the school. They haven't hired us, and they deserve their privacy. But the profile will be familiar to anyone who follows this space: a small, faith-based institution in a rural community of a few thousand people. Over a century old. Filed a WARN notice. Staff haven't been paid in weeks. Programs suspended. The board is trying to sell intellectual property to stay alive. Buildings are being listed for sale.
 
 This is not a school that's "trending down." This is a school in free fall.
 
-I emailed the board offering pro bono consulting. The response was polite, skeptical, and entirely fair. The board member told me they've received "similar solicitations offering OCU a panacea for its financial troubles." They asked for references — institutions where our plan has been implemented and what the results have been. They asked how we can offer services pro bono. They said, "I hope the tone of my letter is not too harsh, but I have been down this road before."
+I emailed the board offering pro bono consulting. The response was polite, skeptical, and entirely fair. They told me they've received similar solicitations promising a panacea for the school's financial troubles. They asked for references — institutions where our plan has been implemented and what the results have been. They asked how we can offer services for free. They said, essentially: I've been down this road before. Forgive me if I'm skeptical.
 
 I liked the letter. It was honest. It was the letter of someone who has been burned and doesn't want to be burned again. I respect that more than I respect the dozen consultants who probably told them everything would be fine if they just optimized their enrollment funnel.
 
@@ -33,35 +33,35 @@ Let me be blunt about what could go wrong here, because I think honesty about ri
 
 **Peril 1: Your first client defines your brand.**
 
-If we work with OCU and the campus transforms into a thriving workforce and community hub, we have the most powerful case study in higher education. A school that was days from closure, reimagined as a regional asset. Toyota ten miles down the road. $1.4 billion in fresh investment. 7,500 workers who need training. A 34-acre campus with brand-new residence halls. The story writes itself.
+If we work with this school and the campus transforms into a thriving workforce and community hub, we have the most powerful case study in higher education. A school that was days from closure, reimagined as a regional asset. Major manufacturers within commuting distance. Billions of dollars in fresh industrial investment. Thousands of workers who need training. A campus with brand-new residence halls. The story writes itself.
 
-If we work with OCU and the campus closes anyway, we are the consultants who were there when it died. It doesn't matter that we offered our services for free. It doesn't matter that we weren't the ones who spent down the endowment or let enrollment slide for a decade. We were in the room. We're associated with the outcome. For a startup with no other clients, that's not a setback. It's a death sentence.
+If we work with this school and the campus closes anyway, we are the consultants who were there when it died. It doesn't matter that we offered our services for free. It doesn't matter that we weren't the ones who spent down the endowment or let enrollment slide for a decade. We were in the room. We're associated with the outcome. For a startup with no other clients, that's not a setback. It's a death sentence.
 
 **Peril 2: Pro bono work is not free.**
 
-We offered our services pro bono because OCU can't pay anyone. That's the honest reason. We also offered pro bono because we need a case study more than we need revenue right now. A proof of concept. A campus we can point to and say: "We did this. Here's what happened. Here are the numbers."
+We offered our services pro bono because the school can't pay anyone. That's the honest reason. We also offered pro bono because we need a case study more than we need revenue right now. A proof of concept. A campus we can point to and say: "We did this. Here's what happened. Here are the numbers."
 
-But pro bono doesn't mean costless. Our team members are volunteering hours they could spend on paying work, family time, or sleep. Every deliverable we produce for OCU — the employer demand scan, the campus map, the financial model, the implementation roadmap — takes real time from real people who are not getting paid. The longer the engagement drags on without a clear decision from the board, the more our team's goodwill gets spent down. Volunteer teams don't have unlimited patience. They have a window of enthusiasm, and if that window closes before the work lands, you lose your team.
+But pro bono doesn't mean costless. Our team members are volunteering hours they could spend on paying work, family time, or sleep. Every deliverable we produce — the employer demand scan, the campus map, the financial model, the implementation roadmap — takes real time from real people who are not getting paid. The longer the engagement drags on without a clear decision from the board, the more our team's goodwill gets spent down. Volunteer teams don't have unlimited patience. They have a window of enthusiasm, and if that window closes before the work lands, you lose your team.
 
 **Peril 3: The timeline is wrong.**
 
 Campus transformation works best when there's runway. Eighteen months of planning. Staff still on payroll. Buildings still maintained. Community still engaged. You design the future while the present is still functioning.
 
-OCU has none of that. The staff is gone or going. The buildings are being listed for sale. The board is exhausted and demoralized. The community is grieving. Every week that passes, the campus loses value — not market value, but institutional memory, community trust, and the human relationships that make transformation possible.
+This school has none of that. The staff is gone or going. Buildings are being listed for sale. The board is exhausted and demoralized. The community is grieving. Every week that passes, the campus loses value — not market value, but institutional memory, community trust, and the human relationships that make transformation possible.
 
 We are trying to do proactive transformation work on a reactive timeline. That's like designing a house while it's on fire. It can be done. But you have to be honest that the conditions are terrible.
 
 **Peril 4: The board may not want what we're offering.**
 
-This is the one nobody talks about. Transformation means letting go of being a university. It means the board of Oakland City University becomes the board of something else — a workforce development center, a community hub, a regional training campus. For trustees who joined the board because they love their alma mater, that's not an opportunity. It's a funeral.
+This is the one nobody talks about. Transformation means letting go of being a university. It means the board of a beloved institution becomes the board of something else — a workforce development center, a community hub, a regional training campus. For trustees who joined the board because they love their alma mater, that's not an opportunity. It's a funeral.
 
-The board member who wrote me was clear: they want to save Oakland City University as "an institution of higher education." I understand that. I respect it. But the honest answer is that saving OCU as a traditional university — with 502 undergraduates, a 34-acre campus, and no ability to make payroll — may not be possible. What might be possible is saving the campus, the community's anchor, the jobs, and the mission in a different form.
+The board member who wrote me was clear: they want to save their school as "an institution of higher education." I understand that. I respect it. But the honest answer is that saving a school with a few hundred undergraduates and no ability to make payroll as a traditional university may not be possible. What might be possible is saving the campus, the community's anchor, the jobs, and the mission in a different form.
 
 That's a hard sell to a board that hasn't grieved the old version yet.
 
 **Peril 5: Success here doesn't guarantee a business.**
 
-Even if everything goes perfectly — the board says yes, the transformation works, OCU becomes a national model — we still have to turn that into a sustainable business. One pro bono case study does not make a company. We would need to convert the OCU story into paying engagements at other campuses, and there's no guarantee that will happen. Boards at other institutions will say, "That's great, but our situation is different." They always do.
+Even if everything goes perfectly — the board says yes, the transformation works, the campus becomes a national model — we still have to turn that into a sustainable business. One pro bono case study does not make a company. We would need to convert the story into paying engagements at other campuses, and there's no guarantee that will happen. Boards at other institutions will say, "That's great, but our situation is different." They always do.
 
 The gap between a successful pilot and a viable business is enormous, and plenty of good organizations have died in that gap.
 
@@ -71,23 +71,23 @@ Because somebody has to go first.
 
 Every new idea in the history of the world had a first client, a first patient, a first user. The first one is always messy. It's always underfunded. It's always higher risk than anyone admits. And it's always the one that teaches you what the work actually is, as opposed to what you thought it was from the safety of your laptop.
 
-I've read the data on OCU's region. Toyota is investing $1.4 billion in Princeton, ten miles away. Boshoku, Vuteq, Hansen, Berry Global, Norfolk Southern — hundreds of employers within 30 miles, all hiring, all struggling to find trained workers. Gibson County has $220 million in farm income. Deaconess runs a hospital in Princeton. The demand is real. The campus is there. The buildings are there, including two residence halls built in the last seven years.
+I've read the data on this school's region. There is a major auto manufacturer within ten miles that just invested over a billion dollars. There are hundreds of employers within 30 miles, all hiring, all struggling to find trained workers. The county has hundreds of millions in agricultural income. A hospital system operates nearby. The demand is real. The campus is there. The buildings are there, including residence halls built in the last seven years.
 
-The gap between what Oakland City has and what Gibson County needs is not money. It's not technology. It's the willingness to see the campus as something other than a failing university.
+The gap between what this campus has and what the region needs is not money. It's not technology. It's the willingness to see the campus as something other than a failing university.
 
-We've built the employer demand scan. We've mapped every building on that 34-acre campus to alternative uses with realistic revenue projections and implementation costs. We've identified the funders — READI 2.0, Lilly Endowment, USDA, EDA, Toyota's own community grants. We've named the local leaders and employers who would need to be in the room. The work is done. The question is whether anyone at OCU is ready to look at it.
+We've built the employer demand scan. We've mapped every building on that campus to alternative uses with realistic revenue projections and implementation costs. We've identified the grant programs, the state and federal funders, and the local employers who would need to be in the room. The work is done. The question is whether anyone on the board is ready to look at it.
 
 **The Honest Position**
 
 Here's where I land after a month of working on this.
 
-If OCU's board engages with us and is willing to explore transformation, we have a real shot at building something extraordinary on that campus. Not a guarantee — a shot. The employer demand is there. The buildings are there. The funding pathways exist. The community needs it.
+If the board engages with us and is willing to explore transformation, we have a real shot at building something extraordinary on that campus. Not a guarantee — a shot. The employer demand is there. The buildings are there. The funding pathways exist. The community needs it.
 
 If the board doesn't engage, or engages but can't let go of the university model, we will have built a body of work — the scans, the maps, the financial models — that we can adapt for the next campus. The work isn't wasted. It's practice.
 
 And if the board engages and the transformation fails anyway — because the timeline was too short, the funding didn't materialize, or the community couldn't rally in time — then we will have learned more about this work in six months than we could have learned in five years of theoretical planning. The tuition for that education is our time. I'm willing to pay it.
 
-The perils are real. The first client can define you, drain you, and break you. But the alternative — waiting for the perfect first client, the one with plenty of runway and a willing board and a fat budget — is a fantasy. Perfect first clients don't exist. What exists is Oakland City, Indiana, a campus that's running out of time, and a team that built something they believe can help.
+The perils are real. The first client can define you, drain you, and break you. But the alternative — waiting for the perfect first client, the one with plenty of runway and a willing board and a fat budget — is a fantasy. Perfect first clients don't exist. What exists is a campus that's running out of time, and a team that built something they believe can help.
 
 That's enough to start.
 
