@@ -13,6 +13,7 @@ export default function sitemap() {
 
     // Blog
     { url: `${base}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/blog/where-are-the-models`, lastModified: '2026-06-24', changeFrequency: 'monthly', priority: 0.9 },
     { url: `${base}/blog/the-people-who-see-the-problem-can-build-the-solution`, lastModified: '2026-04-16', changeFrequency: 'monthly', priority: 0.8 },
     { url: `${base}/blog/energy-karma-and-groups-of-people`, lastModified: '2026-04-16', changeFrequency: 'monthly', priority: 0.7 },
     { url: `${base}/blog/navigating-ai-in-education-balancing-innovation`, lastModified: '2026-04-16', changeFrequency: 'monthly', priority: 0.8 },

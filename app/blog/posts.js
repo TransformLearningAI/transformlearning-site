@@ -6,6 +6,86 @@
 
 export const POSTS = [
   {
+    slug: 'where-are-the-models',
+    title: 'Where Are the Models?',
+    date: '2026-06-24',
+    author: 'Jeff Ritter',
+    summary: 'Where are the models for integrating AI into teaching and learning, P-20, that don\'t involve a product, a service, a subscription, or a fee? I\'ve been looking for six months. The silence is the answer.',
+    body: `Where are the models for integrating AI into teaching and learning, P-20, that don't involve a product, a service, a subscription, or a fee?
+
+I've been looking for six months. I'm still looking.
+
+What I keep finding instead are companies dressed up as public goods.
+
+OpenAI launched ChatGPT for Teachers last November — free for verified K-12 educators through June 2027. Generous, right? Until you ask what happens in July 2027 when every lesson plan, every classroom workflow, every student interaction has been built on a platform that now costs money. That's not philanthropy. That's customer acquisition with a two-year runway. OpenAI is valued at $157 billion. They are not in the education business. They are in the dependency business, and schools are the distribution channel.
+
+Google offers Gemini for Education inside Google Workspace, which is "free" because 60% of American K-12 students are already inside Google's ecosystem. The product isn't the AI. The product is the data pipeline, the ecosystem lock-in, and a generation of students who grow up thinking Google is the internet. The cost isn't on the invoice. It's in the architecture.
+
+Khan Academy built Khanmigo with $10 million from Bill Gates. It's $44 per student per year, or $35,000+ per district. Khan Academy itself is free. The AI tutor is the product. The free part gets you in the door. The AI part gets your budget.
+
+Canva gives educators free Pro accounts. The business model is straightforward: train every student in America on Canva's platform so they become paying customers as professionals. The classroom is the top of the funnel.
+
+Microsoft has Copilot. Amazon has CodeWhisperer. Apple has its own plays. Every major technology company has discovered that "free for education" is the most efficient customer acquisition strategy ever invented, because it creates lifetime platform dependency starting at age five.
+
+I'm not saying these tools are bad. Many of them are genuinely useful. Teachers are doing remarkable things with them. But let's stop pretending they're public goods. They are commercial products with free tiers, and the free tier exists because it serves the company's interests, not because someone decided that AI in education should be a public right.
+
+**So where are the actual non-commercial models?**
+
+I've found three categories, and none of them are sufficient.
+
+**Category one: open-source tools with no educational framework.**
+
+Ollama lets you run large language models locally on school hardware. No data leaves the building. No vendor. No subscription. Genuinely free and private. But it's a raw tool — no curriculum, no pedagogy, no lesson plans, no student-facing interface. It's like handing a teacher a printing press and saying "go make a literacy program." The capability is there. The educational design is not.
+
+Hugging Face hosts thousands of open models anyone can download. Same story. Powerful technology. Zero educational scaffolding. A computer science teacher can use it. A third-grade teacher cannot.
+
+**Category two: small non-profits doing real work with no resources.**
+
+Teach Anything is a registered non-profit building open-source, course-specific AI chatbots for educators. No hidden costs. No premium tier. Community-driven development on GitHub. It's exactly what should exist at scale. It serves a handful of classrooms.
+
+aiEDU is a 501(c)(3) devoted to AI literacy — teaching students about AI, how it works, what it means for their lives. Free curriculum. Free teacher training. Genuine equity focus. Important work. But it's about teaching students to understand AI, not about integrating AI into the teaching of every subject across every grade level.
+
+These organizations are doing honest, important work. They are also tiny, underfunded, and invisible compared to the marketing budgets of the companies they're competing with for teachers' attention.
+
+**Category three: academic frameworks that live in journals, not classrooms.**
+
+Researchers have published thoughtful models — the AI-TEACH framework, the AIA-PCEK model, the EQUIP framework. They address pedagogy, ethics, teacher autonomy, student agency, and responsible integration. They are rigorous and valuable. They are also PDFs that no working teacher has time to read, written in language that no school board can act on, and disconnected from the daily reality of a teacher with 28 students, a 45-minute period, and a laptop cart that was purchased in 2019.
+
+The gap between academic theory and classroom practice in AI education is not a crack. It is a canyon.
+
+**So what's actually missing?**
+
+Everything.
+
+There is no public, non-commercial, open-source, P-20 model for integrating AI into teaching and learning that includes actual curriculum. Pedagogy that works across subjects and grade levels. Teacher training that goes deeper than a two-hour webinar sponsored by a vendor. Student-facing experiences that aren't just "talk to a chatbot." Assessment practices that make sense in a world where students have access to generative AI. Privacy protections that don't depend on a corporation's terms of service. And sustainability that doesn't depend on a company deciding the free tier is still worth funding.
+
+That thing does not exist.
+
+Think about that for a moment. We are in the third year of the most significant technological shift in education since the internet, and there is no freely available, non-commercial model for how to do this well. Not one.
+
+What we have instead is a marketplace. Vendors selling products. Conferences selling tickets. Consultants selling frameworks. Publishers selling AI-enhanced textbooks. And a million teachers sitting in their classrooms trying to figure it out alone, toggling between free tiers of six different corporate platforms, hoping none of them change their pricing before the school year ends.
+
+**The closest analogy I can think of is public libraries.**
+
+Before Andrew Carnegie and the public library movement, access to books was commercial. You bought them or you didn't have them. Libraries didn't eliminate the book market — they created universal access alongside it. They said: some things are too important to be available only to people who can pay.
+
+AI in education needs its library moment.
+
+Not a product. Not a platform. Not a tool with a free tier and a sales team. A public model — built by educators, maintained by communities, funded as infrastructure — that any school, any teacher, any student can use without buying anything, subscribing to anything, or giving their data to anyone.
+
+I don't have that model yet. But I know it's the right question, and I know that the current answer — let the market handle it — is going to leave the schools that can least afford subscriptions with the least access to the most important technology of their students' lifetimes.
+
+The kids at the wealthiest schools will have AI-integrated everything, paid for by parent fundraising and six-figure technology budgets. The kids in the most underresourced schools will have whatever free tier is still available and a teacher who watched a YouTube video about prompt engineering.
+
+That's not an integration model. That's a reproduction of every inequality we already have, accelerated by the most powerful technology we've ever put in a classroom.
+
+Where are the models that don't involve a product, a service, a subscription, or a fee?
+
+I'm asking because I think the answer matters more than almost anything else in education right now. And I think the silence is the answer.
+
+jeff@transformlearning.ai`
+  },
+  {
     slug: 'the-math-nobody-talks-about',
     title: 'The Math Nobody Talks About',
     date: '2026-05-26',
