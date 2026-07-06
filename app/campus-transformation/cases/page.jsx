@@ -4,6 +4,7 @@ import Link from 'next/link'
 export const metadata = {
   title: 'Case Studies — Campus Transformation',
   description: 'What campus transformation looks like in practice. Modeled scenarios for real closing campuses.',
+  alternates: { canonical: 'https://transformlearning.ai/campus-transformation/cases' },
   openGraph: {
     title: 'Campus Transformation Case Studies',
     description: 'Detailed transformation models for real closing campuses across America.',

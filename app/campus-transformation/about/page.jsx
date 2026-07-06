@@ -4,6 +4,7 @@ import Link from 'next/link'
 export const metadata = {
   title: 'About Us — Campus Transformation',
   description: 'Educators, business developers, financial analysts, community builders, and innovation specialists working to save closing campuses.',
+  alternates: { canonical: 'https://transformlearning.ai/campus-transformation/about' },
   openGraph: {
     title: 'About the Campus Transformation Team',
     description: 'We\'re educators who watched campuses close from the inside. Now we help them transform instead.',

@@ -21,6 +21,7 @@ export function generateMetadata({ params }) {
   return {
     title: `${post.title} — Campus Transformation`,
     description: post.summary,
+    alternates: { canonical: `https://transformlearning.ai/campus-transformation/blog/${post.slug}` },
     openGraph: {
       title: post.title,
       description: post.summary,

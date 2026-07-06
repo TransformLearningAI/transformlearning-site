@@ -12,6 +12,7 @@ const ILLUSTRATIONS = {
 export const metadata = {
   title: 'Blog — Campus Transformation',
   description: 'Thought leadership on campus transformation, college closures, and reimagining higher education for boards, presidents, and community leaders.',
+  alternates: { canonical: 'https://transformlearning.ai/campus-transformation/blog' },
   openGraph: {
     title: 'Campus Transformation Blog',
     description: 'Honest thinking about what happens when colleges close — and what could happen instead.',

@@ -3,16 +3,16 @@ export default function sitemap() {
 
   return [
     // Core
-    { url: base, lastModified: new Date(), changeFrequency: 'weekly', priority: 1.0 },
-    { url: `${base}/demo`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${base}/methodology`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${base}/investors`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${base}/access`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${base}/students`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${base}/tools`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: base, lastModified: '2026-06-24', changeFrequency: 'weekly', priority: 1.0 },
+    { url: `${base}/demo`, lastModified: '2026-06-24', changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/methodology`, lastModified: '2026-04-16', changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${base}/investors`, lastModified: '2026-04-16', changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${base}/access`, lastModified: '2026-04-16', changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${base}/students`, lastModified: '2026-06-24', changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/tools`, lastModified: '2026-06-24', changeFrequency: 'weekly', priority: 0.9 },
 
     // Blog
-    { url: `${base}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/blog`, lastModified: '2026-06-24', changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/blog/where-are-the-models`, lastModified: '2026-06-24', changeFrequency: 'monthly', priority: 0.9 },
     { url: `${base}/blog/the-people-who-see-the-problem-can-build-the-solution`, lastModified: '2026-04-16', changeFrequency: 'monthly', priority: 0.8 },
     { url: `${base}/blog/energy-karma-and-groups-of-people`, lastModified: '2026-04-16', changeFrequency: 'monthly', priority: 0.7 },
@@ -31,14 +31,14 @@ export default function sitemap() {
     { url: `${base}/blog/revolutionize-education-with-transform-learning`, lastModified: '2026-04-16', changeFrequency: 'monthly', priority: 0.7 },
 
     // Campus Transformation
-    { url: `${base}/campus-transformation`, lastModified: new Date(), changeFrequency: 'weekly', priority: 1.0 },
-    { url: `${base}/campus-transformation/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${base}/campus-transformation/process`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${base}/campus-transformation/cases`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${base}/campus-transformation/inquiry`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${base}/campus-transformation/simulation`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${base}/campus-transformation/game`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${base}/campus-transformation/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/campus-transformation`, lastModified: '2026-07-06', changeFrequency: 'weekly', priority: 1.0 },
+    { url: `${base}/campus-transformation/about`, lastModified: '2026-06-15', changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${base}/campus-transformation/process`, lastModified: '2026-06-15', changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${base}/campus-transformation/cases`, lastModified: '2026-05-21', changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${base}/campus-transformation/inquiry`, lastModified: '2026-06-15', changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${base}/campus-transformation/simulation`, lastModified: '2026-06-15', changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/campus-transformation/game`, lastModified: '2026-06-15', changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/campus-transformation/blog`, lastModified: '2026-06-22', changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/campus-transformation/blog/your-first-client-will-almost-kill-you`, lastModified: '2026-06-22', changeFrequency: 'monthly', priority: 0.9 },
     { url: `${base}/campus-transformation/blog/when-colleges-close-communities-dont-have-to`, lastModified: '2026-06-15', changeFrequency: 'monthly', priority: 0.9 },
     { url: `${base}/campus-transformation/blog/the-math-nobody-talks-about`, lastModified: '2026-05-26', changeFrequency: 'monthly', priority: 0.8 },

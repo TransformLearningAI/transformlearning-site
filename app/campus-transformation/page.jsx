@@ -7,6 +7,7 @@ import CommunityPlatformDemo from '@/components/CommunityPlatformDemo'
 export const metadata = {
   title: 'Don\'t Close. Transform. — Campus Transformation',
   description: 'Your campus doesn\'t have to close. Explore transforming it into a workforce development, community learning, and innovation hub. Keep your mission. Serve more people.',
+  alternates: { canonical: 'https://transformlearning.ai/campus-transformation' },
   openGraph: {
     title: 'Don\'t Close. Transform.',
     description: 'Your college campus doesn\'t have to shut down. Explore turning it into a workforce center, community hub, and sustainable operation with multiple revenue streams.',
