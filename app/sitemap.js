@@ -11,6 +11,13 @@ export default function sitemap() {
     { url: `${base}/students`, lastModified: '2026-06-24', changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/tools`, lastModified: '2026-06-24', changeFrequency: 'weekly', priority: 0.9 },
 
+    // Solutions (SEO landing pages)
+    { url: `${base}/solutions/dfw-rates`, lastModified: '2026-09-14', changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${base}/solutions/ai-student-retention`, lastModified: '2026-09-14', changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${base}/solutions/gateway-courses`, lastModified: '2026-09-14', changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${base}/department-scan`, lastModified: '2026-09-11', changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${base}/roi`, lastModified: '2026-09-11', changeFrequency: 'monthly', priority: 0.8 },
+
     // Blog
     { url: `${base}/blog`, lastModified: '2026-06-24', changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/blog/where-are-the-models`, lastModified: '2026-06-24', changeFrequency: 'monthly', priority: 0.9 },

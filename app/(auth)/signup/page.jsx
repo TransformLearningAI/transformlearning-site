@@ -22,6 +22,11 @@ export default function SignupPage() {
       })
       clearTimeout(timeout)
       if (error) { setError(error.message); setLoading(false); return }
+      await fetch('/api/welcome-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: form.email, name: form.full_name }),
+      }).catch(() => {})
       window.location.href = '/courses'
     } catch (err) { clearTimeout(timeout); setError(err.message || 'Something went wrong'); setLoading(false) }
   }

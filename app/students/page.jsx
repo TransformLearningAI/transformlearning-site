@@ -154,6 +154,76 @@ export default function StudentsPage() {
         </div>
       </section>
 
+      {/* Live preview — what a skill map looks like */}
+      <section className="py-20 lg:py-28 bg-white">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <p className="text-xs font-bold uppercase tracking-[0.14em] mb-4" style={{ color: '#00A8A8' }}>
+              Here's what you'll see
+            </p>
+            <h2 className="font-serif font-light mb-4"
+                style={{ fontSize: 'clamp(28px, 4vw, 48px)', lineHeight: 1.1, letterSpacing: '-0.02em', color: '#0C1F3F' }}>
+              A real skill map from one syllabus.
+            </h2>
+            <p className="text-base text-gray-500 max-w-xl mx-auto">
+              This is what a Human Physiology student sees after uploading their syllabus. Every skill extracted,
+              scored, and trackable — in about 30 seconds.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-gray-200 overflow-hidden bg-gray-50 p-6 lg:p-8">
+            <div className="grid md:grid-cols-3 gap-4 mb-6">
+              <div className="bg-white rounded-xl p-5 text-center border border-gray-100">
+                <div className="text-3xl font-black" style={{ color: '#0C1F3F' }}>14</div>
+                <div className="text-xs text-gray-400 font-medium mt-1">Skills Mapped</div>
+              </div>
+              <div className="bg-white rounded-xl p-5 text-center border border-gray-100">
+                <div className="text-3xl font-black" style={{ color: '#00A8A8' }}>8</div>
+                <div className="text-xs text-gray-400 font-medium mt-1">Foundational</div>
+              </div>
+              <div className="bg-white rounded-xl p-5 text-center border border-gray-100">
+                <div className="text-3xl font-black" style={{ color: '#7C3AED' }}>6</div>
+                <div className="text-xs text-gray-400 font-medium mt-1">Core / Transferable</div>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-3">
+              {[
+                { name: 'Cellular Physiology', type: 'Foundational', color: '#00A8A8' },
+                { name: 'Membrane Transport', type: 'Foundational', color: '#00A8A8' },
+                { name: 'Neurophysiology', type: 'Foundational', color: '#00A8A8' },
+                { name: 'Cardiovascular System', type: 'Foundational', color: '#00A8A8' },
+                { name: 'Respiratory Mechanics', type: 'Foundational', color: '#00A8A8' },
+                { name: 'Renal Physiology', type: 'Foundational', color: '#00A8A8' },
+                { name: 'Endocrine Regulation', type: 'Foundational', color: '#00A8A8' },
+                { name: 'Homeostasis', type: 'Foundational', color: '#00A8A8' },
+                { name: 'Critical Thinking', type: 'Core', color: '#7C3AED' },
+                { name: 'Systems Thinking', type: 'Core', color: '#7C3AED' },
+                { name: 'Scientific Communication', type: 'Core', color: '#7C3AED' },
+                { name: 'Experimental Design', type: 'Core', color: '#7C3AED' },
+                { name: 'Problem Solving', type: 'Core', color: '#7C3AED' },
+                { name: 'Self-Regulation', type: 'Core', color: '#7C3AED' },
+              ].map((s, i) => (
+                <div key={i} className="bg-white rounded-lg px-4 py-3 flex items-center gap-3 border border-gray-100">
+                  <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: s.color }} />
+                  <span className="text-sm font-medium" style={{ color: '#0C1F3F' }}>{s.name}</span>
+                  <span className="text-[10px] text-gray-400 ml-auto uppercase tracking-wider">{s.type}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center mt-6">
+              <Link href="/signup-student"
+                className="inline-block text-white px-8 py-3.5 rounded-xl font-bold text-sm"
+                style={{ background: '#00A8A8' }}>
+                Try It With Your Syllabus →
+              </Link>
+              <p className="text-xs text-gray-400 mt-2">Free. No credit card. Takes 30 seconds.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* What you can upload */}
       <section id="how-it-works" className="py-20 lg:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-6">
