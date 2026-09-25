@@ -19,7 +19,8 @@ export default function sitemap() {
     { url: `${base}/roi`, lastModified: '2026-09-11', changeFrequency: 'monthly', priority: 0.8 },
 
     // Blog
-    { url: `${base}/blog`, lastModified: '2026-06-24', changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/blog`, lastModified: '2026-09-25', changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/blog/the-students-you-already-admitted`, lastModified: '2026-09-25', changeFrequency: 'monthly', priority: 0.9 },
     { url: `${base}/blog/where-are-the-models`, lastModified: '2026-06-24', changeFrequency: 'monthly', priority: 0.9 },
     { url: `${base}/blog/the-people-who-see-the-problem-can-build-the-solution`, lastModified: '2026-04-16', changeFrequency: 'monthly', priority: 0.8 },
     { url: `${base}/blog/energy-karma-and-groups-of-people`, lastModified: '2026-04-16', changeFrequency: 'monthly', priority: 0.7 },

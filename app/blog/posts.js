@@ -6,6 +6,86 @@
 
 export const POSTS = [
   {
+    slug: 'the-students-you-already-admitted',
+    title: 'The Students You Already Admitted',
+    date: '2026-09-25',
+    author: 'Jeff Ritter',
+    summary: 'You recruited them, admitted them, enrolled them, and cashed the tuition check. Now a gateway course is about to push them out the door — and you can\'t even see why.',
+    body: `You recruited them. Admitted them. Enrolled them. Cashed the tuition check.
+
+Now they're sitting in a gateway course — Biology 101, College Algebra, Intro to Writing — and something is going wrong. Not dramatically wrong. Not "academic integrity violation" wrong. Just quietly, steadily wrong. The kind of wrong that shows up as a D+ at midterm and a withdrawal form by week ten.
+
+And then they're gone. Changed their major. Transferred. Dropped out entirely. One semester, one course, one grade — and the student you spent $3,000 recruiting is now a retention statistic.
+
+**You know this is happening. You can see it in the numbers.** The DFW rate in gateway courses at most institutions runs 20-30%. In some STEM courses it's 40% or higher. Every one of those letters represents a student who came to your institution believing they could do this — and left believing they couldn't.
+
+Here's the part nobody wants to say out loud: **you took this student in.** Not just for their loan money and tuition dollars, but because you told them — in your brochure, on your website, at your open house — that you would help them succeed. That's the promise. A D+ in College Algebra isn't keeping that promise.
+
+## The Problem Isn't Motivation
+
+The student isn't lazy. The student isn't stupid. The student is missing something specific — and neither the student nor the professor can identify what it is.
+
+Maybe it's fractions. Sounds ridiculous in a college algebra class, but it's not. A student who never fully grasped fraction operations in seventh grade has been compensating for a decade. They got through high school math by memorizing procedures. Now the procedures don't work anymore because the foundation has a crack in it, and nobody — not the student, not the advisor, not the professor with 120 students — can see where the crack is.
+
+Maybe it's grammar. Not "can't write" grammar — functional grammar, the kind that makes a research paper hold together. Subject-verb agreement in complex sentences. Paragraph transitions. Thesis development. The student can text, email, and post on social media with perfect fluency. Academic writing is a different language, and nobody taught them the translation.
+
+Maybe it's research methods. Maybe it's time management. Maybe it's organizational skills. Maybe it's the soft skill of asking for help, which nobody taught them because nobody recognized it as a skill.
+
+**The ingredients are granular. The consequences are not.** A student who drops their major because of one failed course is a $50,000-$120,000 revenue loss over three years. Multiply that by your DFW rate and the number is staggering.
+
+## Why Humans Can't Fix This Alone
+
+Here's the hard truth: even your best faculty can't diagnose this at the individual level. Not at scale.
+
+A professor with 30 students in a section — let alone 120 in a lecture hall — cannot sit with each student and reverse-engineer which foundational skill is missing. They can see the symptom (wrong answers on the exam). They can't see the cause (fraction operations, paragraph structure, inability to read a research article).
+
+Advisors see the student after the damage is done. Tutoring centers help the students who show up — which is not the students who need the most help. Early alert systems flag students who are already failing, which is like a smoke detector that goes off after the house has burned down.
+
+**The problem is diagnosis, not treatment.** We have plenty of support services. We don't have a way to identify, at a granular level, what specific skills each student is missing before the first exam — when there's still time to do something about it.
+
+## AI Can See What We Can't
+
+This is not a pitch for AI as a replacement for teaching. It's a recognition that AI can do one thing humans genuinely cannot: map every skill in a course, assess each student against that map, and identify the specific gaps — not "struggling in math" but "cannot perform long division with remainders, which is why polynomial division makes no sense."
+
+That's what Transform Learning does. It reads a syllabus, maps the skills, gives students an adaptive assessment, and shows them — and their professor — exactly where the cracks are. Not after the midterm. Before it.
+
+The student who's about to fail College Algebra because of fractions gets flagged in week two. The student who's about to fail English Composition because they can't construct a thesis gets identified before the first paper is due. The student who's about to change their major because one gateway course made them feel like they don't belong gets the specific help they need, when they need it, for the specific thing they're missing.
+
+## Your Freshmen Already Know How to Use AI
+
+Here's something your faculty need to hear: the freshmen arriving on your campus this fall have been using AI for two, three, even four years. Since middle school. They don't think of it as exotic or threatening. They think of it as a tool — like a calculator, like Google, like spell-check.
+
+They will not resist an AI-powered skill assessment. They will embrace it. They want to know where they stand. They've been asking Siri and ChatGPT questions their whole adolescent life. An AI that says "here's exactly what you need to work on before the exam" is speaking their language.
+
+The resistance isn't from students. It's from institutions that haven't caught up to how students already learn.
+
+## What to Do Monday Morning
+
+You're a dean or a VP. You don't have time for a pilot study or a committee. Here's what you can do this week:
+
+**1. Try it yourself.** Go to transformlearning.ai and run a skill map on one of your gateway courses. See what it finds. Five minutes.
+
+**2. Pick your worst gateway course.** The one with the highest DFW rate. The one faculty complain about. The one that loses you the most students. Start there.
+
+**3. Talk to the faculty member who has the most Fs.** Not to blame them. To ask: "If you could see exactly which foundational skills each of your students was missing on day one, would that change what you do?" The answer is always yes.
+
+**4. Talk to the department with the most major-changers.** Biology departments that lose half their freshmen. Business programs where Accounting 101 is the wall. Nursing programs where A&P is the gatekeeper. Those departments are bleeding students — and revenue — because of skills gaps nobody can see.
+
+**5. Frame it as retention, not technology.** This isn't about AI adoption. It's about keeping the students you already admitted. Every VP understands that math. Every board understands that math. One percent improvement in first-year retention at a mid-sized institution is worth $500,000 or more annually.
+
+## The Last Chance Argument
+
+I've spent thirty years in education. I've watched institutions try everything: supplemental instruction, learning communities, early alert systems, intrusive advising, tutoring centers, bridge programs, summer orientations. All of them help. None of them solve the foundational problem, which is that we don't know what each student is specifically missing until it's too late.
+
+AI might be the last tool we get before the enrollment cliff makes the question academic. The demographic decline is here. You can't afford to recruit 1,000 freshmen and lose 200 of them to gateway course failure. Not anymore.
+
+You took these students in. You made them a promise. The tools to keep that promise exist now. The question is whether you'll use them before the next midterm — or after the next withdrawal form.
+
+Start with one course. See what the map shows you. Then decide.
+
+**[Try it: transformlearning.ai](https://transformlearning.ai)**`,
+  },
+  {
     slug: 'where-are-the-models',
     title: 'Where Are the Models?',
     date: '2026-06-24',
