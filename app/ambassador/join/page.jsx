@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { track } from '@vercel/analytics'
 
 export default function JoinAmbassadorPage() {
   const [form, setForm] = useState({
@@ -20,6 +21,7 @@ export default function JoinAmbassadorPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       })
+      track('ambassador_apply', { school: form.school })
       setSubmitted(true)
     } catch (err) {}
     setLoading(false)

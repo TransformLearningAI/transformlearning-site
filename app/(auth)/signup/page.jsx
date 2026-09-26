@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
+import { track } from '@vercel/analytics'
 
 export default function SignupPage() {
   const [form, setForm] = useState({ full_name: '', institution: '', email: '', password: '' })
@@ -22,6 +23,7 @@ export default function SignupPage() {
       })
       clearTimeout(timeout)
       if (error) { setError(error.message); setLoading(false); return }
+      track('signup', { role: 'faculty', institution: form.institution })
       await fetch('/api/welcome-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

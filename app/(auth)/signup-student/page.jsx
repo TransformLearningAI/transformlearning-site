@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
+import { track } from '@vercel/analytics'
 
 export default function StudentSignupPage() {
   const [form, setForm] = useState({ full_name: '', institution: '', email: '', password: '' })
@@ -60,6 +61,7 @@ export default function StudentSignupPage() {
       })
       clearTimeout(timeout)
       if (error) { setError(error.message); setLoading(false); return }
+      track('signup', { role: 'student', institution: form.institution || 'not provided' })
       // Track ambassador referral
       await trackReferral(data?.user?.id, form.email, form.full_name)
       // Send welcome email with user data (don't rely on auth cookie)
