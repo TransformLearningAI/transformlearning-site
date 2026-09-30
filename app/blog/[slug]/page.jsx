@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import ReactMarkdown from 'react-markdown'
 import { POSTS } from '../posts'
 
 export function generateStaticParams() {
@@ -75,12 +76,20 @@ export default function BlogPost({ params }) {
           </div>
         )}
 
-        <div className="border-t border-brand-border pt-8">
-          {post.body.split('\n\n').map((paragraph, i) => (
-            <p key={i} className="text-base text-navy/80 leading-relaxed mb-6" style={{ fontFamily: 'Georgia, serif' }}>
-              {paragraph}
-            </p>
-          ))}
+        <div className="border-t border-brand-border pt-8 prose prose-lg max-w-none" style={{ fontFamily: 'Georgia, serif' }}>
+          <ReactMarkdown
+            components={{
+              p: ({ children }) => <p className="text-base text-navy/80 leading-relaxed mb-6">{children}</p>,
+              h2: ({ children }) => <h2 className="font-serif font-light text-navy mt-10 mb-4" style={{ fontSize: 'clamp(22px, 3vw, 28px)', letterSpacing: '-0.01em', lineHeight: 1.2 }}>{children}</h2>,
+              h3: ({ children }) => <h3 className="font-serif font-light text-navy mt-8 mb-3" style={{ fontSize: '20px', lineHeight: 1.3 }}>{children}</h3>,
+              strong: ({ children }) => <strong className="font-bold text-navy">{children}</strong>,
+              a: ({ href, children }) => <a href={href} className="text-brand-teal hover:text-navy underline transition-colors">{children}</a>,
+              ul: ({ children }) => <ul className="list-disc pl-6 mb-6 space-y-2">{children}</ul>,
+              li: ({ children }) => <li className="text-base text-navy/80 leading-relaxed">{children}</li>,
+            }}
+          >
+            {post.body}
+          </ReactMarkdown>
         </div>
 
         <div className="border-t border-brand-border pt-8 mt-12 flex items-center justify-between">
