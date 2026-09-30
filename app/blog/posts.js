@@ -6,6 +6,82 @@
 
 export const POSTS = [
   {
+    slug: 'you-already-know-something-is-off',
+    title: 'You Already Know Something Is Off',
+    date: '2026-09-30',
+    author: 'Jeff Ritter',
+    summary: 'That feeling in week three when the material stops making sense? It\'s not you. It\'s a gap nobody ever showed you — and now there\'s a way to find it.',
+    body: `That moment hits every student differently.
+
+For some of you it's College Algebra. You're sitting in class and the professor starts polynomial division and your brain just — stops. Not because you're not smart enough. Because somewhere between seventh grade and now, something didn't stick. Maybe fractions. Maybe order of operations. Maybe the way variables actually work. You've been getting by on memorization for years, and now memorization isn't enough.
+
+For some of you it's Bio. Or Stats. Or English Comp. The course that was supposed to be a stepping stone turns into a wall, and you can't even explain what you're hitting because the problem isn't this week's material. It's something underneath it. Something foundational that nobody ever caught.
+
+You know the feeling. You just don't know the name for it.
+
+**It's called a skills gap. And it's not your fault.**
+
+## Nobody Told You Where You Actually Stand
+
+Here's what happened: you graduated high school. You got into college. Somebody — a counselor, an admissions officer, a website — told you that you were ready.
+
+But "ready" is a vague word. It means you checked the boxes. It doesn't mean someone sat down and said, "Here's exactly what you know, here's exactly what you're missing, and here's what to do about it before the semester starts."
+
+Nobody does that. Not because they don't care, but because until very recently, there was no practical way to do it for every student in every course. Your professor has 120 students. Your advisor has 300. The tutoring center helps the people who walk in. The early alert system flags you after you've already failed the midterm.
+
+By the time anyone notices you're in trouble, you've already changed your major. Or transferred. Or dropped out. Or just decided that you're "not a math person" — which is a lie you'll carry for the rest of your life.
+
+## What If You Could See the Gap Before It Swallowed You?
+
+That's what we built Transform Learning to do.
+
+You take an adaptive assessment — not a test, not a quiz, not something that gets graded. It's a diagnostic. Think of it like an X-ray for your academic skills. It maps every skill in your course, figures out exactly where your cracks are, and shows you — in plain language — what you need to work on.
+
+Not "you're behind in math." That's useless. More like: "You don't fully understand how to manipulate fractions with variables, which is why rational expressions aren't making sense, which is why you're about to hit a wall in Chapter 4."
+
+That's specific. That's actionable. That's something you can actually fix in week two instead of discovering it on the midterm.
+
+**And it's free for all students.** Every skill map. Every adaptive assessment. Every study guide. No paywall.
+
+## Your Grade Isn't Telling You the Truth
+
+Here's something nobody says out loud: a C+ doesn't tell you anything useful. It doesn't tell you what you know. It doesn't tell you what you're missing. It doesn't tell you whether you're getting better or worse. It's just a number that averages everything together into a blur.
+
+Transform Learning doesn't replace your grade. It shows you what's underneath it. Your actual proficiency on each skill in the course. Whether your understanding is going up or going down. Which specific topics to study tonight instead of re-reading the entire chapter hoping something sticks.
+
+Stop guessing. Start seeing.
+
+## You Don't Have to Figure This Out Alone
+
+We also match you with other students. Not randomly — based on complementary strengths. If you're strong in data analysis but struggling with hypothesis testing, we'll connect you with someone who has the opposite profile. You help each other. Both of you get stronger.
+
+And if you want more support, there's an AI coaching option for $10 a month that builds a personalized study plan around your specific gaps. But the core platform — the skill maps, the assessments, the trajectory tracking, the peer matching — that's free. Period.
+
+## Want to Help Other Students Find This?
+
+Here's the thing: we're a small team. We don't have a marketing department. We don't have billboards or Super Bowl ads. What we have is students who've used this and said, "Why didn't someone show me this in week one?"
+
+That's why we started the **[Ambassador Program](https://transformlearning.ai/ambassador/join)**.
+
+If you're a college student and you believe other students deserve to see where they actually stand — not where their grade says they stand — you can help spread the word. Here's what ambassadors get:
+
+- **20% commission** on every paid signup you refer, for the life of that subscription
+- **Personal tracking links** so you can see exactly who you've helped reach the platform
+- **Real resume experience** — content creation, brand partnership, community building. The kind of thing that actually means something in a job interview.
+
+The commitment is lightweight: one social post a month, a couple of Stories a week. Be authentic. Talk about your own experience. If it helped you, say so. If it didn't, say that too. We don't want influencer theater. We want students helping students.
+
+You have to be at least 16 to apply, and the application takes about two minutes. **[Join here.](https://transformlearning.ai/ambassador/join)**
+
+## The Semester Is Already Moving
+
+It's the end of September. Midterms are coming. If something feels off — if you're sitting in a class right now with that sinking feeling that you're not getting it and you don't know why — don't wait for the grade to confirm what you already suspect.
+
+Find the gap. Fix the gap. Stay in the game.
+
+**[Start your free skill map: transformlearning.ai/students](https://transformlearning.ai/students)**`,
+  },
+  {
     slug: 'the-students-you-already-admitted',
     title: 'The Students You Already Admitted',
     date: '2026-09-25',
