@@ -13,7 +13,9 @@ export const POSTS = [
     summary: 'Ken Griffin just gave $3 billion to Carnegie Mellon — $1 billion to the School of Computer Science alone — plus a new campus in Florida. It\'s extraordinary. And the tax structure behind it is worth understanding.',
     body: `Who am I to argue with three billion dollars?
 
-Ken Griffin — founder of Citadel, one of the most successful hedge funds in history — just committed $3 billion to Carnegie Mellon University. A billion of that goes to the School of Computer Science. There's a new campus coming in Florida. It's one of the largest philanthropic gifts in the history of American higher education.
+Ken Griffin — founder of Citadel, one of the most successful hedge funds in history — just committed $3 billion to Carnegie Mellon University. There's a new campus coming in Florida. Of the $1 billion set aside for the Pittsburgh campus, half goes to the School of Computer Science and half will support the university's "highest priorities." CMU did not respond to requests for comment on what those priorities are. University President Farnam Jahanian told the New York Times the gift would help make the school more affordable. It's one of the largest philanthropic gifts in the history of American higher education.
+
+More affordable. At a school where tuition runs north of $60,000 a year. With a $3 billion gift. We'll see.
 
 And the benefits are real. This money will fund research that advances AI, robotics, cybersecurity, and computational biology. It will train the next generation of computer scientists. It will create jobs, spin off companies, and generate innovations that ripple through the economy for decades. These are things that benefit society, business, and people in multiple ways — directly and indirectly.
 
