@@ -73,7 +73,7 @@ Three billion dollars for computer science at an elite university is extraordina
 
 But who am I to argue with three billion dollars?
 
-Well, Ken — what about the rest of us?`,
+Take a look at Pittsburgh, Ken. And Miami. Go deep.`,
   },
   {
     slug: 'you-already-know-something-is-off',
