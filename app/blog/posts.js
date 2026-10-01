@@ -6,6 +6,74 @@
 
 export const POSTS = [
   {
+    slug: 'who-am-i-to-argue-with-three-billion-dollars',
+    title: 'Who Am I to Argue with Three Billion Dollars?',
+    date: '2026-10-01',
+    author: 'Jeff Ritter',
+    summary: 'Ken Griffin just gave $3 billion to Carnegie Mellon — $1 billion to the School of Computer Science alone — plus a new campus in Florida. It\'s extraordinary. And the tax structure behind it is worth understanding.',
+    body: `Who am I to argue with three billion dollars?
+
+Ken Griffin — founder of Citadel, one of the most successful hedge funds in history — just committed $3 billion to Carnegie Mellon University. A billion of that goes to the School of Computer Science. There's a new campus coming in Florida. It's one of the largest philanthropic gifts in the history of American higher education.
+
+And the benefits are real. This money will fund research that advances AI, robotics, cybersecurity, and computational biology. It will train the next generation of computer scientists. It will create jobs, spin off companies, and generate innovations that ripple through the economy for decades. These are things that benefit society, business, and people in multiple ways — directly and indirectly.
+
+So let me say it clearly: this is a genuinely significant contribution to education and innovation. Carnegie Mellon is one of the best computer science programs on the planet, and this gift will make it better.
+
+Now let me say the other part.
+
+## Where Does Three Billion Dollars Come From?
+
+You might think the answer is obvious — Ken Griffin is a brilliant investor who built a massively profitable company. That's true. But the mechanics of how that money is made and kept are worth examining, because they explain a lot about who gets to make big decisions in American education and who doesn't.
+
+Citadel makes money through complex structures and transactions. Market making. Quantitative trading. Processing stock transactions through the plumbing of the financial system. The profits are real but hard to perceive from the outside — tucked inside algorithmic strategies, arbitrage opportunities, and market microstructure. That's not a criticism. That's what makes it successful: finding niches, exploiting inefficiencies, moving faster than everyone else. This isn't corporate raiding or hollowing out businesses. It's sophisticated financial engineering.
+
+But the tax structure? That's where my quibble starts.
+
+## The Tax Architecture of Generosity
+
+Here's how the math works for someone like Ken Griffin:
+
+**No corporate income tax.** Citadel is structured through entities incorporated in Delaware, which has no corporate income tax on out-of-state revenue. This is legal. It is also a deliberate choice to avoid taxation.
+
+**Carried interest.** Fund managers don't pay ordinary income tax rates on a huge portion of their earnings. Instead, their share of fund profits — called "carried interest," a term the industry invented specifically to distinguish it from regular income — is taxed at the capital gains rate. Currently 20%, not the 37% top income tax rate. On billions of dollars, that's not a rounding error. It's hundreds of millions in tax savings.
+
+**Florida.** No state income tax. No state capital gains tax. Griffin moved from Chicago to Miami. The new CMU campus is in Florida. Connect the dots yourself.
+
+None of this is illegal. All of it is intentional. The system is designed to allow people who make money in certain ways to keep more of it than people who make money in other ways. A hedge fund manager earning $2 billion pays a lower effective tax rate than a teacher earning $65,000. That's not a bug. That's the architecture.
+
+## The Donation Is the Tax Strategy
+
+Here's the part that doesn't get said enough: the donation itself is part of the tax structure. A $3 billion charitable gift generates an enormous tax deduction. Griffin doesn't lose $3 billion — he redirects money that would have otherwise gone to the federal government, and he gets to choose where it goes.
+
+That's the key distinction. **He gets to choose.**
+
+The federal government doesn't get to choose. State governments don't get to choose. School boards don't get to choose. Ken Griffin chooses. And Ken Griffin chose Carnegie Mellon's School of Computer Science.
+
+Which is a great choice! But it's his choice. Not ours.
+
+## What Doesn't Get Chosen
+
+A week or so ago, I wrote to the Pittsburgh Public Schools board. Pittsburgh — a city with Carnegie Mellon in it, with the University of Pittsburgh, with incredible resources in education, innovation, technology, and AI. I asked: where is the innovation? Where is the planning? Where are the ideas?
+
+I imagine they read my letter and put it in the garbage. Not because they disagreed, but because the answer is: *we don't have money for that. We're just hanging on.*
+
+And that's the tension. Every dollar that doesn't get collected in taxes is a dollar that a school board, a city council, or a state legislature can't spend. Governments don't have the luxury of choosing the sexy project. They have to fund special education. They have to fix the boilers. They have to pay bus drivers and buy textbooks and keep the lights on in buildings that were built in 1952.
+
+Ken Griffin gets to put his name on a computer science building. Pittsburgh Public Schools get to argue about whether they can afford a reading specialist.
+
+## I'm Not Saying He Shouldn't Give
+
+I'm saying the system that makes this possible deserves scrutiny. When a billionaire can avoid hundreds of millions in taxes through carried interest and state residency arbitrage, and then redirect billions more through charitable deductions — choosing exactly where that money goes — we've essentially privatized a significant chunk of public investment in education.
+
+The question isn't whether Carnegie Mellon deserves the money. It does. The question is whether Ken Griffin should be the one deciding that, instead of a democratic process that also funds the schools, communities, and institutions that will never attract a billionaire's attention.
+
+Three billion dollars for computer science at an elite university is extraordinary. You know what would also be extraordinary? Closing the carried interest loophole, collecting the taxes that are owed, and letting communities decide what they need.
+
+But who am I to argue with three billion dollars?
+
+Well, Ken — what about the rest of us?`,
+  },
+  {
     slug: 'you-already-know-something-is-off',
     title: 'You Already Know Something Is Off',
     date: '2026-09-30',
