@@ -355,6 +355,46 @@ export default function KnowledgeGraphPage() {
   const containerRef = useRef(null)
   const [dims, setDims] = useState({ w: 800, h: 520 })
 
+  // Analysis state
+  const [analyzeInput, setAnalyzeInput] = useState('')
+  const [analyzing, setAnalyzing] = useState(false)
+  const [analysis, setAnalysis] = useState(null) // { summary, connections: [{nodeId, type, description}] }
+
+  async function handleAnalyze(e) {
+    e.preventDefault()
+    if (!analyzeInput.trim() || analyzing) return
+    setAnalyzing(true)
+    setAnalysis(null)
+    setSelectedNode(null)
+    setFilter('all')
+    try {
+      const res = await fetch('/api/knowledge-graph-analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ concept: analyzeInput.trim() }),
+      })
+      const data = await res.json()
+      if (data.error) throw new Error(data.error)
+      setAnalysis(data)
+    } catch (err) {
+      console.error(err)
+    }
+    setAnalyzing(false)
+  }
+
+  function clearAnalysis() {
+    setAnalysis(null)
+    setAnalyzeInput('')
+  }
+
+  // Build lookup for analysis connections
+  const analysisMap = {}
+  if (analysis?.connections) {
+    analysis.connections.forEach(c => { analysisMap[c.nodeId] = c })
+  }
+  const analysisIds = analysis ? new Set(analysis.connections.map(c => c.nodeId)) : null
+  const directIds = analysis ? new Set(analysis.connections.filter(c => c.type === 'direct').map(c => c.nodeId)) : null
+
   useEffect(() => {
     function measure() {
       if (containerRef.current) {
@@ -424,6 +464,60 @@ export default function KnowledgeGraphPage() {
             </button>
           ))}
         </div>
+      </div>
+
+      {/* Analyze Input */}
+      <div className="max-w-2xl mx-auto px-6 mb-6">
+        <form onSubmit={handleAnalyze} className="flex gap-2">
+          <input
+            type="text"
+            value={analyzeInput}
+            onChange={e => setAnalyzeInput(e.target.value)}
+            placeholder="Enter a device, medium, or concept (e.g., TikTok, business email, podcast, body camera)..."
+            className="flex-1 px-4 py-3 rounded-lg border text-sm outline-none transition-all focus:ring-2"
+            style={{ borderColor: WARM_BORDER, backgroundColor: 'white', color: NAVY, '--tw-ring-color': TEAL }}
+          />
+          <button
+            type="submit"
+            disabled={analyzing || !analyzeInput.trim()}
+            className="px-5 py-3 rounded-lg text-sm font-semibold text-white transition-all disabled:opacity-40"
+            style={{ backgroundColor: TEAL }}
+          >
+            {analyzing ? 'Analyzing...' : 'Analyze'}
+          </button>
+          {analysis && (
+            <button
+              type="button"
+              onClick={clearAnalysis}
+              className="px-3 py-3 rounded-lg text-sm border transition-all hover:opacity-70"
+              style={{ borderColor: WARM_BORDER, color: MUTED }}
+            >
+              Clear
+            </button>
+          )}
+        </form>
+
+        {/* Analysis summary */}
+        {analysis && (
+          <div className="mt-3 rounded-lg border p-4" style={{ borderColor: TEAL + '40', backgroundColor: TEAL + '06' }}>
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: TEAL }} />
+              <h3 className="text-sm font-bold" style={{ color: NAVY }}>{analysis.analysis}</h3>
+            </div>
+            <p className="text-xs leading-relaxed mb-3" style={{ color: MUTED }}>{analysis.summary}</p>
+            <div className="flex gap-3 text-xs">
+              <span style={{ color: TEAL }}>
+                <span className="font-bold">{analysis.connections.filter(c => c.type === 'direct').length}</span> direct
+              </span>
+              <span style={{ color: PLUM }}>
+                <span className="font-bold">{analysis.connections.filter(c => c.type === 'indirect').length}</span> indirect
+              </span>
+              <span style={{ color: MUTED }}>
+                {nodes.length - analysis.connections.length} unrelated
+              </span>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Graph */}
@@ -506,9 +600,21 @@ export default function KnowledgeGraphPage() {
               const nt = NODE_TYPES[node.type]
               const isSelected = selectedNode === node.id
               const isConnected = connectedIds?.has(node.id)
-              const isDimmed = connectedIds && !isConnected
+              const isDimmedBySelection = connectedIds && !isConnected
+
+              // Analysis highlighting
+              const isAnalyzed = analysisIds?.has(node.id)
+              const isDirect = directIds?.has(node.id)
+              const isDimmedByAnalysis = analysisIds && !isAnalyzed
+              const isDimmed = isDimmedBySelection || isDimmedByAnalysis
+              const analysisInfo = analysisMap[node.id]
+
               const isHovered = hoveredNode === node.id
-              const r = (nt.size / 2) * (isSelected ? 1.3 : isHovered ? 1.15 : 1)
+              const baseSize = isAnalyzed ? (isDirect ? 1.3 : 1.1) : 1
+              const r = (nt.size / 2) * (isSelected ? 1.3 : isHovered ? 1.15 : baseSize)
+
+              // Color override for analysis
+              const nodeColor = isAnalyzed ? (isDirect ? TEAL : PLUM) : nt.color
 
               return (
                 <g
@@ -516,19 +622,34 @@ export default function KnowledgeGraphPage() {
                   onClick={() => setSelectedNode(isSelected ? null : node.id)}
                   onMouseEnter={() => setHoveredNode(node.id)}
                   onMouseLeave={() => setHoveredNode(null)}
-                  style={{ cursor: 'pointer', opacity: isDimmed ? 0.15 : 1, transition: 'opacity 0.3s' }}
+                  style={{ cursor: 'pointer', opacity: isDimmed ? 0.1 : 1, transition: 'opacity 0.3s' }}
                 >
-                  {/* Glow */}
-                  {(isSelected || isHovered) && (
+                  {/* Analysis glow — larger for direct connections */}
+                  {isAnalyzed && (
+                    <circle cx={node.x} cy={node.y} r={r + (isDirect ? 14 : 8)} fill={isDirect ? TEAL : PLUM} opacity={isDirect ? 0.2 : 0.1}>
+                      {isDirect && <animate attributeName="opacity" values="0.2;0.08;0.2" dur="2s" repeatCount="indefinite" />}
+                    </circle>
+                  )}
+                  {/* Selection/hover glow */}
+                  {(isSelected || isHovered) && !isAnalyzed && (
                     <circle cx={node.x} cy={node.y} r={r + 8} fill={nt.color} opacity={0.15} />
                   )}
                   {/* Node */}
                   <circle
                     cx={node.x} cy={node.y} r={r}
-                    fill={nt.color + (node.type === 'misconception' ? '40' : '60')}
-                    stroke={nt.color}
-                    strokeWidth={isSelected ? 2 : 1}
+                    fill={nodeColor + (node.type === 'misconception' ? '40' : isAnalyzed ? '80' : '60')}
+                    stroke={nodeColor}
+                    strokeWidth={isSelected || isAnalyzed ? 2 : 1}
                   />
+                  {/* Direct/Indirect badge */}
+                  {isAnalyzed && (
+                    <text
+                      x={node.x} y={node.y + 3}
+                      textAnchor="middle" fill="white" fontSize="6" fontWeight="800" fontFamily="sans-serif"
+                    >
+                      {isDirect ? 'D' : 'I'}
+                    </text>
+                  )}
                   {/* Label */}
                   {node.label.split('\n').map((line, li) => (
                     <text
@@ -536,14 +657,37 @@ export default function KnowledgeGraphPage() {
                       x={node.x}
                       y={node.y + r + 10 + li * 10}
                       textAnchor="middle"
-                      fill="rgba(255,255,255,0.7)"
+                      fill={isAnalyzed ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.7)'}
                       fontSize={node.type === 'core' ? 8 : 7}
-                      fontWeight={node.type === 'core' ? 700 : 400}
+                      fontWeight={node.type === 'core' || isAnalyzed ? 700 : 400}
                       fontFamily="sans-serif"
                     >
                       {line}
                     </text>
                   ))}
+                  {/* Hover tooltip with analysis description */}
+                  {isHovered && analysisInfo && (
+                    <foreignObject
+                      x={node.x + r + 6} y={node.y - 20}
+                      width={180} height={60}
+                      style={{ pointerEvents: 'none', overflow: 'visible' }}
+                    >
+                      <div style={{
+                        background: 'rgba(12,31,63,0.95)',
+                        border: `1px solid ${isDirect ? TEAL : PLUM}`,
+                        borderRadius: 6,
+                        padding: '5px 8px',
+                        backdropFilter: 'blur(8px)',
+                      }}>
+                        <p style={{ color: isDirect ? TEAL : PLUM, fontSize: 8, fontWeight: 700, marginBottom: 2 }}>
+                          {isDirect ? 'DIRECT' : 'INDIRECT'}
+                        </p>
+                        <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: 9, lineHeight: 1.3 }}>
+                          {analysisInfo.description}
+                        </p>
+                      </div>
+                    </foreignObject>
+                  )}
                 </g>
               )
             })}
