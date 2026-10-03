@@ -73,13 +73,36 @@ const nodes = [
   { id: 'emotional-intel', label: 'Emotional\nIntelligence', type: 'concept', x: 520, y: 300 },
   { id: 'mindfulness', label: 'Mindful\nCommunication', type: 'skill', x: 750, y: 400 },
 
+  // Written Communication — 6th Core Branch
+  { id: 'written', label: 'Written\nCommunication', type: 'core', x: 400, y: 500 },
+
+  // Written Communication concepts
+  { id: 'thesis', label: 'Thesis\nConstruction', type: 'concept', x: 300, y: 540 },
+  { id: 'paragraph', label: 'Paragraph\nStructure', type: 'concept', x: 500, y: 540 },
+  { id: 'audience-aware', label: 'Audience\nAwareness', type: 'concept', x: 350, y: 590 },
+  { id: 'tone-register', label: 'Tone &\nRegister', type: 'concept', x: 460, y: 590 },
+  { id: 'evidence-use', label: 'Evidence\n& Citation', type: 'concept', x: 250, y: 600 },
+  { id: 'revision', label: 'Revision\n& Editing', type: 'skill', x: 550, y: 600 },
+  { id: 'narrative', label: 'Narrative\nStructure', type: 'concept', x: 200, y: 550 },
+  { id: 'argumentation', label: 'Argumentation\n& Logic', type: 'concept', x: 350, y: 650 },
+  { id: 'genre', label: 'Genre\nConventions', type: 'concept', x: 500, y: 650 },
+  { id: 'voice', label: 'Writer\'s\nVoice', type: 'concept', x: 450, y: 480 },
+  { id: 'coherence', label: 'Coherence\n& Cohesion', type: 'skill', x: 300, y: 480 },
+  { id: 'digital-writing', label: 'Digital Writing\n(Email/Social)', type: 'concept', x: 550, y: 480 },
+  { id: 'ai-writing', label: 'Writing\nWith AI', type: 'concept', x: 600, y: 540 },
+
+  // Written Communication misconceptions
+  { id: 'mis-grammar', label: 'Good grammar\n= good writing', type: 'misconception', x: 200, y: 650 },
+  { id: 'mis-oneshot', label: 'Good writers\ndon\'t revise', type: 'misconception', x: 600, y: 650 },
+  { id: 'mis-formal', label: 'Formal =\nprofessional', type: 'misconception', x: 500, y: 700 },
+
   // Cross-connections
   { id: 'context', label: 'Context\n& Situation', type: 'connection', x: 400, y: 280 },
   { id: 'culture', label: 'Cultural\nInfluence', type: 'connection', x: 400, y: 400 },
-  { id: 'digital-comm', label: 'Digital &\nAI-Mediated', type: 'connection', x: 400, y: 480 },
+  { id: 'digital-comm', label: 'Digital &\nAI-Mediated', type: 'connection', x: 400, y: 750 },
   { id: 'noise', label: 'Noise &\nBarriers', type: 'connection', x: 400, y: 180 },
 
-  // Misconceptions
+  // Misconceptions (original)
   { id: 'mis-words', label: 'Words have\nfixed meanings', type: 'misconception', x: 230, y: 30 },
   { id: 'mis-natural', label: 'Communication\nis natural/easy', type: 'misconception', x: 50, y: 220 },
   { id: 'mis-nonverbal', label: 'Body language\nis universal', type: 'misconception', x: 750, y: 50 },
@@ -169,7 +192,72 @@ const edges = [
   { from: 'noise', to: 'nonverbal', type: 'supports' },
   { from: 'noise', to: 'active-listening', type: 'supports' },
 
-  // Misconceptions (blocks relationships)
+  // Written Communication branch
+  { from: 'thesis', to: 'written', type: 'supports' },
+  { from: 'paragraph', to: 'written', type: 'supports' },
+  { from: 'audience-aware', to: 'written', type: 'supports' },
+  { from: 'tone-register', to: 'written', type: 'supports' },
+  { from: 'evidence-use', to: 'written', type: 'supports' },
+  { from: 'revision', to: 'written', type: 'supports' },
+  { from: 'narrative', to: 'written', type: 'supports' },
+  { from: 'argumentation', to: 'written', type: 'supports' },
+  { from: 'genre', to: 'written', type: 'supports' },
+  { from: 'voice', to: 'written', type: 'supports' },
+  { from: 'coherence', to: 'written', type: 'supports' },
+  { from: 'digital-writing', to: 'written', type: 'supports' },
+  { from: 'ai-writing', to: 'written', type: 'supports' },
+
+  // Written internal prerequisites
+  { from: 'argumentation', to: 'thesis', type: 'requires' },
+  { from: 'argumentation', to: 'evidence-use', type: 'requires' },
+  { from: 'coherence', to: 'paragraph', type: 'requires' },
+  { from: 'voice', to: 'tone-register', type: 'supports' },
+  { from: 'voice', to: 'audience-aware', type: 'requires' },
+  { from: 'revision', to: 'coherence', type: 'supports' },
+  { from: 'digital-writing', to: 'tone-register', type: 'requires' },
+  { from: 'digital-writing', to: 'audience-aware', type: 'requires' },
+  { from: 'ai-writing', to: 'revision', type: 'requires' },
+  { from: 'ai-writing', to: 'voice', type: 'requires' },
+  { from: 'genre', to: 'audience-aware', type: 'requires' },
+
+  // Written ↔ Verbal connections
+  { from: 'written', to: 'verbal', type: 'supports', label: 'parallel channels' },
+  { from: 'word-choice', to: 'written', type: 'supports' },
+  { from: 'clarity', to: 'written', type: 'supports' },
+  { from: 'persuasion', to: 'argumentation', type: 'supports' },
+  { from: 'tone', to: 'tone-register', type: 'supports' },
+
+  // Written ↔ Language connections
+  { from: 'written', to: 'language', type: 'requires' },
+  { from: 'semantics', to: 'written', type: 'supports' },
+  { from: 'syntax', to: 'paragraph', type: 'supports' },
+  { from: 'denotation', to: 'audience-aware', type: 'supports' },
+  { from: 'language-power', to: 'voice', type: 'supports' },
+
+  // Written ↔ Interpersonal connections
+  { from: 'feedback', to: 'revision', type: 'supports' },
+  { from: 'self-disclosure', to: 'narrative', type: 'supports' },
+
+  // Written ↔ Intrapersonal connections
+  { from: 'inner-voice', to: 'voice', type: 'supports' },
+  { from: 'self-concept', to: 'written', type: 'supports' },
+
+  // Written ↔ Cross-connections
+  { from: 'digital-comm', to: 'digital-writing', type: 'supports' },
+  { from: 'digital-comm', to: 'ai-writing', type: 'supports' },
+  { from: 'culture', to: 'genre', type: 'supports' },
+  { from: 'culture', to: 'tone-register', type: 'supports' },
+  { from: 'context', to: 'audience-aware', type: 'supports' },
+  { from: 'context', to: 'written', type: 'supports' },
+
+  // Written misconceptions
+  { from: 'mis-grammar', to: 'coherence', type: 'blocks' },
+  { from: 'mis-grammar', to: 'voice', type: 'blocks' },
+  { from: 'mis-oneshot', to: 'revision', type: 'blocks' },
+  { from: 'mis-formal', to: 'tone-register', type: 'blocks' },
+  { from: 'mis-formal', to: 'audience-aware', type: 'blocks' },
+
+  // Misconceptions — original (blocks relationships)
   { from: 'mis-words', to: 'semantics', type: 'blocks' },
   { from: 'mis-words', to: 'denotation', type: 'blocks' },
   { from: 'mis-natural', to: 'active-listening', type: 'blocks' },
@@ -188,7 +276,7 @@ function useForceSimulation(initialNodes, edges, width, height) {
     initialNodes.map(n => ({
       ...n,
       x: (n.x / 800) * width,
-      y: (n.y / 520) * height,
+      y: (n.y / 750) * height,
       vx: 0,
       vy: 0,
     }))
@@ -270,7 +358,7 @@ export default function KnowledgeGraphPage() {
     function measure() {
       if (containerRef.current) {
         const w = containerRef.current.offsetWidth
-        setDims({ w, h: Math.min(w * 0.65, 600) })
+        setDims({ w, h: Math.min(w * 0.85, 750) })
       }
     }
     measure()
@@ -310,7 +398,7 @@ export default function KnowledgeGraphPage() {
           Human Communication
         </h1>
         <p className="text-sm max-w-xl mx-auto" style={{ color: MUTED }}>
-          41 nodes. 60+ edges. Five core branches — verbal, nonverbal, language, interpersonal, intrapersonal — with concepts, skills, misconceptions, and cross-connections.
+          57 nodes. 100+ edges. Six core branches — verbal, nonverbal, language, interpersonal, intrapersonal, written — with concepts, skills, misconceptions, and cross-connections.
         </p>
       </header>
 
