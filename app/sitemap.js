@@ -59,12 +59,6 @@ export default function sitemap() {
     // Campus OS
     { url: `${base}/campus-os`, lastModified: '2026-10-02', changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/campus-os/demo`, lastModified: '2026-10-02', changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${base}/campus-os/demo/unbundling`, lastModified: '2026-10-02', changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${base}/campus-os/demo/ai-engine`, lastModified: '2026-10-02', changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${base}/campus-os/demo/economics`, lastModified: '2026-10-02', changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${base}/campus-os/demo/guides`, lastModified: '2026-10-02', changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${base}/campus-os/demo/guide-dashboard`, lastModified: '2026-10-02', changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${base}/campus-os/demo/accreditation`, lastModified: '2026-10-02', changeFrequency: 'monthly', priority: 0.8 },
     { url: `${base}/campus-os/whitepaper`, lastModified: '2026-04-16', changeFrequency: 'monthly', priority: 0.7 },
   ]
 }

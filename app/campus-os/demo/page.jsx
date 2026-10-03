@@ -12,99 +12,54 @@ const WARM_BORDER = '#EBE6E0'
 const MUTED = '#6b635a'
 const serif = 'Georgia, serif'
 
-const sections = [
+const shifts = [
   {
-    label: 'The Model',
-    items: [
-      {
-        title: 'The Unbundling',
-        href: '/campus-os/demo/unbundling',
-        description: 'What AI teaches. What guides give. What peers provide. What the campus holds. Four layers that replace the $45,000 bundle.',
-        color: TEAL,
-      },
-      {
-        title: 'AI Instruction Engine',
-        href: '/campus-os/demo/ai-engine',
-        description: 'The Board. The Win Conditions. The Rules. The Feedback Loop. Knowledge graphs, agent behavior, evidence maps, and process fidelity.',
-        color: NAVY,
-      },
-      {
-        title: 'The Economics',
-        href: '/campus-os/demo/economics',
-        description: 'What happens when instruction costs drop 70%. Interactive model with sliders: traditional vs. AI + guides.',
-        color: CORAL,
-      },
-      {
-        title: 'Accreditation Map',
-        href: '/campus-os/demo/accreditation',
-        description: 'How every component satisfies QAA (UK) and regional (US) accreditation. The regulatory strategy.',
-        color: PLUM,
-      },
-    ],
+    title: 'Signal Hub',
+    href: '/campus-os/demo/signal-hub',
+    description: 'Student signals radiate to every guide who can act. No chain of command for data. Simultaneous awareness.',
+    color: TEAL,
   },
   {
-    label: 'The Human Layer',
-    items: [
-      {
-        title: 'The Guides',
-        href: '/campus-os/demo/guides',
-        description: 'Six new roles: Practitioner-in-Residence, Socratic Provocateur, Master Craftsperson, Integration Coach, Resilience Mentor, Industry Bridge.',
-        color: PLUM,
-      },
-      {
-        title: 'Guide Dashboard',
-        href: '/campus-os/demo/guide-dashboard',
-        description: 'What a guide sees: AI-flagged students, intervention queue ranked by urgency, impact metrics, AI collaboration log.',
-        color: GREEN,
-      },
-      {
-        title: 'Peer Marketplace',
-        href: '/campus-os/demo/peer-marketplace',
-        description: 'AI-matched peer coaching. Complementary skill profiles. Mastery meets struggle. Teaching-as-learning.',
-        color: TEAL,
-      },
-    ],
+    title: 'Student Control',
+    href: '/campus-os/demo/student-control',
+    description: 'The student as operator. AI learning path, guide schedule, peer network, competency evidence map.',
+    color: NAVY,
   },
   {
-    label: 'The Operating System',
-    items: [
-      {
-        title: 'Signal Hub',
-        href: '/campus-os/demo/signal-hub',
-        description: 'Student signals radiate to every guide who can act. No chain of command for data. Simultaneous awareness.',
-        color: TEAL,
-      },
-      {
-        title: 'Student Control',
-        href: '/campus-os/demo/student-control',
-        description: 'The student as operator. AI learning path, guide schedule, peer network, competency evidence map.',
-        color: NAVY,
-      },
-      {
-        title: 'Decision Router',
-        href: '/campus-os/demo/decision-router',
-        description: 'AI surfaces decisions needing human judgment. Routes to the one person who can act. Kill the committee.',
-        color: PLUM,
-      },
-      {
-        title: 'Continuous Journey',
-        href: '/campus-os/demo/continuous-journey',
-        description: 'First inquiry through alumni. One unbroken knowledge graph. No handoffs. No gaps.',
-        color: GREEN,
-      },
-      {
-        title: 'Impact Allocation',
-        href: '/campus-os/demo/impact-allocation',
-        description: 'Resources follow learning evidence. Budget flows to where the evidence map shows gaps closing.',
-        color: CORAL,
-      },
-      {
-        title: 'Live Pulse',
-        href: '/campus-os/demo/live-pulse',
-        description: 'Real-time institutional health. AI instruction metrics, guide utilization, peer engagement, cost per learner.',
-        color: GREEN,
-      },
-    ],
+    title: 'Decision Router',
+    href: '/campus-os/demo/decision-router',
+    description: 'AI surfaces decisions needing human judgment. Routes to the one person who can act.',
+    color: PLUM,
+  },
+  {
+    title: 'Peer Marketplace',
+    href: '/campus-os/demo/peer-marketplace',
+    description: 'AI-matched peer coaching. Complementary skill profiles. Mastery meets struggle.',
+    color: TEAL,
+  },
+  {
+    title: 'Continuous Journey',
+    href: '/campus-os/demo/continuous-journey',
+    description: 'First inquiry through alumni. One unbroken thread. No handoffs. No gaps.',
+    color: GREEN,
+  },
+  {
+    title: 'Impact Allocation',
+    href: '/campus-os/demo/impact-allocation',
+    description: 'Resources follow learning evidence. Budget flows to where gaps are closing.',
+    color: CORAL,
+  },
+  {
+    title: 'Outcome Networks',
+    href: '/campus-os/demo/outcome-networks',
+    description: 'Learning outcomes across the knowledge graph. One network per outcome, not one silo per department.',
+    color: GREEN,
+  },
+  {
+    title: 'Live Pulse',
+    href: '/campus-os/demo/live-pulse',
+    description: 'Real-time institutional health. Every metric, every signal, right now.',
+    color: CORAL,
   },
 ]
 
@@ -145,33 +100,26 @@ export default function CampusOSDemoHub() {
         </p>
       </div>
 
-      {/* Grouped Demo Grid */}
-      {sections.map(section => (
-        <div key={section.label} className="max-w-6xl mx-auto px-6 pb-16">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-8 h-0.5 rounded-full" style={{ backgroundColor: TEAL }} />
-            <p className="text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: MUTED }}>{section.label}</p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {section.items.map(item => (
-              <Link
-                key={item.title}
-                href={item.href}
-                className="group block rounded-xl border bg-white p-7 transition-all duration-200 hover:shadow-lg hover:-translate-y-1"
-                style={{ borderColor: WARM_BORDER }}
-              >
-                <div className="w-8 h-1 rounded-full mb-5" style={{ backgroundColor: item.color }} />
-                <h2 className="text-lg font-semibold mb-2" style={{ color: NAVY }}>{item.title}</h2>
-                <p className="text-sm leading-relaxed mb-4" style={{ color: MUTED }}>{item.description}</p>
-                <span className="text-sm font-medium inline-block group-hover:translate-x-1 transition-transform" style={{ color: item.color }}>
-                  Explore &rarr;
-                </span>
-              </Link>
-            ))}
-          </div>
+      {/* Demo Grid */}
+      <div className="max-w-6xl mx-auto px-6 pb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {shifts.map(item => (
+            <Link
+              key={item.title}
+              href={item.href}
+              className="group block rounded-xl border bg-white p-7 transition-all duration-200 hover:shadow-lg hover:-translate-y-1"
+              style={{ borderColor: WARM_BORDER }}
+            >
+              <div className="w-8 h-1 rounded-full mb-5" style={{ backgroundColor: item.color }} />
+              <h2 className="text-lg font-semibold mb-2" style={{ color: NAVY }}>{item.title}</h2>
+              <p className="text-sm leading-relaxed mb-4" style={{ color: MUTED }}>{item.description}</p>
+              <span className="text-sm font-medium inline-block group-hover:translate-x-1 transition-transform" style={{ color: item.color }}>
+                Explore &rarr;
+              </span>
+            </Link>
+          ))}
         </div>
-      ))}
+      </div>
 
       {/* Role-Based Views */}
       <div className="border-t" style={{ borderColor: WARM_BORDER }}>

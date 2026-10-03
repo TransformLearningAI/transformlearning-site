@@ -141,18 +141,14 @@ const layers = [
 
 /* ─── New Shifts ─── */
 const shifts = [
-  { title: 'The Unbundling', href: '/campus-os/demo/unbundling', color: TEAL, desc: 'What AI teaches. What humans give. What the campus holds. The four layers that replace the $45,000 bundle.' },
-  { title: 'AI Instruction Engine', href: '/campus-os/demo/ai-engine', color: NAVY, desc: 'Knowledge graphs, adaptive assessment, agent behavior, evidence maps. How the platform actually teaches.' },
-  { title: 'The Guides', href: '/campus-os/demo/guides', color: PLUM, desc: 'Six new roles for the moments only humans can handle. Not professors. Not TAs. Something new.' },
-  { title: 'Guide Dashboard', href: '/campus-os/demo/guide-dashboard', color: GREEN, desc: 'What a guide sees: AI-flagged students, intervention queues, impact metrics. The command center.' },
-  { title: 'The Economics', href: '/campus-os/demo/economics', color: CORAL, desc: 'What happens when instruction costs drop 70%. Interactive model: traditional vs. AI + guides.' },
-  { title: 'Accreditation Map', href: '/campus-os/demo/accreditation', color: NAVY, desc: 'How every component satisfies QAA (UK) and regional (US) accreditation. The regulatory path.' },
-  { title: 'Peer Marketplace', href: '/campus-os/demo/peer-marketplace', color: TEAL, desc: 'AI-matched peer learning. Mastery meets struggle. The layer nobody else is building.' },
-  { title: 'Signal Hub', href: '/campus-os/demo/signal-hub', color: GREEN, desc: 'Student signals radiate to every guide who can act. No chain of command for data.' },
+  { title: 'Signal Hub', href: '/campus-os/demo/signal-hub', color: TEAL, desc: 'Student signals radiate to every guide who can act. No chain of command for data.' },
+  { title: 'Student Control', href: '/campus-os/demo/student-control', color: NAVY, desc: 'The student as operator. AI learning path, guide availability, peer network, competency dashboard.' },
   { title: 'Decision Router', href: '/campus-os/demo/decision-router', color: PLUM, desc: 'AI surfaces decisions needing human judgment. Routes to the one person who can act.' },
-  { title: 'Live Pulse', href: '/campus-os/demo/live-pulse', color: CORAL, desc: 'Real-time institutional health. Every metric, every signal, right now.' },
-  { title: 'Student Control', href: '/campus-os/demo/student-control', color: TEAL, desc: 'The student as operator. AI learning path, guide availability, peer network, competency dashboard.' },
+  { title: 'Peer Marketplace', href: '/campus-os/demo/peer-marketplace', color: TEAL, desc: 'AI-matched peer learning. Mastery meets struggle. The layer nobody else is building.' },
+  { title: 'Outcome Networks', href: '/campus-os/demo/outcome-networks', color: GREEN, desc: 'Learning outcomes across the knowledge graph. One network per outcome, not one silo per department.' },
   { title: 'Continuous Journey', href: '/campus-os/demo/continuous-journey', color: NAVY, desc: 'First inquiry through alumni. One unbroken thread. No handoffs.' },
+  { title: 'Impact Allocation', href: '/campus-os/demo/impact-allocation', color: CORAL, desc: 'Resources follow learning evidence. Budget flows to where gaps are closing.' },
+  { title: 'Live Pulse', href: '/campus-os/demo/live-pulse', color: GREEN, desc: 'Real-time institutional health. Every metric, every signal, right now.' },
 ]
 
 /* ─── Role views ─── */
