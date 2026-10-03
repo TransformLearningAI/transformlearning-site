@@ -110,164 +110,165 @@ const nodes = [
   { id: 'mis-objective', label: 'Perception\nis objective', type: 'misconception', x: 760, y: 330 },
 ]
 
+// Strength: 1.0 = strongest prerequisite/foundation, 0.3 = weak/tangential
 const edges = [
-  // Core to core connections
-  { from: 'verbal', to: 'nonverbal', type: 'supports', label: 'complement' },
-  { from: 'verbal', to: 'language', type: 'requires', label: 'requires' },
-  { from: 'language', to: 'nonverbal', type: 'supports', label: 'shapes' },
-  { from: 'interpersonal', to: 'verbal', type: 'requires', label: 'uses' },
-  { from: 'interpersonal', to: 'nonverbal', type: 'requires', label: 'uses' },
-  { from: 'intrapersonal', to: 'interpersonal', type: 'supports', label: 'shapes' },
-  { from: 'intrapersonal', to: 'verbal', type: 'supports', label: 'filters' },
+  // Core to core — strongest structural connections
+  { from: 'verbal', to: 'nonverbal', type: 'supports', label: 'complement', strength: 0.9 },
+  { from: 'verbal', to: 'language', type: 'requires', label: 'requires', strength: 1.0 },
+  { from: 'language', to: 'nonverbal', type: 'supports', label: 'shapes', strength: 0.7 },
+  { from: 'interpersonal', to: 'verbal', type: 'requires', label: 'uses', strength: 1.0 },
+  { from: 'interpersonal', to: 'nonverbal', type: 'requires', label: 'uses', strength: 0.9 },
+  { from: 'intrapersonal', to: 'interpersonal', type: 'supports', label: 'shapes', strength: 0.8 },
+  { from: 'intrapersonal', to: 'verbal', type: 'supports', label: 'filters', strength: 0.6 },
 
   // Verbal branch
-  { from: 'tone', to: 'verbal', type: 'supports' },
-  { from: 'word-choice', to: 'verbal', type: 'supports' },
-  { from: 'clarity', to: 'verbal', type: 'supports' },
-  { from: 'persuasion', to: 'verbal', type: 'supports' },
-  { from: 'conversation', to: 'verbal', type: 'supports' },
-  { from: 'word-choice', to: 'clarity', type: 'supports' },
-  { from: 'tone', to: 'paralanguage', type: 'supports' },
-  { from: 'persuasion', to: 'word-choice', type: 'requires' },
+  { from: 'tone', to: 'verbal', type: 'supports', strength: 0.8 },
+  { from: 'word-choice', to: 'verbal', type: 'supports', strength: 0.9 },
+  { from: 'clarity', to: 'verbal', type: 'supports', strength: 0.8 },
+  { from: 'persuasion', to: 'verbal', type: 'supports', strength: 0.7 },
+  { from: 'conversation', to: 'verbal', type: 'supports', strength: 0.7 },
+  { from: 'word-choice', to: 'clarity', type: 'supports', strength: 0.9 },
+  { from: 'tone', to: 'paralanguage', type: 'supports', strength: 0.8 },
+  { from: 'persuasion', to: 'word-choice', type: 'requires', strength: 0.8 },
 
   // Nonverbal branch
-  { from: 'body-language', to: 'nonverbal', type: 'supports' },
-  { from: 'facial-expr', to: 'nonverbal', type: 'supports' },
-  { from: 'proxemics', to: 'nonverbal', type: 'supports' },
-  { from: 'haptics', to: 'nonverbal', type: 'supports' },
-  { from: 'paralanguage', to: 'nonverbal', type: 'supports' },
-  { from: 'chronemics', to: 'nonverbal', type: 'supports' },
-  { from: 'facial-expr', to: 'body-language', type: 'supports' },
-  { from: 'proxemics', to: 'culture', type: 'supports' },
+  { from: 'body-language', to: 'nonverbal', type: 'supports', strength: 0.9 },
+  { from: 'facial-expr', to: 'nonverbal', type: 'supports', strength: 0.9 },
+  { from: 'proxemics', to: 'nonverbal', type: 'supports', strength: 0.7 },
+  { from: 'haptics', to: 'nonverbal', type: 'supports', strength: 0.5 },
+  { from: 'paralanguage', to: 'nonverbal', type: 'supports', strength: 0.8 },
+  { from: 'chronemics', to: 'nonverbal', type: 'supports', strength: 0.4 },
+  { from: 'facial-expr', to: 'body-language', type: 'supports', strength: 0.7 },
+  { from: 'proxemics', to: 'culture', type: 'supports', strength: 0.8 },
 
   // Language branch
-  { from: 'semantics', to: 'language', type: 'supports' },
-  { from: 'syntax', to: 'language', type: 'supports' },
-  { from: 'sapir-whorf', to: 'language', type: 'supports' },
-  { from: 'denotation', to: 'language', type: 'supports' },
-  { from: 'language-power', to: 'language', type: 'supports' },
-  { from: 'denotation', to: 'semantics', type: 'requires' },
-  { from: 'sapir-whorf', to: 'semantics', type: 'requires' },
-  { from: 'language-power', to: 'sapir-whorf', type: 'supports' },
+  { from: 'semantics', to: 'language', type: 'supports', strength: 1.0 },
+  { from: 'syntax', to: 'language', type: 'supports', strength: 0.8 },
+  { from: 'sapir-whorf', to: 'language', type: 'supports', strength: 0.7 },
+  { from: 'denotation', to: 'language', type: 'supports', strength: 0.8 },
+  { from: 'language-power', to: 'language', type: 'supports', strength: 0.6 },
+  { from: 'denotation', to: 'semantics', type: 'requires', strength: 0.9 },
+  { from: 'sapir-whorf', to: 'semantics', type: 'requires', strength: 0.8 },
+  { from: 'language-power', to: 'sapir-whorf', type: 'supports', strength: 0.5 },
 
   // Interpersonal branch
-  { from: 'active-listening', to: 'interpersonal', type: 'supports' },
-  { from: 'empathy', to: 'interpersonal', type: 'supports' },
-  { from: 'conflict-res', to: 'interpersonal', type: 'supports' },
-  { from: 'feedback', to: 'interpersonal', type: 'supports' },
-  { from: 'relationship-stages', to: 'interpersonal', type: 'supports' },
-  { from: 'self-disclosure', to: 'interpersonal', type: 'supports' },
-  { from: 'trust', to: 'interpersonal', type: 'supports' },
-  { from: 'empathy', to: 'active-listening', type: 'requires' },
-  { from: 'conflict-res', to: 'active-listening', type: 'requires' },
-  { from: 'conflict-res', to: 'empathy', type: 'requires' },
-  { from: 'feedback', to: 'active-listening', type: 'requires' },
-  { from: 'trust', to: 'self-disclosure', type: 'supports' },
-  { from: 'self-disclosure', to: 'relationship-stages', type: 'supports' },
+  { from: 'active-listening', to: 'interpersonal', type: 'supports', strength: 1.0 },
+  { from: 'empathy', to: 'interpersonal', type: 'supports', strength: 0.9 },
+  { from: 'conflict-res', to: 'interpersonal', type: 'supports', strength: 0.8 },
+  { from: 'feedback', to: 'interpersonal', type: 'supports', strength: 0.7 },
+  { from: 'relationship-stages', to: 'interpersonal', type: 'supports', strength: 0.6 },
+  { from: 'self-disclosure', to: 'interpersonal', type: 'supports', strength: 0.6 },
+  { from: 'trust', to: 'interpersonal', type: 'supports', strength: 0.7 },
+  { from: 'empathy', to: 'active-listening', type: 'requires', strength: 1.0 },
+  { from: 'conflict-res', to: 'active-listening', type: 'requires', strength: 0.9 },
+  { from: 'conflict-res', to: 'empathy', type: 'requires', strength: 0.9 },
+  { from: 'feedback', to: 'active-listening', type: 'requires', strength: 0.8 },
+  { from: 'trust', to: 'self-disclosure', type: 'supports', strength: 0.8 },
+  { from: 'self-disclosure', to: 'relationship-stages', type: 'supports', strength: 0.6 },
 
   // Intrapersonal branch
-  { from: 'self-concept', to: 'intrapersonal', type: 'supports' },
-  { from: 'perception', to: 'intrapersonal', type: 'supports' },
-  { from: 'inner-voice', to: 'intrapersonal', type: 'supports' },
-  { from: 'cognitive-bias', to: 'intrapersonal', type: 'supports' },
-  { from: 'emotional-intel', to: 'intrapersonal', type: 'supports' },
-  { from: 'mindfulness', to: 'intrapersonal', type: 'supports' },
-  { from: 'cognitive-bias', to: 'perception', type: 'supports' },
-  { from: 'inner-voice', to: 'self-concept', type: 'supports' },
-  { from: 'emotional-intel', to: 'empathy', type: 'supports' },
-  { from: 'mindfulness', to: 'emotional-intel', type: 'requires' },
+  { from: 'self-concept', to: 'intrapersonal', type: 'supports', strength: 1.0 },
+  { from: 'perception', to: 'intrapersonal', type: 'supports', strength: 0.9 },
+  { from: 'inner-voice', to: 'intrapersonal', type: 'supports', strength: 0.8 },
+  { from: 'cognitive-bias', to: 'intrapersonal', type: 'supports', strength: 0.7 },
+  { from: 'emotional-intel', to: 'intrapersonal', type: 'supports', strength: 0.8 },
+  { from: 'mindfulness', to: 'intrapersonal', type: 'supports', strength: 0.5 },
+  { from: 'cognitive-bias', to: 'perception', type: 'supports', strength: 0.9 },
+  { from: 'inner-voice', to: 'self-concept', type: 'supports', strength: 0.8 },
+  { from: 'emotional-intel', to: 'empathy', type: 'supports', strength: 0.9 },
+  { from: 'mindfulness', to: 'emotional-intel', type: 'requires', strength: 0.6 },
 
   // Cross-connections
-  { from: 'context', to: 'verbal', type: 'supports' },
-  { from: 'context', to: 'nonverbal', type: 'supports' },
-  { from: 'context', to: 'interpersonal', type: 'supports' },
-  { from: 'culture', to: 'nonverbal', type: 'supports' },
-  { from: 'culture', to: 'language', type: 'supports' },
-  { from: 'culture', to: 'interpersonal', type: 'supports' },
-  { from: 'culture', to: 'intrapersonal', type: 'supports' },
-  { from: 'digital-comm', to: 'verbal', type: 'supports' },
-  { from: 'digital-comm', to: 'nonverbal', type: 'supports' },
-  { from: 'digital-comm', to: 'interpersonal', type: 'supports' },
-  { from: 'noise', to: 'verbal', type: 'supports' },
-  { from: 'noise', to: 'nonverbal', type: 'supports' },
-  { from: 'noise', to: 'active-listening', type: 'supports' },
+  { from: 'context', to: 'verbal', type: 'supports', strength: 0.7 },
+  { from: 'context', to: 'nonverbal', type: 'supports', strength: 0.7 },
+  { from: 'context', to: 'interpersonal', type: 'supports', strength: 0.6 },
+  { from: 'culture', to: 'nonverbal', type: 'supports', strength: 0.8 },
+  { from: 'culture', to: 'language', type: 'supports', strength: 0.8 },
+  { from: 'culture', to: 'interpersonal', type: 'supports', strength: 0.7 },
+  { from: 'culture', to: 'intrapersonal', type: 'supports', strength: 0.5 },
+  { from: 'digital-comm', to: 'verbal', type: 'supports', strength: 0.5 },
+  { from: 'digital-comm', to: 'nonverbal', type: 'supports', strength: 0.4 },
+  { from: 'digital-comm', to: 'interpersonal', type: 'supports', strength: 0.6 },
+  { from: 'noise', to: 'verbal', type: 'supports', strength: 0.6 },
+  { from: 'noise', to: 'nonverbal', type: 'supports', strength: 0.5 },
+  { from: 'noise', to: 'active-listening', type: 'supports', strength: 0.7 },
 
   // Written Communication branch
-  { from: 'thesis', to: 'written', type: 'supports' },
-  { from: 'paragraph', to: 'written', type: 'supports' },
-  { from: 'audience-aware', to: 'written', type: 'supports' },
-  { from: 'tone-register', to: 'written', type: 'supports' },
-  { from: 'evidence-use', to: 'written', type: 'supports' },
-  { from: 'revision', to: 'written', type: 'supports' },
-  { from: 'narrative', to: 'written', type: 'supports' },
-  { from: 'argumentation', to: 'written', type: 'supports' },
-  { from: 'genre', to: 'written', type: 'supports' },
-  { from: 'voice', to: 'written', type: 'supports' },
-  { from: 'coherence', to: 'written', type: 'supports' },
-  { from: 'digital-writing', to: 'written', type: 'supports' },
-  { from: 'ai-writing', to: 'written', type: 'supports' },
+  { from: 'thesis', to: 'written', type: 'supports', strength: 0.9 },
+  { from: 'paragraph', to: 'written', type: 'supports', strength: 0.8 },
+  { from: 'audience-aware', to: 'written', type: 'supports', strength: 0.9 },
+  { from: 'tone-register', to: 'written', type: 'supports', strength: 0.7 },
+  { from: 'evidence-use', to: 'written', type: 'supports', strength: 0.7 },
+  { from: 'revision', to: 'written', type: 'supports', strength: 0.8 },
+  { from: 'narrative', to: 'written', type: 'supports', strength: 0.6 },
+  { from: 'argumentation', to: 'written', type: 'supports', strength: 0.8 },
+  { from: 'genre', to: 'written', type: 'supports', strength: 0.5 },
+  { from: 'voice', to: 'written', type: 'supports', strength: 0.7 },
+  { from: 'coherence', to: 'written', type: 'supports', strength: 0.9 },
+  { from: 'digital-writing', to: 'written', type: 'supports', strength: 0.5 },
+  { from: 'ai-writing', to: 'written', type: 'supports', strength: 0.4 },
 
   // Written internal prerequisites
-  { from: 'argumentation', to: 'thesis', type: 'requires' },
-  { from: 'argumentation', to: 'evidence-use', type: 'requires' },
-  { from: 'coherence', to: 'paragraph', type: 'requires' },
-  { from: 'voice', to: 'tone-register', type: 'supports' },
-  { from: 'voice', to: 'audience-aware', type: 'requires' },
-  { from: 'revision', to: 'coherence', type: 'supports' },
-  { from: 'digital-writing', to: 'tone-register', type: 'requires' },
-  { from: 'digital-writing', to: 'audience-aware', type: 'requires' },
-  { from: 'ai-writing', to: 'revision', type: 'requires' },
-  { from: 'ai-writing', to: 'voice', type: 'requires' },
-  { from: 'genre', to: 'audience-aware', type: 'requires' },
+  { from: 'argumentation', to: 'thesis', type: 'requires', strength: 1.0 },
+  { from: 'argumentation', to: 'evidence-use', type: 'requires', strength: 0.9 },
+  { from: 'coherence', to: 'paragraph', type: 'requires', strength: 0.9 },
+  { from: 'voice', to: 'tone-register', type: 'supports', strength: 0.7 },
+  { from: 'voice', to: 'audience-aware', type: 'requires', strength: 0.8 },
+  { from: 'revision', to: 'coherence', type: 'supports', strength: 0.8 },
+  { from: 'digital-writing', to: 'tone-register', type: 'requires', strength: 0.7 },
+  { from: 'digital-writing', to: 'audience-aware', type: 'requires', strength: 0.7 },
+  { from: 'ai-writing', to: 'revision', type: 'requires', strength: 0.9 },
+  { from: 'ai-writing', to: 'voice', type: 'requires', strength: 0.8 },
+  { from: 'genre', to: 'audience-aware', type: 'requires', strength: 0.7 },
 
   // Written ↔ Verbal connections
-  { from: 'written', to: 'verbal', type: 'supports', label: 'parallel channels' },
-  { from: 'word-choice', to: 'written', type: 'supports' },
-  { from: 'clarity', to: 'written', type: 'supports' },
-  { from: 'persuasion', to: 'argumentation', type: 'supports' },
-  { from: 'tone', to: 'tone-register', type: 'supports' },
+  { from: 'written', to: 'verbal', type: 'supports', label: 'parallel channels', strength: 0.8 },
+  { from: 'word-choice', to: 'written', type: 'supports', strength: 0.8 },
+  { from: 'clarity', to: 'written', type: 'supports', strength: 0.7 },
+  { from: 'persuasion', to: 'argumentation', type: 'supports', strength: 0.8 },
+  { from: 'tone', to: 'tone-register', type: 'supports', strength: 0.6 },
 
   // Written ↔ Language connections
-  { from: 'written', to: 'language', type: 'requires' },
-  { from: 'semantics', to: 'written', type: 'supports' },
-  { from: 'syntax', to: 'paragraph', type: 'supports' },
-  { from: 'denotation', to: 'audience-aware', type: 'supports' },
-  { from: 'language-power', to: 'voice', type: 'supports' },
+  { from: 'written', to: 'language', type: 'requires', strength: 1.0 },
+  { from: 'semantics', to: 'written', type: 'supports', strength: 0.7 },
+  { from: 'syntax', to: 'paragraph', type: 'supports', strength: 0.8 },
+  { from: 'denotation', to: 'audience-aware', type: 'supports', strength: 0.5 },
+  { from: 'language-power', to: 'voice', type: 'supports', strength: 0.6 },
 
   // Written ↔ Interpersonal connections
-  { from: 'feedback', to: 'revision', type: 'supports' },
-  { from: 'self-disclosure', to: 'narrative', type: 'supports' },
+  { from: 'feedback', to: 'revision', type: 'supports', strength: 0.7 },
+  { from: 'self-disclosure', to: 'narrative', type: 'supports', strength: 0.5 },
 
   // Written ↔ Intrapersonal connections
-  { from: 'inner-voice', to: 'voice', type: 'supports' },
-  { from: 'self-concept', to: 'written', type: 'supports' },
+  { from: 'inner-voice', to: 'voice', type: 'supports', strength: 0.7 },
+  { from: 'self-concept', to: 'written', type: 'supports', strength: 0.4 },
 
   // Written ↔ Cross-connections
-  { from: 'digital-comm', to: 'digital-writing', type: 'supports' },
-  { from: 'digital-comm', to: 'ai-writing', type: 'supports' },
-  { from: 'culture', to: 'genre', type: 'supports' },
-  { from: 'culture', to: 'tone-register', type: 'supports' },
-  { from: 'context', to: 'audience-aware', type: 'supports' },
-  { from: 'context', to: 'written', type: 'supports' },
+  { from: 'digital-comm', to: 'digital-writing', type: 'supports', strength: 0.8 },
+  { from: 'digital-comm', to: 'ai-writing', type: 'supports', strength: 0.6 },
+  { from: 'culture', to: 'genre', type: 'supports', strength: 0.6 },
+  { from: 'culture', to: 'tone-register', type: 'supports', strength: 0.5 },
+  { from: 'context', to: 'audience-aware', type: 'supports', strength: 0.7 },
+  { from: 'context', to: 'written', type: 'supports', strength: 0.5 },
 
   // Written misconceptions
-  { from: 'mis-grammar', to: 'coherence', type: 'blocks' },
-  { from: 'mis-grammar', to: 'voice', type: 'blocks' },
-  { from: 'mis-oneshot', to: 'revision', type: 'blocks' },
-  { from: 'mis-formal', to: 'tone-register', type: 'blocks' },
-  { from: 'mis-formal', to: 'audience-aware', type: 'blocks' },
+  { from: 'mis-grammar', to: 'coherence', type: 'blocks', strength: 0.9 },
+  { from: 'mis-grammar', to: 'voice', type: 'blocks', strength: 0.8 },
+  { from: 'mis-oneshot', to: 'revision', type: 'blocks', strength: 1.0 },
+  { from: 'mis-formal', to: 'tone-register', type: 'blocks', strength: 0.7 },
+  { from: 'mis-formal', to: 'audience-aware', type: 'blocks', strength: 0.8 },
 
   // Misconceptions — original (blocks relationships)
-  { from: 'mis-words', to: 'semantics', type: 'blocks' },
-  { from: 'mis-words', to: 'denotation', type: 'blocks' },
-  { from: 'mis-natural', to: 'active-listening', type: 'blocks' },
-  { from: 'mis-natural', to: 'conversation', type: 'blocks' },
-  { from: 'mis-nonverbal', to: 'proxemics', type: 'blocks' },
-  { from: 'mis-nonverbal', to: 'culture', type: 'blocks' },
-  { from: 'mis-listening', to: 'active-listening', type: 'blocks' },
-  { from: 'mis-listening', to: 'empathy', type: 'blocks' },
-  { from: 'mis-objective', to: 'perception', type: 'blocks' },
-  { from: 'mis-objective', to: 'cognitive-bias', type: 'blocks' },
+  { from: 'mis-words', to: 'semantics', type: 'blocks', strength: 0.9 },
+  { from: 'mis-words', to: 'denotation', type: 'blocks', strength: 0.8 },
+  { from: 'mis-natural', to: 'active-listening', type: 'blocks', strength: 1.0 },
+  { from: 'mis-natural', to: 'conversation', type: 'blocks', strength: 0.7 },
+  { from: 'mis-nonverbal', to: 'proxemics', type: 'blocks', strength: 0.8 },
+  { from: 'mis-nonverbal', to: 'culture', type: 'blocks', strength: 0.9 },
+  { from: 'mis-listening', to: 'active-listening', type: 'blocks', strength: 1.0 },
+  { from: 'mis-listening', to: 'empathy', type: 'blocks', strength: 0.8 },
+  { from: 'mis-objective', to: 'perception', type: 'blocks', strength: 1.0 },
+  { from: 'mis-objective', to: 'cognitive-bias', type: 'blocks', strength: 0.9 },
 ]
 
 /* ─── Force-directed simulation ─── */
@@ -433,22 +434,70 @@ export default function KnowledgeGraphPage() {
           style={{ backgroundColor: NAVY, height: dims.h }}
         >
           <svg width={dims.w} height={dims.h} className="absolute inset-0">
-            {/* Edges */}
-            {filteredEdges.map((e, i) => {
+            {/* Edge glow layer — strong connections get a soft glow behind them */}
+            {filteredEdges.filter(e => (e.strength || 0.5) >= 0.8).map((e, i) => {
               const a = simNodes.find(n => n.id === e.from)
               const b = simNodes.find(n => n.id === e.to)
               if (!a || !b) return null
               const isHighlighted = connectedIds && (connectedIds.has(e.from) && connectedIds.has(e.to))
               const isDimmed = connectedIds && !isHighlighted
+              if (isDimmed) return null
+              const color = e.type === 'blocks' ? CORAL : e.type === 'requires' ? AMBER : TEAL
               return (
                 <line
-                  key={i}
+                  key={`glow-${i}`}
                   x1={a.x} y1={a.y} x2={b.x} y2={b.y}
-                  stroke={e.type === 'blocks' ? CORAL : e.type === 'requires' ? AMBER : 'rgba(255,255,255,0.12)'}
-                  strokeWidth={e.type === 'blocks' ? 1.5 : e.type === 'requires' ? 1.2 : 0.7}
+                  stroke={color}
+                  strokeWidth={(e.strength || 0.5) * 6}
                   strokeDasharray={e.type === 'blocks' ? '4 3' : 'none'}
-                  opacity={isDimmed ? 0.05 : isHighlighted ? 0.8 : 0.3}
+                  opacity={isHighlighted ? 0.12 : 0.04}
+                  strokeLinecap="round"
                 />
+              )
+            })}
+
+            {/* Edges — width and opacity driven by strength */}
+            {filteredEdges.map((e, i) => {
+              const a = simNodes.find(n => n.id === e.from)
+              const b = simNodes.find(n => n.id === e.to)
+              if (!a || !b) return null
+              const s = e.strength || 0.5
+              const isHighlighted = connectedIds && (connectedIds.has(e.from) && connectedIds.has(e.to))
+              const isDimmed = connectedIds && !isHighlighted
+              const baseColor = e.type === 'blocks' ? CORAL : e.type === 'requires' ? AMBER : 'rgba(255,255,255,0.5)'
+              const width = e.type === 'blocks' ? 0.8 + s * 2 : 0.3 + s * 2
+              const baseOpacity = 0.1 + s * 0.4
+              return (
+                <line
+                  key={`edge-${i}`}
+                  x1={a.x} y1={a.y} x2={b.x} y2={b.y}
+                  stroke={baseColor}
+                  strokeWidth={width}
+                  strokeDasharray={e.type === 'blocks' ? '4 3' : 'none'}
+                  opacity={isDimmed ? 0.03 : isHighlighted ? 0.6 + s * 0.4 : baseOpacity}
+                  strokeLinecap="round"
+                />
+              )
+            })}
+
+            {/* Animated pulses on strong edges (strength >= 0.8) */}
+            {filteredEdges.filter(e => (e.strength || 0.5) >= 0.8 && e.type !== 'blocks').map((e, i) => {
+              const a = simNodes.find(n => n.id === e.from)
+              const b = simNodes.find(n => n.id === e.to)
+              if (!a || !b) return null
+              const isHighlighted = connectedIds && (connectedIds.has(e.from) && connectedIds.has(e.to))
+              const isDimmed = connectedIds && !isHighlighted
+              if (isDimmed) return null
+              const color = e.type === 'requires' ? AMBER : TEAL
+              const dur = 2 + (i % 5) * 0.7
+              return (
+                <circle key={`pulse-${i}`} r={2} fill={color} opacity={isHighlighted ? 0.7 : 0.3}>
+                  <animateMotion
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                    path={`M${a.x},${a.y} L${b.x},${b.y}`}
+                  />
+                </circle>
               )
             })}
 
@@ -511,14 +560,22 @@ export default function KnowledgeGraphPage() {
           </div>
 
           {/* Edge legend */}
-          <div className="absolute bottom-3 right-3 flex gap-3">
+          <div className="absolute bottom-3 right-3 flex gap-4">
             <div className="flex items-center gap-1.5">
-              <div className="w-4 h-0 border-t" style={{ borderColor: AMBER }} />
-              <span className="text-white/40" style={{ fontSize: 9 }}>requires</span>
+              <svg width="24" height="6"><line x1="0" y1="3" x2="24" y2="3" stroke={AMBER} strokeWidth="2.5" /></svg>
+              <span className="text-white/40" style={{ fontSize: 9 }}>requires (strong)</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <div className="w-4 h-0 border-t border-dashed" style={{ borderColor: CORAL }} />
-              <span className="text-white/40" style={{ fontSize: 9 }}>blocks (misconception)</span>
+              <svg width="24" height="6"><line x1="0" y1="3" x2="24" y2="3" stroke="rgba(255,255,255,0.3)" strokeWidth="0.8" /></svg>
+              <span className="text-white/40" style={{ fontSize: 9 }}>supports (weak)</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <svg width="24" height="6"><line x1="0" y1="3" x2="24" y2="3" stroke={CORAL} strokeWidth="2" strokeDasharray="4 3" /></svg>
+              <span className="text-white/40" style={{ fontSize: 9 }}>blocks</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <svg width="24" height="6"><circle cx="4" cy="3" r="2" fill={TEAL} opacity="0.6"><animate attributeName="cx" values="4;20;4" dur="2s" repeatCount="indefinite" /></circle></svg>
+              <span className="text-white/40" style={{ fontSize: 9 }}>pulse = strong</span>
             </div>
           </div>
         </div>
@@ -548,15 +605,24 @@ export default function KnowledgeGraphPage() {
                       <button
                         key={i}
                         onClick={() => setSelectedNode(otherId)}
-                        className="text-xs px-3 py-1.5 rounded-full border hover:opacity-80 transition-opacity"
+                        className="text-xs px-3 py-1.5 rounded-full border hover:opacity-80 transition-opacity flex items-center gap-1.5"
                         style={{
                           borderColor: e.type === 'blocks' ? CORAL + '40' : WARM_BORDER,
                           color: e.type === 'blocks' ? CORAL : NAVY,
                           backgroundColor: e.type === 'blocks' ? CORAL + '08' : 'white',
+                          borderWidth: (e.strength || 0.5) >= 0.8 ? 2 : 1,
                         }}
                       >
                         {direction} {other?.label.replace('\n', ' ')}
-                        <span className="ml-1 opacity-50">({e.type})</span>
+                        <span className="opacity-50">({e.type})</span>
+                        <span style={{
+                          display: 'inline-block',
+                          width: 6 + (e.strength || 0.5) * 20,
+                          height: 3,
+                          borderRadius: 2,
+                          backgroundColor: e.type === 'blocks' ? CORAL : (e.strength || 0.5) >= 0.8 ? TEAL : '#ccc',
+                          opacity: 0.4 + (e.strength || 0.5) * 0.6,
+                        }} />
                       </button>
                     )
                   })}
