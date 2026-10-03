@@ -596,6 +596,115 @@ export default function KnowledgeGraphPage() {
         </div>
       </div>
 
+      {/* Sources */}
+      <div className="max-w-4xl mx-auto px-6 pb-12">
+        <h2 className="text-sm font-bold uppercase tracking-widest mb-6 text-center" style={{ color: NAVY }}>Sources & Foundational Works</h2>
+
+        {[
+          {
+            branch: 'Core Textbooks',
+            color: NAVY,
+            sources: [
+              'DeVito, J.A. — The Interpersonal Communication Book (Pearson, 16th ed.)',
+              'Adler, R.B. & Proctor, R.F. — Looking Out, Looking In (Cengage, 16th ed.)',
+              'Wood, J.T. — Communication in Our Lives (Cengage, 9th ed.)',
+              'Floyd, K. — Communication Matters (McGraw-Hill, 4th ed.)',
+            ],
+          },
+          {
+            branch: 'Verbal Communication',
+            color: TEAL,
+            sources: [
+              'Hayakawa, S.I. — Language in Thought and Action (1949, Harcourt). Abstraction, semantics.',
+              'Tannen, D. — You Just Don\'t Understand (1990, William Morrow). Conversational styles, gender.',
+              'Aristotle — Rhetoric. Ethos, pathos, logos — the original persuasion framework.',
+            ],
+          },
+          {
+            branch: 'Nonverbal Communication',
+            color: TEAL,
+            sources: [
+              'Mehrabian, A. — Silent Messages (1971, Wadsworth). The 7-38-55 rule.',
+              'Hall, E.T. — The Hidden Dimension (1966, Doubleday). Proxemics. The Silent Language (1959). Chronemics.',
+              'Ekman, P. — Emotions Revealed (2003, Holt). Facial expressions, universal vs. cultural.',
+              'Knapp, M.L. & Hall, J.A. — Nonverbal Communication in Human Interaction (Cengage, 8th ed.).',
+            ],
+          },
+          {
+            branch: 'Language',
+            color: TEAL,
+            sources: [
+              'Sapir, E. (1929) & Whorf, B.L. (1956) — Linguistic relativity hypothesis.',
+              'Lakoff, R. — Language and Woman\'s Place (1975, Harper). Language and power.',
+              'Pinker, S. — The Language Instinct (1994, William Morrow). Language in the brain.',
+              'Ogden, C.K. & Richards, I.A. — The Meaning of Meaning (1923). Semantic triangle — denotation/connotation.',
+            ],
+          },
+          {
+            branch: 'Interpersonal Communication',
+            color: GREEN,
+            sources: [
+              'Knapp, M.L. & Vangelisti, A.L. — Interpersonal Communication and Human Relationships (Pearson, 8th ed.). Relationship stages.',
+              'Jourard, S.M. — The Transparent Self (1971). Self-disclosure theory.',
+              'Altman, I. & Taylor, D. — Social Penetration Theory (1973). The onion model.',
+              'Rogers, C. — On Becoming a Person (1961, Houghton Mifflin). Active listening, empathy.',
+              'Gottman, J. — The Science of Trust (2011, W.W. Norton). Conflict resolution.',
+              'Fisher, R. & Ury, W. — Getting to Yes (1981, Penguin). Interest-based negotiation.',
+            ],
+          },
+          {
+            branch: 'Intrapersonal Communication',
+            color: PLUM,
+            sources: [
+              'Cooley, C.H. — Human Nature and the Social Order (1902). The "looking glass self."',
+              'Mead, G.H. — Mind, Self, and Society (1934, U of Chicago Press). The "I" and "me."',
+              'Kahneman, D. — Thinking, Fast and Slow (2011, Farrar Straus). Cognitive biases.',
+              'Goleman, D. — Emotional Intelligence (1995, Bantam).',
+              'Kabat-Zinn, J. — Wherever You Go, There You Are (1994, Hyperion). Mindfulness.',
+              'Vygotsky, L. — Thought and Language (1934/1962, MIT Press). Inner speech.',
+            ],
+          },
+          {
+            branch: 'Written Communication',
+            color: CORAL,
+            sources: [
+              'Strunk, W. & White, E.B. — The Elements of Style (1959, Macmillan). Clarity, brevity.',
+              'Elbow, P. — Writing Without Teachers (1973, Oxford). Freewriting, writer\'s voice.',
+              'Flower, L. & Hayes, J.R. — "A Cognitive Process Theory of Writing" (1981, College Composition and Communication). Revision as cognition.',
+              'Toulmin, S. — The Uses of Argument (1958, Cambridge UP). Claim, evidence, warrant.',
+              'Lunsford, A. — The St. Martin\'s Handbook (Bedford/St. Martin\'s, 10th ed.).',
+              'Swales, J. — Genre Analysis (1990, Cambridge UP). Genre conventions.',
+              'Baron, N.S. — Always On (2008, Oxford). Digital writing, social media norms.',
+            ],
+          },
+          {
+            branch: 'Cross-Connections & Theory',
+            color: PLUM,
+            sources: [
+              'Hall, E.T. — Beyond Culture (1976, Anchor). High-context vs. low-context.',
+              'Shannon, C. & Weaver, W. — The Mathematical Theory of Communication (1949, U of Illinois Press). Noise/barriers model.',
+              'McLuhan, M. — Understanding Media (1964, McGraw-Hill). "The medium is the message."',
+              'Barrett, L.F. — How Emotions Are Made (2017, Houghton Mifflin). Challenges Ekman\'s universality.',
+              'Hartwell, P. — "Grammar, Grammars, and the Teaching of Grammar" (1985, College English). Grammar instruction doesn\'t improve writing.',
+            ],
+          },
+        ].map(section => (
+          <div key={section.branch} className="mb-4">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: section.color }} />
+              <h3 className="text-xs font-bold uppercase tracking-widest" style={{ color: section.color }}>{section.branch}</h3>
+            </div>
+            <div className="rounded-lg border bg-white p-4" style={{ borderColor: WARM_BORDER }}>
+              {section.sources.map((src, i) => (
+                <p key={i} className="text-xs leading-relaxed mb-1.5 last:mb-0" style={{ color: MUTED }}>
+                  {src}
+                </p>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
       {/* Footer */}
       <div className="max-w-3xl mx-auto px-6 pb-16 text-center">
         <p className="text-sm leading-relaxed" style={{ fontFamily: serif, color: NAVY }}>
