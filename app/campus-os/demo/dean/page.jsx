@@ -45,7 +45,7 @@ const programReview = [
   {
     program: 'B.A. History',
     reason: 'Enrollment decline of 18% over two years',
-    data: 'Majors dropped from 142 to 116. Intro course fill rate at 64%. Two faculty lines unfilled.',
+    data: 'Majors dropped from 142 to 116. Intro course fill rate at 64%. Two guide positions unfilled.',
     action: 'Assess demand for new concentrations (e.g., Data & Society); consider cross-listed courses with Political Science.',
   },
   {
@@ -60,7 +60,7 @@ const accreditationStandards = [
   { standard: 'Mission & Governance', pct: 98 },
   { standard: 'Curriculum & Instruction', pct: 91 },
   { standard: 'Student Learning Outcomes', pct: 88 },
-  { standard: 'Faculty Qualifications', pct: 95 },
+  { standard: 'Guide Qualifications', pct: 95 },
   { standard: 'Student Support Services', pct: 82 },
   { standard: 'Assessment & Improvement', pct: 76 },
   { standard: 'Financial Resources', pct: 94 },
@@ -88,7 +88,7 @@ function barColor(pct) {
 }
 
 /* ── Page ─────────────────────────────────────────────────────── */
-export default function DeanDashboard() {
+export default function CampusDirectorDashboard() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* ── Nav ─────────────────────────────────────────────── */}
@@ -99,7 +99,7 @@ export default function DeanDashboard() {
           </Link>
           <div className="flex items-center gap-6">
             <span className="hidden sm:inline text-xs font-medium tracking-wide uppercase" style={{ color: plum }}>
-              Dean
+              Campus Director
             </span>
             <Link href="/campus-os/demo" className="text-sm font-medium hover:underline" style={{ color: navy }}>
               &larr; All Dashboards
@@ -117,7 +117,7 @@ export default function DeanDashboard() {
                 Dr. Patricia Okafor
               </h1>
               <p className="mt-1 text-gray-500 text-sm">
-                College of Arts &amp; Sciences &middot; Dean
+                Campus Operations &middot; Campus Director
               </p>
             </div>
             <div className="flex items-center gap-6 text-sm text-gray-600">

@@ -15,7 +15,7 @@ const overview = [
   { label: 'Dept Avg Proficiency', value: '61%', sub: 'Up from 54% last year', color: teal },
   { label: 'DFW Rate', value: '22%', sub: 'Down from 29% last year', color: green },
   { label: 'Student Engagement', value: '78%', sub: 'Weekly active learners', color: plum },
-  { label: 'Faculty Adoption', value: '4 / 6', sub: 'Instructors active on platform', color: navy },
+  { label: 'Guide Adoption', value: '4 / 6', sub: 'Guides active on platform', color: navy },
 ];
 
 const courses = [
@@ -25,7 +25,7 @@ const courses = [
   { name: 'Linear Algebra', instructor: 'Dr. Alan Marsh', sections: 2, enrollment: 113, proficiency: 64, dfw: 18, trend: 'flat' },
 ];
 
-const faculty = [
+const guides = [
   { name: 'Dr. Sarah Chen', courses: 'Calc I', students: 156, proficiency: 58, interventionRate: '12%', lastActive: '2 hours ago', lowEngagement: false },
   { name: 'Dr. James Osei', courses: 'Calc II', students: 132, proficiency: 55, interventionRate: '8%', lastActive: '1 day ago', lowEngagement: false },
   { name: 'Prof. Maria Lopez', courses: 'Statistics', students: 149, proficiency: 68, interventionRate: '15%', lastActive: '3 hours ago', lowEngagement: false },
@@ -40,7 +40,7 @@ const atRiskSections = [
     instructor: 'Prof. David Ruiz',
     proficiency: '46% (↓ 9 pts since midterm)',
     dfw: '38% and rising',
-    action: 'Schedule faculty check-in; deploy targeted review modules for integration topics',
+    action: 'Schedule guide check-in; deploy targeted review modules for integration topics',
   },
   {
     section: 'MATH 152 — Sec 002',
@@ -79,7 +79,7 @@ function TrendArrow({ direction }) {
 }
 
 /* ── Page ─────────────────────────────────────────────────────── */
-export default function ChairDashboard() {
+export default function ProgramDirectorDashboard() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* ── Nav ─────────────────────────────────────────────── */}
@@ -90,7 +90,7 @@ export default function ChairDashboard() {
           </Link>
           <div className="flex items-center gap-6">
             <span className="hidden sm:inline text-xs font-medium tracking-wide uppercase" style={{ color: green }}>
-              Department Chair
+              Program Director
             </span>
             <Link href="/campus-os/demo" className="text-sm font-medium hover:underline" style={{ color: navy }}>
               &larr; All Dashboards
@@ -108,7 +108,7 @@ export default function ChairDashboard() {
                 Dr. Robert Kim
               </h1>
               <p className="mt-1 text-gray-500 text-sm">
-                Mathematics Department &middot; Department Chair
+                Mathematics Program &middot; Program Director
               </p>
             </div>
             <div className="flex items-center gap-6 text-sm text-gray-600">
@@ -194,13 +194,13 @@ export default function ChairDashboard() {
         {/* ── 4. Faculty Activity ────────────────────────────── */}
         <section>
           <h2 className="text-lg font-bold mb-4" style={{ fontFamily: 'Georgia, serif', color: navy }}>
-            Faculty Activity
+            Guide Activity
           </h2>
           <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-gray-100 text-left text-xs uppercase tracking-wide text-gray-400">
-                  <th className="px-5 py-3 font-medium">Faculty Member</th>
+                  <th className="px-5 py-3 font-medium">Guide</th>
                   <th className="px-5 py-3 font-medium">Courses</th>
                   <th className="px-5 py-3 font-medium text-center">Student Load</th>
                   <th className="px-5 py-3 font-medium text-center">Avg Proficiency</th>
@@ -209,7 +209,7 @@ export default function ChairDashboard() {
                 </tr>
               </thead>
               <tbody>
-                {faculty.map((f, i) => (
+                {guides.map((f, i) => (
                   <tr
                     key={f.name}
                     className={`${i % 2 === 0 ? 'bg-white' : 'bg-gray-50/60'} ${f.lowEngagement ? 'ring-1 ring-inset ring-red-200' : ''}`}

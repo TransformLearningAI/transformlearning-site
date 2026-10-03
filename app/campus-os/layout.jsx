@@ -1,9 +1,9 @@
 export const metadata = {
-  title: 'Campus OS — The Org Chart Is Dead | Transform Learning',
-  description: 'Campus OS replaces institutional hierarchies with AI-driven intelligence. Eight structural shifts that put the student at the center — signal hub, decision router, peer marketplace, and more.',
+  title: 'Campus OS — The University, Rebuilt from Learning Up | Transform Learning',
+  description: 'AI handles instruction. Guides handle the human moments. Peers handle each other. The campus holds it all together. A real degree, a real community, $13,500 instead of $45,000.',
   openGraph: {
-    title: 'Campus OS — One Operating System. Every Role. Complete Visibility.',
-    description: 'AI-powered operating system for higher education. Replaces silos with intelligence. Student signals radiate to everyone who can act — simultaneously.',
+    title: 'Campus OS — AI Instruction. Human Guides. Peer Learning. One System.',
+    description: 'The university, unbundled and rebuilt. AI instruction engine, six guide types, peer marketplace, evidence-based everything. Campus OS by Transform Learning.',
   },
 }
 

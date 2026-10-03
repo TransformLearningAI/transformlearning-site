@@ -70,13 +70,13 @@ const resources = [
     accent: 'brand-teal',
   },
   {
-    type: 'Office Hours',
+    type: 'Guide Session',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
       </svg>
     ),
-    label: 'Prof. Chen office hours: Thu 2\u20134pm',
+    label: 'Practitioner Guide Dr. Chen: Thu field session 2\u20134pm',
     sub: 'Current wait: 0 students',
     accent: 'brand-green',
   },

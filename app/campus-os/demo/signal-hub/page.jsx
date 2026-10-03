@@ -14,14 +14,14 @@ const student = {
 
 const recipients = [
   {
-    id: 'professor',
-    role: 'Professor',
+    id: 'practitioner',
+    role: 'Practitioner Guide',
     name: 'Dr. Okafor',
     color: 'brand-teal',
     ring: 1,
     angle: 0,
     signal:
-      'Elena\u2019s cell biology comprehension dropped 16pts in 2 weeks. Recommended: targeted coaching on membrane transport.',
+      'Elena\u2019s cell biology comprehension dropped 16pts in 2 weeks. AI confidence below threshold. Recommended: hands-on field session on membrane transport.',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342" />
@@ -29,14 +29,14 @@ const recipients = [
     ),
   },
   {
-    id: 'advisor',
-    role: 'Advisor',
+    id: 'resilience',
+    role: 'Resilience Mentor',
     name: 'Maria Santos',
     color: 'brand-green',
     ring: 1,
     angle: 60,
     signal:
-      'Elena\u2019s trajectory suggests mid-semester withdrawal risk. Schedule check-in before Week 9.',
+      'Elena\u2019s engagement dropped 60% over 5 days. Login times shifted to 3am. Behavioral flags suggest distress beyond academics.',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3a49.5 49.5 0 0 1-4.02-.163 2.115 2.115 0 0 1-1.825-2.193V10.61a2.098 2.098 0 0 1 1.825-2.098 49.414 49.414 0 0 1 8.52 0ZM3.75 15.75v3.091l3-3c1.336.062 2.681.088 4.02.078a2.115 2.115 0 0 0 1.825-2.193V9.34a2.098 2.098 0 0 0-1.825-2.098 49.414 49.414 0 0 0-8.52 0A2.098 2.098 0 0 0 .75 9.34v4.286c0 1.136.847 2.1 1.98 2.193.34.027.68.052 1.02.072Z" />
@@ -74,14 +74,14 @@ const recipients = [
     ),
   },
   {
-    id: 'chair',
-    role: 'Dept. Chair',
-    name: 'Biology',
+    id: 'integration',
+    role: 'Integration Coach',
+    name: 'Dr. Rivera',
     color: 'brand-purple',
     ring: 2,
     angle: 240,
     signal:
-      'Elena is the 4th student this week with membrane transport gaps. Possible instructional alignment issue in Section 3.',
+      'Elena has strong stats skills but can\u2019t apply them to biological data. Knowledge graph shows isolated competencies. Recommended: cross-disciplinary integration session.',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
@@ -89,14 +89,14 @@ const recipients = [
     ),
   },
   {
-    id: 'dean',
-    role: 'Dean',
-    name: 'Academic Affairs',
+    id: 'industry',
+    role: 'Industry Bridge',
+    name: 'Tom Welch',
     color: 'brand-coral',
     ring: 2,
     angle: 300,
     signal:
-      'Bio 201 Section 3 has 6 students trending below intervention threshold. Pattern emerging.',
+      'Elena\u2019s evidence map shows emerging GIS + ecology competency cluster. Three local employers seeking this exact profile. Flag for career conversation when trajectory stabilizes.',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" />
@@ -109,9 +109,9 @@ const decisionLog = [
   {
     id: 1,
     time: '2:34 PM',
-    text: 'Signal detected: proficiency drop >15pts in 14 days',
+    text: 'Signal detected: proficiency drop >15pts in 14 days. AI agent confidence below intervention threshold.',
     confidence: 0.91,
-    routed: 'Professor, Advisor, Financial Aid',
+    routed: 'Practitioner Guide, Resilience Mentor, Financial Aid',
     status: 'delivered',
   },
   {
@@ -125,9 +125,9 @@ const decisionLog = [
   {
     id: 3,
     time: '2:35 PM',
-    text: 'Pattern detected: Section 3 membrane transport cluster',
+    text: 'Pattern detected: 4 students share membrane transport gap. Knowledge graph cluster identified.',
     confidence: 0.87,
-    routed: 'Dept. Chair',
+    routed: 'Practitioner Guide, Integration Coach',
     status: 'delivered',
   },
   {
@@ -383,7 +383,7 @@ export default function SignalHubPage() {
             Key Insight
           </div>
           <p className="text-white/80 text-sm md:text-base leading-relaxed">
-            In the old model, this information would take <span className="text-white font-semibold">3 weeks</span> to reach the dean &mdash; via a grade report, aggregated by the registrar, summarized by IR, presented at a committee meeting.
+            In the old model, this information would take <span className="text-white font-semibold">3 weeks</span> to reach anyone who could act &mdash; via a grade report, aggregated by the registrar, summarized by IR, presented at a committee meeting. Now the AI flags the right guide in 3 seconds.
           </p>
           <p className="text-brand-teal font-semibold mt-3 text-sm md:text-base">
             In Campus OS, everyone sees it now.

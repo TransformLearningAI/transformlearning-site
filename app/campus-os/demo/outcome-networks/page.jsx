@@ -368,7 +368,7 @@ export default function OutcomeNetworksDemo() {
               Quantitative Reasoning Steward &nbsp;·&nbsp; Cross-Department Authority
             </p>
             <p className="mt-3 text-white/90 text-sm leading-relaxed max-w-xl">
-              Not a department chair. A steward of a learning outcome. Sees every student, every course, every department
+              Not a department chair. Not a professor. A steward of a learning outcome across the knowledge graph. Sees every student, every module, every guide intervention.
               that touches quantitative reasoning. One person. One view. Total visibility.
             </p>
           </div>

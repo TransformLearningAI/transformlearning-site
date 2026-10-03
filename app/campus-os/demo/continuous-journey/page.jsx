@@ -71,7 +71,7 @@ const stages = [
     period: 'Oct 2026',
     story:
       'Week 6: Calc I proficiency dropped to 38%. Bio and Chem stable.',
-    ai: 'Signal radiated to: professor, advisor, financial aid (tuition at risk), peer marketplace (3 coaches available).',
+    ai: 'Signal radiated to: Practitioner Guide, Resilience Mentor, financial aid (tuition at risk), peer marketplace (3 coaches available).',
     action:
       'Coordinated intervention: peer coaching + targeted practice. Not a single email from an advisor saying "how are your classes going?"',
     icon: (
@@ -408,7 +408,7 @@ export default function ContinuousJourneyPage() {
           </div>
 
           <p className="mt-10 text-sm text-gray-400 max-w-2xl mx-auto leading-relaxed">
-            Because the advisor already knows. Because the professor sees what admissions saw. Because
+            Because the Resilience Mentor already knows. Because the Practitioner Guide sees what the AI flagged at admission. Because
             financial aid knows retention is at risk before the student does.
           </p>
         </div>

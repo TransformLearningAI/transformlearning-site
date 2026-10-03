@@ -14,7 +14,7 @@ const healthMetrics = [
   { label: 'Course Completion Rate', value: '87.3%', accent: GREEN },
   { label: 'Avg DFW Rate', value: '17.8%', accent: CORAL },
   { label: 'Gen Ed Proficiency', value: '72%', accent: TEAL },
-  { label: 'Faculty Engagement', value: '68%', accent: PLUM },
+  { label: 'Guide Engagement', value: '68%', accent: PLUM },
   { label: 'Assessment Compliance', value: '94%', accent: GREEN },
 ];
 
@@ -112,8 +112,8 @@ const gatewayCourses = [
 ];
 
 const facultyStats = {
-  activeFaculty: 42,
-  totalFaculty: 67,
+  activeGuides: 42,
+  totalGuides: 67,
   trainingModules: {
     completed: 156,
     total: 201,
@@ -426,9 +426,9 @@ export default function AcademicAffairsDashboard() {
           </div>
         </section>
 
-        {/* ── 5. Faculty Development ── */}
+        {/* ── 5. Guide Development ── */}
         <section>
-          <SectionHeading>Faculty Development</SectionHeading>
+          <SectionHeading>Guide Development</SectionHeading>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Platform Engagement */}
             <div className="bg-white rounded-xl border border-gray-200 p-6">
@@ -440,22 +440,22 @@ export default function AcademicAffairsDashboard() {
                   className="text-4xl font-bold"
                   style={{ fontFamily: 'Georgia, serif', color: NAVY }}
                 >
-                  {facultyStats.activeFaculty}
+                  {facultyStats.activeGuides}
                 </span>
                 <span className="text-lg text-gray-400 mb-1">
-                  / {facultyStats.totalFaculty}
+                  / {facultyStats.totalGuides}
                 </span>
               </div>
-              <p className="text-sm text-gray-500 mb-3">faculty active on the platform</p>
+              <p className="text-sm text-gray-500 mb-3">guides active on the platform</p>
               <ProgressBar
                 value={Math.round(
-                  (facultyStats.activeFaculty / facultyStats.totalFaculty) * 100
+                  (facultyStats.activeGuides / facultyStats.totalGuides) * 100
                 )}
                 color={PLUM}
               />
               <p className="text-xs text-gray-400 text-right mt-1 font-medium">
                 {Math.round(
-                  (facultyStats.activeFaculty / facultyStats.totalFaculty) * 100
+                  (facultyStats.activeGuides / facultyStats.totalGuides) * 100
                 )}
                 % adoption
               </p>
@@ -493,7 +493,7 @@ export default function AcademicAffairsDashboard() {
                 <div>
                   <div className="flex justify-between items-center mb-1.5">
                     <span className="text-sm font-medium text-gray-600">
-                      Engaged Faculty
+                      Engaged Guides
                     </span>
                     <span className="text-sm font-bold" style={{ color: GREEN }}>
                       {facultyStats.proficiencyByEngagement.engaged}

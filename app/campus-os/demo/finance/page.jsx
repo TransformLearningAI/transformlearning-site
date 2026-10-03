@@ -17,7 +17,7 @@ const dfwCourses = [
 
 const budgetItems = [
   { item: 'Platform Licensing',       budgeted: 185000, actual: 178500 },
-  { item: 'Faculty Development',      budgeted: 120000, actual: 94200  },
+  { item: 'Guide Development',       budgeted: 120000, actual: 94200  },
   { item: 'Student Support Services', budgeted: 245000, actual: 231800 },
   { item: 'IT Infrastructure',        budgeted: 160000, actual: 172400 },
   { item: 'Assessment Tools',         budgeted: 88000,  actual: 79600  },

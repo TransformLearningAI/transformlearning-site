@@ -21,7 +21,7 @@ const activeDecisions = [
     signal: 'Bio 201 Section 3: 6 students below intervention threshold on membrane transport',
     analysis: 'Pattern indicates instructional misalignment, not student deficiency. 4 of 6 students are strong in related skills (cellular respiration, ATP synthesis). Section 1 covers the same topic with 92% proficiency.',
     routedTo: 'Dr. Kim',
-    routedRole: 'Biology Dept Chair',
+    routedRole: 'Practitioner Guide (Biology)',
     recommended: 'Review Section 3 instructional approach for membrane transport. Compare to Section 1 (92% proficiency on same topic).',
     timeWaiting: '2 hours',
     checks: { fairness: true, confidence: 94, privacy: true, humanRequired: true },
@@ -55,9 +55,9 @@ const activeDecisions = [
     urgency: 'ACTION',
     urgencyColor: amber,
     signal: 'Psychology 101: 3 sections showing divergent proficiency — Section B is 18 points below Sections A and C',
-    analysis: 'Same curriculum, same assessments, same week. Instructor variable is the primary differentiator. Section B instructor is first-year adjunct.',
+    analysis: 'Knowledge graph shows identical content delivery. AI agent behavior logs show different intervention patterns. Section B has 40% fewer guide-initiated field sessions.',
     routedTo: 'Dr. Reyes',
-    routedRole: 'Psychology Dept Chair',
+    routedRole: 'Integration Coach (Psychology)',
     recommended: 'Pair Section B instructor with peer mentor from Section A. Share specific lesson plans for statistical reasoning module.',
     timeWaiting: '4 hours',
     checks: { fairness: true, confidence: 91, privacy: true, humanRequired: true },
@@ -77,12 +77,12 @@ const activeDecisions = [
 ];
 
 const resolvedDecisions = [
-  { id: 'R1',  signal: 'Chem 101 Lab Section 4: safety protocol quiz scores dropped below 80% threshold',      resolvedBy: 'Dr. Patel (Chem Chair)',        time: '12 min', action: 'Mandatory safety review session added before next lab' },
+  { id: 'R1',  signal: 'Chem 101 Lab Section 4: safety protocol quiz scores dropped below 80% threshold',      resolvedBy: 'Practitioner Guide (Chemistry)',        time: '12 min', action: 'Mandatory safety review session added before next lab' },
   { id: 'R2',  signal: 'Advising: 23 undeclared sophomores have not met with advisor this semester',            resolvedBy: 'Dir. Thompson (Advising)',       time: '18 min', action: 'Triggered automated scheduling outreach with follow-up' },
   { id: 'R3',  signal: 'Math 200: homework completion rate dropped 30% after midterm',                          resolvedBy: 'Dr. Chen (Instructor)',          time: '8 min',  action: 'Reduced assignment length, added checkpoint problems' },
   { id: 'R4',  signal: 'Tutoring center: 40% increase in demand for organic chemistry — waitlist growing',      resolvedBy: 'Maria Santos (Tutoring Dir)',    time: '25 min', action: 'Added 3 evening drop-in sessions, recruited 2 peer tutors' },
   { id: 'R5',  signal: 'Transfer student cohort: 8 students missing prerequisite for registered spring courses', resolvedBy: 'Registrar Office',               time: '45 min', action: 'Flagged for advisor review, 6 approved for co-requisite model' },
-  { id: 'R6',  signal: 'Student wellness: dining hall swipe data shows 4 students skipping meals consistently', resolvedBy: 'Dean of Students',               time: '22 min', action: 'Confidential outreach initiated, connected to food assistance' },
+  { id: 'R6',  signal: 'Student wellness: dining hall swipe data shows 4 students skipping meals consistently', resolvedBy: 'Resilience Mentor',               time: '22 min', action: 'Confidential outreach initiated, connected to food assistance' },
   { id: 'R7',  signal: 'Physics 150: online practice system usage at 0 for 31 students after week 4',           resolvedBy: 'Dr. Okafor (Instructor)',        time: '15 min', action: 'In-class walkthrough of system, reset student access' },
   { id: 'R8',  signal: 'English 102: 3 students flagged for potential academic integrity concern',               resolvedBy: 'Prof. Davis (Instructor)',       time: '1.5 hr', action: 'Individual meetings scheduled, reviewed AI usage policy' },
   { id: 'R9',  signal: 'Residence life: noise complaints up 200% in Hall B during finals prep week',            resolvedBy: 'RD Martinez',                   time: '30 min', action: 'Opened 24-hour quiet study space in Hall B lounge' },
@@ -380,7 +380,7 @@ export default function DecisionRouterDemo() {
 
             <div className="mt-5 pt-4 border-t border-brand-coral/20">
               <p className="text-sm text-brand-gray leading-relaxed">
-                <span className="font-semibold text-navy">28 faculty-hours per meeting. 12 meetings per year. 336 hours of committee time.</span>
+                <span className="font-semibold text-navy">28 guide-hours per meeting. 12 meetings per year. 336 hours of committee time. The Decision Router eliminates 90% of these.</span>
                 {' '}For an average of 24 decisions per year.
               </p>
             </div>
@@ -426,7 +426,7 @@ export default function DecisionRouterDemo() {
                   <span className="text-2xl font-bold text-brand-green">0</span>
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-navy">Faculty hours wasted</p>
+                  <p className="text-sm font-semibold text-navy">Guide hours wasted</p>
                   <p className="text-xs text-brand-gray">Each person sees only the decisions they can act on.</p>
                 </div>
               </div>

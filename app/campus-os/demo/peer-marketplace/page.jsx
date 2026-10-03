@@ -90,7 +90,7 @@ const recognition = [
   { icon: '★', label: 'XP', detail: '25 XP per session, bonus for repeat impact' },
   { icon: '🛡', label: 'Coaching Badges', detail: 'Bronze → Silver → Gold based on hours and impact' },
   { icon: '📜', label: 'Transcript Notation', detail: '"Peer Learning Coach — Membrane Transport (12 sessions)"' },
-  { icon: '✉', label: 'Recommendation Letters', detail: 'Auto-generated from coaching data, verified by faculty' },
+  { icon: '✉', label: 'Recommendation Letters', detail: 'Auto-generated from coaching data, verified by guides' },
 ];
 
 /* ── Peer network nodes (mock) ────────────────────────────── */

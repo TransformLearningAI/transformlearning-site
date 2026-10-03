@@ -92,7 +92,7 @@ const signalFeed = [
   { time: '10:11 AM', text: 'Signal: 5 students in English 102 showing declining engagement patterns over 7 days.', type: 'alert' },
   { time: '10:07 AM', text: 'Peer coaching session completed: Jake M. helped 2 students with membrane transport. Both +6pts.', type: 'learning' },
   { time: '10:03 AM', text: 'Auto-intervention: Personalized review materials sent to 12 students ahead of Psych midterm.', type: 'ai' },
-  { time: '9:58 AM', text: 'Decision routed: Nursing program requesting additional simulation lab hours. Sent to Dean of Health Sciences.', type: 'resolution' },
+  { time: '9:58 AM', text: 'Decision routed: Nursing program requesting additional simulation lab hours. Sent to Master Craftsperson (Nursing).', type: 'resolution' },
 ];
 
 const feedTypeStyles = {

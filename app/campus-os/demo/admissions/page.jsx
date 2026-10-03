@@ -75,7 +75,7 @@ const meltSegments = [
       'Undecided on major',
     ],
     actions: [
-      'Department-specific outreach from faculty',
+      'Department-specific outreach from guides and Industry Bridge',
       'Send program highlight video',
       'Peer mentor matching invitation',
       'Scholarship deadline reminder',

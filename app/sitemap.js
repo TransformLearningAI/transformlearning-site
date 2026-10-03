@@ -52,9 +52,19 @@ export default function sitemap() {
     { url: `${base}/campus-transformation/blog/the-math-nobody-talks-about`, lastModified: '2026-05-26', changeFrequency: 'monthly', priority: 0.8 },
     { url: `${base}/campus-transformation/blog/oakland-city-doesnt-have-to-die`, lastModified: '2026-05-21', changeFrequency: 'monthly', priority: 0.8 },
 
+    // New blog posts
+    { url: `${base}/blog/you-already-know-something-is-off`, lastModified: '2026-09-30', changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${base}/blog/who-am-i-to-argue-with-three-billion-dollars`, lastModified: '2026-10-01', changeFrequency: 'monthly', priority: 0.9 },
+
     // Campus OS
-    { url: `${base}/campus-os`, lastModified: '2026-04-16', changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${base}/campus-os/demo`, lastModified: '2026-04-16', changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${base}/campus-os`, lastModified: '2026-10-02', changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/campus-os/demo`, lastModified: '2026-10-02', changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${base}/campus-os/demo/unbundling`, lastModified: '2026-10-02', changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${base}/campus-os/demo/ai-engine`, lastModified: '2026-10-02', changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${base}/campus-os/demo/economics`, lastModified: '2026-10-02', changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${base}/campus-os/demo/guides`, lastModified: '2026-10-02', changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${base}/campus-os/demo/guide-dashboard`, lastModified: '2026-10-02', changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${base}/campus-os/demo/accreditation`, lastModified: '2026-10-02', changeFrequency: 'monthly', priority: 0.8 },
     { url: `${base}/campus-os/whitepaper`, lastModified: '2026-04-16', changeFrequency: 'monthly', priority: 0.7 },
   ]
 }

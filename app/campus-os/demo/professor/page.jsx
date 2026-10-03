@@ -91,7 +91,7 @@ function SkillBar({ name, value }) {
 
 /* ───────────────────────── Page ───────────────────────── */
 
-export default function ProfessorDashboard() {
+export default function GuideDashboard() {
   const [queueFilter, setQueueFilter] = useState('All');
 
   const filteredQueue = queueFilter === 'All'
@@ -107,7 +107,7 @@ export default function ProfessorDashboard() {
             transformlearning.ai
           </Link>
           <div className="flex items-center gap-6">
-            <span className="hidden sm:inline text-sm font-medium text-brand-gray">Professor</span>
+            <span className="hidden sm:inline text-sm font-medium text-brand-gray">Practitioner Guide</span>
             <Link
               href="/campus-os/demo"
               className="text-sm font-medium text-navy hover:text-brand-teal transition-colors"
@@ -124,7 +124,7 @@ export default function ProfessorDashboard() {
           {/* Decorative circle */}
           <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-brand-teal/10" />
           <div className="relative">
-            <p className="text-brand-teal text-sm font-semibold tracking-wide uppercase">Professor Dashboard</p>
+            <p className="text-brand-teal text-sm font-semibold tracking-wide uppercase">Guide Dashboard</p>
             <h1 className="mt-2 text-3xl md:text-4xl font-bold tracking-tight font-serif">
               Dr. Sarah Chen
             </h1>
@@ -298,7 +298,7 @@ export default function ProfessorDashboard() {
         {/* ── Footer ── */}
         <footer className="text-center py-8">
           <p className="text-xs text-brand-gray">
-            transformlearning.ai Campus OS &nbsp;·&nbsp; Professor View &nbsp;·&nbsp; Data refreshed Oct 29, 2026
+            transformlearning.ai Campus OS &nbsp;·&nbsp; Guide View &nbsp;·&nbsp; Data refreshed Oct 29, 2026
           </p>
         </footer>
       </main>

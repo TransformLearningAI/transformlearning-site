@@ -26,7 +26,7 @@ const pulseMetrics = [
   { label: 'Retention Rate', value: '81.3%', delta: '↑ 3.2 pp', deltaColor: GREEN },
   { label: '4-Year Graduation Rate', value: '42.1%', delta: null, deltaColor: null },
   { label: 'Operating Margin', value: '+1.8%', delta: null, deltaColor: null },
-  { label: 'Student–Faculty Ratio', value: '18 : 1', delta: null, deltaColor: null },
+  { label: 'Student–Guide Ratio', value: '18 : 1', delta: null, deltaColor: null },
   { label: 'Endowment', value: '$34.2M', delta: null, deltaColor: null },
 ];
 

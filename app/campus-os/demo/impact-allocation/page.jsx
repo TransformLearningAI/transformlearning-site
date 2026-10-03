@@ -105,7 +105,7 @@ const budgetSources = [
 const destinations = [
   { name: 'Peer coaching program', amount: 180, impact: 'high', recommended: '+$180K' },
   { name: 'AI coaching integration', amount: 145, impact: 'high', recommended: '+$60K' },
-  { name: 'Faculty development', amount: 120, impact: 'high', recommended: null },
+  { name: 'Guide development', amount: 120, impact: 'high', recommended: null },
   { name: 'Lab equipment', amount: 195, impact: 'moderate', recommended: null },
   { name: 'Traditional tutoring', amount: 160, impact: 'low', recommended: '-$180K' },
   { name: 'Administrative overhead', amount: 240, impact: 'low', recommended: null },
