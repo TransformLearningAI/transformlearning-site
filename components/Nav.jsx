@@ -12,7 +12,6 @@ export default function Nav() {
     { label: 'Blog',          href: '/blog' },
     { label: 'Methodology',  href: '/methodology' },
     { label: 'Community',    href: '/community' },
-    { label: 'Ambassadors',  href: '/ambassador/join' },
     { label: 'Campus Transformation', href: '/campus-transformation' },
   ]
 

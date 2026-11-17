@@ -50,6 +50,7 @@ export async function GET(request) {
       trajectory: { trend: trajectory.trend, velocity: trajectory.velocity, isGenuine: trajectory.isGenuine, description: trajectory.description },
       interval: { lower: interval.lower, estimate: interval.estimate, upper: interval.upper, reliability: interval.reliability },
       sourceBreakdown: weighted.sourceBreakdown,
+      evidenceCount: observations.length,
     }
   })
 

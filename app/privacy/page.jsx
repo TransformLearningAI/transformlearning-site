@@ -86,7 +86,7 @@ export default function PrivacyPage() {
               <li><strong>Supabase</strong> &mdash; database and authentication</li>
               <li><strong>Anthropic (Claude API)</strong> &mdash; AI processing</li>
               <li><strong>Vercel</strong> &mdash; hosting and anonymous analytics</li>
-              <li><strong>Stripe</strong> &mdash; payment processing</li>
+              <li><strong>Invoicing provider</strong> &mdash; [TBD]</li>
               <li><strong>Resend</strong> &mdash; transactional email</li>
             </ul>
           </section>

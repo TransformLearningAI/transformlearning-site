@@ -154,7 +154,7 @@ export default function Hero() {
         <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6">
           <p className="text-sm text-white/50 text-center">
             <span className="font-semibold text-white/80">Students:</span> Skill tracking is free.
-            AI coaching is <strong style={{ color: '#00A8A8' }}>$10/month</strong> when you need it.
+            AI coaching is included when your school is a partner. <strong style={{ color: '#00A8A8' }}>[Pricing TBD]</strong>
           </p>
           <a href="/students"
              className="text-xs font-bold px-5 py-2 rounded-md whitespace-nowrap transition-opacity hover:opacity-90"

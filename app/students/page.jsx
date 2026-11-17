@@ -108,7 +108,7 @@ export default function StudentsPage() {
                style={{ background: '#0C1F3F', boxShadow: '0 4px 24px rgba(12,31,63,0.25)' }}>
             <p className="text-sm sm:text-base text-white/90 font-medium text-center sm:text-left">
               Everything below is <strong className="text-white">free</strong>.
-              AI coaching is <strong style={{ color: '#00A8A8' }}>$10/month</strong> when you need it.
+              AI coaching is included when your school is a partner. <strong style={{ color: '#00A8A8' }}>[Pricing TBD]</strong>
             </p>
             <div className="flex items-center gap-3 flex-shrink-0">
               <Link href="/signup-student"
@@ -294,7 +294,7 @@ export default function StudentsPage() {
             <div className="bg-white rounded-2xl p-8 text-center">
               <div className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2">AI Coach</div>
               <div className="flex items-baseline justify-center gap-1 mb-1">
-                <span className="text-5xl font-black" style={{ color: '#0C1F3F' }}>$10</span>
+                <span className="text-5xl font-black" style={{ color: '#0C1F3F' }}>[TBD]</span>
                 <span className="text-gray-400 text-sm">/month</span>
               </div>
               <p className="text-sm text-gray-400 mb-6">Cancel anytime. No commitment.</p>
@@ -322,7 +322,7 @@ export default function StudentsPage() {
               <Link href="/signup-student"
                 className="block w-full py-3.5 rounded-lg font-bold text-sm text-white"
                 style={{ background: '#0C1F3F' }}>
-                Start Free — Upgrade Later →
+                Start Free →
               </Link>
               <p className="text-xs text-gray-400 mt-3">
                 Start with everything free. Add coaching when you need it.
@@ -346,7 +346,7 @@ export default function StudentsPage() {
                 <tr className="border-b border-gray-200" style={{ background: '#F4F7FB' }}>
                   <th className="text-left px-6 py-4 font-bold" style={{ color: '#0C1F3F' }}>Feature</th>
                   <th className="px-6 py-4 font-bold text-center" style={{ color: '#0C1F3F' }}>Free</th>
-                  <th className="px-6 py-4 font-bold text-center" style={{ color: '#00A8A8' }}>+ Coach ($10/mo)</th>
+                  <th className="px-6 py-4 font-bold text-center" style={{ color: '#00A8A8' }}>+ Coach [pricing TBD]</th>
                 </tr>
               </thead>
               <tbody>

@@ -486,7 +486,7 @@ export default function Methodology() {
             {
               type: 'Evidence Sparsity',
               desc: 'The system has too few observations to produce a reliable estimate.',
-              mechanism: 'The credible interval widens dramatically with sparse data. With one observation, the interval can span 30+ points. The integrity framework blocks automated interventions when uncertainty exceeds the action threshold, deferring to human judgment.',
+              mechanism: 'The credible interval widens dramatically with sparse data. With one observation, the interval spans nearly the full scale, so the system shows the student a range and withholds a point score. The integrity framework blocks automated interventions when uncertainty exceeds the action threshold, deferring to human judgment.',
               color: '#00A8A8',
             },
             {
@@ -585,12 +585,12 @@ export default function Methodology() {
         </Card>
 
         <div className="bg-brand-mist border border-brand-border rounded-2xl p-6 mt-6">
-          <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-brand-gray mb-4">Reliability Tiers</p>
+          <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-brand-gray mb-4">How Estimates Are Labeled</p>
           <div className="grid grid-cols-3 gap-4">
             {[
-              { label: 'High Reliability', criteria: 'Confidence \u2265 80%, interval width \u2264 10 pts', color: '#4F8A5B' },
-              { label: 'Moderate Reliability', criteria: 'Confidence \u2265 50%, interval width \u2264 18 pts', color: '#00A8A8' },
-              { label: 'Low Reliability', criteria: 'Below moderate thresholds', color: '#FF6B4A' },
+              { label: 'Early estimate', criteria: 'One assignment. Students see a likely range only, not a point score.', color: '#FF6B4A' },
+              { label: 'Developing estimate', criteria: 'Two or three assignments. A score and a range, with confidence shown.', color: '#00A8A8' },
+              { label: 'Estimate', criteria: 'Four or more assignments. A score, a range, and confidence.', color: '#4F8A5B' },
             ].map(r => (
               <div key={r.label} className="text-center">
                 <div className="text-lg font-black mb-1" style={{ color: r.color }}>{r.label}</div>

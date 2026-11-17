@@ -7,46 +7,8 @@ export default function StudentSignupPage() {
   const [form, setForm] = useState({ full_name: '', institution: '', email: '', password: '' })
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const [utm, setUtm] = useState({})
-
-  // Capture UTM parameters from URL on page load
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-    const utmData = {
-      utm_source: params.get('utm_source') || '',
-      utm_medium: params.get('utm_medium') || '',
-      utm_campaign: params.get('utm_campaign') || '', // Ambassador's name (e.g., "AshlieH")
-      utm_id: params.get('utm_id') || '',
-    }
-    setUtm(utmData)
-    // Store in sessionStorage so it persists through Google OAuth redirect
-    if (utmData.utm_campaign) {
-      sessionStorage.setItem('tl_referral', JSON.stringify(utmData))
-    }
-  }, [])
 
   function set(field) { return e => setForm(f => ({ ...f, [field]: e.target.value })) }
-
-  // Track ambassador referral after successful signup
-  async function trackReferral(studentId, email, name) {
-    const stored = sessionStorage.getItem('tl_referral')
-    const utmData = stored ? JSON.parse(stored) : utm
-    if (utmData.utm_campaign) {
-      await fetch('/api/referral', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ambassador_code: utmData.utm_campaign,
-          student_id: studentId,
-          student_email: email,
-          student_name: name,
-          utm_source: utmData.utm_source,
-          utm_medium: utmData.utm_medium,
-        }),
-      }).catch(() => {})
-      sessionStorage.removeItem('tl_referral')
-    }
-  }
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -62,8 +24,6 @@ export default function StudentSignupPage() {
       clearTimeout(timeout)
       if (error) { setError(error.message); setLoading(false); return }
       track('signup', { role: 'student', institution: form.institution || 'not provided' })
-      // Track ambassador referral
-      await trackReferral(data?.user?.id, form.email, form.full_name)
       // Send welcome email with user data (don't rely on auth cookie)
       await fetch('/api/welcome-email', {
         method: 'POST',

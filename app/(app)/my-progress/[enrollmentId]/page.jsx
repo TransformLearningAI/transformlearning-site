@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect, useMemo } from 'react'
 import { useParams } from 'next/navigation'
-import { proficiencyColor, proficiencyLabel } from '@/lib/utils/proficiency'
+import { proficiencyColor, proficiencyLabel, evidenceLabel } from '@/lib/utils/proficiency'
 import Link from 'next/link'
 import { BookOpen, Brain, FileUp, Sparkles, Trophy, Compass, MessageCircle } from 'lucide-react'
 
@@ -354,12 +354,26 @@ export default function StudentDashboard() {
                         {sel?.skill_type === 'implicit' ? 'core' : 'foundational'}
                       </span>
                     </div>
-                    <div className="mt-4 h-3 overflow-hidden rounded-full bg-white/10">
-                      <div className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-700" style={{ width: `${sel?.score || 0}%` }} />
-                    </div>
-                    <div className="mt-3 flex items-center justify-between text-sm">
-                      <span className="text-slate-400">Proficiency</span>
-                      <span className="font-bold">{sel?.score || 0}%</span>
+                    {sel?.evidenceCount === 1 ? (
+                      <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm">
+                        <div className="text-slate-400 mb-1">Likely range</div>
+                        <div className="font-bold text-lg">{sel?.interval?.lower ?? 0}% to {sel?.interval?.upper ?? 100}%</div>
+                        <div className="text-xs text-white/50 mt-1">One assignment is not enough for a point score. The range will narrow as more work comes in.</div>
+                      </div>
+                    ) : (
+                      <>
+                        <div className="mt-4 h-3 overflow-hidden rounded-full bg-white/10">
+                          <div className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-700" style={{ width: `${sel?.score || 0}%` }} />
+                        </div>
+                        <div className="mt-3 flex items-center justify-between text-sm">
+                          <span className="text-slate-400">Proficiency</span>
+                          <span className="font-bold">{sel?.score || 0}%</span>
+                        </div>
+                      </>
+                    )}
+                    <div className="mt-2 flex items-center justify-between text-sm">
+                      <span className="text-slate-400">Estimate</span>
+                      <span className="font-bold">{evidenceLabel(sel?.evidenceCount)}</span>
                     </div>
                     <div className="mt-2 flex items-center justify-between text-sm">
                       <span className="text-slate-400">Confidence</span>
@@ -371,12 +385,12 @@ export default function StudentDashboard() {
                         <div className="text-[10px] font-bold uppercase tracking-wider text-white/50 mb-2">Confidence Interval</div>
                         <div className="relative h-3 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.05)' }}>
                           <div className="absolute h-full rounded-full" style={{ left: `${sel.interval.lower}%`, width: `${sel.interval.upper - sel.interval.lower}%`, background: 'rgba(0,206,209,0.2)' }} />
-                          <div className="absolute h-full w-1 rounded-full" style={{ left: `${sel.score}%`, background: '#00CED1' }} />
+                          {sel.evidenceCount !== 1 && <div className="absolute h-full w-1 rounded-full" style={{ left: `${sel.score}%`, background: '#00CED1' }} />}
                         </div>
                         <div className="flex items-center justify-between text-[10px] text-white/50 mt-1">
                           <span>{sel.interval.lower}%</span>
-                          <span className="font-bold" style={{ color: sel.interval.reliability === 'high' ? '#4ADE80' : sel.interval.reliability === 'moderate' ? '#FBBF24' : '#FB7185' }}>
-                            {sel.interval.reliability} reliability
+                          <span className="font-bold" style={{ color: sel.evidenceCount >= 4 ? '#4ADE80' : sel.evidenceCount >= 2 ? '#FBBF24' : '#FB7185' }}>
+                            {evidenceLabel(sel.evidenceCount)}
                           </span>
                           <span>{sel.interval.upper}%</span>
                         </div>
