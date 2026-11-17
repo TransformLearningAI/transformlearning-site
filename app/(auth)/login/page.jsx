@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 
@@ -8,7 +8,36 @@ export default function LoginPage() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [notice, setNotice] = useState('')
+  const [resending, setResending] = useState(false)
   const router = useRouter()
+
+  // A failed confirmation link lands here with ?error=...
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const err = params.get('error')
+    if (!err) return
+    if (err === 'auth_callback_failed' || /expired|invalid|otp/i.test(err)) {
+      setError('That confirmation link is invalid or has already been used. Enter your email below and we will send a fresh one.')
+    } else {
+      setError(err)
+    }
+  }, [])
+
+  async function resendConfirmation() {
+    if (!email) { setError('Enter your email first, then click resend.'); return }
+    setResending(true)
+    setError('')
+    const supabase = createClient()
+    const { error } = await supabase.auth.resend({
+      type: 'signup',
+      email,
+      options: { emailRedirectTo: `${window.location.origin}/api/auth/callback?next=/dashboard` },
+    })
+    setResending(false)
+    if (error) setError(error.message)
+    else setNotice(`A new confirmation link is on its way to ${email}.`)
+  }
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -16,8 +45,12 @@ export default function LoginPage() {
     setError('')
     const supabase = createClient()
     const { error } = await supabase.auth.signInWithPassword({ email, password })
-    if (error) { setError(error.message); setLoading(false) }
-    else router.push('/dashboard')
+    if (error) {
+      setError(error.message)
+      setLoading(false)
+      return
+    }
+    router.push('/dashboard')
   }
 
   return (
@@ -50,6 +83,17 @@ export default function LoginPage() {
         {error && (
           <div className="rounded-xl px-4 py-3 text-sm" style={{ background: 'rgba(244,63,94,0.08)', color: '#FB7185', border: '1px solid rgba(244,63,94,0.15)' }}>
             {error}
+            {/confirmation link/i.test(error) && (
+              <button type="button" onClick={resendConfirmation} disabled={resending}
+                className="block mt-2 underline text-white/80 disabled:opacity-50">
+                {resending ? 'Sending…' : 'Resend confirmation email'}
+              </button>
+            )}
+          </div>
+        )}
+        {notice && (
+          <div className="rounded-xl px-4 py-3 text-sm" style={{ background: 'rgba(0,206,209,0.08)', color: '#67E8F9', border: '1px solid rgba(0,206,209,0.2)' }}>
+            {notice}
           </div>
         )}
 
