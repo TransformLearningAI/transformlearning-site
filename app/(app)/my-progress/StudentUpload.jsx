@@ -128,7 +128,7 @@ export default function StudentUpload() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           title: title || EXAMPLES[activeExample].label,
-          content: mode === 'text' ? content : '',
+          content: (mode === 'text' || mode === 'file') ? content : '',
           sourceUrl: mode === 'url' ? url : '',
         }),
       })

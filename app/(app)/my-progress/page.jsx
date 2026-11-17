@@ -15,12 +15,8 @@ export default async function MyProgressPage() {
     .eq('student_id', user.id)
     .order('enrolled_at', { ascending: false })
 
-  // Single enrollment — go straight to the terrain
-  if (enrollments?.length === 1) {
-    return (
-      <meta httpEquiv="refresh" content={`0;url=/my-progress/${enrollments[0].id}`} />
-    )
-  }
+  // No enrollments — show upload form only
+  // With enrollments — always show the course list + upload form so students can add more
 
   return (
     <div>
