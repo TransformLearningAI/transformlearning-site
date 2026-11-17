@@ -24,6 +24,7 @@ export default function StudentSignupPage() {
       sessionStorage.setItem('tl_referral', JSON.stringify(utmData))
     }
   }, [])
+  const [confirmSent, setConfirmSent] = useState(false)
 
   function set(field) { return e => setForm(f => ({ ...f, [field]: e.target.value })) }
 
@@ -57,13 +58,27 @@ export default function StudentSignupPage() {
       const supabase = createClient()
       const { data, error } = await supabase.auth.signUp({
         email: form.email, password: form.password,
-        options: { data: { full_name: form.full_name, institution: form.institution, role: 'student' } },
+        options: {
+          data: { full_name: form.full_name, institution: form.institution, role: 'student' },
+          emailRedirectTo: `${window.location.origin}/api/auth/callback?next=/dashboard`,
+        },
       })
       clearTimeout(timeout)
       if (error) { setError(error.message); setLoading(false); return }
       track('signup', { role: 'student', institution: form.institution || 'not provided' })
       // Track ambassador referral
       await trackReferral(data?.user?.id, form.email, form.full_name)
+      // Email confirmation required: no session yet. Tell the student to check their inbox.
+      if (!data?.session) {
+        await fetch('/api/welcome-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: form.email, name: form.full_name }),
+        }).catch(() => {})
+        setConfirmSent(true)
+        setLoading(false)
+        return
+      }
       // Send welcome email with user data (don't rely on auth cookie)
       await fetch('/api/welcome-email', {
         method: 'POST',
@@ -82,6 +97,22 @@ export default function StudentSignupPage() {
       provider: 'google',
       options: { redirectTo: `${window.location.origin}/my-progress` },
     })
+  }
+
+  if (confirmSent) {
+    return (
+      <div>
+        <h1 className="font-serif font-light text-white mb-3" style={{ fontSize: '36px', letterSpacing: '-0.02em' }}>
+          Check your email.
+        </h1>
+        <p className="text-white/60 text-sm mb-4">
+          We sent a confirmation link to <strong className="text-white">{form.email}</strong>. Click it to finish creating your account.
+        </p>
+        <p className="text-white/40 text-xs">
+          The link works once and expires after a short time. If it says it is invalid or expired, come back and sign in; we will send a fresh one. School email filters sometimes open links before you do, so check with your IT office if it keeps failing.
+        </p>
+      </div>
+    )
   }
 
   return (
