@@ -22,8 +22,9 @@ export async function POST(request) {
     try {
       const base64 = text.replace('__PDF_BASE64__', '')
       const buffer = Buffer.from(base64, 'base64')
-      const pdf = await import('pdf-parse')
-      const data = await pdf.default(buffer)
+      // pdf-parse 1.1.1 tries to load a test file on import — use its core directly
+      const { default: pdfParse } = await import('pdf-parse/lib/pdf-parse.js')
+      const data = await pdfParse(buffer)
       text = data.text?.slice(0, 30000) || ''
       if (!text.trim()) throw new Error('No text extracted from PDF')
     } catch (err) {
