@@ -19,14 +19,7 @@ export async function POST(request) {
   if (!enrollment || enrollment.student_id !== user.id)
     return NextResponse.json({ error: 'Unauthorized' }, { status: 403 })
 
-  // Check subscription status
-  const { subscribed } = await getSubscriptionStatus()
-  if (!subscribed) {
-    return NextResponse.json({
-      error: 'AI coaching requires an active subscription. Upgrade for $10/month to unlock unlimited coaching conversations.',
-      requiresUpgrade: true,
-    }, { status: 403 })
-  }
+  // Enterprise edition — coaching included for all enrolled students
 
   // Get skill + proficiency
   const { data: skill } = await service

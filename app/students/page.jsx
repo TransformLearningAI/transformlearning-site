@@ -107,8 +107,8 @@ export default function StudentsPage() {
           <div className="relative -mt-6 rounded-2xl px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-4"
                style={{ background: '#0C1F3F', boxShadow: '0 4px 24px rgba(12,31,63,0.25)' }}>
             <p className="text-sm sm:text-base text-white/90 font-medium text-center sm:text-left">
-              Everything below is <strong className="text-white">free</strong>.
-              AI coaching is <strong style={{ color: '#00A8A8' }}>$10/month</strong> when you need it.
+              Everything below is <strong className="text-white">included</strong>.
+              Skill mapping, assessments, and AI coaching — all in one platform.
             </p>
             <div className="flex items-center gap-3 flex-shrink-0">
               <Link href="/signup-student"
@@ -256,21 +256,21 @@ export default function StudentsPage() {
         </div>
       </section>
 
-      {/* AI Coach — paid tier */}
+      {/* AI Coach — included */}
       <section id="pricing" className="py-20 lg:py-28" style={{ background: '#0C1F3F' }}>
         <div className="max-w-5xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-14 items-center">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 mb-6">
-                <span className="text-xs font-bold text-white/60 uppercase tracking-wider">Premium</span>
+                <span className="text-xs font-bold text-white/60 uppercase tracking-wider">Included</span>
               </div>
               <h2 className="font-serif font-light text-white mb-6"
                   style={{ fontSize: 'clamp(28px, 4vw, 48px)', lineHeight: 1.1, letterSpacing: '-0.02em' }}>
                 AI Learning Coach
               </h2>
               <p className="text-lg text-white/60 leading-relaxed mb-8">
-                Everything above is free. But when you're stuck on a concept and need someone to walk you
-                through it — step by step, at your pace — the AI coach is there.
+                When you're stuck on a concept and need someone to walk you through it — step by step,
+                at your pace — the AI coach is there. Included for all students.
               </p>
 
               <ul className="space-y-4 mb-10">
@@ -292,17 +292,17 @@ export default function StudentsPage() {
             </div>
 
             <div className="bg-white rounded-2xl p-8 text-center">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2">AI Coach</div>
+              <div className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2">Everything Included</div>
               <div className="flex items-baseline justify-center gap-1 mb-1">
-                <span className="text-5xl font-black" style={{ color: '#0C1F3F' }}>$10</span>
-                <span className="text-gray-400 text-sm">/month</span>
+                <span className="text-3xl font-black" style={{ color: '#00A8A8' }}>All Features</span>
               </div>
-              <p className="text-sm text-gray-400 mb-6">Cancel anytime. No commitment.</p>
+              <p className="text-sm text-gray-400 mb-6">Provided by your institution.</p>
 
               <div className="border-t border-gray-200 pt-6 mb-6">
-                <p className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-4">Includes everything free, plus:</p>
                 <ul className="space-y-3 text-left">
                   {[
+                    'Skill mapping from any syllabus or program',
+                    'Adaptive assessments with proficiency tracking',
                     'Unlimited AI coaching conversations',
                     'Pace control (gradual → fast)',
                     'Skill-specific deep dives',
@@ -321,12 +321,9 @@ export default function StudentsPage() {
 
               <Link href="/signup-student"
                 className="block w-full py-3.5 rounded-lg font-bold text-sm text-white"
-                style={{ background: '#0C1F3F' }}>
-                Start Free — Upgrade Later →
+                style={{ background: '#00A8A8' }}>
+                Get Started →
               </Link>
-              <p className="text-xs text-gray-400 mt-3">
-                Start with everything free. Add coaching when you need it.
-              </p>
             </div>
           </div>
         </div>
@@ -337,7 +334,7 @@ export default function StudentsPage() {
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="font-serif font-light text-center mb-12"
               style={{ fontSize: 'clamp(24px, 3.5vw, 40px)', lineHeight: 1.1, letterSpacing: '-0.02em', color: '#0C1F3F' }}>
-            Free vs. Coach
+            Everything. Included.
           </h2>
 
           <div className="rounded-2xl border border-gray-200 overflow-hidden">
@@ -345,33 +342,25 @@ export default function StudentsPage() {
               <thead>
                 <tr className="border-b border-gray-200" style={{ background: '#F4F7FB' }}>
                   <th className="text-left px-6 py-4 font-bold" style={{ color: '#0C1F3F' }}>Feature</th>
-                  <th className="px-6 py-4 font-bold text-center" style={{ color: '#0C1F3F' }}>Free</th>
-                  <th className="px-6 py-4 font-bold text-center" style={{ color: '#00A8A8' }}>+ Coach ($10/mo)</th>
+                  <th className="px-6 py-4 font-bold text-center" style={{ color: '#00A8A8' }}>Included</th>
                 </tr>
               </thead>
               <tbody>
                 {[
-                  ['Upload syllabi, programs, course lists', true, true],
-                  ['AI skill mapping', true, true],
-                  ['Proficiency tracking & quizzes', true, true],
-                  ['Trajectory analysis', true, true],
-                  ['AI study guides', true, true],
-                  ['Peer learning matches', true, true],
-                  ['AI coaching conversations', false, true],
-                  ['Pace control (gradual/moderate/fast)', false, true],
-                  ['Misconception detection', false, true],
-                ].map(([feature, free, paid], i) => (
+                  'Upload syllabi, programs, course lists',
+                  'AI skill mapping',
+                  'Proficiency tracking & adaptive quizzes',
+                  'Trajectory analysis',
+                  'AI study guides',
+                  'Peer learning matches',
+                  'AI coaching conversations',
+                  'Pace control (gradual/moderate/fast)',
+                  'Misconception detection & correction',
+                ].map((feature, i) => (
                   <tr key={i} className={i < 8 ? 'border-b border-gray-100' : ''}>
                     <td className="px-6 py-3.5 text-gray-600">{feature}</td>
                     <td className="px-6 py-3.5 text-center">
-                      {free
-                        ? <span style={{ color: '#4F8A5B' }}>✓</span>
-                        : <span className="text-gray-300">—</span>}
-                    </td>
-                    <td className="px-6 py-3.5 text-center">
-                      {paid
-                        ? <span style={{ color: '#00A8A8' }}>✓</span>
-                        : <span className="text-gray-300">—</span>}
+                      <span style={{ color: '#00A8A8' }}>✓</span>
                     </td>
                   </tr>
                 ))}
