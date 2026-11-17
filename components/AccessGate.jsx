@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
 const ROLES = [
@@ -28,34 +28,27 @@ export default function AccessGate({ children, pageName }) {
 
   const upd = (k, v) => setForm(f => ({ ...f, [k]: v }))
 
-  // Revoked access — these emails can no longer access restricted content
-  const REVOKED = ['rydstromryan@gmail.com', 'ryanrydstrom@gmail.com', 'orsismt@gmail.com']
-
-  // Check URL for access key
-  useState(() => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search)
-      const key = params.get('access')
-      if (key) {
-        try {
-          // Key format: base64(email)
-          const email = atob(key).toLowerCase()
-          if (email.includes('@') && !REVOKED.includes(email)) {
-            sessionStorage.setItem('tl_access', key)
-            setGranted(true)
-          }
-        } catch { /* invalid key */ }
-      }
-      // Check session
-      const saved = sessionStorage.getItem('tl_access')
-      if (saved) {
-        try {
-          const email = atob(saved).toLowerCase()
-          if (!REVOKED.includes(email)) setGranted(true)
-        } catch { /* invalid key */ }
-      }
-    }
-  })
+  // The server decides whether a key is valid and whether the email has been revoked.
+  // The browser never decodes the key itself.
+  useEffect(() => {
+    const fromUrl = new URLSearchParams(window.location.search).get('access')
+    const candidate = fromUrl || sessionStorage.getItem('tl_access')
+    if (!candidate) return
+    let cancelled = false
+    fetch(`/api/verify-access?key=${encodeURIComponent(candidate)}`)
+      .then(res => (res.ok ? res.json() : { ok: false }))
+      .then(({ ok }) => {
+        if (cancelled) return
+        if (ok) {
+          sessionStorage.setItem('tl_access', candidate)
+          setGranted(true)
+        } else {
+          sessionStorage.removeItem('tl_access')
+        }
+      })
+      .catch(() => { /* leave the request form in place */ })
+    return () => { cancelled = true }
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()

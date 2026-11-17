@@ -70,7 +70,7 @@ export async function middleware(request) {
   const { data: { user } } = await supabase.auth.getUser()
 
   // Public paths — no auth needed
-  const publicPaths = ['/', '/investors', '/methodology', '/access', '/blog', '/login', '/signup', '/accept-invite', '/demo', '/campus-os', '/students', '/cranberry-demo', '/api/whitepaper-request', '/api/whitepaper-download', '/api/auth', '/api/enrollments', '/api/invites', '/api/request-access', '/api/approve-access']
+  const publicPaths = ['/', '/investors', '/methodology', '/access', '/blog', '/login', '/signup', '/accept-invite', '/demo', '/campus-os', '/students', '/cranberry-demo', '/api/whitepaper-request', '/api/whitepaper-download', '/api/auth', '/api/enrollments', '/api/invites', '/api/request-access', '/api/approve-access', '/api/verify-access']
   const isPublic = publicPaths.some(p => pathname === p || pathname.startsWith(p))
 
   if (!user && !isPublic && !pathname.startsWith('/_next') && !pathname.startsWith('/api/pilot') && !pathname.startsWith('/api/digest')) {
