@@ -6,6 +6,84 @@
 
 export const POSTS = [
   {
+    slug: 'singapore-mandated-ai-literacy-but-how-do-you-know-its-working',
+    title: "Singapore Mandated AI Literacy. But How Do You Know It's Working?",
+    date: '2026-11-28',
+    author: 'Jeff Ritter',
+    summary: "Singapore just mandated AI competencies for every university student and AI training for every teacher. NUS, NTU, and SMU are all integrating AI across the curriculum. But nobody has answered the measurement question yet.",
+    body: `Singapore knows AI literacy isn't optional. They mandated it.
+
+Starting this year, every student at NUS, NTU, and SMU must develop AI competencies. Every teacher in the country must complete AI training by year's end. The Ministry of Education's "Four Learns" framework — Learn About AI, Use AI, With AI, Beyond AI — is the most comprehensive national AI education strategy on the planet.
+
+No other country has moved this fast or this broadly. The United States is still debating whether to allow ChatGPT in classrooms. Singapore is embedding AI in 40% of university courses by 2030 and requiring every primary, secondary, and JC teacher to complete compulsory AI modules.
+
+This is not a pilot. This is national policy.
+
+## The Question Nobody Has Answered
+
+You can give every student ChatGPT access. You can embed AI in 40% of courses. You can mandate modules and issue certificates. But how do you measure whether a student actually learned to evaluate AI critically — or just learned to prompt it faster?
+
+This is the gap at the center of every AI literacy initiative worldwide, and Singapore is no exception. The mandate is clear. The delivery infrastructure is impressive. The measurement framework is missing.
+
+Here is what measurement would actually require:
+
+**Skill-level visibility.** Not "did the student pass the AI module" but "can this student identify when an AI-generated claim is unsupported by evidence?" Not a grade on a course. A proficiency estimate on a specific competency, with enough data points to be reliable.
+
+**Continuous assessment.** A one-time quiz at the end of an AI module tells you what the student remembered on Tuesday. It tells you nothing about whether they can apply that understanding in a chemistry lab, a history seminar, or a business case three months later. AI literacy is not a topic. It is a capacity that shows up differently in every discipline.
+
+**Confidence intervals.** One quiz is not enough evidence to claim a student is "AI literate." Two quizzes are better. Four are reliable. The measurement system needs to be honest about what it knows and what it doesn't — just like the AI systems it's teaching students to evaluate.
+
+**Cross-disciplinary tracking.** If a student learns to critique AI-generated text in an English course, can they also critique AI-generated financial analysis? AI literacy is supposed to be transferable. The measurement system should test whether it actually transfers.
+
+## What We Built
+
+Transform Learning was designed for exactly this problem — before Singapore mandated it, before the "Four Learns" framework existed, before most universities had an AI policy at all.
+
+The platform takes any course — in any discipline, in any language — and maps every skill the student needs to develop. It then tracks each student's proficiency on each skill through adaptive assessment, using Bayesian estimation to build a score that gets more reliable with each data point.
+
+It does not replace the teacher. It does not grade the student. It shows the teacher, the student, and the institution exactly where understanding stands — skill by skill, student by student, in real time.
+
+For AI literacy specifically, this means:
+
+- A student's ability to **identify AI-generated misinformation** is tracked separately from their ability to **use AI tools productively**
+- A student who scores high on "prompt engineering" but low on "evaluating AI claims against primary evidence" is visible — and so is the gap
+- The institution can see, across all courses that include AI components, whether students are actually developing the competencies the mandate requires — or just completing the modules
+
+## Why This Matters for Singapore
+
+Singapore's "Four Learns" framework is exactly right in its structure. Learning *about* AI, learning to *use* AI, learning *with* AI, and learning *beyond* AI are genuinely distinct competencies. But they are currently assessed, if at all, through course grades and module completion — which is like measuring fitness by checking whether someone has a gym membership.
+
+The measurement challenge is not a criticism of Singapore's approach. It is the next step that every country implementing AI literacy will need to take. Singapore, because it moved first and most ambitiously, has the opportunity to solve the measurement problem first as well.
+
+## The Broader Pattern
+
+This is not only a Singapore story. The same gap exists everywhere AI education is being rolled out:
+
+- **Thiel College** in Pennsylvania just received a \\$1.8 million federal grant to build AI literacy across the curriculum. They signed a five-year BoodleBox agreement for AI tools. They have the mandate and the tools. They need the measurement.
+
+- **Australia's NSW Department of Education** has staff exploring AI-powered skill tracking. One of their employees signed up for Transform Learning this year.
+
+- **Lebanese American University**, the **University of South Florida**, the **University of Richmond**, the **University of Arizona** — students at all of these institutions have used the platform. The pattern is the same everywhere: the mandate comes first, the tools come second, the measurement comes last.
+
+Singapore could change that order.
+
+## An Invitation
+
+If you are working on AI literacy measurement — in Singapore or anywhere — I would like to hear from you. Transform Learning is a working platform with students in 30+ countries. The methodology is [published and transparent](https://transformlearning.ai/methodology). The scoring engine uses multi-source Bayesian estimation with fairness constraints and confidence intervals.
+
+I did not build this to sell software. I built it because I spent 23 years as a professor watching institutions measure the wrong things and discover the gaps too late. AI literacy is too important to measure badly.
+
+The mandate is done. The tools are deployed. The question now is whether anyone can prove it's working.
+
+That's what we do.
+
+---
+
+*Jeff Ritter is a former professor of 23 years, the builder of eight AI-powered education tools, and the founder of Transform Learning. He is based in Pittsburgh, PA.*
+
+*transformlearning.ai*`
+  },
+  {
     slug: 'superintelligence-is-not-what-they-renamed-it',
     title: "Superintelligence Is Not What They Just Renamed It",
     date: '2026-11-23',
